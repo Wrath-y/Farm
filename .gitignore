@@ -1,0 +1,49 @@
+# Unity generated
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Unity extensions
+/[Aa]ssets/AssetStoreTools*
+
+# Visual Studio / MonoDevelop generated
+/*.pidb
+/*.userprefs
+/*.csproj
+/*.pidb.meta
+/*.sln
+/*.suo
+/*.sln.meta
+/*.user
+/*.unityproj
+/*.booproj
+
+# Xcode
+/Builds/*
+/*.xcodeproj/
+!/*.xcodeproj/project.pbxproj
+!/*.xcworkspace/contents.xcworkspacedata
+/*.pbxuser
+/*.mode1v3
+/*.mode2v3
+/*.perspectivev3
+/*.xcuserstate
+
+# Gradle generated
+/build/
+.gradle/
+
+# Mac generated
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+/._*
+/Icon?
+
+.idea
