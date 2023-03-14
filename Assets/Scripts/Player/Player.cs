@@ -43,6 +43,6 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        rb.MovePosition(rb.position + movementInput*speed*Time.deltaTime);
+        rb.MovePosition(rb.position + movementInput*(speed*Time.deltaTime));
     }
 }
