@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemDetails
 {
     public int ItemId;
-    public string name;
+    public string itemName;
     public ItemType itemType;
     public Sprite itemIcon;
     public Sprite itemOnWorldSprite;
