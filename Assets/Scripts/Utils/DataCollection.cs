@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class ItemDetails
 {
-    public int ItemId;
+    public int itemID;
     public string itemName;
     public ItemType itemType;
     public Sprite itemIcon;

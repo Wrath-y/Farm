@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,8 +12,13 @@ public class ItemEditor : EditorWindow
     private ItemDataList_SO db;
     private List<ItemDetails> itemList = new List<ItemDetails>();
     private VisualTreeAsset itemRowTemplate;
-    private ListView itemListView;
+    private ScrollView itemDetailsSection;
+    private ItemDetails activeItem;
+    private Sprite defaultIcon;
+    private VisualElement iconPreview;
     
+    private ListView itemListView;
+
     [MenuItem("UIBuilder/ItemEditor")]
     public static void ShowExample()
     {
@@ -35,7 +42,11 @@ public class ItemEditor : EditorWindow
         
         itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRowTemplate.uxml");
 
+        defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/M Studio/Art/Items/Icons/icon_M.png");
+
         itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
+        itemDetailsSection = root.Q<ScrollView>("ItemDetails");
+        iconPreview = itemDetailsSection.Q<VisualElement>("Icon");
         
         LoadDB();
         GenrateListView();
@@ -55,8 +66,6 @@ public class ItemEditor : EditorWindow
 
         itemList = db.ItemDetailsList;
         EditorUtility.SetDirty(db);
-        
-        Debug.Log(itemList[0].ItemId);
     }
 
     private void GenrateListView()
@@ -70,18 +79,53 @@ public class ItemEditor : EditorWindow
                 Debug.Log("i > itemList.Count");
                 return;
             }
-
-            if (itemList[i].itemIcon == null)
-            {
-                Debug.Log("itemList[i].itemIcon is nil");
-                return;
-            }
-            e.Q<VisualElement>("Icon").style.backgroundImage = itemList[i].itemIcon.texture;
+            
+            e.Q<VisualElement>("Icon").style.backgroundImage = itemList[i].itemIcon == null ? defaultIcon.texture : itemList[i].itemIcon.texture;
             e.Q<Label>("Name").text = itemList[i] == null ? "item is nil" : itemList[i].itemName;
         };
 
         itemListView.itemsSource = itemList;
         itemListView.makeItem = makeItem;
         itemListView.bindItem = bindItem;
+
+        itemListView.onSelectionChange += OnListSelectionChange;
+
+        itemDetailsSection.visible = false;
+    }
+
+    private void OnListSelectionChange(IEnumerable<object> selectedItem)
+    {
+        activeItem = (ItemDetails)selectedItem.First();
+        GetItemDetails();
+        itemDetailsSection.visible = true;
+    }
+
+    private void GetItemDetails()
+    {
+        itemDetailsSection.MarkDirtyRepaint();
+
+        itemDetailsSection.Q<IntegerField>("ItemID").value = activeItem.itemID;
+        itemDetailsSection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(e =>
+        {
+            activeItem.itemID = e.newValue;
+        });
+        
+        itemDetailsSection.Q<TextField>("ItemName").value = activeItem.itemName;
+        itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(e =>
+        {
+            activeItem.itemName = e.newValue;
+            itemListView.Rebuild();
+        });
+
+        iconPreview.style.backgroundImage = activeItem.itemIcon == null ? defaultIcon.texture : activeItem.itemIcon.texture;
+
+        itemDetailsSection.Q<ObjectField>("ItemIcon").value = activeItem.itemIcon;
+        itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(e =>
+        {
+            Sprite newIcon = (Sprite)e.newValue;
+            activeItem.itemIcon = newIcon;
+            iconPreview.style.backgroundImage = newIcon == null ? defaultIcon.texture :  newIcon.texture;
+            itemListView.Rebuild();
+        });
     }
 }
