@@ -12,5 +12,12 @@ namespace Farm.Inventory
         {
             return itemDataList_SO.ItemDetailsList.Find(e => e.itemID == id);
         }
+
+        public void PickUpItem(Item item)
+        {
+            ItemDetails itemDetails = GetItemDetails(item.itemID);
+            Debug.Log(itemDetails.itemName);
+            Destroy(item.gameObject);
+        }
     }
 }
