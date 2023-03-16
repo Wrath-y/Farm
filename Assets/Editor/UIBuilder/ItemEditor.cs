@@ -149,10 +149,15 @@ public class ItemEditor : EditorWindow
             _itemListView.Rebuild();
         });
         
-        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
-        _itemDetailsSection.Q<EnumField>("ItemType").RegisterValueChangedCallback(e =>
+        var itemTypeField = _itemDetailsSection.Q<EnumField>("ItemType");
+        itemTypeField.Init(ItemType.Seed);
+        itemTypeField.value = _activeItem.itemType;
+        
+        _itemDetailsSection.Q<TextField>("ItemName").value = _activeItem.itemName;
+        _itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(e =>
         {
-            _activeItem.itemType = (ItemType)e.newValue;
+            _activeItem.itemName = e.newValue;
+            _itemListView.Rebuild();
         });
     }
 }
