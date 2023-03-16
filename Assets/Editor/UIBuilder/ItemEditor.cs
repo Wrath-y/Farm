@@ -9,15 +9,15 @@ using UnityEngine.UIElements;
 
 public class ItemEditor : EditorWindow
 {
-    private ItemDataList_SO db;
-    private List<ItemDetails> itemList = new List<ItemDetails>();
-    private VisualTreeAsset itemRowTemplate;
-    private ScrollView itemDetailsSection;
-    private ItemDetails activeItem;
-    private Sprite defaultIcon;
-    private VisualElement iconPreview;
+    private ItemDataList_SO _db;
+    private List<ItemDetails> _itemList = new List<ItemDetails>();
+    private VisualTreeAsset _itemRowTemplate;
+    private ScrollView _itemDetailsSection;
+    private ItemDetails _activeItem;
+    private Sprite _defaultIcon;
+    private VisualElement _iconPreview;
     
-    private ListView itemListView;
+    private ListView _itemListView;
 
     [MenuItem("UIBuilder/ItemEditor")]
     public static void ShowExample()
@@ -40,13 +40,13 @@ public class ItemEditor : EditorWindow
         VisualElement labelFromUXML = visualTree.Instantiate();
         root.Add(labelFromUXML);
         
-        itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRowTemplate.uxml");
+        _itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRowTemplate.uxml");
 
-        defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/M Studio/Art/Items/Icons/icon_M.png");
+        _defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/M Studio/Art/Items/Icons/icon_M.png");
 
-        itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
-        itemDetailsSection = root.Q<ScrollView>("ItemDetails");
-        iconPreview = itemDetailsSection.Q<VisualElement>("Icon");
+        _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
+        _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
+        _iconPreview = _itemDetailsSection.Q<VisualElement>("Icon");
         
         LoadDB();
         GenrateListView();
@@ -62,70 +62,70 @@ public class ItemEditor : EditorWindow
         }
 
         var path = AssetDatabase.GUIDToAssetPath(dataList[0]);
-        db = AssetDatabase.LoadAssetAtPath<ItemDataList_SO>(path);
+        _db = AssetDatabase.LoadAssetAtPath<ItemDataList_SO>(path);
 
-        itemList = db.ItemDetailsList;
-        EditorUtility.SetDirty(db);
+        _itemList = _db.ItemDetailsList;
+        EditorUtility.SetDirty(_db);
     }
 
     private void GenrateListView()
     {
-        Func<VisualElement> makeItem = () => itemRowTemplate.CloneTree();
+        Func<VisualElement> makeItem = () => _itemRowTemplate.CloneTree();
 
         Action<VisualElement, int> bindItem = (e, i) =>
         {
-            if (i > itemList.Count)
+            if (i > _itemList.Count)
             {
                 Debug.Log("i > itemList.Count");
                 return;
             }
             
-            e.Q<VisualElement>("Icon").style.backgroundImage = itemList[i].itemIcon == null ? defaultIcon.texture : itemList[i].itemIcon.texture;
-            e.Q<Label>("Name").text = itemList[i] == null ? "item is nil" : itemList[i].itemName;
+            e.Q<VisualElement>("Icon").style.backgroundImage = _itemList[i].itemIcon == null ? _defaultIcon.texture : _itemList[i].itemIcon.texture;
+            e.Q<Label>("Name").text = _itemList[i] == null ? "item is nil" : _itemList[i].itemName;
         };
 
-        itemListView.itemsSource = itemList;
-        itemListView.makeItem = makeItem;
-        itemListView.bindItem = bindItem;
+        _itemListView.itemsSource = _itemList;
+        _itemListView.makeItem = makeItem;
+        _itemListView.bindItem = bindItem;
 
-        itemListView.onSelectionChange += OnListSelectionChange;
+        _itemListView.onSelectionChange += OnListSelectionChange;
 
-        itemDetailsSection.visible = false;
+        _itemDetailsSection.visible = false;
     }
 
     private void OnListSelectionChange(IEnumerable<object> selectedItem)
     {
-        activeItem = (ItemDetails)selectedItem.First();
+        _activeItem = (ItemDetails)selectedItem.First();
         GetItemDetails();
-        itemDetailsSection.visible = true;
+        _itemDetailsSection.visible = true;
     }
 
     private void GetItemDetails()
     {
-        itemDetailsSection.MarkDirtyRepaint();
+        _itemDetailsSection.MarkDirtyRepaint();
 
-        itemDetailsSection.Q<IntegerField>("ItemID").value = activeItem.itemID;
-        itemDetailsSection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(e =>
+        _itemDetailsSection.Q<IntegerField>("ItemID").value = _activeItem.itemID;
+        _itemDetailsSection.Q<IntegerField>("ItemID").RegisterValueChangedCallback(e =>
         {
-            activeItem.itemID = e.newValue;
+            _activeItem.itemID = e.newValue;
         });
         
-        itemDetailsSection.Q<TextField>("ItemName").value = activeItem.itemName;
-        itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(e =>
+        _itemDetailsSection.Q<TextField>("ItemName").value = _activeItem.itemName;
+        _itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(e =>
         {
-            activeItem.itemName = e.newValue;
-            itemListView.Rebuild();
+            _activeItem.itemName = e.newValue;
+            _itemListView.Rebuild();
         });
 
-        iconPreview.style.backgroundImage = activeItem.itemIcon == null ? defaultIcon.texture : activeItem.itemIcon.texture;
+        _iconPreview.style.backgroundImage = _activeItem.itemIcon == null ? _defaultIcon.texture : _activeItem.itemIcon.texture;
 
-        itemDetailsSection.Q<ObjectField>("ItemIcon").value = activeItem.itemIcon;
-        itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(e =>
+        _itemDetailsSection.Q<ObjectField>("ItemIcon").value = _activeItem.itemIcon;
+        _itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(e =>
         {
             Sprite newIcon = (Sprite)e.newValue;
-            activeItem.itemIcon = newIcon;
-            iconPreview.style.backgroundImage = newIcon == null ? defaultIcon.texture :  newIcon.texture;
-            itemListView.Rebuild();
+            _activeItem.itemIcon = newIcon;
+            _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
+            _itemListView.Rebuild();
         });
     }
 }

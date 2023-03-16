@@ -4,20 +4,20 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class ItemFader : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void FadeIn()
     {
-        spriteRenderer.DOColor(new Color(1, 1, 1, 1), Settings.fadeDuration);
+        _spriteRenderer.DOColor(new Color(1, 1, 1, 1), Settings.FadeDuration);
     }
 
     public void FadeOut()
     {
-        spriteRenderer.DOColor(new Color(1, 1, 1, Settings.targetAlpha), Settings.fadeDuration);
+        _spriteRenderer.DOColor(new Color(1, 1, 1, Settings.TargetAlpha), Settings.FadeDuration);
     }
 }
