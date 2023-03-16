@@ -26,13 +26,13 @@ MonoBehaviour:
     itemPrice: 0
     sellPercentage: 0
   - itemID: 1002
-    itemName: "\u79CD\u5B50"
-    itemType: 4
+    itemName: "\u571F\u8C46\u79CD\u5B50"
+    itemType: 0
     itemIcon: {fileID: 0}
     itemOnWorldSprite: {fileID: 0}
-    itemDescription: "\u8FD9\u662F\u7528\u6765\u780D\u6811\u7684"
-    itemUseRadius: 1
-    canPickup: 1
+    itemDescription: 
+    itemUseRadius: 0
+    canPickup: 0
     canDropped: 0
     canCarried: 0
     itemPrice: 0

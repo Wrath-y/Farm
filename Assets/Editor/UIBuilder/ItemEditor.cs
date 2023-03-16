@@ -47,9 +47,30 @@ public class ItemEditor : EditorWindow
         _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
         _iconPreview = _itemDetailsSection.Q<VisualElement>("Icon");
-        
+
+        root.Q<Button>("AddBtn").clicked += OnAddBtnClicked;
+        root.Q<Button>("DelBtn").clicked += OnDelBtnClicked;
+
         LoadDB();
         GenrateListView();
+    }
+
+    private void OnAddBtnClicked()
+    {
+        ItemDetails newItem = new ItemDetails();
+        newItem.itemName = "NEW ITEM";
+        newItem.itemID = 1001 + _itemList.Count;
+        
+        _itemList.Add(newItem);
+        
+        _itemListView.Rebuild();
+    }
+    
+    private void OnDelBtnClicked()
+    {
+        _itemList.Remove(_activeItem);
+        _itemListView.Rebuild();
+        _itemDetailsSection.visible = false;
     }
 
     private void LoadDB()
@@ -126,6 +147,12 @@ public class ItemEditor : EditorWindow
             _activeItem.itemIcon = newIcon;
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
             _itemListView.Rebuild();
+        });
+        
+        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
+        _itemDetailsSection.Q<EnumField>("ItemType").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemType = (ItemType)e.newValue;
         });
     }
 }
