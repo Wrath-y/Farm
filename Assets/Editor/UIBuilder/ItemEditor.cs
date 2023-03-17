@@ -148,16 +148,32 @@ public class ItemEditor : EditorWindow
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
             _itemListView.Rebuild();
         });
-        
-        var itemTypeField = _itemDetailsSection.Q<EnumField>("ItemType");
-        itemTypeField.Init(ItemType.Seed);
-        itemTypeField.value = _activeItem.itemType;
-        
-        _itemDetailsSection.Q<TextField>("ItemName").value = _activeItem.itemName;
-        _itemDetailsSection.Q<TextField>("ItemName").RegisterValueChangedCallback(e =>
+
+        _itemDetailsSection.Q<ObjectField>("ItemSprite").value = _activeItem.itemOnWorldSprite;
+        _itemDetailsSection.Q<ObjectField>("ItemSprite").RegisterValueChangedCallback(e =>
         {
-            _activeItem.itemName = e.newValue;
-            _itemListView.Rebuild();
+            Sprite newSprite = (Sprite)e.newValue;
+            _activeItem.itemOnWorldSprite = newSprite;
+        });
+        
+        _itemDetailsSection.Q<EnumField>("ItemType").Init(ItemType.Seed);
+        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
+        _itemDetailsSection.Q<EnumField>("ItemType").RegisterCallback<ChangeEvent<ItemType>>((evt) =>
+        {
+            _activeItem.itemType = evt.newValue;
+        });
+        
+        
+        _itemDetailsSection.Q<TextField>("Description").value = _activeItem.itemDescription;
+        _itemDetailsSection.Q<TextField>("Description").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemDescription = e.newValue;
+        });
+        
+        _itemDetailsSection.Q<IntegerField>("ItemUseRadius").value = _activeItem.itemUseRadius;
+        _itemDetailsSection.Q<IntegerField>("ItemUseRadius").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemUseRadius = e.newValue;
         });
     }
 }
