@@ -67,5 +67,21 @@ namespace Farm.Inventory
             
             bagUI.SetActive(_bagOpened);
         }
+
+        public void UpdateSlotHighlight(int index)
+        {
+            foreach (var slot in playerSlots)
+            {
+                if (slot.isSelected && slot.slotIndex == index)
+                {
+                    slot.slotHighlight.gameObject.SetActive(true);
+                }
+                else
+                {
+                    slot.isSelected = false;
+                    slot.slotHighlight.gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

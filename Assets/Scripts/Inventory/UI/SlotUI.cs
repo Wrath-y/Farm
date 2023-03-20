@@ -1,18 +1,22 @@
 using System;
+using Farm.Inventory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SlotUI : MonoBehaviour
+public class SlotUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image slotImg;
     [SerializeField] private TextMeshProUGUI amountText;
-    [SerializeField] private Image slotHighlight;
+    public Image slotHighlight;
     [SerializeField] private Button button;
+    private InventoryUI InventoryUI => GetComponentInParent<InventoryUI>();
 
     public SlotType slotType;
     public bool isSelected;
     public int slotIndex;
+    
 
     public ItemDetails itemDetails;
     public int itemAmount;
@@ -24,6 +28,14 @@ public class SlotUI : MonoBehaviour
         {
             ClearSlot();
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (itemAmount == 0) return;
+        isSelected = !isSelected;
+        slotHighlight.gameObject.SetActive(isSelected);
+        InventoryUI.UpdateSlotHighlight(slotIndex);
     }
 
     public void ClearSlot()
