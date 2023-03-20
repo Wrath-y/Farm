@@ -13,7 +13,7 @@ public class ItemDetails
     public bool canPickup;
     public bool canDropped;
     public bool canCarried;
-    public bool itemPrice;
+    public int itemPrice;
     [Range(0, 1)]
     public float sellPercentage;
 }

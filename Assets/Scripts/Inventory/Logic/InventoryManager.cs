@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,12 @@ namespace Farm.Inventory
         public ItemDataList_SO itemDataList_SO;
 
         [Header("背包数据")] public InventoryBag_SO playerBag;
-        
+
+        private void Start()
+        {
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+
         public ItemDetails GetItemDetails(int id)
         {
             return itemDataList_SO.ItemDetailsList.Find(e => e.itemID == id);
@@ -23,6 +29,8 @@ namespace Farm.Inventory
             ItemDetails itemDetails = GetItemDetails(item.itemID);
             Debug.Log(itemDetails.itemName);
             Destroy(item.gameObject);
+            
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
 
         public struct CanAddBagItemReturns

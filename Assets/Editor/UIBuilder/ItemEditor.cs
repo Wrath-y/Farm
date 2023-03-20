@@ -175,5 +175,33 @@ public class ItemEditor : EditorWindow
         {
             _activeItem.itemUseRadius = e.newValue;
         });
+        
+        _itemDetailsSection.Q<Toggle>("CanPickup").value = _activeItem.canPickup;
+        _itemDetailsSection.Q<Toggle>("CanPickup").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.canPickup = e.newValue;
+        });
+        _itemDetailsSection.Q<Toggle>("CanDropped").value = _activeItem.canPickup;
+        _itemDetailsSection.Q<Toggle>("CanDropped").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.canDropped = e.newValue;
+        });
+        _itemDetailsSection.Q<Toggle>("CanCarried").value = _activeItem.canPickup;
+        _itemDetailsSection.Q<Toggle>("CanCarried").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.canCarried = e.newValue;
+        });
+        
+        _itemDetailsSection.Q<IntegerField>("Price").value = _activeItem.itemPrice;
+        _itemDetailsSection.Q<IntegerField>("Price").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemPrice = e.newValue;
+        });
+        
+        _itemDetailsSection.Q<Slider>("SellPercentage").value = _activeItem.sellPercentage;
+        _itemDetailsSection.Q<Slider>("SellPercentage").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.sellPercentage = e.newValue;
+        });
     }
 }
