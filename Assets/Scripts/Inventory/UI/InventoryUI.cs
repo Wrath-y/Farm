@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 namespace Farm.Inventory
 {
     public class InventoryUI : MonoBehaviour
     {
+        public Image dragItem;
         [SerializeField] private GameObject bagUI;
         private bool _bagOpened;
         [SerializeField] private SlotUI[] playerSlots;
