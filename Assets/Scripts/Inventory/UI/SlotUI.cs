@@ -36,6 +36,11 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
         isSelected = !isSelected;
         slotHighlight.gameObject.SetActive(isSelected);
         InventoryUI.UpdateSlotHighlight(slotIndex);
+
+        if (slotType == SlotType.Bag)
+        {
+            EventHandler.CallItemSelected(itemDetails, isSelected);
+        }
     }
     
     public void OnBeginDrag(PointerEventData eventData)

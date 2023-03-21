@@ -10,17 +10,21 @@ public class Player : MonoBehaviour
     public float speed;
     private float _inputX;
     private float _inputY;
+    private bool _isMoving;
 
     private Vector2 _movementInput;
+    private Animator[] _animators;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animators = GetComponentsInChildren<Animator>();
     }
 
     private void Update()
     {
         PlayerInput();
+        SwitchAnimation();
     }
 
     private void FixedUpdate()
@@ -35,14 +39,34 @@ public class Player : MonoBehaviour
 
         if (_inputX != 0 && _inputY != 0)
         {
-            _inputX = _inputX * 0.6f;
-            _inputY = _inputY * 0.6f;
+            _inputX *= 0.6f;
+            _inputY *= 0.6f;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _inputX *= 0.5f;
+            _inputY *= 0.5f;
         }
         _movementInput = new Vector2(_inputX, _inputY);
+        _isMoving = _movementInput != Vector2.zero;
     }
 
     private void Movement()
     {
         _rb.MovePosition(_rb.position + _movementInput*(speed*Time.deltaTime));
+    }
+
+    private void SwitchAnimation()
+    {
+        foreach (var animator in _animators)
+        {
+            animator.SetBool("IsMoving", _isMoving);
+            if (_isMoving)
+            {
+                animator.SetFloat("InputX", _inputX);
+                animator.SetFloat("InputY", _inputY);
+            }
+        }
     }
 }

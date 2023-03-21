@@ -49,10 +49,10 @@ namespace Farm.Inventory
                 case InventoryLocation.Player:
                     for (int i = 0; i < playerSlots.Length; i++)
                     {
-                        if (list[i].ItemAmount > 0)
+                        if (list[i].itemAmount > 0)
                         {
-                            var item = InventoryManager.Instance.GetItemDetails(list[i].ItemID);
-                            playerSlots[i].SetSlot(item, list[i].ItemAmount);
+                            var item = InventoryManager.Instance.GetItemDetails(list[i].itemID);
+                            playerSlots[i].SetSlot(item, list[i].itemAmount);
                         }
                         else
                         {

@@ -45,12 +45,12 @@ namespace Farm.Inventory
             var hasAdd = false;
             foreach (var item in playerBag.ItemList)
             {
-                if (item.ItemID == itemID)
+                if (item.itemID == itemID)
                 {
                     res.ExistsIndex = i;
                     return res;
                 }
-                if (!hasAdd && item.ItemID == 0)
+                if (!hasAdd && item.itemID == 0)
                 {
                     hasAdd = true;
                     res.FirstNilIndex = i;
@@ -70,15 +70,15 @@ namespace Farm.Inventory
 
             var index = 0;
             InventoryItem newItem = new InventoryItem();
-            newItem.ItemID = itemID;
+            newItem.itemID = itemID;
             if (res.ExistsIndex != -1)
             {
-                newItem.ItemAmount = playerBag.ItemList[res.ExistsIndex].ItemAmount + 1;
+                newItem.itemAmount = playerBag.ItemList[res.ExistsIndex].itemAmount + 1;
                 index = res.ExistsIndex;
             }
             else
             {
-                newItem.ItemAmount = 1;
+                newItem.itemAmount = 1;
                 index = res.FirstNilIndex;
             }
             playerBag.ItemList[index] = newItem;

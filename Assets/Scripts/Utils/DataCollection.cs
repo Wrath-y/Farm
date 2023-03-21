@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class ItemDetails
@@ -21,6 +22,14 @@ public class ItemDetails
 [System.Serializable]
 public struct InventoryItem
 {
-    public int ItemID;
-    public int ItemAmount;
+    public int itemID;
+    public int itemAmount;
+}
+
+[System.Serializable]
+public class AnimatorType
+{
+    public PartType partType;
+    public PartName partName;
+    public AnimatorOverrideController overrideController;
 }
