@@ -22,6 +22,5 @@ public class ItemDetails
 public struct InventoryItem
 {
     public int ItemID;
-    public int ItemAmount; 
-    
+    public int ItemAmount;
 }

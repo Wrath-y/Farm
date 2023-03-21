@@ -8,6 +8,7 @@ namespace Farm.Inventory
 {
     public class InventoryUI : MonoBehaviour
     {
+        public ItemToolTip ItemToolTip;
         public Image dragItem;
         [SerializeField] private GameObject bagUI;
         private bool _bagOpened;
