@@ -43,6 +43,14 @@ public class TimeManager : MonoBehaviour
             _tikTime -= Settings.SecondThreshold;
             UpdateGameTime();
         }
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            for (int i = 0; i < 60; i++)
+            {
+                UpdateGameTime();
+            }
+        }
     }
 
     private void NewGameTime()
@@ -100,8 +108,8 @@ public class TimeManager : MonoBehaviour
                             _gameTime.Season = (Season)seasonNumber;
                         }
                     }
-                    EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
                 }
+                EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
             }
             EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour);
         }

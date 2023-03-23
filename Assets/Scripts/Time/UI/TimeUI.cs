@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,9 +48,15 @@ public class TimeUI : MonoBehaviour
         dateText.text = year + "年" + month.ToString("00") + "月" + day.ToString("00") + "日";
         seasonImage.sprite = seasonSprites[(int)season];
         
-        SwitchHourImage(hour);
+        SwitchHour(hour);
     }
 
+    private void SwitchHour(int hour)
+    {
+        SwitchHourImage(hour);
+        DayNightImageRotate(hour);
+    }
+    
     private void SwitchHourImage(int hour)
     {
         int index = hour / 4;
@@ -59,12 +66,13 @@ public class TimeUI : MonoBehaviour
             {
                 clockBlock.SetActive(false);
             }
+            _clockBlocks[0].SetActive(true);
 
             return;
         }
         for (int i = 0; i < _clockBlocks.Count; i++) 
         {
-            if (i < index)
+            if (i < index + 1)
             { 
                 _clockBlocks[i].SetActive(true);
                 
@@ -74,5 +82,10 @@ public class TimeUI : MonoBehaviour
                 _clockBlocks[i].SetActive(false);
             }
         }
+    }
+
+    private void DayNightImageRotate(int hour)
+    {
+        dayNightImage.DORotate(new Vector3(0, 0, hour * 15 - 90), 1f);
     }
 }
