@@ -10,14 +10,16 @@ public class ItemManager: MonoBehaviour
     private void OnEnable()
     {
         EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;
+        EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
+        EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
     }
 
-    private void Start()
+    private void OnAfterLoadedSceneEvent()
     {
         itemParent = GameObject.FindWithTag("ItemParent").transform;
     }

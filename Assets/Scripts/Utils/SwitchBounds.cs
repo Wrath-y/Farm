@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SwitchBounds : MonoBehaviour
 {
-    private void Start()
+    private void OnEnable()
     {
-        SwitchConfinerShape();
+        EventHandler.AfterLoadedSceneEvent += SwitchConfinerShape;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.AfterLoadedSceneEvent -= SwitchConfinerShape;
     }
 
     private void SwitchConfinerShape()

@@ -21,15 +21,17 @@ public class AnimatorOverride : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHandler.ItemSelected += OnItemSelected;
+        EventHandler.ItemSelectedEvent += OnItemSelectedEvent;
+        EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
     }
 
     private void OnDisable()
     {
-        EventHandler.ItemSelected -= OnItemSelected;
+        EventHandler.ItemSelectedEvent -= OnItemSelectedEvent;
+        EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
     }
 
-    private void OnItemSelected(ItemDetails itemDetails, bool isSelected)
+    private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
         PartType curType = itemDetails.itemType switch
         {
@@ -51,6 +53,12 @@ public class AnimatorOverride : MonoBehaviour
         }
         
         SwitchAnimator(curType);
+    }
+
+    private void OnBeforeUnloadSceneEvent()
+    {
+        holdItem.gameObject.SetActive(false);
+        SwitchAnimator(PartType.None);
     }
 
     private void SwitchAnimator(PartType partType)

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     private Vector2 _movementInput;
     private Animator[] _animators;
+    private bool _inputDisable;
 
     private void Awake()
     {
@@ -21,9 +22,26 @@ public class Player : MonoBehaviour
         _animators = GetComponentsInChildren<Animator>();
     }
 
+    private void OnEnable()
+    {
+        EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
+        EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
+        EventHandler.MoveToPos += OnMoveToPos;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
+        EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
+        EventHandler.MoveToPos -= OnMoveToPos;
+    }
+
     private void Update()
     {
-        PlayerInput();
+        if (!_inputDisable)
+            PlayerInput();
+        else
+            _isMoving = false;
         SwitchAnimation();
     }
 
@@ -68,5 +86,21 @@ public class Player : MonoBehaviour
                 animator.SetFloat("InputY", _inputY);
             }
         }
+    }
+
+    private void OnBeforeUnloadSceneEvent()
+    {
+        _inputDisable = true;
+    }
+
+    private void OnAfterLoadedSceneEvent()
+    {
+        _inputDisable = false;
+    }
+
+    private void OnMoveToPos(Vector3 targetPos)
+    {
+        Debug.Log(targetPos);
+        transform.position = targetPos;
     }
 }
