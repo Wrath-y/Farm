@@ -8,7 +8,12 @@ namespace Farm.Transition
 {
     public class TransitionManager : MonoBehaviour
     {
+        [SceneName]
         public string startSceneName = "";
+
+        private bool _isFaded;
+
+        private CanvasGroup _fadeCanvasGroup;
 
         private void OnEnable()
         {
@@ -23,16 +28,27 @@ namespace Farm.Transition
         private void Start()
         {
             StartCoroutine(LoadSceneSetActive(startSceneName));
+            _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
+        }
+        
+        private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
+        {
+            if (!_isFaded)
+            {
+                StartCoroutine(Transition(targetSceneName, targetPos));
+            }
+            
         }
 
         private IEnumerator Transition(string sceneName, Vector3 targetPos)
         {
             EventHandler.CallBeforeUnloadSceneEvent();
-            Debug.Log(SceneManager.GetActiveScene());
+            yield return Fade(1);
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
             yield return LoadSceneSetActive(sceneName);
             EventHandler.CallMoveToPos(targetPos);
+            yield return Fade(0);
             EventHandler.CallAfterLoadedSceneEvent();
         }
 
@@ -44,9 +60,20 @@ namespace Farm.Transition
             SceneManager.SetActiveScene(newScene);
         }
 
-        private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
+        private IEnumerator Fade(float targetAlpha)
         {
-            StartCoroutine(Transition(targetSceneName, targetPos));
+            _isFaded = true;
+            _fadeCanvasGroup.blocksRaycasts = true;
+            float speed = Mathf.Abs(_fadeCanvasGroup.alpha - targetAlpha) / Settings.FadeDuration;
+
+            while (!Mathf.Approximately(_fadeCanvasGroup.alpha, targetAlpha))
+            {
+                _fadeCanvasGroup.alpha = Mathf.MoveTowards(_fadeCanvasGroup.alpha, targetAlpha, speed * Time.deltaTime);
+                yield return null;
+            }
+            
+            _fadeCanvasGroup.blocksRaycasts = false;
+            _isFaded = false;
         }
     }
 }

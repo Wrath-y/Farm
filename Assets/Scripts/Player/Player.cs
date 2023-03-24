@@ -39,14 +39,22 @@ public class Player : MonoBehaviour
     private void Update()
     {
         if (!_inputDisable)
+        {
             PlayerInput();
+        }
         else
+        {
             _isMoving = false;
+        }
         SwitchAnimation();
     }
 
     private void FixedUpdate()
     {
+        if (_inputDisable)
+        {
+            return;
+        }
         Movement();
     }
 
@@ -100,7 +108,6 @@ public class Player : MonoBehaviour
 
     private void OnMoveToPos(Vector3 targetPos)
     {
-        Debug.Log(targetPos);
         transform.position = targetPos;
     }
 }

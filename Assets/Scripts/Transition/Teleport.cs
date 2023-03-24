@@ -8,15 +8,15 @@ namespace Farm.Transition
 {
     public class Teleport : MonoBehaviour
     {
+        [SceneName]
         public string targetSceneName;
+        
         public Vector3 targetPos;
 
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.CompareTag("Player"))
             {
-                Debug.Log(targetSceneName);
-                Debug.Log(targetPos);
                 EventHandler.CallTransitionEvent(targetSceneName, targetPos);
             }
         }

@@ -22571,10 +22571,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1848923595}
   - component: {fileID: 1848923594}
-  - component: {fileID: 1848923593}
   - component: {fileID: 1848923596}
+  - component: {fileID: 1848923593}
   m_Layer: 0
-  m_Name: House_02_Door
+  m_Name: TeleportToHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22593,7 +22593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: 02.Home
-  targetPos: {x: 1.26, y: -16, z: 0}
+  targetPos: {x: -10, y: -17, z: 0}
 --- !u!212 &1848923594
 SpriteRenderer:
   m_ObjectHideFlags: 0
