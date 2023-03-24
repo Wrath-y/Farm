@@ -48,8 +48,8 @@ namespace Farm.Transition
 
             yield return LoadSceneSetActive(sceneName);
             EventHandler.CallMoveToPos(targetPos);
-            yield return Fade(0);
             EventHandler.CallAfterLoadedSceneEvent();
+            yield return Fade(0);
         }
 
         private IEnumerator LoadSceneSetActive(string sceneName)
