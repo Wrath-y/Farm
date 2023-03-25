@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,14 +14,26 @@ public class CursorManager : MonoBehaviour
     private Image _cursorImage;
     private RectTransform _cursorCanvas;
 
+    private Camera _mainCamera;
+    private Grid _curGrid;
+    private Vector3 _mouseWorldPos;
+    private Vector3Int _mouseGridPos;
+    private bool _cursorEnable;
+    private bool _cursorPositionValid;
+    private ItemDetails _curItem;
+
     private void OnEnable()
     {
         EventHandler.ItemSelectedEvent += OnItemSelectedEvent;
+        EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
+        EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.ItemSelectedEvent -= OnItemSelectedEvent;
+        EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
+        EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
     }
 
     private void Start()
@@ -29,6 +42,8 @@ public class CursorManager : MonoBehaviour
         _cursorImage = _cursorCanvas.GetChild(0).GetComponent<Image>();
         _curSprite = normal;
         SetCursorImage(normal);
+        
+        _mainCamera = Camera.main;
     }
 
     private void Update()
@@ -39,9 +54,10 @@ public class CursorManager : MonoBehaviour
         }
 
         _cursorImage.transform.position = Input.mousePosition;
-        if (!InteractWithUI())
+        if (!InteractWithUI() && _cursorEnable)
         {
             SetCursorImage(_curSprite);
+            CheckCursorValid();
         }
         else
         {
@@ -55,20 +71,16 @@ public class CursorManager : MonoBehaviour
         _cursorImage.color = new Color(1, 1, 1, 1);
     }
 
-    private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
+    private void SetCursorValid()
     {
-        if (!isSelected)
-        {
-            _curSprite = normal;
-            return;
-        }
-        _curSprite = itemDetails.itemType switch
-        {
-            ItemType.Seed => seed,
-            ItemType.ChopTool => tool,
-            ItemType.Commodity => commodity,
-            _ => normal
-        };
+        _cursorImage.color = new Color(1, 1, 1, 1);
+        _cursorPositionValid = true;
+    }
+
+    private void SetCursorInValid()
+    {
+        _cursorImage.color = new Color(1, 0, 0, 0.5f);
+        _cursorPositionValid = false;
     }
 
     private bool InteractWithUI()
@@ -79,5 +91,55 @@ public class CursorManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void CheckCursorValid()
+    {
+        _mouseWorldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
+
+        TileDetails curTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(_mouseGridPos);
+        if (curTile == null)
+        {
+            SetCursorInValid();
+            return;
+        }
+        
+        switch (_curItem.itemType)
+        {
+            case ItemType.Commodity:
+                if (curTile.canDropItem && _curItem.canDropped) SetCursorValid(); else SetCursorInValid(); 
+                break;
+        }
+    }
+    
+    private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
+    {
+        if (!isSelected)
+        {
+            _cursorEnable = false;
+            _curSprite = normal;
+            return;
+        }
+
+        _curItem = itemDetails;
+        _curSprite = itemDetails.itemType switch
+        {
+            ItemType.Seed => seed,
+            ItemType.ChopTool => tool,
+            ItemType.Commodity => commodity,
+            _ => normal
+        };
+        _cursorEnable = true;
+    }
+
+    private void OnBeforeUnloadSceneEvent()
+    {
+        _cursorEnable = false;
+    }
+    
+    private void OnAfterLoadedSceneEvent()
+    {
+        _curGrid = FindObjectOfType<Grid>();
     }
 }

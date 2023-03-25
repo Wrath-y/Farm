@@ -25,10 +25,11 @@ namespace Farm.Transition
             EventHandler.TransitionEvent -= OnTransitionEvent;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            StartCoroutine(LoadSceneSetActive(startSceneName));
             _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
+            yield return LoadSceneSetActive(startSceneName);
+            EventHandler.CallAfterLoadedSceneEvent();
         }
         
         private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
