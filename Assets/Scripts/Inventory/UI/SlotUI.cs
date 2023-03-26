@@ -24,7 +24,7 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
     private void Start()
     {
         isSelected = false;
-        if (itemDetails.itemID == 0)
+        if (itemDetails == null || itemDetails.itemID == 0)
         {
             ClearSlot();
         }
@@ -86,8 +86,11 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
         if (isSelected)
         {
             isSelected = false;
+            InventoryUI.UpdateSlotHighlight(-1);
+            EventHandler.CallItemSelected(itemDetails, isSelected);
         }
 
+        itemDetails = new ItemDetails();
         slotImg.enabled = false;
         amountText.text = string.Empty;
         button.interactable = false;

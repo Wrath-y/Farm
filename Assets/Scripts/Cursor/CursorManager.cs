@@ -59,10 +59,19 @@ public class CursorManager : MonoBehaviour
         {
             SetCursorImage(_curSprite);
             CheckCursorValid();
+            CheckPlayerInput();
         }
         else
         {
             SetCursorImage(normal);
+        }
+    }
+
+    private void CheckPlayerInput()
+    {
+        if (Input.GetMouseButtonDown(0) && _cursorPositionValid)
+        {
+            EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
         }
     }
 
@@ -96,7 +105,7 @@ public class CursorManager : MonoBehaviour
 
     private void CheckCursorValid()
     {
-        _mouseWorldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_mainCamera.transform.position.z));
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
         if (Math.Abs(_mouseGridPos.x - playerGridPos.x) > _curItem.itemUseRadius || Math.Abs(_mouseGridPos.y - playerGridPos.y) > _curItem.itemUseRadius)

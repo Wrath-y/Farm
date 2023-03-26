@@ -14,6 +14,7 @@ public class ItemManager: MonoBehaviour
     private void OnEnable()
     {
         EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;
+        EventHandler.DropItemEvent += OnDropItemEvent;
         EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
     }
@@ -21,6 +22,7 @@ public class ItemManager: MonoBehaviour
     private void OnDisable()
     {
         EventHandler.InstantiateItemInScene -= OnInstantiateItemInScene;
+        EventHandler.DropItemEvent -= OnDropItemEvent;
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
     }
@@ -37,6 +39,12 @@ public class ItemManager: MonoBehaviour
     }
 
     private void OnInstantiateItemInScene(int id, Vector3 pos)
+    {
+        var item = Instantiate(itemPrefab, pos, Quaternion.identity, _itemParent);
+        item.itemID = id;
+    }
+
+    private void OnDropItemEvent(int id, Vector3 pos)
     {
         var item = Instantiate(itemPrefab, pos, Quaternion.identity, _itemParent);
         item.itemID = id;

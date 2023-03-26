@@ -12,6 +12,16 @@ namespace Farm.Inventory
 
         [Header("背包数据")] public InventoryBag_SO playerBag;
 
+        private void OnEnable()
+        {
+            EventHandler.DropItemEvent += OnDropItemEvent;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.DropItemEvent -= OnDropItemEvent;
+        }
+        
         private void Start()
         {
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
@@ -22,12 +32,21 @@ namespace Farm.Inventory
             return itemDataList_SO.ItemDetailsList.Find(e => e.itemID == id);
         }
 
+        public int GetItemIndexInBag(int id)
+        {
+            for (int i = 0; i < playerBag.ItemList.Count; i++)
+            {
+                if (playerBag.ItemList[i].itemID == id)
+                    return i;
+            }
+            return -1;
+        }
+
         public void PickUpItem(Item item)
         {
             var res = CanAddBagItem(item.itemID);
             AddItem(item.itemID, res);
             ItemDetails itemDetails = GetItemDetails(item.itemID);
-            Debug.Log(itemDetails.itemName);
             Destroy(item.gameObject);
             
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
@@ -93,6 +112,30 @@ namespace Farm.Inventory
             playerBag.ItemList[targetIndex] = currentItem;
             
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+
+        private void RemoveItem(int id, int removeAmount)
+        {
+            var index = GetItemIndexInBag(id);
+
+            if (playerBag.ItemList[index].itemAmount > removeAmount)
+            {
+                var amount = playerBag.ItemList[index].itemAmount - removeAmount;
+                var item = new InventoryItem { itemID = id, itemAmount = amount };
+                playerBag.ItemList[index] = item;
+            }
+            else if (playerBag.ItemList[index].itemAmount == removeAmount)
+            {
+                var item = new InventoryItem();
+                playerBag.ItemList[index] = item;
+            }
+            
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+
+        private void OnDropItemEvent(int itemID, Vector3 pos)
+        {
+            RemoveItem(itemID, 1);
         }
     }
 }

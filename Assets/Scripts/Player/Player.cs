@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
         EventHandler.MoveToPos += OnMoveToPos;
+        EventHandler.MouseClickedEvent += OnMouseClickedEvent;
     }
 
     private void OnDisable()
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
         EventHandler.MoveToPos -= OnMoveToPos;
+        EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
     }
 
     private void Update()
@@ -109,5 +111,10 @@ public class Player : MonoBehaviour
     private void OnMoveToPos(Vector3 targetPos)
     {
         transform.position = targetPos;
+    }
+
+    private void OnMouseClickedEvent(Vector3 pos, ItemDetails itemDetails)
+    {
+        EventHandler.CallExecuteActionAfterAnimation(pos, itemDetails);
     }
 }

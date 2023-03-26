@@ -10,6 +10,19 @@ namespace Farm.Map
     {
         public List<MapData_SO> mapDataList;
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
+        private Grid _curGrid;
+
+        private void OnEnable()
+        {
+            EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
+            EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.ExecuteActionAfterAnimation -= OnExecuteActionAfterAnimation;
+            EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
+        }
 
         private void Start()
         {
@@ -76,6 +89,28 @@ namespace Farm.Map
         public TileDetails GetTileDetailsByMouseGridPos(Vector3Int mouseGridPos)
         {
             return GetTileDetails(mouseGridPos.x + "x" + mouseGridPos.y + "y" + SceneManager.GetActiveScene().name);
+        }
+
+        private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
+        {
+            var curTile = GetTileDetailsByMouseGridPos(_curGrid.WorldToCell(mouseWorldPos));
+
+            if (curTile == null)
+            {
+                return;
+            }
+
+            switch (itemDetails.itemType)
+            {
+                case ItemType.Commodity:
+                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);
+                    break;
+            }
+        }
+
+        private void OnAfterLoadedSceneEvent()
+        {
+            _curGrid = FindObjectOfType<Grid>();
         }
     }
 }
