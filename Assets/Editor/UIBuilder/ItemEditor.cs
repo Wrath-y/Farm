@@ -156,11 +156,13 @@ public class ItemEditor : EditorWindow
             _activeItem.itemOnWorldSprite = newSprite;
         });
         
-        _itemDetailsSection.Q<EnumField>("ItemType").Init(ItemType.Seed);
-        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
-        _itemDetailsSection.Q<EnumField>("ItemType").RegisterCallback<ChangeEvent<ItemType>>((evt) =>
+        
+        var itemTypeField = _itemDetailsSection.Q<EnumField>("ItemType");
+        itemTypeField.Init(ItemType.Seed);
+        itemTypeField.value = _activeItem.itemType;
+        itemTypeField.RegisterValueChangedCallback(e =>
         {
-            _activeItem.itemType = evt.newValue;
+            _activeItem.itemType = (ItemType)e.newValue;
         });
         
         

@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 618438962}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27338,7 +27338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258427476482041102, guid: a79a8314be29843d2b1a71414afb8d3d, type: 3}
       propertyPath: itemID
-      value: 1004
+      value: 1008
       objectReference: {fileID: 0}
     - target: {fileID: 5806448042005230786, guid: a79a8314be29843d2b1a71414afb8d3d, type: 3}
       propertyPath: m_Name
@@ -49971,7 +49971,7 @@ GameObject:
   - component: {fileID: 2134098245}
   m_Layer: 0
   m_Name: Dig
-  m_TagString: Untagged
+  m_TagString: Dig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50131,7 +50131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258427476482041102, guid: a79a8314be29843d2b1a71414afb8d3d, type: 3}
       propertyPath: itemID
-      value: 1002
+      value: 1009
       objectReference: {fileID: 0}
     - target: {fileID: 5806448042005230786, guid: a79a8314be29843d2b1a71414afb8d3d, type: 3}
       propertyPath: m_Name

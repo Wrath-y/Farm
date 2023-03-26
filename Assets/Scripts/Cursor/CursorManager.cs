@@ -124,7 +124,13 @@ public class CursorManager : MonoBehaviour
         switch (_curItem.itemType)
         {
             case ItemType.Commodity:
-                if (curTile.canDropItem && _curItem.canDropped) SetCursorValid(); else SetCursorInValid(); 
+                if (curTile.canDropItem && _curItem.canDropped) SetCursorValid(); else SetCursorInValid();
+                break;
+            case ItemType.HoeTool:
+                if (curTile.canDig) SetCursorValid(); else SetCursorInValid();
+                break;
+            case ItemType.WaterTool:
+                if (curTile.daysSinceDug > -1 && curTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
                 break;
         }
     }
@@ -142,8 +148,10 @@ public class CursorManager : MonoBehaviour
         _curSprite = itemDetails.itemType switch
         {
             ItemType.Seed => seed,
-            ItemType.ChopTool => tool,
             ItemType.Commodity => commodity,
+            ItemType.ChopTool => tool,
+            ItemType.HoeTool => tool,
+            ItemType.WaterTool => tool,
             _ => normal
         };
         _cursorEnable = true;

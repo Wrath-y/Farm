@@ -200,6 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adc5a80cc2b9249be8012ac1d561a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  digTile: {fileID: 11400000, guid: 195466f8e22cf41c8a5c7a24c51d4f7e, type: 2}
+  waterTile: {fileID: 11400000, guid: 6cd5b14b78c494bd88af37cb522160a6, type: 2}
   mapDataList:
   - {fileID: 11400000, guid: ee72edccf4659d64885cd2daf9e0a411, type: 2}
 --- !u!4 &203769509
