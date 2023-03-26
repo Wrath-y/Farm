@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class ItemManager: MonoBehaviour
 {
     public Item itemPrefab;
+    public Item bounceItemPrefab;
     private Transform _itemParent;
+    private Transform PlayerTrans => FindObjectOfType<Player>().transform;
     private Dictionary<string, List<SceneItem>> _sceneItemDict = new Dictionary<string, List<SceneItem>>();
 
     private void OnEnable()
@@ -44,10 +46,13 @@ public class ItemManager: MonoBehaviour
         item.itemID = id;
     }
 
-    private void OnDropItemEvent(int id, Vector3 pos)
+    private void OnDropItemEvent(int id, Vector3 mousePos)
     {
-        var item = Instantiate(itemPrefab, pos, Quaternion.identity, _itemParent);
+        var item = Instantiate(bounceItemPrefab, PlayerTrans.position, Quaternion.identity, _itemParent);
         item.itemID = id;
+
+        var dir = (mousePos - PlayerTrans.position).normalized;
+        item.GetComponent<ItemBounce>().InitBounceItem(mousePos, dir);
     }
 
     private void GetAllSceneItems()
