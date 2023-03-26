@@ -200,7 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adc5a80cc2b9249be8012ac1d561a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapDataList: []
+  mapDataList:
+  - {fileID: 11400000, guid: ee72edccf4659d64885cd2daf9e0a411, type: 2}
 --- !u!4 &203769509
 Transform:
   m_ObjectHideFlags: 0
@@ -800,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690731f2aa4f84b23a0fc34f0beb0230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSceneName: 02.Home
+  startSceneName: 01.Field
 --- !u!4 &944958694
 Transform:
   m_ObjectHideFlags: 0

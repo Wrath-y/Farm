@@ -21,6 +21,7 @@ public class CursorManager : MonoBehaviour
     private bool _cursorEnable;
     private bool _cursorPositionValid;
     private ItemDetails _curItem;
+    private Transform PlayerTransform => FindObjectOfType<Player>().transform;
 
     private void OnEnable()
     {
@@ -97,7 +98,13 @@ public class CursorManager : MonoBehaviour
     {
         _mouseWorldPos = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
-
+        var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
+        if (Math.Abs(_mouseGridPos.x - playerGridPos.x) > _curItem.itemUseRadius || Math.Abs(_mouseGridPos.y - playerGridPos.y) > _curItem.itemUseRadius)
+        {
+            SetCursorInValid();
+            return;
+        }
+        
         TileDetails curTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(_mouseGridPos);
         if (curTile == null)
         {
