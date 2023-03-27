@@ -14,6 +14,7 @@ namespace Farm.Map
         private Tilemap _digTilemap;
         private Tilemap _waterTilemap;
         public List<MapData_SO> mapDataList;
+        private Season _curSeason;
 
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
         private Grid _curGrid;
@@ -22,12 +23,15 @@ namespace Farm.Map
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
             EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
+            EventHandler.GameDayEvent += OnGameDayEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.ExecuteActionAfterAnimation -= OnExecuteActionAfterAnimation;
             EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
+            EventHandler.GameDayEvent -= OnGameDayEvent;
+
         }
 
         private void Start()
@@ -40,6 +44,7 @@ namespace Farm.Map
 
         private void InitTileDetailsDict(MapData_SO mapData)
         {
+            Debug.Log("mapData.tileProperties.count: " + mapData.tileProperties.Count);
             foreach (TileProperty tileProperty in mapData.tileProperties)
             {
                 TileDetails tileDetails = new TileDetails
@@ -118,6 +123,55 @@ namespace Farm.Map
             }
             _waterTilemap.SetTile(pos, waterTile);
         }
+        
+        // DisplayMap 显示地图瓦片
+        private void DisplayMap(string sceneName)
+        {
+            foreach (var tile in _tileDetailsDict)
+            {
+                var key = tile.Key;
+                var tileDetails = tile.Value;
+                if (!key.Contains(sceneName))
+                {
+                    continue;
+                }
+
+                if (tileDetails.daysSinceDug > -1)
+                {
+                    SetDigGround(tileDetails);
+                }
+
+                if (tileDetails.daysSinceWatered > -1)
+                {
+                    SetWaterGround(tileDetails);
+                }
+            }
+        }
+
+        private void RefreshMap()
+        {
+            if (_digTilemap != null)
+            {
+                _digTilemap.ClearAllTiles();
+            }
+            if (_waterTilemap != null)
+            {
+                _waterTilemap.ClearAllTiles();
+            }
+            DisplayMap(SceneManager.GetActiveScene().name);
+        }
+        
+        private void UpdateTileDetails(TileDetails tileDetails)
+        {
+            string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
+            if (!_tileDetailsDict.ContainsKey(key))
+            {
+                Debug.Log("UpdateTileDetails: key not exists");
+                return;
+            }
+
+            _tileDetailsDict[key] = tileDetails;
+        }
 
         private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
         {
@@ -144,6 +198,8 @@ namespace Farm.Map
                     curTile.daysSinceWatered = 0;
                     break;
             }
+            
+            UpdateTileDetails(curTile);
         }
 
         private void OnAfterLoadedSceneEvent()
@@ -151,6 +207,33 @@ namespace Farm.Map
             _curGrid = FindObjectOfType<Grid>();
             _digTilemap = GameObject.FindWithTag("Dig")?.GetComponent<Tilemap>();
             _waterTilemap = GameObject.FindWithTag("Water")?.GetComponent<Tilemap>();
+
+            RefreshMap();
+        }
+
+        private void OnGameDayEvent(int day, Season season)
+        {
+            _curSeason = season;
+            foreach (var tile in _tileDetailsDict)
+            {
+                if (tile.Value.daysSinceWatered > -1)
+                {
+                    tile.Value.daysSinceWatered = -1;
+                }
+
+                if (tile.Value.daysSinceDug > -1)
+                {
+                    tile.Value.daysSinceDug++;
+                }
+
+                if (tile.Value.daysSinceDug > 5 && tile.Value.seedItemId <= 0)
+                {
+                    tile.Value.daysSinceDug = -1;
+                    tile.Value.canDig = true;
+                }
+            }
+
+            RefreshMap();
         }
     }
 }

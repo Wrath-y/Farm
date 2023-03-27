@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
     private float _inputX;
     private float _inputY;
     private bool _isMoving;
+    private float _mouseX;
+    private float _mouseY;
 
     private Vector2 _movementInput;
     private Animator[] _animators;
     private bool _inputDisable;
+    private bool _useTool;
 
     private void Awake()
     {
@@ -90,12 +93,35 @@ public class Player : MonoBehaviour
         foreach (var animator in _animators)
         {
             animator.SetBool("IsMoving", _isMoving);
+            animator.SetFloat("MouseX", _mouseX);
+            animator.SetFloat("MouseY", _mouseY);
             if (_isMoving)
             {
                 animator.SetFloat("InputX", _inputX);
                 animator.SetFloat("InputY", _inputY);
             }
         }
+    }
+
+    private IEnumerator UseToolRoutine(Vector3 mouseWorldPos, ItemDetails itemDetails)
+    {
+        _useTool = true;
+        _inputDisable = true;
+        yield return null;
+        foreach (var animator in _animators)
+        {
+            animator.SetTrigger("UseTool");
+            // 人物面朝方向
+            animator.SetFloat("InputX", _mouseX);
+            animator.SetFloat("InputY", _mouseY);
+        }
+
+        yield return new WaitForSeconds(0.45f);
+        EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
+        yield return new WaitForSeconds(0.25f);
+
+        _useTool = false;
+        _inputDisable = false;
     }
 
     private void OnBeforeUnloadSceneEvent()
@@ -113,8 +139,24 @@ public class Player : MonoBehaviour
         transform.position = targetPos;
     }
 
-    private void OnMouseClickedEvent(Vector3 pos, ItemDetails itemDetails)
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
     {
-        EventHandler.CallExecuteActionAfterAnimation(pos, itemDetails);
+        if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity && itemDetails.itemType != ItemType.Furniture)
+        {
+            _mouseX = mouseWorldPos.x - transform.position.x;
+            _mouseY = mouseWorldPos.y - transform.position.y;
+            if (Mathf.Abs(_mouseX) > MathF.Abs(_mouseY))
+            {
+                _mouseY = 0;
+            }
+            else
+            {
+                _mouseX = 0;
+            }
+
+            StartCoroutine(UseToolRoutine(mouseWorldPos, itemDetails));
+            return;
+        }
+        EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
     }
 }

@@ -117,6 +117,7 @@ public class CursorManager : MonoBehaviour
         TileDetails curTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(_mouseGridPos);
         if (curTile == null)
         {
+            Debug.Log(222);
             SetCursorInValid();
             return;
         }
