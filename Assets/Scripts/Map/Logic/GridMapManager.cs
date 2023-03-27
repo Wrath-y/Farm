@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.CropPlant;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -44,7 +45,6 @@ namespace Farm.Map
 
         private void InitTileDetailsDict(MapData_SO mapData)
         {
-            Debug.Log("mapData.tileProperties.count: " + mapData.tileProperties.Count);
             foreach (TileProperty tileProperty in mapData.tileProperties)
             {
                 TileDetails tileDetails = new TileDetails
@@ -145,6 +145,11 @@ namespace Farm.Map
                 {
                     SetWaterGround(tileDetails);
                 }
+
+                if (tileDetails.seedItemId > -1)
+                {
+                    EventHandler.CallPlantSeedEvent(tileDetails.seedItemId, tileDetails);
+                }
             }
         }
 
@@ -157,6 +162,11 @@ namespace Farm.Map
             if (_waterTilemap != null)
             {
                 _waterTilemap.ClearAllTiles();
+            }
+
+            foreach (var crop in FindObjectsOfType<Crop>())
+            {
+                Destroy(crop.gameObject);
             }
             DisplayMap(SceneManager.GetActiveScene().name);
         }
@@ -184,6 +194,9 @@ namespace Farm.Map
 
             switch (itemDetails.itemType)
             {
+                case ItemType.Seed:
+                    EventHandler.CallPlantSeedEvent(itemDetails.itemID, curTile);
+                    break;
                 case ItemType.Commodity:
                     EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);
                     break;
@@ -230,6 +243,12 @@ namespace Farm.Map
                 {
                     tile.Value.daysSinceDug = -1;
                     tile.Value.canDig = true;
+                    tile.Value.growthDays = -1;
+                }
+
+                if (tile.Value.seedItemId > 0)
+                {
+                    tile.Value.growthDays++;
                 }
             }
 

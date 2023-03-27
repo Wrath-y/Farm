@@ -82,4 +82,10 @@ public static class EventHandler
     {
         ExecuteActionAfterAnimation?.Invoke(pos, itemDetails);
     }
+
+    public static event Action<int, TileDetails> PlantSeedEvent;
+    public static void CallPlantSeedEvent(int id, TileDetails tile)
+    {
+        PlantSeedEvent?.Invoke(id, tile);
+    }
 }

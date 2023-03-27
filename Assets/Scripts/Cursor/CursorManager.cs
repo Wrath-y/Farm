@@ -117,13 +117,15 @@ public class CursorManager : MonoBehaviour
         TileDetails curTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(_mouseGridPos);
         if (curTile == null)
         {
-            Debug.Log(222);
             SetCursorInValid();
             return;
         }
         
         switch (_curItem.itemType)
         {
+            case ItemType.Seed:
+                if (curTile.daysSinceDug > -1 && curTile.seedItemId <= 0) SetCursorValid(); else SetCursorInValid();
+                break;
             case ItemType.Commodity:
                 if (curTile.canDropItem && _curItem.canDropped) SetCursorValid(); else SetCursorInValid();
                 break;
