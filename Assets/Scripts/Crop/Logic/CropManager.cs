@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Farm.CropPlant
 {
-    public class CropManager : MonoBehaviour
+    public class CropManager : Singleton<CropManager>
     {
         public CropDataList_SO cropData;
         private Transform _cropParent;
@@ -26,7 +26,7 @@ namespace Farm.CropPlant
             EventHandler.GameDayEvent -= OnGameDayEvent;
         }
 
-        private CropDetails GetCropDetails(int id)
+        public CropDetails GetCropDetails(int id)
         {
             return cropData.cropDetailsList.Find(c => c.seedItemID == id);
         }
@@ -69,6 +69,8 @@ namespace Farm.CropPlant
 
             GameObject cropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, _cropParent);
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
+
+            cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
         }
 
         private void OnGameDayEvent(int day, Season season)
@@ -85,6 +87,7 @@ namespace Farm.CropPlant
         private void OnPlantSeedEvent(int id, TileDetails tileDetails)
         {
             CropDetails curCrop = GetCropDetails(id);
+            Debug.Log("OnPlantSeedEvent"+id);
             if (curCrop == null || !SeasonAvailable(curCrop))
             {
                 return;
@@ -92,6 +95,7 @@ namespace Farm.CropPlant
 
             if (curCrop.seedItemID <= 0)
             {
+                Debug.Log("tileDetails.seedItemId = id");
                 tileDetails.seedItemId = id;
                 tileDetails.growthDays = 0;
             }

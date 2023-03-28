@@ -59,6 +59,7 @@ namespace Farm.Inventory
                         if (list[i].itemAmount > 0)
                         {
                             var item = InventoryManager.Instance.GetItemDetails(list[i].itemID);
+                            Debug.Log(item.itemID + item.itemName);
                             playerSlots[i].SetSlot(item, list[i].itemAmount);
                         }
                         else

@@ -46,8 +46,12 @@ public class ItemManager: MonoBehaviour
         item.itemID = id;
     }
 
-    private void OnDropItemEvent(int id, Vector3 mousePos)
+    private void OnDropItemEvent(int id, Vector3 mousePos, ItemType itemType)
     {
+        if (itemType == ItemType.Seed)
+        {
+            return;
+        }
         var item = Instantiate(bounceItemPrefab, PlayerTrans.position, Quaternion.identity, _itemParent);
         item.itemID = id;
 

@@ -11,4 +11,6 @@ public class Settings
     public const int SeasonHold = 3;
 
     public const float FadeDuration = 0.5f;
+
+    public const float HoldHarvestDuration = 1f; // 捡起道具后举起图标的持续时间
 }

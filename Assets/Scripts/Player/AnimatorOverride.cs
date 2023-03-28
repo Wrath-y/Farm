@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.Inventory;
 using UnityEngine;
 
 public class AnimatorOverride : MonoBehaviour
@@ -23,34 +24,61 @@ public class AnimatorOverride : MonoBehaviour
     {
         EventHandler.ItemSelectedEvent += OnItemSelectedEvent;
         EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
+        EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
     }
 
     private void OnDisable()
     {
         EventHandler.ItemSelectedEvent -= OnItemSelectedEvent;
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
+        EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
+    }
+    
+    private void SwitchAnimator(PartType partType)
+    {
+        foreach (var item in animatorTypes)
+        {
+            if (item.partType == partType)
+            {
+                _animatorNameDict[item.partName.ToString()].runtimeAnimatorController = item.overrideController;
+            }
+            else if (item.partType == PartType.None)
+            {
+                _animatorNameDict[item.partName.ToString()].runtimeAnimatorController = item.overrideController;
+            }
+        }
     }
 
     private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
     {
+        // TODO 不同工具返回不同动画
         PartType curType = itemDetails.itemType switch
         {
             ItemType.Seed => PartType.Carry,
             ItemType.Commodity => PartType.Carry,
             ItemType.HoeTool => PartType.Hoe,
+            ItemType.WaterTool => PartType.Water,
+            ItemType.CollectTool => PartType.Collect,
             _ => PartType.None
         };
 
         if (!isSelected)
         {
             curType = PartType.None;
-            holdItem.gameObject.SetActive(false);
+            holdItem.enabled = false;
         }
  
-        if (isSelected && curType == PartType.Carry)
+        if (isSelected)
         {
-            holdItem.sprite = itemDetails.itemOnWorldSprite;
-            holdItem.gameObject.SetActive(true);
+            if (curType == PartType.Carry)
+            {
+                holdItem.sprite = itemDetails.itemOnWorldSprite;
+                holdItem.enabled = true;
+            }
+            else
+            {
+                holdItem.enabled = false;
+            }
         }
         
         SwitchAnimator(curType);
@@ -58,17 +86,26 @@ public class AnimatorOverride : MonoBehaviour
 
     private void OnBeforeUnloadSceneEvent()
     {
-        holdItem.gameObject.SetActive(false);
+        holdItem.enabled = false;
         SwitchAnimator(PartType.None);
     }
 
-    private void SwitchAnimator(PartType partType)
+    private void OnHarvestAtPlayerPosition(int id)
     {
-        foreach (var animatorType in animatorTypes)
+        Debug.Log("AnimatorOverride OnHarvestAtPlayerPosition id: "+id);
+        Sprite itemSprite = InventoryManager.Instance.GetItemDetails(id).itemOnWorldSprite;
+        Debug.Log("AnimatorOverride OnHarvestAtPlayerPosition" + InventoryManager.Instance.GetItemDetails(id).itemIcon.name + InventoryManager.Instance.GetItemDetails(id).itemOnWorldSprite.name);
+        if (holdItem.enabled == false)
         {
-            if (animatorType.partType != partType) continue;
-            _animatorNameDict[animatorType.partName.ToString()].runtimeAnimatorController =
-                animatorType.overrideController;
+            StartCoroutine(ShowItem(itemSprite));
         }
+    }
+
+    private IEnumerator ShowItem(Sprite itemSprite)
+    {
+        holdItem.sprite = itemSprite;
+        holdItem.enabled = true;
+        yield return new WaitForSeconds(Settings.HoldHarvestDuration);
+        holdItem.enabled = false;
     }
 }

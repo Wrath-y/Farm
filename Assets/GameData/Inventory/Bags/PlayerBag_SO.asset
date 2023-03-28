@@ -17,12 +17,12 @@ MonoBehaviour:
     itemAmount: 1
   - itemID: 1006
     itemAmount: 1
-  - itemID: 1008
-    itemAmount: 3
+  - itemID: 1005
+    itemAmount: 1
   - itemID: 1007
-    itemAmount: 3
-  - itemID: 0
-    itemAmount: 0
+    itemAmount: 97
+  - itemID: 1009
+    itemAmount: 4
   - itemID: 0
     itemAmount: 0
   - itemID: 0

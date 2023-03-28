@@ -12,12 +12,6 @@ public class ItemToolTip : MonoBehaviour
 
     public void SetupToolTip(ItemDetails itemDetails, SlotType slotType)
     {
-        if (!(itemDetails.itemType == ItemType.Seed || itemDetails.itemType == ItemType.Commodity || itemDetails.itemType == ItemType.Furniture))
-        {
-            bottomPart.SetActive(false);
-            return;
-        }
-        
         nameText.text = itemDetails.itemName;
         typeText.text = GetItemType(itemDetails.itemType);
         descText.text = itemDetails.itemDescription;
@@ -27,7 +21,17 @@ public class ItemToolTip : MonoBehaviour
             price = (int)(price * itemDetails.sellPercentage);
         }
         valueText.text = price.ToString();
-        bottomPart.SetActive(true);
+        
+        if (!(itemDetails.itemType == ItemType.Seed || itemDetails.itemType == ItemType.Commodity || itemDetails.itemType == ItemType.Furniture))
+        {
+            bottomPart.SetActive(false);
+        }
+        else
+        {
+            bottomPart.SetActive(true);
+
+        }
+        
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
 

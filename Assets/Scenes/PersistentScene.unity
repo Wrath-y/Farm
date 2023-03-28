@@ -610,12 +610,39 @@ MonoBehaviour:
   - partType: 1
     partName: 2
     overrideController: {fileID: 22100000, guid: fe086b3d6f9fc4be198a6078e812c7e2, type: 2}
+  - partType: 5
+    partName: 2
+    overrideController: {fileID: 22100000, guid: 42f7a8a0fdbcf4b529e37b4a7c9d5337, type: 2}
+  - partType: 4
+    partName: 2
+    overrideController: {fileID: 22100000, guid: 29e702ba8f73c470394420ae78cd822b, type: 2}
   - partType: 0
     partName: 3
     overrideController: {fileID: 22100000, guid: 218e76e760b2f4e908138c018cd51c4a, type: 2}
   - partType: 2
     partName: 3
     overrideController: {fileID: 22100000, guid: 07c784a881c1f420b8936fa497f3e65a, type: 2}
+  - partType: 4
+    partName: 3
+    overrideController: {fileID: 22100000, guid: 9e23ae4f7e6d74ea7b9309c60a42462d, type: 2}
+  - partType: 0
+    partName: 0
+    overrideController: {fileID: 22100000, guid: 0c15e443afb646448a902e99c6b78a7b, type: 2}
+  - partType: 5
+    partName: 0
+    overrideController: {fileID: 22100000, guid: 9a3685a96eb5b4fbd8d42cbbb8ba8fde, type: 2}
+  - partType: 4
+    partName: 0
+    overrideController: {fileID: 22100000, guid: 2044192a289364148a81367173c5eb49, type: 2}
+  - partType: 0
+    partName: 1
+    overrideController: {fileID: 22100000, guid: c8080472f39254c189261b8f8e61e677, type: 2}
+  - partType: 5
+    partName: 1
+    overrideController: {fileID: 22100000, guid: 08e46de4465ac456da82828fa223f949, type: 2}
+  - partType: 4
+    partName: 1
+    overrideController: {fileID: 22100000, guid: dbe89c9522b5c8a47a2269f277545d47, type: 2}
 --- !u!1 &731875637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1763556905
 SpriteRenderer:
   m_ObjectHideFlags: 0

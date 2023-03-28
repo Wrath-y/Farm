@@ -15,11 +15,13 @@ namespace Farm.Inventory
         private void OnEnable()
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
         }
 
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
+            EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
         }
         
         private void Start()
@@ -80,6 +82,39 @@ namespace Farm.Inventory
             return res;
         }
 
+        private bool CheckBagCapacity()
+        {
+            for (int i = 0; i < playerBag.ItemList.Count; i++)
+            {
+                if (playerBag.ItemList[i].itemID == 0)
+                    return true;
+            }
+            return false;
+        }
+        
+        private void AddItemAtIndex(int ID, int index, int amount)
+        {
+            if (index == -1 && CheckBagCapacity())    //背包没有这个物品 同时背包有空位
+            {
+                var item = new InventoryItem { itemID = ID, itemAmount = amount };
+                for (int i = 0; i < playerBag.ItemList.Count; i++)
+                {
+                    if (playerBag.ItemList[i].itemID == 0)
+                    {
+                        playerBag.ItemList[i] = item;
+                        break;
+                    }
+                }
+            }
+            else    //背包有这个物品
+            {
+                int currentAmount = playerBag.ItemList[index].itemAmount + amount;
+                var item = new InventoryItem { itemID = ID, itemAmount = currentAmount };
+
+                playerBag.ItemList[index] = item;
+            }
+        }
+        
         public void AddItem(int itemID, CanAddBagItemReturns res)
         {
             if (res.ExistsIndex == -1 && res.FirstNilIndex == -1)
@@ -133,9 +168,16 @@ namespace Farm.Inventory
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
 
-        private void OnDropItemEvent(int itemID, Vector3 pos)
+        private void OnDropItemEvent(int itemID, Vector3 pos, ItemType itemType)
         {
             RemoveItem(itemID, 1);
+        }
+
+        private void OnHarvestAtPlayerPosition(int id)
+        {
+            var index = GetItemIndexInBag(id);
+            AddItemAtIndex(id, index, 1);
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
     }
 }

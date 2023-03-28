@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.CropPlant;
 using Farm.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -120,7 +121,8 @@ public class CursorManager : MonoBehaviour
             SetCursorInValid();
             return;
         }
-        
+
+        // TODO 补充所有物品类型的判读
         switch (_curItem.itemType)
         {
             case ItemType.Seed:
@@ -134,6 +136,22 @@ public class CursorManager : MonoBehaviour
                 break;
             case ItemType.WaterTool:
                 if (curTile.daysSinceDug > -1 && curTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
+                break;
+            case ItemType.CollectTool:
+                CropDetails curCrop = CropManager.Instance.GetCropDetails(curTile.seedItemId);
+                if (curCrop == null)
+                {
+                    Debug.Log("CheckCursorValid curCrop == null, curTile.seedItemId: " + curTile.seedItemId);
+                    SetCursorInValid();
+                    break;
+                }
+
+                if (!curCrop.CheckToolAvailable(_curItem.itemID))
+                {
+                    SetCursorInValid();
+                    break;
+                }
+                if (curTile.growthDays >= curCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInValid();
                 break;
         }
     }
@@ -155,6 +173,7 @@ public class CursorManager : MonoBehaviour
             ItemType.ChopTool => tool,
             ItemType.HoeTool => tool,
             ItemType.WaterTool => tool,
+            ItemType.CollectTool => tool,
             _ => normal
         };
         _cursorEnable = true;

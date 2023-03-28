@@ -25,6 +25,7 @@ namespace Farm.Map
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
             EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
             EventHandler.GameDayEvent += OnGameDayEvent;
+            EventHandler.RefreshCurrentMap += RefreshMap;
         }
 
         private void OnDisable()
@@ -32,6 +33,7 @@ namespace Farm.Map
             EventHandler.ExecuteActionAfterAnimation -= OnExecuteActionAfterAnimation;
             EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
             EventHandler.GameDayEvent -= OnGameDayEvent;
+            EventHandler.RefreshCurrentMap -= RefreshMap;
 
         }
 
@@ -138,6 +140,7 @@ namespace Farm.Map
 
                 if (tileDetails.daysSinceDug > -1)
                 {
+                    Debug.Log("SetDigGround");
                     SetDigGround(tileDetails);
                 }
 
@@ -179,8 +182,24 @@ namespace Farm.Map
                 Debug.Log("UpdateTileDetails: key not exists");
                 return;
             }
-
+            
+            Debug.Log("UpdateTileDetails" + key + tileDetails.seedItemId);
             _tileDetailsDict[key] = tileDetails;
+        }
+
+        private Crop GetCropObject(Vector3 mouseWorldPos)
+        {
+            Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
+            Crop curCrop = null;
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].GetComponent<Crop>())
+                {
+                    return colliders[i].GetComponent<Crop>();
+                }
+            }
+
+            return curCrop;
         }
 
         private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
@@ -194,11 +213,17 @@ namespace Farm.Map
 
             switch (itemDetails.itemType)
             {
+                // TODO 物品使用实际功能
                 case ItemType.Seed:
                     EventHandler.CallPlantSeedEvent(itemDetails.itemID, curTile);
+                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
+                    if (itemDetails.itemID > -1)
+                    {
+                        curTile.seedItemId = itemDetails.itemID;
+                    }
                     break;
                 case ItemType.Commodity:
-                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos);
+                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
                     break;
                 case ItemType.HoeTool:
                     SetDigGround(curTile);
@@ -209,6 +234,11 @@ namespace Farm.Map
                 case ItemType.WaterTool:
                     SetWaterGround(curTile);
                     curTile.daysSinceWatered = 0;
+                    break;
+                case ItemType.CollectTool:
+                    Crop curCrop = GetCropObject(mouseWorldPos);
+                    // 执行收割方法
+                    curCrop.ProcessToolAction(itemDetails, curTile);
                     break;
             }
             
@@ -241,12 +271,13 @@ namespace Farm.Map
 
                 if (tile.Value.daysSinceDug > 5 && tile.Value.seedItemId <= 0)
                 {
+                    Debug.Log("restore tile");
                     tile.Value.daysSinceDug = -1;
                     tile.Value.canDig = true;
                     tile.Value.growthDays = -1;
                 }
 
-                if (tile.Value.seedItemId > 0)
+                if (tile.Value.seedItemId > -1)
                 {
                     tile.Value.growthDays++;
                 }
