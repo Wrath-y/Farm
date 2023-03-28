@@ -235,9 +235,15 @@ namespace Farm.Map
                     SetWaterGround(curTile);
                     curTile.daysSinceWatered = 0;
                     break;
+                case ItemType.ChopTool:
                 case ItemType.CollectTool:
                     Crop curCrop = GetCropObject(mouseWorldPos);
                     // 执行收割方法
+                    if (curCrop == null)
+                    {
+                        Debug.Log("curCrop == null");
+                        break;
+                    }
                     curCrop.ProcessToolAction(itemDetails, curTile);
                     break;
             }

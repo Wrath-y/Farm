@@ -137,6 +137,7 @@ public class CursorManager : MonoBehaviour
             case ItemType.WaterTool:
                 if (curTile.daysSinceDug > -1 && curTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
                 break;
+            case ItemType.ChopTool:
             case ItemType.CollectTool:
                 CropDetails curCrop = CropManager.Instance.GetCropDetails(curTile.seedItemId);
                 if (curCrop == null)

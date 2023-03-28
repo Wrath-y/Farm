@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8959553621811765840}
   - component: {fileID: 8959553621811765841}
   - component: {fileID: 8959553621811765847}
+  - component: {fileID: 8075655563554997265}
   m_Layer: 0
-  m_Name: Tree01
+  m_Name: CropTree01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +73,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.89, y: 5.95}
   m_EdgeRadius: 0
+--- !u!114 &8075655563554997265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959553621811765842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a926ac7b521c47349835dc80eaac7a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropDetails:
+    seedItemID: 0
+    growthDays: 
+    growthPrefabs: []
+    growthSprites: []
+    seasons: 
+    harvestToolItemID: 
+    requireActionCount: 
+    transferItemID: 0
+    producedItemID: 
+    producedMinAmount: 
+    producedMaxAmount: 
+    spawnRaduis: {x: 0, y: 0}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticalEffect: 0
 --- !u!1 &8959553622898958769
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +238,7 @@ GameObject:
   - component: {fileID: 8959553622969292870}
   - component: {fileID: 8959553622969292859}
   - component: {fileID: 8959553622969292868}
+  - component: {fileID: 2682136117407203783}
   m_Layer: 0
   m_Name: Tree01_Top
   m_TagString: Untagged
@@ -293,3 +325,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0084a1b9a3099435c9a32703b4022367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2682136117407203783
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959553622969292871}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16ffcf4dd543a714f834d640e711fc5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
