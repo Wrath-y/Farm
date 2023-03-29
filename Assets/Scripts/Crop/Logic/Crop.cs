@@ -38,7 +38,11 @@ public class Crop : MonoBehaviour
                     _anim.SetTrigger("RotateLeft");
                 }
             }
-            // TODO 播放粒子
+            // 播放粒子
+            if (cropDetails.hasParticleEffect)
+            {
+                EventHandler.CallParticleEffectEvent(cropDetails.effectType, transform.position + cropDetails.effectPos);
+            }
             // TODO 播放声音
         }
 

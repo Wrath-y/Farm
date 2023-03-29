@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class CropDetails
@@ -53,8 +54,9 @@ public class CropDetails
     [Header("Options")]
     public bool generateAtPlayerPosition;
     public bool hasAnimation;
-    public bool hasParticalEffect;
-    public ParticalEffectType effectType;
+    public bool hasParticleEffect;
+    public ParticleEffectType effectType;
+    public Vector3 effectPos;
 
     // 检测当前工具是否可使用
     public bool CheckToolAvailable(int toolID)

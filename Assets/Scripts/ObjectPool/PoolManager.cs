@@ -9,6 +9,16 @@ public class PoolManager : MonoBehaviour
     public List<GameObject> poolPrefabs;
     private List<ObjectPool<GameObject>> poolEffectList = new List<ObjectPool<GameObject>>();
 
+    private void OnEnable()
+    {
+        EventHandler.ParticleEffectEvent += OnParticleEffectEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.ParticleEffectEvent -= OnParticleEffectEvent;
+    }
+
     private void Start()
     {
         CreatePool();
@@ -30,5 +40,30 @@ public class PoolManager : MonoBehaviour
             
             poolEffectList.Add(newPool);
         }
+    }
+
+    private void OnParticleEffectEvent(ParticleEffectType effectType, Vector3 pos)
+    {
+        // TODO 补全特效
+        ObjectPool<GameObject> objPool = effectType switch
+        {
+            ParticleEffectType.LeavesFalling01 => poolEffectList[0],
+            ParticleEffectType.LeavesFalling02 => poolEffectList[1],
+            _ => null,
+        };
+
+        if (objPool == null)
+        {
+            return;
+        }
+        GameObject obj = objPool.Get();
+        obj.transform.position = pos;
+        StartCoroutine(ReleaseRoutine(objPool, obj));
+    }
+
+    private IEnumerator ReleaseRoutine(ObjectPool<GameObject> pool, GameObject obj)
+    {
+        yield return new WaitForSeconds(1.5f);
+        pool.Release(obj);
     }
 }
