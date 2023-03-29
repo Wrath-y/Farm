@@ -11,7 +11,7 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
     [SerializeField] private TextMeshProUGUI amountText;
     public Image slotHighlight;
     [SerializeField] private Button button;
-    private InventoryUI InventoryUI => GetComponentInParent<InventoryUI>();
+    public InventoryUI InventoryUI => GetComponentInParent<InventoryUI>();
 
     public SlotType slotType;
     public bool isSelected;
