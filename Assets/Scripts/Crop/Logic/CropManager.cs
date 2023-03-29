@@ -71,6 +71,7 @@ namespace Farm.CropPlant
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
 
             cropInstance.GetComponent<Crop>().cropDetails = cropDetails;
+            cropInstance.GetComponent<Crop>().tileDetails = tileDetails;
         }
 
         private void OnGameDayEvent(int day, Season season)

@@ -60,7 +60,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 3.74}
+  m_Offset: {x: 0.02000001, y: 2.506712}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -71,7 +71,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.89, y: 5.95}
+  m_Size: {x: 0.89, y: 5.0296345}
   m_EdgeRadius: 0
 --- !u!114 &8075655563554997265
 MonoBehaviour:
@@ -103,6 +103,18 @@ MonoBehaviour:
     generateAtPlayerPosition: 0
     hasAnimation: 0
     hasParticalEffect: 0
+  tileDetails:
+    gridX: 0
+    gridY: 0
+    canDig: 0
+    canDropItem: 0
+    canPlaceFurniture: 0
+    isNPCObstacle: 0
+    daysSinceDug: -1
+    daysSinceWatered: -1
+    seedItemId: -1
+    growthDays: -1
+    daysSinceLastHarvest: -1
 --- !u!1 &8959553622898958769
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +214,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018609762, y: 0.2626748}
+  m_Offset: {x: 0.018609762, y: 0.06939793}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.45}
@@ -213,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9070289, y: 0.97324467}
+  m_Size: {x: 0.9070289, y: 0.5866909}
   m_EdgeRadius: 0
 --- !u!114 &8959553622898958775
 MonoBehaviour:

@@ -187,7 +187,7 @@ namespace Farm.Map
             _tileDetailsDict[key] = tileDetails;
         }
 
-        private Crop GetCropObject(Vector3 mouseWorldPos)
+        public Crop GetCropObject(Vector3 mouseWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
             Crop curCrop = null;
@@ -211,6 +211,7 @@ namespace Farm.Map
                 return;
             }
 
+            Crop curCrop = GetCropObject(mouseWorldPos);
             switch (itemDetails.itemType)
             {
                 // TODO 物品使用实际功能
@@ -236,8 +237,15 @@ namespace Farm.Map
                     curTile.daysSinceWatered = 0;
                     break;
                 case ItemType.ChopTool:
+                    // 执行收割方法
+                    if (curCrop == null)
+                    {
+                        Debug.Log("curCrop == null");
+                        break;
+                    }
+                    curCrop.ProcessToolAction(itemDetails, curCrop.tileDetails);
+                    break;
                 case ItemType.CollectTool:
-                    Crop curCrop = GetCropObject(mouseWorldPos);
                     // 执行收割方法
                     if (curCrop == null)
                     {

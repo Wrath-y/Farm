@@ -29,7 +29,7 @@ namespace Farm.Inventory
             itemDetails = InventoryManager.Instance.GetItemDetails(itemID);
             if (itemDetails == null)
             {
-                Debug.Log("InventoryManager.Instance.GetItemDetails return nil");
+                Debug.Log("InventoryManager.Instance.GetItemDetails return nil itemID: "+itemID);
                 return;
             }
 

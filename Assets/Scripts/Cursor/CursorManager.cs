@@ -121,7 +121,9 @@ public class CursorManager : MonoBehaviour
             SetCursorInValid();
             return;
         }
-
+        CropDetails curCrop = CropManager.Instance.GetCropDetails(curTile.seedItemId);
+        Crop crop = GridMapManager.Instance.GetCropObject(_mouseWorldPos);
+        
         // TODO 补充所有物品类型的判读
         switch (_curItem.itemType)
         {
@@ -138,8 +140,17 @@ public class CursorManager : MonoBehaviour
                 if (curTile.daysSinceDug > -1 && curTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
                 break;
             case ItemType.ChopTool:
+                if (crop != null)
+                {
+                    if (crop.CanHarvest && crop.cropDetails.CheckToolAvailable(_curItem.itemID)) SetCursorValid(); else SetCursorInValid();
+                }
+                else
+                {
+                    SetCursorInValid();
+                    Debug.Log("CheckCursorValid curCrop == null, curTile.seedItemId: " + curTile.seedItemId);
+                }
+                break;
             case ItemType.CollectTool:
-                CropDetails curCrop = CropManager.Instance.GetCropDetails(curTile.seedItemId);
                 if (curCrop == null)
                 {
                     Debug.Log("CheckCursorValid curCrop == null, curTile.seedItemId: " + curTile.seedItemId);
@@ -167,6 +178,7 @@ public class CursorManager : MonoBehaviour
         }
 
         _curItem = itemDetails;
+        // TODO 新类型需添加鼠标样式
         _curSprite = itemDetails.itemType switch
         {
             ItemType.Seed => seed,

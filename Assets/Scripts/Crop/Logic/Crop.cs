@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Crop : MonoBehaviour
 {
     public CropDetails cropDetails;
-    private TileDetails _tileDetails;
+    public TileDetails tileDetails;
     private int _harvestActionCount;
+    public bool CanHarvest => tileDetails.growthDays >= cropDetails.TotalGrowthDays;
     private Animator _anim;
     private Transform playerTransform => FindObjectOfType<Player>().transform;
 
     public void ProcessToolAction(ItemDetails tool, TileDetails tile)
     {
         Debug.Log(tile.seedItemId);
-        _tileDetails = tile;
+        tileDetails = tile;
         // 工具使用次数
         int requireActionCount = cropDetails.GetTotalRequireCount(tool.itemID);
         if (requireActionCount == -1) return;
@@ -82,21 +84,21 @@ public class Crop : MonoBehaviour
             }
         }
 
-        if (_tileDetails != null)
+        if (tileDetails != null)
         {
-            _tileDetails.daysSinceLastHarvest++;
-            if (cropDetails.daysToRegrow > 0 && _tileDetails.daysSinceLastHarvest < cropDetails.regrowTimes)
+            tileDetails.daysSinceLastHarvest++;
+            if (cropDetails.daysToRegrow > 0 && tileDetails.daysSinceLastHarvest < cropDetails.regrowTimes)
             {
                 // 可以重复生长
-                _tileDetails.growthDays = cropDetails.TotalGrowthDays - cropDetails.daysToRegrow;
+                tileDetails.growthDays = cropDetails.TotalGrowthDays - cropDetails.daysToRegrow;
                 EventHandler.CallRefreshCurrentMap();
             }
             else
             {
                 // 不可以重复生长
-                _tileDetails.daysSinceLastHarvest = -1;
-                _tileDetails.seedItemId = -1;
-                _tileDetails.growthDays = -1;
+                tileDetails.daysSinceLastHarvest = -1;
+                tileDetails.seedItemId = -1;
+                tileDetails.growthDays = -1;
                 // TODO 可重置土地挖坑状态
             }
             Destroy(gameObject);
