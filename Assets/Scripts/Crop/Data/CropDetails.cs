@@ -54,6 +54,7 @@ public class CropDetails
     public bool generateAtPlayerPosition;
     public bool hasAnimation;
     public bool hasParticalEffect;
+    public ParticalEffectType effectType;
 
     // 检测当前工具是否可使用
     public bool CheckToolAvailable(int toolID)
