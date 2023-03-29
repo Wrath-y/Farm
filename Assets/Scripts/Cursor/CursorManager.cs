@@ -147,13 +147,11 @@ public class CursorManager : MonoBehaviour
                 else
                 {
                     SetCursorInValid();
-                    Debug.Log("CheckCursorValid curCrop == null, curTile.seedItemId: " + curTile.seedItemId);
                 }
                 break;
             case ItemType.CollectTool:
                 if (curCrop == null)
                 {
-                    Debug.Log("CheckCursorValid curCrop == null, curTile.seedItemId: " + curTile.seedItemId);
                     SetCursorInValid();
                     break;
                 }

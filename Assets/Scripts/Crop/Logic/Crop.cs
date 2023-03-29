@@ -44,17 +44,53 @@ public class Crop : MonoBehaviour
 
         if (_harvestActionCount >= requireActionCount)
         {
-            if (cropDetails.generateAtPlayerPosition)
+            if (cropDetails.generateAtPlayerPosition || !cropDetails.hasAnimation)
             {
                 // 生成农作物
                 SpawnHarvestItems();
             } else if (cropDetails.hasAnimation)
             {
-                
+                if (playerTransform.position.x < transform.position.x)
+                {
+                    _anim.SetTrigger("FallingRight");
+                }
+                else
+                {
+                    _anim.SetTrigger("FallingLeft");
+                }
+
+                StartCoroutine(HarvestAfterAnimation());
             }
         }
     }
 
+    // 播完动画后生成果实
+    private IEnumerator HarvestAfterAnimation()
+    {
+        while (!_anim.GetCurrentAnimatorStateInfo(0).IsName("End"))
+        {
+            yield return null;
+        }
+        SpawnHarvestItems();
+        
+        // 转换新物体
+        if (cropDetails.transferItemID > 0)
+        {
+            CreateTransferCrop();
+        }
+    }
+
+    // 生成转换的新物体
+    private void CreateTransferCrop()
+    {
+        tileDetails.seedItemId = cropDetails.transferItemID;
+        tileDetails.daysSinceLastHarvest = -1;
+        tileDetails.growthDays = 0;
+        
+        EventHandler.CallRefreshCurrentMap();
+    }
+    
+    // 生成果实
     public void SpawnHarvestItems()
     {
         for (int i = 0; i < cropDetails.producedItemID.Length; i++)
@@ -78,8 +114,13 @@ public class Crop : MonoBehaviour
                 }
                 else
                 {
-                    // TODO 世界地图上生成物品
-                    
+                    // 世界地图上生成物品
+                    // 判断应该生成的物品方向
+                    var dirX = transform.position.x > playerTransform.position.x ? 1 : -1;
+                    // 一定范围内的随机坐标
+                    var spawnPos = new Vector3(transform.position.x + Random.Range(dirX, cropDetails.spawnRaduis.x * dirX),
+                        transform.position.y + Random.Range(-cropDetails.spawnRaduis.y, cropDetails.spawnRaduis.y), 0);
+                    EventHandler.CallInstantiateItemInScene(cropDetails.producedItemID[i], spawnPos);
                 }
             }
         }
