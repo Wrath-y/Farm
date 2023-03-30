@@ -151,6 +151,7 @@ namespace Farm.Inventory
 
         private void RemoveItem(int id, int removeAmount)
         {
+            Debug.Log("RemoveItem id: "+id);
             var index = GetItemIndexInBag(id);
 
             if (playerBag.ItemList[index].itemAmount > removeAmount)

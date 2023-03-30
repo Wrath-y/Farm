@@ -164,6 +164,9 @@ public class CursorManager : MonoBehaviour
                 }
                 if (curTile.growthDays >= curCrop.TotalGrowthDays) SetCursorValid(); else SetCursorInValid();
                 break;
+            case ItemType.ReapTool:
+                if (GridMapManager.Instance.HaveReapableItemsInRadius(_mouseWorldPos, _curItem)) SetCursorValid(); else SetCursorInValid();
+                break;
         }
     }
     
@@ -187,6 +190,7 @@ public class CursorManager : MonoBehaviour
             ItemType.WaterTool => tool,
             ItemType.CollectTool => tool,
             ItemType.BreakTool => tool,
+            ItemType.ReapableScenery => tool,
             _ => normal
         };
         _cursorEnable = true;

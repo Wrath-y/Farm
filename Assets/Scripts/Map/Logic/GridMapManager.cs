@@ -21,6 +21,7 @@ namespace Farm.Map
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
         // 场景是否是第一次加载,用于判断是否预先生成农作物
         private Dictionary<string, bool> _firstLoadDict = new Dictionary<string, bool>();
+        private List<ReapItem> _reapItemsInRadius;
         private Grid _curGrid;
         
         private void OnEnable()
@@ -179,6 +180,7 @@ namespace Farm.Map
         
         public void UpdateTileDetails(TileDetails tileDetails)
         {
+            Debug.Log("gridmapmanager UpdateTileDetails");
             string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
             if (!_tileDetailsDict.ContainsKey(key))
             {
@@ -189,6 +191,7 @@ namespace Farm.Map
             _tileDetailsDict[key] = tileDetails;
         }
 
+        // 判断鼠标点击位置的农作物
         public Crop GetCropObject(Vector3 mouseWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
@@ -204,6 +207,33 @@ namespace Farm.Map
             return curCrop;
         }
 
+        // 返回工具范围内的杂草
+        public bool HaveReapableItemsInRadius(Vector3 mouseWorldPos, ItemDetails tool)
+        {
+            _reapItemsInRadius = new List<ReapItem>();
+
+            Collider2D[] colliders = new Collider2D[20];
+            Physics2D.OverlapCircleNonAlloc(mouseWorldPos, tool.itemUseRadius, colliders);
+
+            if (colliders.Length > 0)
+            {
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    if (colliders[i] != null)
+                    {
+                        if (colliders[i].GetComponent<ReapItem>())
+                        {
+                            var item = colliders[i].GetComponent<ReapItem>();
+                            _reapItemsInRadius.Add((item));
+                        }
+                    }
+                }
+            }
+
+            return _reapItemsInRadius.Count > 0;
+        }
+
+        // 执行实际工具或物品功能
         private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
         {
             var curTile = GetTileDetailsByMouseGridPos(_curGrid.WorldToCell(mouseWorldPos));
@@ -257,6 +287,21 @@ namespace Farm.Map
                     }
                     curCrop.ProcessToolAction(itemDetails, curTile);
                     break;
+                case ItemType.ReapTool:
+                    var reapCount = 0;
+                    for (int i = 0; i < _reapItemsInRadius.Count; i++)
+                    {
+                        if (reapCount > Settings.ReapAmount)
+                        {
+                            break;
+                        }
+                        EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, _reapItemsInRadius[i].transform.position + Vector3.up);
+                        _reapItemsInRadius[i].SpawnHarvestItems();
+                        Destroy(_reapItemsInRadius[i].gameObject);
+                        reapCount++;
+                    }
+
+                    break;
             }
             
             UpdateTileDetails(curTile);
@@ -270,9 +315,10 @@ namespace Farm.Map
 
             if (_firstLoadDict[SceneManager.GetActiveScene().name])
             {
-                // 预先生成农作物
-                EventHandler.CallGenerateCropEvent();
                 _firstLoadDict[SceneManager.GetActiveScene().name] = false;
+                // 预先生成农作物
+                Debug.Log("预先生成农作物");
+                EventHandler.CallGenerateCropEvent();
             }
 
             RefreshMap();

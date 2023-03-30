@@ -10,7 +10,7 @@ public class Crop : MonoBehaviour
     private int _harvestActionCount;
     public bool CanHarvest => tileDetails.growthDays >= cropDetails.TotalGrowthDays;
     private Animator _anim;
-    private Transform playerTransform => FindObjectOfType<Player>().transform;
+    private Transform PlayerTransform => FindObjectOfType<Player>().transform;
 
     public void ProcessToolAction(ItemDetails tool, TileDetails tile)
     {
@@ -29,7 +29,7 @@ public class Crop : MonoBehaviour
             // 判断是否有动画、树木
             if (_anim != null && cropDetails.hasAnimation)
             {
-                if (playerTransform.position.x < transform.position.x)
+                if (PlayerTransform.position.x < transform.position.x)
                 {
                     _anim.SetTrigger("RotateRight");
                 }
@@ -54,7 +54,7 @@ public class Crop : MonoBehaviour
                 SpawnHarvestItems();
             } else if (cropDetails.hasAnimation)
             {
-                if (playerTransform.position.x < transform.position.x)
+                if (PlayerTransform.position.x < transform.position.x)
                 {
                     _anim.SetTrigger("FallingRight");
                 }
@@ -120,7 +120,7 @@ public class Crop : MonoBehaviour
                 {
                     // 世界地图上生成物品
                     // 判断应该生成的物品方向
-                    var dirX = transform.position.x > playerTransform.position.x ? 1 : -1;
+                    var dirX = transform.position.x > PlayerTransform.position.x ? 1 : -1;
                     // 一定范围内的随机坐标
                     var spawnPos = new Vector3(transform.position.x + Random.Range(dirX, cropDetails.spawnRaduis.x * dirX),
                         transform.position.y + Random.Range(-cropDetails.spawnRaduis.y, cropDetails.spawnRaduis.y), 0);
@@ -147,6 +147,10 @@ public class Crop : MonoBehaviour
                 // TODO 可重置土地挖坑状态
             }
             Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("crop tiledetails is nil");
         }
     }
 }

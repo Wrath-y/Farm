@@ -1,3 +1,4 @@
+using Farm.CropPlant;
 using UnityEngine;
 
 namespace Farm.Inventory
@@ -40,6 +41,12 @@ namespace Farm.Inventory
             Vector2 newSize = new Vector2(_spriteRenderer.sprite.bounds.size.x, _spriteRenderer.sprite.bounds.size.y);
             _coll.size = newSize;
             _coll.offset = new Vector2(0, _spriteRenderer.sprite.bounds.center.y);
+
+            if (itemDetails.itemType == ItemType.ReapableScenery)
+            {
+                gameObject.AddComponent<ReapItem>();
+                gameObject.GetComponent<ReapItem>().InitCropData(itemDetails.itemID);
+            }
         }
     }
 }

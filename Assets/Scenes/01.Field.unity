@@ -24059,7 +24059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedItemID: 1016
-  growthDays: 15
+  growthDays: 20
 --- !u!1 &1621628430
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,6 +67,10 @@ namespace Farm.CropPlant
 
             Vector3 pos = new Vector3(tileDetails.gridX + 0.5f, tileDetails.gridY + 0.5f, 0);
 
+            if (_cropParent == null)
+            {
+                _cropParent = GameObject.FindWithTag("CropParent").transform;
+            }
             GameObject cropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, _cropParent);
             cropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
 
@@ -113,8 +117,6 @@ namespace Farm.CropPlant
                 //显示农作物
                 DisplayCropPlant(tileDetails, curCrop);
             }
-
-            DisplayCropPlant(tileDetails, curCrop);
         }
     }
 }

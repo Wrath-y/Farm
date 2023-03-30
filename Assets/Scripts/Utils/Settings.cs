@@ -13,4 +13,7 @@ public class Settings
     public const float FadeDuration = 0.5f;
 
     public const float HoldHarvestDuration = 1f; // 捡起道具后举起图标的持续时间
+    
+    // 镰刀割草数量
+    public const int ReapAmount = 2;
 }
