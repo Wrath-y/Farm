@@ -113,3 +113,66 @@ MonoBehaviour:
     hasParticleEffect: 1
     effectType: 3
     effectPos: {x: 0, y: 0.2, z: 0}
+  - seedItemID: 1024
+    growthDays: 00000000
+    growthPrefabs:
+    - {fileID: 2102524326158114509, guid: e25bc317bbf3b9442950e87ffe887d49, type: 3}
+    growthSprites:
+    - {fileID: 21300000, guid: 9ae5a331348064d73aa91a952b9e1a41, type: 3}
+    seasons: 00000000010000000200000003000000
+    harvestToolItemID: eb030000
+    requireActionCount: 03000000
+    transferItemID: 0
+    producedItemID: 
+    producedMinAmount: 
+    producedMaxAmount: 
+    spawnRaduis: {x: 0.5, y: 0.5}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 1
+    effectType: 4
+    effectPos: {x: 0, y: 1, z: 0}
+  - seedItemID: 1025
+    growthDays: 00000000
+    growthPrefabs:
+    - {fileID: 2102524326158114509, guid: 65c4b8397edf69145a0ff42bce867118, type: 3}
+    growthSprites:
+    - {fileID: 21300000, guid: e6647f7a307d24b65957f4ef34c39562, type: 3}
+    seasons: 00000000010000000200000003000000
+    harvestToolItemID: eb030000
+    requireActionCount: 03000000
+    transferItemID: 0
+    producedItemID: 
+    producedMinAmount: 
+    producedMaxAmount: 
+    spawnRaduis: {x: 0.5, y: 0.5}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 1
+    effectType: 4
+    effectPos: {x: 0, y: 1, z: 0}
+  - seedItemID: 1026
+    growthDays: 00000000
+    growthPrefabs:
+    - {fileID: 2102524326158114509, guid: 21014257e7ae57e459ab1f60f37ba1a1, type: 3}
+    growthSprites:
+    - {fileID: 21300000, guid: 0c055f09a64a74805ad18c1f0b134fec, type: 3}
+    seasons: 00000000010000000200000003000000
+    harvestToolItemID: eb030000
+    requireActionCount: 03000000
+    transferItemID: 0
+    producedItemID: 03040000
+    producedMinAmount: 01000000
+    producedMaxAmount: 04000000
+    spawnRaduis: {x: 0.5, y: 0.5}
+    daysToRegrow: 0
+    regrowTimes: 0
+    generateAtPlayerPosition: 0
+    hasAnimation: 0
+    hasParticleEffect: 1
+    effectType: 4
+    effectPos: {x: 0, y: 1, z: 0}

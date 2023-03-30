@@ -15,7 +15,6 @@ namespace Farm.CropPlant
         private void Awake()
         {
             _curGrid = FindObjectOfType<Grid>();
-            GenerateCrop();
         }
 
         private void OnEnable()
@@ -30,6 +29,7 @@ namespace Farm.CropPlant
 
         private void GenerateCrop()
         {
+            Debug.Log("GenerateCrop seedItemID:"+seedItemID);
             Vector3Int cropGridPos = _curGrid.WorldToCell(transform.position);
             if (seedItemID != 0)
             {
