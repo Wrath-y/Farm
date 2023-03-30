@@ -139,6 +139,7 @@ public class CursorManager : MonoBehaviour
             case ItemType.WaterTool:
                 if (curTile.daysSinceDug > -1 && curTile.daysSinceWatered == -1) SetCursorValid(); else SetCursorInValid();
                 break;
+            case ItemType.BreakTool:
             case ItemType.ChopTool:
                 if (crop != null)
                 {
@@ -185,6 +186,7 @@ public class CursorManager : MonoBehaviour
             ItemType.HoeTool => tool,
             ItemType.WaterTool => tool,
             ItemType.CollectTool => tool,
+            ItemType.BreakTool => tool,
             _ => normal
         };
         _cursorEnable = true;

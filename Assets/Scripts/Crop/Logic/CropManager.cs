@@ -89,16 +89,29 @@ namespace Farm.CropPlant
         {
             CropDetails curCrop = GetCropDetails(id);
             Debug.Log("OnPlantSeedEvent"+id);
-            if (curCrop == null || !SeasonAvailable(curCrop))
+            // if (curCrop == null || !SeasonAvailable(curCrop))
+            // {
+            //     return;
+            // }
+            //
+            // if (curCrop.seedItemID <= 0)
+            // {
+            //     Debug.Log("tileDetails.seedItemId = id");
+            //     tileDetails.seedItemId = id;
+            //     tileDetails.growthDays = 0;
+            // }
+            
+            if (curCrop != null && SeasonAvailable(curCrop) && tileDetails.seedItemId == -1)    //用于第一次种植
             {
-                return;
-            }
-
-            if (curCrop.seedItemID <= 0)
-            {
-                Debug.Log("tileDetails.seedItemId = id");
                 tileDetails.seedItemId = id;
                 tileDetails.growthDays = 0;
+                //显示农作物
+                DisplayCropPlant(tileDetails, curCrop);
+            }
+            else if (tileDetails.seedItemId != -1)  //用于刷新地图
+            {
+                //显示农作物
+                DisplayCropPlant(tileDetails, curCrop);
             }
 
             DisplayCropPlant(tileDetails, curCrop);

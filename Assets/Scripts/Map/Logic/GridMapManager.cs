@@ -17,9 +17,12 @@ namespace Farm.Map
         public List<MapData_SO> mapDataList;
         private Season _curSeason;
 
+        // 场景名称+坐标对应的瓦片信息
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
+        // 场景是否是第一次加载,用于判断是否预先生成农作物
+        private Dictionary<string, bool> _firstLoadDict = new Dictionary<string, bool>();
         private Grid _curGrid;
-
+        
         private void OnEnable()
         {
             EventHandler.ExecuteActionAfterAnimation += OnExecuteActionAfterAnimation;
@@ -41,6 +44,7 @@ namespace Farm.Map
         {
             foreach (MapData_SO mapData in mapDataList)
             {
+                _firstLoadDict.Add(mapData.sceneName, true);
                 InitTileDetailsDict(mapData);
             }
         }
@@ -140,7 +144,6 @@ namespace Farm.Map
 
                 if (tileDetails.daysSinceDug > -1)
                 {
-                    Debug.Log("SetDigGround");
                     SetDigGround(tileDetails);
                 }
 
@@ -174,16 +177,15 @@ namespace Farm.Map
             DisplayMap(SceneManager.GetActiveScene().name);
         }
         
-        private void UpdateTileDetails(TileDetails tileDetails)
+        public void UpdateTileDetails(TileDetails tileDetails)
         {
             string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
             if (!_tileDetailsDict.ContainsKey(key))
             {
-                Debug.Log("UpdateTileDetails: key not exists");
+                _tileDetailsDict.Add(key, tileDetails);
                 return;
             }
             
-            Debug.Log("UpdateTileDetails" + key + tileDetails.seedItemId);
             _tileDetailsDict[key] = tileDetails;
         }
 
@@ -236,6 +238,7 @@ namespace Farm.Map
                     SetWaterGround(curTile);
                     curTile.daysSinceWatered = 0;
                     break;
+                case ItemType.BreakTool:
                 case ItemType.ChopTool:
                     // 执行收割方法
                     if (curCrop == null)
@@ -262,8 +265,15 @@ namespace Farm.Map
         private void OnAfterLoadedSceneEvent()
         {
             _curGrid = FindObjectOfType<Grid>();
-            _digTilemap = GameObject.FindWithTag("Dig")?.GetComponent<Tilemap>();
-            _waterTilemap = GameObject.FindWithTag("Water")?.GetComponent<Tilemap>();
+            _digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
+            _waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
+
+            if (_firstLoadDict[SceneManager.GetActiveScene().name])
+            {
+                // 预先生成农作物
+                EventHandler.CallGenerateCropEvent();
+                _firstLoadDict[SceneManager.GetActiveScene().name] = false;
+            }
 
             RefreshMap();
         }

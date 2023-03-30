@@ -625,6 +625,9 @@ MonoBehaviour:
   - partType: 2
     partName: 3
     overrideController: {fileID: 22100000, guid: 07c784a881c1f420b8936fa497f3e65a, type: 2}
+  - partType: 3
+    partName: 3
+    overrideController: {fileID: 22100000, guid: 372c0c01c052a42e89b2c4b106c20dea, type: 2}
   - partType: 4
     partName: 3
     overrideController: {fileID: 22100000, guid: 9e23ae4f7e6d74ea7b9309c60a42462d, type: 2}
@@ -1063,6 +1066,7 @@ MonoBehaviour:
   poolPrefabs:
   - {fileID: 6851781377367801694, guid: 1d3cfa11125c84fc29f7447cee405a8c, type: 3}
   - {fileID: 3104498423940096768, guid: 836aa6e6768ee4bd08b6761617e2ede1, type: 3}
+  - {fileID: 4795792970492846947, guid: c60898371172a41289c6d6a2b7c81276, type: 3}
 --- !u!4 &1054331304
 Transform:
   m_ObjectHideFlags: 0
