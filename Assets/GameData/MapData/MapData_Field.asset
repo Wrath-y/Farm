@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: MapData_Field
   m_EditorClassIdentifier: 
   sceneName: 01.Field
+  gridWidth: 56
+  gridHeight: 33
+  originX: -28
+  originY: -16
   tileProperties:
   - tileCoordinate: {x: -18, y: -13}
     gridType: 0

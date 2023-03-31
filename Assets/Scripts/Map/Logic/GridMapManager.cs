@@ -94,7 +94,7 @@ namespace Farm.Map
             }
         }
 
-        private TileDetails GetTileDetails(string key)
+        public TileDetails GetTileDetails(string key)
         {
             if (!_tileDetailsDict.ContainsKey(key))
             {
@@ -231,6 +231,30 @@ namespace Farm.Map
             }
 
             return _reapItemsInRadius.Count > 0;
+        }
+
+        // 根据场景名字构建网格范围，输出范围和原点
+        // return 是否有当前场景的信息
+        public bool GetGridDimensions(string sceneName, out Vector2Int gridDimensions, out Vector2Int gridOrigin)
+        {
+            gridDimensions = Vector2Int.zero; // 网格范围
+            gridOrigin = Vector2Int.zero; // 网格原点
+
+            foreach (var mapData in mapDataList)
+            {
+                if (mapData.sceneName == sceneName)
+                {
+                    gridDimensions.x = mapData.gridWidth;
+                    gridDimensions.y = mapData.gridHeight;
+
+                    gridOrigin.x = mapData.originX;
+                    gridOrigin.y = mapData.originY;
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // 执行实际工具或物品功能
