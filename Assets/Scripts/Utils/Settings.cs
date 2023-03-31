@@ -16,4 +16,6 @@ public class Settings
     
     // 镰刀割草数量
     public const int ReapAmount = 2;
+    // 玩家穿过草，草的摇晃时间
+    public const float ReapAnimDuration = 0.04f;
 }

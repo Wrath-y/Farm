@@ -44,8 +44,12 @@ namespace Farm.Inventory
 
             if (itemDetails.itemType == ItemType.ReapableScenery)
             {
+                // 添加割草生成农作物component
                 gameObject.AddComponent<ReapItem>();
                 gameObject.GetComponent<ReapItem>().InitCropData(itemDetails.itemID);
+                
+                // 添加杂草摇晃脚本component
+                gameObject.AddComponent<ItemInteractive>();
             }
         }
     }
