@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -85,4 +86,30 @@ public class TileDetails
     public int seedItemId = -1;
     public int growthDays = -1;
     public int daysSinceLastHarvest = -1;
+}
+
+[System.Serializable]
+public class NPCPosition
+{
+    public Transform npc;
+    public string startScene;
+    public Vector3 position;
+}
+
+//场景路径
+[System.Serializable]
+public class SceneRoute
+{
+    public string fromSceneName;
+    public string gotoSceneName;
+    [Header("先进后出")]
+    public List<ScenePath> scenePathList;
+}
+
+[System.Serializable]
+public class ScenePath
+{
+    public string sceneName;
+    public Vector2Int fromGridCell;
+    public Vector2Int gotoGridCell;
 }

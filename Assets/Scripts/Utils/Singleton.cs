@@ -10,7 +10,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         get => _instance;
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         if (_instance != null)
         {
@@ -21,7 +21,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         _instance = (T)this;
     }
 
-    protected void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (_instance == this)
         {

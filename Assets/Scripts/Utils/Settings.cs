@@ -18,4 +18,11 @@ public class Settings
     public const int ReapAmount = 2;
     // 玩家穿过草，草的摇晃时间
     public const float ReapAnimDuration = 0.04f;
+    
+    // NPC网格移动
+    public const float gridCellSize = 1;
+    public const float gridCellDiagonalSize = 1.41f;
+    public const float pixelSize = 0.05f;   //20*20 占 1 unit
+    public const float animationBreakTime = 5f; //动画间隔时间
+    public const int maxGridSize = 9999;
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : Singleton<TimeManager>
 {
     private struct DateTimeData
     {
@@ -18,15 +18,30 @@ public class TimeManager : MonoBehaviour
     private DateTimeData _gameTime;
     private bool _gamePause;
     private float _tikTime;
+    
+    public TimeSpan GameTime => new TimeSpan(_gameTime.Hour, _gameTime.Minute, _gameTime.Second);
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         NewGameTime();
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.BeforeUnloadSceneEvent += OnBeforeSceneUnloadEvent;
+        EventHandler.AfterLoadedSceneEvent += OnAfterSceneLoadedEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.BeforeUnloadSceneEvent -= OnBeforeSceneUnloadEvent;
+        EventHandler.AfterLoadedSceneEvent -= OnAfterSceneLoadedEvent;
     }
 
     private void Start()
     {
-        EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour);
+        EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
         EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
     }
 
@@ -58,6 +73,16 @@ public class TimeManager : MonoBehaviour
             EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
             EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
         }
+    }
+    
+    private void OnAfterSceneLoadedEvent()
+    {
+        _gamePause = false;
+    }
+
+    private void OnBeforeSceneUnloadEvent()
+    {
+        _gamePause = true;
     }
 
     private void NewGameTime()
@@ -119,7 +144,7 @@ public class TimeManager : MonoBehaviour
                 }
                 EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
             }
-            EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour);
+            EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
         }
     }
 }

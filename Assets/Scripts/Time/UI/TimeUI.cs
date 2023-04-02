@@ -38,7 +38,7 @@ public class TimeUI : MonoBehaviour
         EventHandler.GameDateEvent -= OnGameDateEvent;
     }
 
-    private void OnGameMinuteEvent(int min, int hour)
+    private void OnGameMinuteEvent(int min, int hour, int day, Season season)
     {
         timeText.text = hour.ToString("00") + ":" + min.ToString("00");
     }

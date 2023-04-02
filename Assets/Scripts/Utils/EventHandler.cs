@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Farm.Dialogue;
 using UnityEngine;
 
 public static class EventHandler
@@ -29,10 +30,10 @@ public static class EventHandler
         ItemSelectedEvent?.Invoke(itemDetails, isSelected);
     }
 
-    public static event Action<int, int> GameMinuteEvent;
-    public static void CallGameMinuteEvent(int min, int hour)
+    public static event Action<int, int, int, Season> GameMinuteEvent;
+    public static void CallGameMinuteEvent(int minute, int hour, int day, Season season)
     {
-        GameMinuteEvent?.Invoke(min, hour);
+        GameMinuteEvent?.Invoke(minute, hour, day, season);
     }
 
     public static event Action<int, Season> GameDayEvent;
@@ -111,5 +112,11 @@ public static class EventHandler
     public static void CallGenerateCropEvent()
     {
         GenerateCropEvent?.Invoke();
+    }
+    
+    public static event Action<DialoguePiece> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(DialoguePiece piece)
+    {
+        ShowDialogueEvent?.Invoke(piece);
     }
 }
