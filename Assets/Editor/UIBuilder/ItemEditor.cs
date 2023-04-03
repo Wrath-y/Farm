@@ -157,10 +157,9 @@ public class ItemEditor : EditorWindow
         });
         
         
-        var itemTypeField = _itemDetailsSection.Q<EnumField>("ItemType");
-        itemTypeField.Init(ItemType.Seed);
-        itemTypeField.value = _activeItem.itemType;
-        itemTypeField.RegisterValueChangedCallback(e =>
+        _itemDetailsSection.Q<EnumField>("ItemType").Init(ItemType.Seed);
+        _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
+        _itemDetailsSection.Q<EnumField>("ItemType").RegisterValueChangedCallback(e =>
         {
             _activeItem.itemType = (ItemType)e.newValue;
         });
@@ -183,12 +182,12 @@ public class ItemEditor : EditorWindow
         {
             _activeItem.canPickup = e.newValue;
         });
-        _itemDetailsSection.Q<Toggle>("CanDropped").value = _activeItem.canPickup;
+        _itemDetailsSection.Q<Toggle>("CanDropped").value = _activeItem.canDropped;
         _itemDetailsSection.Q<Toggle>("CanDropped").RegisterValueChangedCallback(e =>
         {
             _activeItem.canDropped = e.newValue;
         });
-        _itemDetailsSection.Q<Toggle>("CanCarried").value = _activeItem.canPickup;
+        _itemDetailsSection.Q<Toggle>("CanCarried").value = _activeItem.canCarried;
         _itemDetailsSection.Q<Toggle>("CanCarried").RegisterValueChangedCallback(e =>
         {
             _activeItem.canCarried = e.newValue;
