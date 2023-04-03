@@ -69,13 +69,13 @@ namespace Farm.Dialogue
             {
                 //传到UI显示对话
                 EventHandler.CallShowDialogueEvent(result);
-                // EventHandler.CallUpdateGameStateEvent(GameState.Pause);
+                EventHandler.CallUpdateGameStateEvent(GameState.Pause);
                 yield return new WaitUntil(() => result.isDone);
                 _isTalking = false;
             }
             else
             {
-                // EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);
+                EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);
                 EventHandler.CallShowDialogueEvent(null);
                 FillDialogueStack();
                 _isTalking = false;

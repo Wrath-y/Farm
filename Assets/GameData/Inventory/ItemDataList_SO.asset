@@ -105,10 +105,10 @@ MonoBehaviour:
     itemDescription: "\u571F\u8C46"
     itemUseRadius: 2
     canPickup: 1
-    canDropped: 1
-    canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 1
+    sellPercentage: 1
   - itemID: 1015
     itemName: "\u6728\u5934"
     itemType: 1

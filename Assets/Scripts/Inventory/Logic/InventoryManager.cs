@@ -11,6 +11,9 @@ namespace Farm.Inventory
         public ItemDataList_SO itemDataList_SO;
 
         [Header("背包数据")] public InventoryBag_SO playerBag;
+        private InventoryBag_SO _currentBoxBag;
+
+        public int playerMoney;
 
         private void OnEnable()
         {
@@ -138,6 +141,9 @@ namespace Farm.Inventory
             playerBag.ItemList[index] = newItem;
         }
         
+        // player背包范围内交换物品
+        // fromIndex 起始序号
+        // targetIndex 目标数据序号
         public void SwapItem(int currentIndex, int targetIndex)
         {
             InventoryItem currentItem = playerBag.ItemList[currentIndex];
@@ -147,6 +153,50 @@ namespace Farm.Inventory
             playerBag.ItemList[targetIndex] = currentItem;
             
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+        
+        // 跨背包交换数据
+        public void SwapItem(InventoryLocation locationFrom, int fromIndex, InventoryLocation locationTarget, int targetIndex)
+        {
+            var currentList = GetItemList(locationFrom);
+            var targetList = GetItemList(locationTarget);
+
+            InventoryItem currentItem = currentList[fromIndex];
+
+            if (targetIndex < targetList.Count)
+            {
+                InventoryItem targetItem = targetList[targetIndex];
+
+                if (targetItem.itemID != 0 && currentItem.itemID != targetItem.itemID)  //有不相同的两个物品
+                {
+                    currentList[fromIndex] = targetItem;
+                    targetList[targetIndex] = currentItem;
+                }
+                else if (currentItem.itemID == targetItem.itemID) //相同的两个物品
+                {
+                    targetItem.itemAmount += currentItem.itemAmount;
+                    targetList[targetIndex] = targetItem;
+                    currentList[fromIndex] = new InventoryItem();
+                }
+                else    //目标空格子
+                {
+                    targetList[targetIndex] = currentItem;
+                    currentList[fromIndex] = new InventoryItem();
+                }
+                EventHandler.CallUpdateInventoryUI(locationFrom, currentList);
+                EventHandler.CallUpdateInventoryUI(locationTarget, targetList);
+            }
+        }
+        
+        // 根据位置返回背包数据列表
+        private List<InventoryItem> GetItemList(InventoryLocation location)
+        {
+            return location switch
+            {
+                InventoryLocation.Player => playerBag.ItemList,
+                InventoryLocation.Box => _currentBoxBag.ItemList,
+                _ => null
+            };
         }
 
         private void RemoveItem(int id, int removeAmount)
@@ -178,6 +228,38 @@ namespace Farm.Inventory
         {
             var index = GetItemIndexInBag(id);
             AddItemAtIndex(id, index, 1);
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+        
+        // 交易物品
+        // itemDetails 物品信息
+        // amount 交易数量
+        // isSellTrade 是否卖东西
+        public void TradeItem(ItemDetails itemDetails, int amount, bool isSellTrade)
+        {
+            int cost = itemDetails.itemPrice * amount;
+            //获得物品背包位置
+            int index = GetItemIndexInBag(itemDetails.itemID);
+
+            if (isSellTrade)    //卖
+            {
+                if (playerBag.ItemList[index].itemAmount >= amount)
+                {
+                    RemoveItem(itemDetails.itemID, amount);
+                    //卖出总价
+                    cost = (int)(cost * itemDetails.sellPercentage);
+                    playerMoney += cost;
+                }
+            }
+            else if (playerMoney - cost >= 0)   //买
+            {
+                if (CheckBagCapacity())
+                {
+                    AddItemAtIndex(itemDetails.itemID, index, amount);
+                }
+                playerMoney -= cost;
+            }
+            //刷新UI
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
     }

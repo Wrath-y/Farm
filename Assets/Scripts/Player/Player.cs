@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
         EventHandler.MoveToPos += OnMoveToPos;
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
+        EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
     }
 
     private void OnDisable()
@@ -39,18 +40,15 @@ public class Player : MonoBehaviour
         EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
         EventHandler.MoveToPos -= OnMoveToPos;
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
+        EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
     }
 
     private void Update()
     {
         if (!_inputDisable)
-        {
             PlayerInput();
-        }
         else
-        {
             _isMoving = false;
-        }
         SwitchAnimation();
     }
 
@@ -158,5 +156,18 @@ public class Player : MonoBehaviour
             return;
         }
         EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
+    }
+    
+    private void OnUpdateGameStateEvent(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Gameplay:
+                _inputDisable = false;
+                break;
+            case GameState.Pause:
+                _inputDisable = true;
+                break;
+        }
     }
 }

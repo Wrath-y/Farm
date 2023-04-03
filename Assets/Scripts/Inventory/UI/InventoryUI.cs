@@ -9,21 +9,36 @@ namespace Farm.Inventory
     public class InventoryUI : MonoBehaviour
     {
         public ItemToolTip ItemToolTip;
+        
+        [Header("拖拽图片")]
         public Image dragItem;
+        
+        [Header("玩家背包UI")]
         [SerializeField] private GameObject bagUI;
         private bool _bagOpened;
+        
+        [Header("通用背包")]
+        [SerializeField] private GameObject baseBag;
+        public GameObject shopSlotPrefab;
+        public GameObject boxSlotPrefab;
+        
         [SerializeField] private SlotUI[] playerSlots;
+        [SerializeField] private List<SlotUI> baseBagSlots;
 
         private void OnEnable()
         {
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
             EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
+            EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent += OnBaseBagCloseEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.UpdateInventoryUI  -= OnUpdateInventoryUI;
             EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
+            EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
+            EventHandler.BaseBagCloseEvent -= OnBaseBagCloseEvent;
         }
 
         private void Start()
@@ -66,7 +81,20 @@ namespace Farm.Inventory
                             playerSlots[i].ClearSlot();
                         }
                     }
-
+                    break;
+                case InventoryLocation.Box:
+                    for (int i = 0; i < baseBagSlots.Count; i++)
+                    {
+                        if (list[i].itemAmount > 0)
+                        {
+                            var item = InventoryManager.Instance.GetItemDetails(list[i].itemID);
+                            baseBagSlots[i].SetSlot(item, list[i].itemAmount);
+                        }
+                        else
+                        {
+                            baseBagSlots[i].ClearSlot();
+                        }
+                    }
                     break;
             }
         }
@@ -76,6 +104,71 @@ namespace Farm.Inventory
             _bagOpened = !_bagOpened;
             
             bagUI.SetActive(_bagOpened);
+        }
+        
+        // 点击商店ESC事件
+        public void CloseShopBagUI()
+        {
+            CloseBaseBagUI(SlotType.Shop);
+        }
+        
+        private void CloseBaseBagUI(SlotType slotType)
+        {
+            baseBag.SetActive(false);
+            ItemToolTip.gameObject.SetActive(false);
+            UpdateSlotHighlight(-1);
+
+            foreach (var slot in baseBagSlots)
+            {
+                Destroy(slot.gameObject);
+            }
+            baseBagSlots.Clear();
+
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
+                bagUI.SetActive(false);
+                _bagOpened = false;
+            }
+        }
+        
+        // 打开通用包裹UI事件
+        private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bagData)
+        {
+            GameObject prefab = slotType switch
+            {
+                SlotType.Shop => shopSlotPrefab,
+                SlotType.Box => boxSlotPrefab,
+                _ => null,
+            };
+
+            //生成背包UI
+            baseBag.SetActive(true);
+
+            baseBagSlots = new List<SlotUI>();
+
+            for (int i = 0; i < bagData.ItemList.Count; i++)
+            {
+                var slot = Instantiate(prefab, baseBag.transform.GetChild(0)).GetComponent<SlotUI>();
+                slot.slotIndex = i;
+                baseBagSlots.Add(slot);
+            }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(baseBag.GetComponent<RectTransform>());
+
+            if (slotType == SlotType.Shop)
+            {
+                bagUI.GetComponent<RectTransform>().pivot = new Vector2(-1, 0.5f);
+                bagUI.SetActive(true);
+                _bagOpened = true;
+            }
+            //更新UI显示
+            OnUpdateInventoryUI(InventoryLocation.Box, bagData.ItemList);
+        }
+        
+        // 关闭通用包裹UI事件
+        private void OnBaseBagCloseEvent(SlotType slotType, InventoryBag_SO bagData)
+        {
+            CloseBaseBagUI(slotType);
         }
 
         public void UpdateSlotHighlight(int index)
