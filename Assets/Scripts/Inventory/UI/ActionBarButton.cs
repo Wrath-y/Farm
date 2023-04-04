@@ -10,15 +10,31 @@ namespace Farm.Inventory
     {
         public KeyCode key;
         private SlotUI _slotUI;
+        private bool _canUse = true;
 
         private void Awake()
         {
             _slotUI = GetComponent<SlotUI>();
         }
+        
+        private void OnEnable()
+        {
+            EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
+        }
+
+        private void OnDisable()
+        {
+            EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
+        }
+
+        private void OnUpdateGameStateEvent(GameState gameState)
+        {
+            _canUse = gameState == GameState.Gameplay;
+        }
 
         private void Update()
         {
-            if (Input.GetKeyDown(key))
+            if (Input.GetKeyDown(key) && _canUse)
             {
                 if (_slotUI.itemDetails != null)
                 {

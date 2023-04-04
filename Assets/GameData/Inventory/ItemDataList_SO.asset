@@ -95,8 +95,8 @@ MonoBehaviour:
     canPickup: 1
     canDropped: 1
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 10
+    sellPercentage: 0.6
   - itemID: 1008
     itemName: "\u571F\u8C46"
     itemType: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
     itemDescription: "\u571F\u8C46"
     itemUseRadius: 2
     canPickup: 1
-    canDropped: 0
+    canDropped: 1
     canCarried: 0
     itemPrice: 1
     sellPercentage: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
     itemUseRadius: 2
     canPickup: 1
     canDropped: 1
-    canCarried: 1
+    canCarried: 0
     itemPrice: 15
     sellPercentage: 0.8
   - itemID: 1016
@@ -131,8 +131,8 @@ MonoBehaviour:
     canPickup: 1
     canDropped: 1
     canCarried: 1
-    itemPrice: 0
-    sellPercentage: 0
+    itemPrice: 10
+    sellPercentage: 0.6
   - itemID: 1017
     itemName: "\u6811\u6839"
     itemType: 9

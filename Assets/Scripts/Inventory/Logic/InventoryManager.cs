@@ -13,6 +13,7 @@ namespace Farm.Inventory
         [Header("背包数据")] public InventoryBag_SO playerBag;
         private InventoryBag_SO _currentBoxBag;
 
+        [Header("交易")]
         public int playerMoney;
 
         private void OnEnable()

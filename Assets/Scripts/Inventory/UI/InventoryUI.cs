@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
@@ -22,6 +23,10 @@ namespace Farm.Inventory
         public GameObject shopSlotPrefab;
         public GameObject boxSlotPrefab;
         
+        [Header("交易UI")]
+        public TradeUI tradeUI;
+        public TextMeshProUGUI playerMoneyText;
+        
         [SerializeField] private SlotUI[] playerSlots;
         [SerializeField] private List<SlotUI> baseBagSlots;
 
@@ -31,6 +36,7 @@ namespace Farm.Inventory
             EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
             EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
             EventHandler.BaseBagCloseEvent += OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI += OnShowTradeUI;
         }
 
         private void OnDisable()
@@ -39,6 +45,7 @@ namespace Farm.Inventory
             EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
             EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
             EventHandler.BaseBagCloseEvent -= OnBaseBagCloseEvent;
+            EventHandler.ShowTradeUI -= OnShowTradeUI;
         }
 
         private void Start()
@@ -49,6 +56,7 @@ namespace Farm.Inventory
             }
 
             _bagOpened = bagUI.activeInHierarchy; 
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
         }
 
         private void Update()
@@ -97,6 +105,13 @@ namespace Farm.Inventory
                     }
                     break;
             }
+            playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
+        }
+        
+        private void OnShowTradeUI(ItemDetails item, bool isSell)
+        {
+            tradeUI.gameObject.SetActive(true);
+            tradeUI.SetupTradeUI(item, isSell);
         }
 
         public void OpenBagUI()
