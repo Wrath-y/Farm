@@ -65,6 +65,11 @@ public class ItemToolTip : MonoBehaviour
             if (i < bluePrintDetails.resourceItem.Length)
             {
                 var item = bluePrintDetails.resourceItem[i];
+                if (item.itemID == 0)
+                {
+                    resourceItem[i].gameObject.SetActive(false);
+                    continue;
+                }
                 resourceItem[i].gameObject.SetActive(true);
                 resourceItem[i].sprite = InventoryManager.Instance.GetItemDetails(item.itemID).itemIcon;
                 resourceItem[i].transform.GetChild(0).GetComponent<Text>().text = item.itemAmount.ToString();

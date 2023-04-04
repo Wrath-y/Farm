@@ -782,8 +782,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d4c46a2bff0cdb4aa780b272503610e
-      internalID: 840998368
+      spriteID: ecceec62b52ec714293361f9f7526efc
+      internalID: -850421920
       vertices: []
       indices: 
       edges: []
@@ -803,8 +803,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 620858ed068f88c4abd82e78d876d2aa
-      internalID: -513294447
+      spriteID: 079159c55482b94428911cccfe792a7b
+      internalID: -1936580168
       vertices: []
       indices: 
       edges: []
@@ -831,7 +831,7 @@ TextureImporter:
       Furniture01_16: 736208478
       Furniture01_17: 1312298733
       Furniture01_18: 2073843765
-      Furniture01_19_paper: 840998368
+      Furniture01_19_paper: -850421920
       Furniture01_2: 1343035480
       Furniture01_20: -1986908761
       Furniture01_21: 279616883
@@ -846,7 +846,7 @@ TextureImporter:
       Furniture01_3: -102332372
       Furniture01_30: -1525409565
       Furniture01_31: -872109812
-      Furniture01_32_chair: -513294447
+      Furniture01_32_chair: -1936580168
       Furniture01_4: 292292571
       Furniture01_5: -1483819821
       Furniture01_6: -1230223651

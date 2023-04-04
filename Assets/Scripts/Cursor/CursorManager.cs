@@ -17,7 +17,7 @@ public class CursorManager : MonoBehaviour
     private RectTransform _cursorCanvas;
     
     //建造图标跟随
-    private Image buildImage;
+    private Image _buildImage;
 
     private Camera _mainCamera;
     private Grid _curGrid;
@@ -47,8 +47,8 @@ public class CursorManager : MonoBehaviour
         _cursorCanvas = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         _cursorImage = _cursorCanvas.GetChild(0).GetComponent<Image>();
         //拿到建造图标
-        buildImage = _cursorCanvas.GetChild(1).GetComponent<Image>();
-        buildImage.gameObject.SetActive(false);
+        _buildImage = _cursorCanvas.GetChild(1).GetComponent<Image>();
+        // _buildImage.gameObject.SetActive(false);
 
         _curSprite = normal;
         SetCursorImage(normal);
@@ -73,7 +73,7 @@ public class CursorManager : MonoBehaviour
         else
         {
             SetCursorImage(normal);
-            buildImage.gameObject.SetActive(false);
+            // _buildImage.gameObject.SetActive(false);
         }
     }
     
@@ -84,7 +84,7 @@ public class CursorManager : MonoBehaviour
             _curItem = null;
             _cursorEnable = false;
             _curSprite = normal;
-            buildImage.gameObject.SetActive(false);
+            _buildImage.gameObject.SetActive(false);
             return;
         }
 
@@ -108,9 +108,9 @@ public class CursorManager : MonoBehaviour
         //显示建造物品图片
         if (itemDetails.itemType == ItemType.Furniture)
         {
-            buildImage.gameObject.SetActive(true);
-            buildImage.sprite = itemDetails.itemOnWorldSprite;
-            buildImage.SetNativeSize();
+            _buildImage.gameObject.SetActive(true);
+            _buildImage.sprite = itemDetails.itemOnWorldSprite;
+            _buildImage.SetNativeSize();
         }
     }
 
@@ -150,14 +150,14 @@ public class CursorManager : MonoBehaviour
     {
         _cursorPositionValid = true;
         _cursorImage.color = new Color(1, 1, 1, 1);
-        buildImage.color = new Color(1, 1, 1, 0.5f);
+        _buildImage.color = new Color(1, 1, 1, 0.5f);
     }
 
     private void SetCursorInValid()
     {
         _cursorPositionValid = false;
         _cursorImage.color = new Color(1, 0, 0, 0.5f);
-        buildImage.color = new Color(1, 0, 0, 0.5f);
+        _buildImage.color = new Color(1, 0, 0, 0.5f);
     }
 
     private bool InteractWithUI()
@@ -176,8 +176,8 @@ public class CursorManager : MonoBehaviour
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
         //建造图片跟随移动
-        buildImage.rectTransform.position = Input.mousePosition;
-        
+        _buildImage.rectTransform.position = Input.mousePosition;
+
         if (Math.Abs(_mouseGridPos.x - playerGridPos.x) > _curItem.itemUseRadius || Math.Abs(_mouseGridPos.y - playerGridPos.y) > _curItem.itemUseRadius)
         {
             SetCursorInValid();
@@ -237,9 +237,9 @@ public class CursorManager : MonoBehaviour
                 if (GridMapManager.Instance.HaveReapableItemsInRadius(_mouseWorldPos, _curItem)) SetCursorValid(); else SetCursorInValid();
                 break;
             case ItemType.Furniture:
-                buildImage.gameObject.SetActive(true);
+                _buildImage.gameObject.SetActive(true);
                 var bluePrintDetails = InventoryManager.Instance.bluePrintData.GetBluePrintDetails(_curItem.itemID);
-
+            
                 if (curTile.canPlaceFurniture && InventoryManager.Instance.CheckStock(_curItem.itemID) && !HaveFurnitureInRadius(bluePrintDetails))
                     SetCursorValid();
                 else
