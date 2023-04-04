@@ -19,7 +19,7 @@ namespace Farm.Inventory
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_slotUI.itemAmount == 0)
+            if (_slotUI.itemDetails == null)
             {
                 InventoryUI.ItemToolTip.gameObject.SetActive(false);
                 return;
@@ -29,6 +29,16 @@ namespace Farm.Inventory
             InventoryUI.ItemToolTip.SetupToolTip(_slotUI.itemDetails, _slotUI.slotType);
             InventoryUI.ItemToolTip.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0);
             InventoryUI.ItemToolTip.transform.position = transform.position + Vector3.up * 60;
+            
+            if (_slotUI.itemDetails.itemType == ItemType.Furniture)
+            {
+                InventoryUI.ItemToolTip.resourcePanel.SetActive(true);
+                InventoryUI.ItemToolTip.SetupResourcePanel(_slotUI.itemDetails.itemID);
+            }
+            else
+            {
+                InventoryUI.ItemToolTip.resourcePanel.SetActive(false);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)

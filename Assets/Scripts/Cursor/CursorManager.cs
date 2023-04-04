@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Farm.CropPlant;
+using Farm.Inventory;
 using Farm.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,11 +10,14 @@ using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
-    public Sprite normal, tool, seed, commodity;
+    public Sprite normal, tool, seed, item;
 
     private Sprite _curSprite;
     private Image _cursorImage;
     private RectTransform _cursorCanvas;
+    
+    //建造图标跟随
+    private Image buildImage;
 
     private Camera _mainCamera;
     private Grid _curGrid;
@@ -42,6 +46,10 @@ public class CursorManager : MonoBehaviour
     {
         _cursorCanvas = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         _cursorImage = _cursorCanvas.GetChild(0).GetComponent<Image>();
+        //拿到建造图标
+        buildImage = _cursorCanvas.GetChild(1).GetComponent<Image>();
+        buildImage.gameObject.SetActive(false);
+
         _curSprite = normal;
         SetCursorImage(normal);
         
@@ -65,7 +73,55 @@ public class CursorManager : MonoBehaviour
         else
         {
             SetCursorImage(normal);
+            buildImage.gameObject.SetActive(false);
         }
+    }
+    
+    private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
+    {
+        if (!isSelected)
+        {
+            _curItem = null;
+            _cursorEnable = false;
+            _curSprite = normal;
+            buildImage.gameObject.SetActive(false);
+            return;
+        }
+
+        _curItem = itemDetails;
+        // TODO 新类型需添加鼠标样式
+        _curSprite = itemDetails.itemType switch
+        {
+            ItemType.Seed => seed,
+            ItemType.Commodity => item,
+            ItemType.ChopTool => tool,
+            ItemType.HoeTool => tool,
+            ItemType.WaterTool => tool,
+            ItemType.BreakTool => tool,
+            ItemType.ReapTool => tool,
+            ItemType.Furniture => tool,
+            ItemType.CollectTool => tool,
+            _ => normal
+        };
+        _cursorEnable = true;
+        
+        //显示建造物品图片
+        if (itemDetails.itemType == ItemType.Furniture)
+        {
+            buildImage.gameObject.SetActive(true);
+            buildImage.sprite = itemDetails.itemOnWorldSprite;
+            buildImage.SetNativeSize();
+        }
+    }
+
+    private void OnBeforeUnloadSceneEvent()
+    {
+        _cursorEnable = false;
+    }
+    
+    private void OnAfterLoadedSceneEvent()
+    {
+        _curGrid = FindObjectOfType<Grid>();
     }
 
     private void CheckPlayerInput()
@@ -78,20 +134,30 @@ public class CursorManager : MonoBehaviour
 
     private void SetCursorImage(Sprite sprite)
     {
+        if (sprite == null)
+        {
+            Debug.Log("SetCursorImage's sprite is nil");
+        }
+        if (_cursorImage == null)
+        {
+            Debug.Log("SetCursorImage's _cursorImage is nil");
+        }
         _cursorImage.sprite = sprite;
         _cursorImage.color = new Color(1, 1, 1, 1);
     }
 
     private void SetCursorValid()
     {
-        _cursorImage.color = new Color(1, 1, 1, 1);
         _cursorPositionValid = true;
+        _cursorImage.color = new Color(1, 1, 1, 1);
+        buildImage.color = new Color(1, 1, 1, 0.5f);
     }
 
     private void SetCursorInValid()
     {
-        _cursorImage.color = new Color(1, 0, 0, 0.5f);
         _cursorPositionValid = false;
+        _cursorImage.color = new Color(1, 0, 0, 0.5f);
+        buildImage.color = new Color(1, 0, 0, 0.5f);
     }
 
     private bool InteractWithUI()
@@ -109,6 +175,9 @@ public class CursorManager : MonoBehaviour
         _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_mainCamera.transform.position.z));
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
+        //建造图片跟随移动
+        buildImage.rectTransform.position = Input.mousePosition;
+        
         if (Math.Abs(_mouseGridPos.x - playerGridPos.x) > _curItem.itemUseRadius || Math.Abs(_mouseGridPos.y - playerGridPos.y) > _curItem.itemUseRadius)
         {
             SetCursorInValid();
@@ -167,42 +236,27 @@ public class CursorManager : MonoBehaviour
             case ItemType.ReapTool:
                 if (GridMapManager.Instance.HaveReapableItemsInRadius(_mouseWorldPos, _curItem)) SetCursorValid(); else SetCursorInValid();
                 break;
+            case ItemType.Furniture:
+                buildImage.gameObject.SetActive(true);
+                var bluePrintDetails = InventoryManager.Instance.bluePrintData.GetBluePrintDetails(_curItem.itemID);
+
+                if (curTile.canPlaceFurniture && InventoryManager.Instance.CheckStock(_curItem.itemID) && !HaveFurnitureInRadius(bluePrintDetails))
+                    SetCursorValid();
+                else
+                    SetCursorInValid();
+                break;
         }
     }
     
-    private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
+    private bool HaveFurnitureInRadius(BluePrintDetails bluePrintDetails)
     {
-        if (!isSelected)
-        {
-            _cursorEnable = false;
-            _curSprite = normal;
-            return;
-        }
+        var buildItem = bluePrintDetails.buildPrefab;
+        Vector2 point = _mouseWorldPos;
+        var size = buildItem.GetComponent<BoxCollider2D>().size;
 
-        _curItem = itemDetails;
-        // TODO 新类型需添加鼠标样式
-        _curSprite = itemDetails.itemType switch
-        {
-            ItemType.Seed => seed,
-            ItemType.Commodity => commodity,
-            ItemType.ChopTool => tool,
-            ItemType.HoeTool => tool,
-            ItemType.WaterTool => tool,
-            ItemType.CollectTool => tool,
-            ItemType.BreakTool => tool,
-            ItemType.ReapableScenery => tool,
-            _ => normal
-        };
-        _cursorEnable = true;
-    }
-
-    private void OnBeforeUnloadSceneEvent()
-    {
-        _cursorEnable = false;
-    }
-    
-    private void OnAfterLoadedSceneEvent()
-    {
-        _curGrid = FindObjectOfType<Grid>();
+        var otherColl = Physics2D.OverlapBox(point, size, 0);
+        if (otherColl != null)
+            return otherColl.GetComponent<Furniture>();
+        return false;
     }
 }

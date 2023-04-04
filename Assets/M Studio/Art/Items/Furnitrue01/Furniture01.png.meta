@@ -768,7 +768,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Furniture01_19
+      name: Furniture01_19_paper
       rect:
         serializedVersion: 2
         x: 83
@@ -789,7 +789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Furniture01_32
+      name: Furniture01_32_chair
       rect:
         serializedVersion: 2
         x: 331
@@ -831,7 +831,7 @@ TextureImporter:
       Furniture01_16: 736208478
       Furniture01_17: 1312298733
       Furniture01_18: 2073843765
-      Furniture01_19: 840998368
+      Furniture01_19_paper: 840998368
       Furniture01_2: 1343035480
       Furniture01_20: -1986908761
       Furniture01_21: 279616883
@@ -846,7 +846,7 @@ TextureImporter:
       Furniture01_3: -102332372
       Furniture01_30: -1525409565
       Furniture01_31: -872109812
-      Furniture01_32: -513294447
+      Furniture01_32_chair: -513294447
       Furniture01_4: 292292571
       Furniture01_5: -1483819821
       Furniture01_6: -1230223651

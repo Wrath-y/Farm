@@ -9,6 +9,9 @@ namespace Farm.Inventory
     {
         [Header("物品数据")]
         public ItemDataList_SO itemDataList_SO;
+        
+        [Header("建造蓝图")]
+        public BluePrintDataList_SO bluePrintData;
 
         [Header("背包数据")] public InventoryBag_SO playerBag;
         private InventoryBag_SO _currentBoxBag;
@@ -20,12 +23,15 @@ namespace Farm.Inventory
         {
             EventHandler.DropItemEvent += OnDropItemEvent;
             EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
+            //建造
+            EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
+            EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
         }
         
         private void Start()
@@ -36,6 +42,28 @@ namespace Farm.Inventory
         public ItemDetails GetItemDetails(int id)
         {
             return itemDataList_SO.ItemDetailsList.Find(e => e.itemID == id);
+        }
+        
+        private void OnDropItemEvent(int itemID, Vector3 pos, ItemType itemType)
+        {
+            RemoveItem(itemID, 1);
+        }
+
+        private void OnHarvestAtPlayerPosition(int id)
+        {
+            var index = GetItemIndexInBag(id);
+            AddItemAtIndex(id, index, 1);
+            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+        
+        private void OnBuildFurnitureEvent(int ID, Vector3 mousePos)
+        {
+            RemoveItem(ID, 1);
+            BluePrintDetails bluePrint = bluePrintData.GetBluePrintDetails(ID);
+            foreach (var item in bluePrint.resourceItem)
+            {
+                RemoveItem(item.itemID, item.itemAmount);
+            }
         }
 
         public int GetItemIndexInBag(int id)
@@ -220,18 +248,6 @@ namespace Farm.Inventory
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
 
-        private void OnDropItemEvent(int itemID, Vector3 pos, ItemType itemType)
-        {
-            RemoveItem(itemID, 1);
-        }
-
-        private void OnHarvestAtPlayerPosition(int id)
-        {
-            var index = GetItemIndexInBag(id);
-            AddItemAtIndex(id, index, 1);
-            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
-        }
-        
         // 交易物品
         // itemDetails 物品信息
         // amount 交易数量
@@ -262,6 +278,24 @@ namespace Farm.Inventory
             }
             //刷新UI
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+        
+        // 检查建造资源物品库存
+        // ID 图纸ID
+        public bool CheckStock(int ID)
+        {
+            var bluePrintDetails = bluePrintData.GetBluePrintDetails(ID);
+
+            foreach (var resourceItem in bluePrintDetails.resourceItem)
+            {
+                var itemStock = playerBag.GetInventoryItem(resourceItem.itemID);
+                if (itemStock.itemAmount >= resourceItem.itemAmount)
+                {
+                    continue;
+                }
+                else return false;
+            }
+            return true;
         }
     }
 }

@@ -62,6 +62,7 @@ public class AnimatorOverride : MonoBehaviour
             ItemType.ChopTool => PartType.Chop,
             ItemType.BreakTool => PartType.Break,
             ItemType.ReapTool => PartType.Reap,
+            ItemType.Furniture => PartType.Carry,
             _ => PartType.None
         };
 
