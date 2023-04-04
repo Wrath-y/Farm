@@ -55,7 +55,7 @@ namespace Farm.Inventory
                 playerSlots[i].slotIndex = i;
             }
 
-            _bagOpened = bagUI.activeInHierarchy; 
+            _bagOpened = bagUI.activeInHierarchy;
             playerMoneyText.text = InventoryManager.Instance.playerMoney.ToString();
         }
 
