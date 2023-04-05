@@ -19,6 +19,8 @@ public class ItemManager: MonoBehaviour
         EventHandler.DropItemEvent += OnDropItemEvent;
         EventHandler.BeforeUnloadSceneEvent += OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
+        //建造
+        EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
     }
 
     private void OnDisable()
@@ -27,6 +29,7 @@ public class ItemManager: MonoBehaviour
         EventHandler.DropItemEvent -= OnDropItemEvent;
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
+        EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
     }
 
     private void OnBeforeUnloadSceneEvent()
@@ -45,6 +48,17 @@ public class ItemManager: MonoBehaviour
         var item = Instantiate(bounceItemPrefab, pos, Quaternion.identity, _itemParent);
         item.itemID = id;
         item.GetComponent<ItemBounce>().InitBounceItem(pos, Vector3.up);
+    }
+    
+    private void OnBuildFurnitureEvent(int ID, Vector3 mousePos)
+    {
+        BluePrintDetails bluePrint = InventoryManager.Instance.bluePrintData.GetBluePrintDetails(ID);
+        var buildItem = Instantiate(bluePrint.buildPrefab, mousePos, Quaternion.identity, _itemParent);
+        // if (buildItem.GetComponent<Box>())
+        // {
+        //     buildItem.GetComponent<Box>().index = InventoryManager.Instance.BoxDataAmount;
+        //     buildItem.GetComponent<Box>().InitBox(buildItem.GetComponent<Box>().index);
+        // }
     }
 
     private void OnDropItemEvent(int id, Vector3 mousePos, ItemType itemType)

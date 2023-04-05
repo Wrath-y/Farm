@@ -48,7 +48,7 @@ public class CursorManager : MonoBehaviour
         _cursorImage = _cursorCanvas.GetChild(0).GetComponent<Image>();
         //拿到建造图标
         _buildImage = _cursorCanvas.GetChild(1).GetComponent<Image>();
-        // _buildImage.gameObject.SetActive(false);
+        _buildImage.gameObject.SetActive(false);
 
         _curSprite = normal;
         SetCursorImage(normal);
@@ -73,7 +73,7 @@ public class CursorManager : MonoBehaviour
         else
         {
             SetCursorImage(normal);
-            // _buildImage.gameObject.SetActive(false);
+            _buildImage.gameObject.SetActive(false);
         }
     }
     
@@ -177,7 +177,7 @@ public class CursorManager : MonoBehaviour
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
         //建造图片跟随移动
         _buildImage.rectTransform.position = Input.mousePosition;
-
+        
         if (Math.Abs(_mouseGridPos.x - playerGridPos.x) > _curItem.itemUseRadius || Math.Abs(_mouseGridPos.y - playerGridPos.y) > _curItem.itemUseRadius)
         {
             SetCursorInValid();
@@ -239,7 +239,7 @@ public class CursorManager : MonoBehaviour
             case ItemType.Furniture:
                 _buildImage.gameObject.SetActive(true);
                 var bluePrintDetails = InventoryManager.Instance.bluePrintData.GetBluePrintDetails(_curItem.itemID);
-            
+
                 if (curTile.canPlaceFurniture && InventoryManager.Instance.CheckStock(_curItem.itemID) && !HaveFurnitureInRadius(bluePrintDetails))
                     SetCursorValid();
                 else
