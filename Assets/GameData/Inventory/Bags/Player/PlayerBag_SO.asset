@@ -26,13 +26,13 @@ MonoBehaviour:
   - itemID: 1006
     itemAmount: 1
   - itemID: 1015
-    itemAmount: 72
+    itemAmount: 42
   - itemID: 1016
-    itemAmount: 89
-  - itemID: 1008
-    itemAmount: 5
+    itemAmount: 100
   - itemID: 1028
-    itemAmount: 97
+    itemAmount: 96
+  - itemID: 1029
+    itemAmount: 92
   - itemID: 0
     itemAmount: 0
   - itemID: 0

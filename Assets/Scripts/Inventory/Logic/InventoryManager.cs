@@ -18,6 +18,9 @@ namespace Farm.Inventory
 
         [Header("交易")]
         public int playerMoney;
+        
+        private Dictionary<string, List<InventoryItem>> _boxDataDict = new Dictionary<string, List<InventoryItem>>();
+        public int BoxDataAmount => _boxDataDict.Count;
 
         private void OnEnable()
         {
@@ -25,6 +28,7 @@ namespace Farm.Inventory
             EventHandler.HarvestAtPlayerPosition += OnHarvestAtPlayerPosition;
             //建造
             EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
+            EventHandler.BaseBagOpenEvent += OnBaseBagOpenEvent;
         }
 
         private void OnDisable()
@@ -32,6 +36,7 @@ namespace Farm.Inventory
             EventHandler.DropItemEvent -= OnDropItemEvent;
             EventHandler.HarvestAtPlayerPosition -= OnHarvestAtPlayerPosition;
             EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+            EventHandler.BaseBagOpenEvent -= OnBaseBagOpenEvent;
         }
         
         private void Start()
@@ -65,7 +70,12 @@ namespace Farm.Inventory
                 RemoveItem(item.itemID, item.itemAmount);
             }
         }
-
+        
+        private void OnBaseBagOpenEvent(SlotType slotType, InventoryBag_SO bag_SO)
+        {
+            _currentBoxBag = bag_SO;
+        }
+        
         public int GetItemIndexInBag(int id)
         {
             for (int i = 0; i < playerBag.ItemList.Count; i++)
@@ -178,9 +188,17 @@ namespace Farm.Inventory
             InventoryItem currentItem = playerBag.ItemList[currentIndex];
             InventoryItem targetItem = playerBag.ItemList[targetIndex];
 
-            playerBag.ItemList[currentIndex] = targetItem;
-            playerBag.ItemList[targetIndex] = currentItem;
-            
+            if (targetItem.itemID != 0)
+            {
+                playerBag.ItemList[currentIndex] = targetItem;
+                playerBag.ItemList[targetIndex] = currentItem;
+            }
+            else
+            {
+                playerBag.ItemList[targetIndex] = currentItem;
+                playerBag.ItemList[currentIndex] = new InventoryItem();
+            }
+
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
         
@@ -296,6 +314,27 @@ namespace Farm.Inventory
                 else return false;
             }
             return true;
+        }
+        
+        /// <summary>
+        /// 查找箱子数据
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public List<InventoryItem> GetBoxDataList(string key)
+        {
+            if (_boxDataDict.ContainsKey(key))
+                return _boxDataDict[key];
+            return null;
+        }
+
+        /// 加入箱子数据字典
+        public void AddBoxDataDict(Box box)
+        {
+            var key = box.name + box.index;
+            if (!_boxDataDict.ContainsKey(key))
+                _boxDataDict.Add(key, box.boxBagData.ItemList);
+            Debug.Log(key);
         }
     }
 }

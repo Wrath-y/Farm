@@ -19,6 +19,9 @@ public class TimeManager : Singleton<TimeManager>
     private bool _gamePause;
     private float _tikTime;
     
+    //灯光时间差
+    private float timeDifference;
+    
     public TimeSpan GameTime => new TimeSpan(_gameTime.Hour, _gameTime.Minute, _gameTime.Second);
 
     protected override void Awake()
@@ -43,6 +46,8 @@ public class TimeManager : Singleton<TimeManager>
     {
         EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
         EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+        //切换灯光
+        EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
     }
 
     private void Update()
@@ -145,6 +150,26 @@ public class TimeManager : Singleton<TimeManager>
                 EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
             }
             EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+            //切换灯光
+            EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
         }
+    }
+    
+    // 返回lightshift同时计算时间差
+    private LightShift GetCurrentLightShift()
+    {
+        if (GameTime >= Settings.morningTime && GameTime < Settings.nightTime)
+        {
+            timeDifference = (float)(GameTime - Settings.morningTime).TotalMinutes;
+            return LightShift.Morning;
+        }
+
+        if (GameTime < Settings.morningTime || GameTime >= Settings.nightTime)
+        {
+            timeDifference = Mathf.Abs((float)(GameTime - Settings.nightTime).TotalMinutes);
+            return LightShift.Night;
+        }
+
+        return LightShift.Morning;
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6073011283100848588}
   - component: {fileID: 5976842193453370857}
   - component: {fileID: 155594176009358764}
+  - component: {fileID: 6213748605243254685}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.9800539}
   m_EdgeRadius: 0
+--- !u!114 &6213748605243254685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763020123967372333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf5e4f3d2b74a63a6dbbd1574f721ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 1028

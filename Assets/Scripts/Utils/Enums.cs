@@ -44,3 +44,8 @@ public enum GameState
 {
     Gameplay, Pause
 }
+
+public enum LightShift
+{
+    Morning, Night
+}
