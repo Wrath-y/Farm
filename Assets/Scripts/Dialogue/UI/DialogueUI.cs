@@ -30,6 +30,7 @@ public class DialogueUI : MonoBehaviour
 
     private void OnShowDailogueEvent(DialoguePiece piece)
     {
+        Debug.Log(piece.name);
         StartCoroutine(ShowDialogue(piece));
     }
 
