@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.Save;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ISaveable
 {
     private Rigidbody2D _rb;
 
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
     private Animator[] _animators;
     private bool _inputDisable;
     private bool _useTool;
+    
+    public string GUID => GetComponent<DataGUID>().guid;
 
     private void Awake()
     {
@@ -32,6 +35,8 @@ public class Player : MonoBehaviour
         EventHandler.MoveToPos += OnMoveToPos;
         EventHandler.MouseClickedEvent += OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
     }
 
     private void OnDisable()
@@ -41,6 +46,8 @@ public class Player : MonoBehaviour
         EventHandler.MoveToPos -= OnMoveToPos;
         EventHandler.MouseClickedEvent -= OnMouseClickedEvent;
         EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
     }
 
     private void Update()
@@ -59,6 +66,66 @@ public class Player : MonoBehaviour
             return;
         }
         Movement();
+    }
+    
+    private void OnBeforeUnloadSceneEvent()
+    {
+        _inputDisable = true;
+    }
+
+    private void OnAfterLoadedSceneEvent()
+    {
+        _inputDisable = false;
+    }
+
+    private void OnMoveToPos(Vector3 targetPos)
+    {
+        transform.position = targetPos;
+    }
+
+    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
+    {
+        if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity && itemDetails.itemType != ItemType.Furniture)
+        {
+            _mouseX = mouseWorldPos.x - transform.position.x;
+            _mouseY = mouseWorldPos.y - (transform.position.y + 0.85f);
+            if (Mathf.Abs(_mouseX) > MathF.Abs(_mouseY))
+            {
+                _mouseY = 0;
+            }
+            else
+            {
+                _mouseX = 0;
+            }
+
+            StartCoroutine(UseToolRoutine(mouseWorldPos, itemDetails));
+            return;
+        }
+        EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
+    }
+    
+    private void OnUpdateGameStateEvent(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Gameplay:
+                _inputDisable = false;
+                break;
+            case GameState.Pause:
+                _inputDisable = true;
+                break;
+        }
+    }
+    
+    private void OnStartNewGameEvent(int obj)
+    {
+        _inputDisable = false;
+        transform.position = Settings.playerStartPos;
+    }
+
+    private void OnEndGameEvent()
+    {
+        _inputDisable = true;
     }
 
     private void PlayerInput()
@@ -121,53 +188,20 @@ public class Player : MonoBehaviour
         _useTool = false;
         _inputDisable = false;
     }
-
-    private void OnBeforeUnloadSceneEvent()
-    {
-        _inputDisable = true;
-    }
-
-    private void OnAfterLoadedSceneEvent()
-    {
-        _inputDisable = false;
-    }
-
-    private void OnMoveToPos(Vector3 targetPos)
-    {
-        transform.position = targetPos;
-    }
-
-    private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
-    {
-        if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity && itemDetails.itemType != ItemType.Furniture)
-        {
-            _mouseX = mouseWorldPos.x - transform.position.x;
-            _mouseY = mouseWorldPos.y - (transform.position.y + 0.85f);
-            if (Mathf.Abs(_mouseX) > MathF.Abs(_mouseY))
-            {
-                _mouseY = 0;
-            }
-            else
-            {
-                _mouseX = 0;
-            }
-
-            StartCoroutine(UseToolRoutine(mouseWorldPos, itemDetails));
-            return;
-        }
-        EventHandler.CallExecuteActionAfterAnimation(mouseWorldPos, itemDetails);
-    }
     
-    private void OnUpdateGameStateEvent(GameState gameState)
+    public GameSaveData GenerateSaveData()
     {
-        switch (gameState)
-        {
-            case GameState.Gameplay:
-                _inputDisable = false;
-                break;
-            case GameState.Pause:
-                _inputDisable = true;
-                break;
-        }
+        GameSaveData saveData = new GameSaveData();
+        saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
+        saveData.characterPosDict.Add(this.name, new SerializableVector3(transform.position));
+
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        var targetPosition = saveData.characterPosDict[this.name].ToVector3();
+
+        transform.position = targetPosition;
     }
 }

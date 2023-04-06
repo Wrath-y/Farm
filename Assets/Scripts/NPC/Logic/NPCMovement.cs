@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Farm.AStar;
+using Farm.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public class NPCMovement : MonoBehaviour
+public class NPCMovement : MonoBehaviour, ISaveable
 {
     public ScheduleDataList_SO scheduleData;
     private SortedSet<ScheduleDetails> _scheduleSet;
@@ -46,6 +48,8 @@ public class NPCMovement : MonoBehaviour
     private bool _npcMove;
     private bool _sceneLoaded;
     public bool interactable;
+    public bool isFirstLoad;
+    private Season _curSeason;
     
     //动画计时器
     private float _animationBreakTime;
@@ -55,6 +59,8 @@ public class NPCMovement : MonoBehaviour
     private AnimatorOverrideController _animOverride;
     
     private TimeSpan GameTime => TimeManager.Instance.GameTime;
+    
+    public string GUID => GetComponent<DataGUID>().guid;
     
     private void Awake()
     {
@@ -79,6 +85,8 @@ public class NPCMovement : MonoBehaviour
         EventHandler.BeforeUnloadSceneEvent += OnBeforeSceneUnloadEvent;
         EventHandler.AfterLoadedSceneEvent += OnAfterSceneLoadedEvent;
         EventHandler.GameMinuteEvent += OnGameMinuteEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
 
     private void OnDisable()
@@ -86,6 +94,8 @@ public class NPCMovement : MonoBehaviour
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeSceneUnloadEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterSceneLoadedEvent;
         EventHandler.GameMinuteEvent -= OnGameMinuteEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
     
     private void Update()
@@ -145,6 +155,28 @@ public class NPCMovement : MonoBehaviour
         }
         
         _sceneLoaded = true;
+        
+        if (!isFirstLoad)
+        {
+            _currentGridPosition = _gird.WorldToCell(transform.position);
+            var schedule = new ScheduleDetails(0, 0, 0, 0, _curSeason, _targetScene, (Vector2Int)_tragetGridPosition, _stopAnimationClip, interactable);
+            BuildPath(schedule);
+            isFirstLoad = true;
+        }
+    }
+    
+    private void OnEndGameEvent()
+    {
+        _sceneLoaded = false;
+        _npcMove = false;
+        if (_npcMoveRoutine != null)
+            StopCoroutine(_npcMoveRoutine);
+    }
+
+    private void OnStartNewGameEvent(int obj)
+    {
+        _isInitialised = false;
+        isFirstLoad = true;
     }
     
     // 主要移动方法
@@ -229,23 +261,7 @@ public class NPCMovement : MonoBehaviour
         else
             SetInactiveInScene();
     }
-    
-    private void SetActiveInScene()
-    {
-        _spriteRenderer.enabled = true;
-        _coll.enabled = true;
 
-        transform.GetChild(0).gameObject.SetActive(true);
-    }
-
-    private void SetInactiveInScene()
-    {
-        _spriteRenderer.enabled = false;
-        _coll.enabled = false;
-
-        transform.GetChild(0).gameObject.SetActive(false);
-    }
-    
     // 根据Schedule构建路径
     public void BuildPath(ScheduleDetails schedule)
     {
@@ -383,4 +399,60 @@ public class NPCMovement : MonoBehaviour
         }
     }
     
+    private void SetActiveInScene()
+    {
+        _spriteRenderer.enabled = true;
+        _coll.enabled = true;
+
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    private void SetInactiveInScene()
+    {
+        _spriteRenderer.enabled = false;
+        _coll.enabled = false;
+
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
+        saveData.characterPosDict.Add("targetGridPosition", new SerializableVector3(_tragetGridPosition));
+        saveData.characterPosDict.Add("currentPosition", new SerializableVector3(transform.position));
+        saveData.dataSceneName = currentScene;
+        saveData.targetScene = this._targetScene;
+        if (_stopAnimationClip != null)
+        {
+            saveData.animationInstanceID = _stopAnimationClip.GetInstanceID();
+        }
+        saveData.interactable = this.interactable;
+        saveData.timeDict = new Dictionary<string, int>();
+        saveData.timeDict.Add("currentSeason", (int)_curSeason);
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        _isInitialised = true;
+        isFirstLoad = false;
+
+        currentScene = saveData.dataSceneName;
+        _targetScene = saveData.targetScene;
+
+        Vector3 pos = saveData.characterPosDict["currentPosition"].ToVector3();
+        Vector3Int gridPos = (Vector3Int)saveData.characterPosDict["targetGridPosition"].ToVector2Int();
+
+        transform.position = pos;
+        _tragetGridPosition = gridPos;
+
+        if (saveData.animationInstanceID != 0)
+        {
+            _stopAnimationClip = Resources.InstanceIDToObject(saveData.animationInstanceID) as AnimationClip;
+        }
+        
+        interactable = saveData.interactable;
+        _curSeason = (Season)saveData.timeDict["currentSeason"];
+    }
 }

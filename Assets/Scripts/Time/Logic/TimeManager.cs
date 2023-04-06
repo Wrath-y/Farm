@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
+using Farm.Save;
 using UnityEngine;
 
-public class TimeManager : Singleton<TimeManager>
+public class TimeManager : Singleton<TimeManager>, ISaveable
 {
     private struct DateTimeData
     {
@@ -23,6 +25,8 @@ public class TimeManager : Singleton<TimeManager>
     private float timeDifference;
     
     public TimeSpan GameTime => new TimeSpan(_gameTime.Hour, _gameTime.Minute, _gameTime.Second);
+    
+    public string GUID => GetComponent<DataGUID>().guid;
 
     protected override void Awake()
     {
@@ -34,20 +38,29 @@ public class TimeManager : Singleton<TimeManager>
     {
         EventHandler.BeforeUnloadSceneEvent += OnBeforeSceneUnloadEvent;
         EventHandler.AfterLoadedSceneEvent += OnAfterSceneLoadedEvent;
+        EventHandler.UpdateGameStateEvent += OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+        EventHandler.EndGameEvent += OnEndGameEvent;
     }
 
     private void OnDisable()
     {
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeSceneUnloadEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterSceneLoadedEvent;
+        EventHandler.UpdateGameStateEvent -= OnUpdateGameStateEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+        EventHandler.EndGameEvent -= OnEndGameEvent;
     }
 
     private void Start()
     {
-        EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
-        EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
-        //切换灯光
-        EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
+        _gamePause = true;
+        // EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+        // EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+        // //切换灯光
+        // EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
     }
 
     private void Update()
@@ -88,6 +101,21 @@ public class TimeManager : Singleton<TimeManager>
     private void OnBeforeSceneUnloadEvent()
     {
         _gamePause = true;
+    }
+    
+    private void OnUpdateGameStateEvent(GameState gameState)
+    {
+        _gamePause = gameState == GameState.Pause;
+    }
+    
+    private void OnEndGameEvent()
+    {
+        _gamePause = true;
+    }
+    private void OnStartNewGameEvent(int obj)
+    {
+        NewGameTime();
+        // gameClockPause = false;
     }
 
     private void NewGameTime()
@@ -171,5 +199,31 @@ public class TimeManager : Singleton<TimeManager>
         }
 
         return LightShift.Morning;
+    }
+    
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.timeDict = new Dictionary<string, int>();
+        saveData.timeDict.Add("gameYear", _gameTime.Year);
+        saveData.timeDict.Add("gameSeason", (int)_gameTime.Season);
+        saveData.timeDict.Add("gameMonth", _gameTime.Month);
+        saveData.timeDict.Add("gameDay", _gameTime.Day);
+        saveData.timeDict.Add("gameHour", _gameTime.Hour);
+        saveData.timeDict.Add("gameMinute", _gameTime.Minute);
+        saveData.timeDict.Add("gameSecond", _gameTime.Second);
+
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        _gameTime.Year = saveData.timeDict["gameYear"];
+        _gameTime.Season = (Season)saveData.timeDict["gameSeason"];
+        _gameTime.Month = saveData.timeDict["gameMonth"];
+        _gameTime.Day = saveData.timeDict["gameDay"];
+        _gameTime.Hour = saveData.timeDict["gameHour"];
+        _gameTime.Minute = saveData.timeDict["gameMinute"];
+        _gameTime.Second = saveData.timeDict["gameSecond"];
     }
 }

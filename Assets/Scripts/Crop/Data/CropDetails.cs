@@ -55,8 +55,10 @@ public class CropDetails
     public bool generateAtPlayerPosition;
     public bool hasAnimation;
     public bool hasParticleEffect;
+    
     public ParticleEffectType effectType;
     public Vector3 effectPos;
+    public SoundName soundEffect;
 
     // 检测当前工具是否可使用
     public bool CheckToolAvailable(int toolID)

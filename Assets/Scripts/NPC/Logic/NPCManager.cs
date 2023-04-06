@@ -17,6 +17,25 @@ public class NPCManager : Singleton<NPCManager>
         InitSceneRouteDict();
     }
     
+    private void OnEnable()
+    {
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+    }
+    
+    private void OnStartNewGameEvent(int obj)
+    {
+        foreach (var character in npcPositionList)
+        {
+            character.npc.position = character.position;
+            character.npc.GetComponent<NPCMovement>().currentScene = character.startScene;
+        }
+    }
+    
     // 初始化路径字典
     private void InitSceneRouteDict()
     {

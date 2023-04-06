@@ -1,28 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Farm.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Farm.Transition
 {
-    public class TransitionManager : MonoBehaviour
+    public class TransitionManager : Singleton<TransitionManager>, ISaveable
     {
         [SceneName]
         public string startSceneName = "";
 
         private bool _isFaded;
-
         private CanvasGroup _fadeCanvasGroup;
+        public string GUID => GetComponent<DataGUID>().guid;
 
         private void OnEnable()
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
+            EventHandler.StartNewGameEvent += OnStartNewGameEvent;
+            EventHandler.EndGameEvent += OnEndGameEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.TransitionEvent -= OnTransitionEvent;
+            EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
+            EventHandler.EndGameEvent -= OnEndGameEvent;
         }
 
         private IEnumerator Start()
@@ -38,7 +43,16 @@ namespace Farm.Transition
             {
                 StartCoroutine(Transition(targetSceneName, targetPos));
             }
-            
+        }
+        
+        private void OnEndGameEvent()
+        {
+            StartCoroutine(UnloadScene());
+        }
+
+        private void OnStartNewGameEvent(int obj)
+        {
+            StartCoroutine(LoadSaveDataScene(startSceneName));
         }
 
         private IEnumerator Transition(string sceneName, Vector3 targetPos)
@@ -75,6 +89,46 @@ namespace Farm.Transition
             
             _fadeCanvasGroup.blocksRaycasts = false;
             _isFaded = false;
+        }
+        
+        private IEnumerator LoadSaveDataScene(string sceneName)
+        {
+            yield return Fade(1f);
+
+            if (SceneManager.GetActiveScene().name != "PersistentScene")    //在游戏过程中 加载另外游戏进度
+            {
+                EventHandler.CallBeforeUnloadSceneEvent();
+                yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            }
+
+            yield return LoadSceneSetActive(sceneName);
+            EventHandler.CallAfterLoadedSceneEvent();
+            yield return Fade(0);
+        }
+
+
+        private IEnumerator UnloadScene()
+        {
+            EventHandler.CallBeforeUnloadSceneEvent();
+            yield return Fade(1f);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return Fade(0);
+        }
+
+
+
+        public GameSaveData GenerateSaveData()
+        {
+            GameSaveData saveData = new GameSaveData();
+            saveData.dataSceneName = SceneManager.GetActiveScene().name;
+
+            return saveData;
+        }
+
+        public void RestoreData(GameSaveData saveData)
+        {
+            //加载游戏进度场景
+            StartCoroutine(LoadSaveDataScene(saveData.dataSceneName));
         }
     }
 }

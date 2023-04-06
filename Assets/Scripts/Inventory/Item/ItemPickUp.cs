@@ -14,7 +14,11 @@ namespace Farm.Inventory
             if (item == null) return;
             if (!item.itemDetails.canPickup) return;
             
+            //添加到背包
             InventoryManager.Instance.PickUpItem(item);
+            
+            //播放音效
+            EventHandler.CallPlaySoundEvent(SoundName.Pickup);
         }
     }
 }

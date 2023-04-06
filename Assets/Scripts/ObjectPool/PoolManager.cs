@@ -7,16 +7,19 @@ using UnityEngine.Pool;
 public class PoolManager : MonoBehaviour
 {
     public List<GameObject> poolPrefabs;
-    private List<ObjectPool<GameObject>> poolEffectList = new List<ObjectPool<GameObject>>();
+    private List<ObjectPool<GameObject>> _poolEffectList = new List<ObjectPool<GameObject>>();
+    private Queue<GameObject> _soundQueue = new Queue<GameObject>();
 
     private void OnEnable()
     {
         EventHandler.ParticleEffectEvent += OnParticleEffectEvent;
+        EventHandler.InitSoundEffect += InitSoundEffect;
     }
 
     private void OnDisable()
     {
         EventHandler.ParticleEffectEvent -= OnParticleEffectEvent;
+        EventHandler.InitSoundEffect -= InitSoundEffect;
     }
 
     private void Start()
@@ -38,19 +41,19 @@ public class PoolManager : MonoBehaviour
                     e => { Destroy(e); }
                     );
             
-            poolEffectList.Add(newPool);
+            _poolEffectList.Add(newPool);
         }
     }
 
     private void OnParticleEffectEvent(ParticleEffectType effectType, Vector3 pos)
     {
-        // TODO 补全特效
+        // TODO 补全Prefab
         ObjectPool<GameObject> objPool = effectType switch
         {
-            ParticleEffectType.LeavesFalling01 => poolEffectList[0],
-            ParticleEffectType.LeavesFalling02 => poolEffectList[1],
-            ParticleEffectType.Rock => poolEffectList[2],
-            ParticleEffectType.ReapableScenery => poolEffectList[3],
+            ParticleEffectType.LeavesFalling01 => _poolEffectList[0],
+            ParticleEffectType.LeavesFalling02 => _poolEffectList[1],
+            ParticleEffectType.Rock => _poolEffectList[2],
+            ParticleEffectType.ReapableScenery => _poolEffectList[3],
             _ => null,
         };
 
@@ -67,5 +70,40 @@ public class PoolManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         pool.Release(obj);
+    }
+    
+    private void CreateSoundPool()
+    {
+        var parent = new GameObject(poolPrefabs[4].name).transform;
+        parent.SetParent(transform);
+
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject newObj = Instantiate(poolPrefabs[4], parent);
+            newObj.SetActive(false);
+            _soundQueue.Enqueue(newObj);
+        }
+    }
+
+    private GameObject GetPoolObject()
+    {
+        if (_soundQueue.Count < 2)
+            CreateSoundPool();
+        return _soundQueue.Dequeue();
+    }
+
+    private void InitSoundEffect(SoundDetails soundDetails)
+    {
+        var obj = GetPoolObject();
+        obj.GetComponent<Sound>().SetSound(soundDetails);
+        obj.SetActive(true);
+        StartCoroutine(DisableSound(obj, soundDetails.soundClip.length));
+    }
+
+    private IEnumerator DisableSound(GameObject obj, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        obj.SetActive(false);
+        _soundQueue.Enqueue(obj);
     }
 }

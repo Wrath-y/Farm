@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Farm.CropPlant;
+using Farm.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 namespace Farm.Map
 {
-    public class GridMapManager : Singleton<GridMapManager>
+    public class GridMapManager : Singleton<GridMapManager>, ISaveable
     {
         public RuleTile digTile;
         public RuleTile waterTile;
@@ -23,6 +24,8 @@ namespace Farm.Map
         private Dictionary<string, bool> _firstLoadDict = new Dictionary<string, bool>();
         private List<ReapItem> _reapItemsInRadius;
         private Grid _curGrid;
+        
+        public string GUID => GetComponent<DataGUID>().guid;
         
         private void OnEnable()
         {
@@ -50,6 +53,139 @@ namespace Farm.Map
             }
         }
 
+        // 执行实际工具或物品功能
+        private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
+        {
+            var curTile = GetTileDetailsByMouseGridPos(_curGrid.WorldToCell(mouseWorldPos));
+
+            if (curTile == null)
+            {
+                return;
+            }
+
+            Crop curCrop = GetCropObject(mouseWorldPos);
+            switch (itemDetails.itemType)
+            {
+                // TODO 物品使用实际功能
+                case ItemType.Seed:
+                    EventHandler.CallPlantSeedEvent(itemDetails.itemID, curTile);
+                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
+                    EventHandler.CallPlaySoundEvent(SoundName.Plant);
+                    if (itemDetails.itemID > -1)
+                    {
+                        curTile.seedItemId = itemDetails.itemID;
+                    }
+                    break;
+                case ItemType.Commodity:
+                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
+                    break;
+                case ItemType.HoeTool:
+                    SetDigGround(curTile);
+                    curTile.daysSinceDug = 0;
+                    curTile.canDig = false;
+                    curTile.canDropItem = false;
+                    EventHandler.CallPlaySoundEvent(SoundName.Hoe);
+                    break;
+                case ItemType.WaterTool:
+                    SetWaterGround(curTile);
+                    curTile.daysSinceWatered = 0;
+                    EventHandler.CallPlaySoundEvent(SoundName.Water);
+                    break;
+                case ItemType.BreakTool:
+                case ItemType.ChopTool:
+                    // 执行收割方法
+                    if (curCrop == null)
+                    {
+                        Debug.Log("curCrop == null");
+                        break;
+                    }
+                    curCrop.ProcessToolAction(itemDetails, curCrop.tileDetails);
+                    break;
+                case ItemType.CollectTool:
+                    // 执行收割方法
+                    if (curCrop == null)
+                    {
+                        Debug.Log("curCrop == null");
+                        break;
+                    }
+                    curCrop.ProcessToolAction(itemDetails, curTile);
+                    EventHandler.CallPlaySoundEvent(SoundName.Basket);
+                    break;
+                case ItemType.ReapTool:
+                    var reapCount = 0;
+                    for (int i = 0; i < _reapItemsInRadius.Count; i++)
+                    {
+                        if (reapCount > Settings.ReapAmount)
+                        {
+                            break;
+                        }
+                        EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, _reapItemsInRadius[i].transform.position + Vector3.up);
+                        _reapItemsInRadius[i].SpawnHarvestItems();
+                        Destroy(_reapItemsInRadius[i].gameObject);
+                        reapCount++;
+                    }
+                    EventHandler.CallPlaySoundEvent(SoundName.Reap);
+                    break;
+                case ItemType.Furniture:
+                    //在地图上生成物品 ItemManager
+                    //移除当前物品（图纸）InventoryManager
+                    //移除资源物品 InventoryManger
+                    EventHandler.CallBuildFurnitureEvent(itemDetails.itemID, mouseWorldPos);
+                    break;
+            }
+            
+            UpdateTileDetails(curTile);
+        }
+
+        private void OnAfterLoadedSceneEvent()
+        {
+            _curGrid = FindObjectOfType<Grid>();
+            _digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
+            _waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
+
+            if (_firstLoadDict[SceneManager.GetActiveScene().name])
+            {
+                _firstLoadDict[SceneManager.GetActiveScene().name] = false;
+                // 预先生成农作物
+                Debug.Log("预先生成农作物");
+                EventHandler.CallGenerateCropEvent();
+            }
+
+            RefreshMap();
+        }
+
+        private void OnGameDayEvent(int day, Season season)
+        {
+            _curSeason = season;
+            foreach (var tile in _tileDetailsDict)
+            {
+                if (tile.Value.daysSinceWatered > -1)
+                {
+                    tile.Value.daysSinceWatered = -1;
+                }
+
+                if (tile.Value.daysSinceDug > -1)
+                {
+                    tile.Value.daysSinceDug++;
+                }
+
+                if (tile.Value.daysSinceDug > 5 && tile.Value.seedItemId <= 0)
+                {
+                    Debug.Log("restore tile");
+                    tile.Value.daysSinceDug = -1;
+                    tile.Value.canDig = true;
+                    tile.Value.growthDays = -1;
+                }
+
+                if (tile.Value.seedItemId > -1)
+                {
+                    tile.Value.growthDays++;
+                }
+            }
+
+            RefreshMap();
+        }
+        
         private void InitTileDetailsDict(MapData_SO mapData)
         {
             foreach (TileProperty tileProperty in mapData.tileProperties)
@@ -257,133 +393,18 @@ namespace Farm.Map
             return false;
         }
 
-        // 执行实际工具或物品功能
-        private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
+        public GameSaveData GenerateSaveData()
         {
-            var curTile = GetTileDetailsByMouseGridPos(_curGrid.WorldToCell(mouseWorldPos));
-
-            if (curTile == null)
-            {
-                return;
-            }
-
-            Crop curCrop = GetCropObject(mouseWorldPos);
-            switch (itemDetails.itemType)
-            {
-                // TODO 物品使用实际功能
-                case ItemType.Seed:
-                    EventHandler.CallPlantSeedEvent(itemDetails.itemID, curTile);
-                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
-                    if (itemDetails.itemID > -1)
-                    {
-                        curTile.seedItemId = itemDetails.itemID;
-                    }
-                    break;
-                case ItemType.Commodity:
-                    EventHandler.CallDropItemEvent(itemDetails.itemID, mouseWorldPos, itemDetails.itemType);
-                    break;
-                case ItemType.HoeTool:
-                    SetDigGround(curTile);
-                    curTile.daysSinceDug = 0;
-                    curTile.canDig = false;
-                    curTile.canDropItem = false;
-                    break;
-                case ItemType.WaterTool:
-                    SetWaterGround(curTile);
-                    curTile.daysSinceWatered = 0;
-                    break;
-                case ItemType.BreakTool:
-                case ItemType.ChopTool:
-                    // 执行收割方法
-                    if (curCrop == null)
-                    {
-                        Debug.Log("curCrop == null");
-                        break;
-                    }
-                    curCrop.ProcessToolAction(itemDetails, curCrop.tileDetails);
-                    break;
-                case ItemType.CollectTool:
-                    // 执行收割方法
-                    if (curCrop == null)
-                    {
-                        Debug.Log("curCrop == null");
-                        break;
-                    }
-                    curCrop.ProcessToolAction(itemDetails, curTile);
-                    break;
-                case ItemType.ReapTool:
-                    var reapCount = 0;
-                    for (int i = 0; i < _reapItemsInRadius.Count; i++)
-                    {
-                        if (reapCount > Settings.ReapAmount)
-                        {
-                            break;
-                        }
-                        EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, _reapItemsInRadius[i].transform.position + Vector3.up);
-                        _reapItemsInRadius[i].SpawnHarvestItems();
-                        Destroy(_reapItemsInRadius[i].gameObject);
-                        reapCount++;
-                    }
-
-                    break;
-                case ItemType.Furniture:
-                    //在地图上生成物品 ItemManager
-                    //移除当前物品（图纸）InventoryManager
-                    //移除资源物品 InventoryManger
-                    EventHandler.CallBuildFurnitureEvent(itemDetails.itemID, mouseWorldPos);
-                    break;
-            }
-            
-            UpdateTileDetails(curTile);
+            GameSaveData saveData = new GameSaveData();
+            saveData.tileDetailsDict = _tileDetailsDict;
+            saveData.firstLoadDict = _firstLoadDict;
+            return saveData;
         }
 
-        private void OnAfterLoadedSceneEvent()
+        public void RestoreData(GameSaveData saveData)
         {
-            _curGrid = FindObjectOfType<Grid>();
-            _digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
-            _waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
-
-            if (_firstLoadDict[SceneManager.GetActiveScene().name])
-            {
-                _firstLoadDict[SceneManager.GetActiveScene().name] = false;
-                // 预先生成农作物
-                Debug.Log("预先生成农作物");
-                EventHandler.CallGenerateCropEvent();
-            }
-
-            RefreshMap();
-        }
-
-        private void OnGameDayEvent(int day, Season season)
-        {
-            _curSeason = season;
-            foreach (var tile in _tileDetailsDict)
-            {
-                if (tile.Value.daysSinceWatered > -1)
-                {
-                    tile.Value.daysSinceWatered = -1;
-                }
-
-                if (tile.Value.daysSinceDug > -1)
-                {
-                    tile.Value.daysSinceDug++;
-                }
-
-                if (tile.Value.daysSinceDug > 5 && tile.Value.seedItemId <= 0)
-                {
-                    Debug.Log("restore tile");
-                    tile.Value.daysSinceDug = -1;
-                    tile.Value.canDig = true;
-                    tile.Value.growthDays = -1;
-                }
-
-                if (tile.Value.seedItemId > -1)
-                {
-                    tile.Value.growthDays++;
-                }
-            }
-
-            RefreshMap();
+            _tileDetailsDict = saveData.tileDetailsDict;
+            _firstLoadDict = saveData.firstLoadDict;
         }
     }
 }

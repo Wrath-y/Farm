@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Farm.Inventory;
+using Farm.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ItemManager: MonoBehaviour
+public class ItemManager: MonoBehaviour, ISaveable
 {
     public Item itemPrefab;
     public Item bounceItemPrefab;
@@ -15,7 +16,15 @@ public class ItemManager: MonoBehaviour
     private Dictionary<string, List<SceneItem>> _sceneItemDict = new Dictionary<string, List<SceneItem>>();
     //记录场景家具
     private Dictionary<string, List<SceneFurniture>> _sceneFurnitureDict = new Dictionary<string, List<SceneFurniture>>();
+    
+    public string GUID => GetComponent<DataGUID>().guid;
 
+    private void Start()
+    {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
+    }
+    
     private void OnEnable()
     {
         EventHandler.InstantiateItemInScene += OnInstantiateItemInScene;
@@ -24,6 +33,7 @@ public class ItemManager: MonoBehaviour
         EventHandler.AfterLoadedSceneEvent += OnAfterLoadedSceneEvent;
         //建造
         EventHandler.BuildFurnitureEvent += OnBuildFurnitureEvent;
+        EventHandler.StartNewGameEvent += OnStartNewGameEvent;
     }
 
     private void OnDisable()
@@ -33,6 +43,7 @@ public class ItemManager: MonoBehaviour
         EventHandler.BeforeUnloadSceneEvent -= OnBeforeUnloadSceneEvent;
         EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
         EventHandler.BuildFurnitureEvent -= OnBuildFurnitureEvent;
+        EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
 
     private void OnBeforeUnloadSceneEvent()
@@ -77,6 +88,12 @@ public class ItemManager: MonoBehaviour
 
         var dir = (mousePos - PlayerTrans.position).normalized;
         item.GetComponent<ItemBounce>().InitBounceItem(mousePos, dir);
+    }
+    
+    private void OnStartNewGameEvent(int obj)
+    {
+        _sceneItemDict.Clear();
+        _sceneFurnitureDict.Clear();
     }
 
     private void GetAllSceneItems()
@@ -176,5 +193,26 @@ public class ItemManager: MonoBehaviour
                 }
             }
         }
+    }
+    
+    public GameSaveData GenerateSaveData()
+    {
+        GetAllSceneItems();
+        GetAllSceneFurniture();
+
+        GameSaveData saveData = new GameSaveData();
+        saveData.sceneItemDict = _sceneItemDict;
+        saveData.sceneFurnitureDict = _sceneFurnitureDict;
+
+        return saveData;
+    }
+
+    public void RestoreData(GameSaveData saveData)
+    {
+        _sceneItemDict = saveData.sceneItemDict;
+        _sceneFurnitureDict = saveData.sceneFurnitureDict;
+
+        RecreateAllItems();
+        RebuildFurniture();
     }
 }
