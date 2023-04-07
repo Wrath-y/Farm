@@ -26,6 +26,13 @@ public class Player : MonoBehaviour, ISaveable
     {
         _rb = GetComponent<Rigidbody2D>();
         _animators = GetComponentsInChildren<Animator>();
+        _inputDisable = true;
+    }
+    
+    private void Start()
+    {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
     }
 
     private void OnEnable()
@@ -85,6 +92,9 @@ public class Player : MonoBehaviour, ISaveable
 
     private void OnMouseClickedEvent(Vector3 mouseWorldPos, ItemDetails itemDetails)
     {
+        if (_useTool)
+            return;
+        
         if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity && itemDetails.itemType != ItemType.Furniture)
         {
             _mouseX = mouseWorldPos.x - transform.position.x;
@@ -193,14 +203,14 @@ public class Player : MonoBehaviour, ISaveable
     {
         GameSaveData saveData = new GameSaveData();
         saveData.characterPosDict = new Dictionary<string, SerializableVector3>();
-        saveData.characterPosDict.Add(this.name, new SerializableVector3(transform.position));
+        saveData.characterPosDict.Add(name, new SerializableVector3(transform.position));
 
         return saveData;
     }
 
     public void RestoreData(GameSaveData saveData)
     {
-        var targetPosition = saveData.characterPosDict[this.name].ToVector3();
+        var targetPosition = saveData.characterPosDict[name].ToVector3();
 
         transform.position = targetPosition;
     }

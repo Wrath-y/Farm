@@ -7,11 +7,11 @@ namespace Farm.Save
 {
     public class DataSlot
     {
-        /// <summary>
-        /// 进度条，String是GUID
-        /// </summary>
+        // 进度条，String是GUID
         public Dictionary<string, GameSaveData> dataDict = new Dictionary<string, GameSaveData>();
 
+
+        // UI显示进度详情
         public string DataTime
         {
             get
@@ -23,7 +23,7 @@ namespace Farm.Save
                     var timeData = dataDict[key];
                     return timeData.timeDict["gameYear"] + "年/" + (Season)timeData.timeDict["gameSeason"] + "/" + timeData.timeDict["gameMonth"] + "月/" + timeData.timeDict["gameDay"] + "日/";
                 }
-                else return string.Empty;
+                return string.Empty;
             }
         }
 
@@ -40,9 +40,6 @@ namespace Farm.Save
                         "00.Start" => "海边",
                         "01.Field" => "农场",
                         "02.Home" => "小木屋",
-                        "03.Stall" => "市场",
-                        "04.Path" => "小径",
-                        "05.House01" => "家",
                         _ => string.Empty
                     };
                 }

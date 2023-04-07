@@ -98,6 +98,12 @@ public class NPCMovement : MonoBehaviour, ISaveable
         EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
     }
     
+    private void Start()
+    {
+        ISaveable saveable = this;
+        saveable.RegisterSaveable();
+    }
+
     private void Update()
     {
         if (_sceneLoaded)

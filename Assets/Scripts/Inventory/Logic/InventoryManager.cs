@@ -48,7 +48,9 @@ namespace Farm.Inventory
         
         private void Start()
         {
-            EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+            // EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
 
         public ItemDetails GetItemDetails(int id)

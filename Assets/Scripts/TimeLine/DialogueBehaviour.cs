@@ -17,6 +17,7 @@ public class DialogueBehaviour : PlayableBehaviour
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
+        Debug.Log(dialoguePiece.name + dialoguePiece.hasToPause);
         //呼叫启动UI
         EventHandler.CallShowDialogueEvent(dialoguePiece);
         if (Application.isPlaying)

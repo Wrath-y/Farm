@@ -8,6 +8,6 @@ namespace Farm.Save
             SaveLoadManager.Instance.RegisterSaveable(this);
         }
         GameSaveData GenerateSaveData();
-        void RestoreData(GameSaveData saveData);
+        void RestoreData(GameSaveData saveData); 
     }
 }

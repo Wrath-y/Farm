@@ -46,6 +46,9 @@ namespace Farm.Map
 
         private void Start()
         {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+            
             foreach (MapData_SO mapData in mapDataList)
             {
                 _firstLoadDict.Add(mapData.sceneName, true);

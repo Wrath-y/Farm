@@ -15,8 +15,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        settingsBtn.onClick.AddListener(TogglePausePanel);
-        volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
+        // settingsBtn.onClick.AddListener(TogglePausePanel);
+        // volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
     }
 
     private void OnEnable()

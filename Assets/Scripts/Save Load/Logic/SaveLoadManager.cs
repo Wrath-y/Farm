@@ -18,7 +18,18 @@ namespace Farm.Save
         protected override void Awake()
         {
             base.Awake();
-            jsonFolder = Application.persistentDataPath + "/SAVE DATA/";
+            
+            if (!Directory.Exists(Application.persistentDataPath))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath);
+            }
+            
+            jsonFolder = Application.persistentDataPath + "/SAVE_DATA/";
+
+            if (!Directory.Exists(jsonFolder))
+            {
+                Directory.CreateDirectory(jsonFolder);
+            }
             ReadSaveData();
         }
         private void OnEnable()

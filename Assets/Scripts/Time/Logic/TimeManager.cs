@@ -28,12 +28,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     
     public string GUID => GetComponent<DataGUID>().guid;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        NewGameTime();
-    }
-
     private void OnEnable()
     {
         EventHandler.BeforeUnloadSceneEvent += OnBeforeSceneUnloadEvent;
@@ -95,12 +89,17 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     
     private void OnAfterSceneLoadedEvent()
     {
-        _gamePause = false;
+        // gameClockPause = false;
+        EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+        EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+        //切换灯光
+        EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
+
     }
 
     private void OnBeforeSceneUnloadEvent()
     {
-        _gamePause = true;
+        // _gamePause = true;
     }
     
     private void OnUpdateGameStateEvent(GameState gameState)
@@ -127,7 +126,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
             Day = 1,
             Hour = 7,
             Season = Season.春天,
-            MonthInSeason = 3
         };
     }
 

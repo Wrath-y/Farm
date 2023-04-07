@@ -30,7 +30,6 @@ public class DialogueUI : MonoBehaviour
 
     private void OnShowDailogueEvent(DialoguePiece piece)
     {
-        Debug.Log(piece.name);
         StartCoroutine(ShowDialogue(piece));
     }
 
@@ -38,6 +37,7 @@ public class DialogueUI : MonoBehaviour
     {
         if (piece != null)
         {
+            Debug.Log(piece.name + " will ShowDialogue");
             piece.isDone = false;
 
             dialogueBox.SetActive(true);
@@ -78,6 +78,7 @@ public class DialogueUI : MonoBehaviour
         }
         else
         {
+            Debug.Log("will UnShowDialogue");
             dialogueBox.SetActive(false);
             yield break;
         }

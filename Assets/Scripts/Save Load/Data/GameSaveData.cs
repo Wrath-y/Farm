@@ -8,9 +8,7 @@ namespace Farm.Save
     public class GameSaveData
     {
         public string dataSceneName;
-        /// <summary>
-        /// 存储人物坐标，string人物名字
-        /// </summary>
+        // 存储人物坐标，string人物名字
         public Dictionary<string, SerializableVector3> characterPosDict;
         public Dictionary<string, List<SceneItem>> sceneItemDict;
         public Dictionary<string, List<SceneFurniture>> sceneFurnitureDict;

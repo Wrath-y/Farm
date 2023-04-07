@@ -44,7 +44,10 @@ public class TimelineManager : Singleton<TimelineManager>
     private void OnStartNewGameEvent(int obj)
     {
         if (startDirector != null)
+        {
+            Debug.Log(startDirector.name);
             startDirector.Play();
+        }
     }
 
     private void OnAfterSceneLoadedEvent()
@@ -64,6 +67,7 @@ public class TimelineManager : Singleton<TimelineManager>
     }
     public void PauseTimeline(PlayableDirector director)
     {
+        Debug.Log(director.name + " will pause");
         _currentDirector = director;
 
         _currentDirector.playableGraph.GetRootPlayable(0).SetSpeed(0d);

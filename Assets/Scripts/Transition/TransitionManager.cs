@@ -16,6 +16,13 @@ namespace Farm.Transition
         private CanvasGroup _fadeCanvasGroup;
         public string GUID => GetComponent<DataGUID>().guid;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
+            SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        }
+        
         private void OnEnable()
         {
             EventHandler.TransitionEvent += OnTransitionEvent;
@@ -30,13 +37,14 @@ namespace Farm.Transition
             EventHandler.EndGameEvent -= OnEndGameEvent;
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
+            ISaveable saveable = this;
+            saveable.RegisterSaveable();
+
             _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
-            yield return LoadSceneSetActive(startSceneName);
-            EventHandler.CallAfterLoadedSceneEvent();
         }
-        
+
         private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
         {
             if (!_isFaded)
@@ -62,11 +70,13 @@ namespace Farm.Transition
             yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
             yield return LoadSceneSetActive(sceneName);
+            //移动人物坐标
             EventHandler.CallMoveToPos(targetPos);
             EventHandler.CallAfterLoadedSceneEvent();
             yield return Fade(0);
         }
 
+        // 加载场景并设置为激活
         private IEnumerator LoadSceneSetActive(string sceneName)
         {
             yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -75,6 +85,8 @@ namespace Farm.Transition
             SceneManager.SetActiveScene(newScene);
         }
 
+        // 淡入淡出场景
+        // targetAlpha 1是黑，0是透明
         private IEnumerator Fade(float targetAlpha)
         {
             _isFaded = true;
