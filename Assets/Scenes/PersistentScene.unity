@@ -880,6 +880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adc5a80cc2b9249be8012ac1d561a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aaLoadkeys:
+  - DigTile
+  - WaterTile
   digTile: {fileID: 11400000, guid: 195466f8e22cf41c8a5c7a24c51d4f7e, type: 2}
   waterTile: {fileID: 11400000, guid: 6cd5b14b78c494bd88af37cb522160a6, type: 2}
   mapDataList:
@@ -3158,10 +3161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aaLoadkeys:
-  - ItemDataList_SO.asset
-  - BluePrintDataList_SO.asset
-  - PlayerBagTpl_SO.asset
-  - PlayerBag_SO.asset
+  - ItemDataList_SO
+  - BluePrintDataList_SO
+  - PlayerBagTpl_SO
+  - PlayerBag_SO
   itemDataList: {fileID: 0}
   bluePrintData: {fileID: 0}
   playerBagTemp: {fileID: 0}
