@@ -3,13 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.Serialization;
 
 namespace Farm.Inventory
 {
     public class InventoryManager : Singleton<InventoryManager>, ISaveable
     {
-        [Header("物品数据")]
-        public ItemDataList_SO itemDataList_SO;
+        public List<string> aaLoadkeys;
+        private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
+
+        [FormerlySerializedAs("itemDataList_SO")] [Header("物品数据")]
+        public ItemDataList_SO itemDataList;
         
         [Header("建造蓝图")]
         public BluePrintDataList_SO bluePrintData;
@@ -26,6 +34,57 @@ namespace Farm.Inventory
         public int BoxDataAmount => _boxDataDict.Count;
         
         public string GUID => GetComponent<DataGUID>().guid;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            // Ready.AddListener(OnAssetsReady);
+            StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+        }
+
+        private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+            if (_operationDictionary == null)
+                _operationDictionary = new Dictionary<string, AsyncOperationHandle<ScriptableObject>>();
+
+            AsyncOperationHandle<IList<IResourceLocation>> locations
+                = Addressables.LoadResourceLocationsAsync(keys,
+                    Addressables.MergeMode.Union, typeof(ScriptableObject));
+
+            yield return locations;
+
+            var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+            foreach (IResourceLocation location in locations.Result) {
+                AsyncOperationHandle<ScriptableObject> handle =
+                    Addressables.LoadAssetAsync<ScriptableObject>(location);
+                handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+                loadOps.Add(handle);
+            }
+
+            yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+            // Ready.Invoke();
+            OnAssetsReady();
+        }
+        
+        private void OnAssetsReady() {
+            foreach (var item in _operationDictionary) {
+                Debug.Log($"{item.Key} = {item.Value.Result.name}");
+                switch (item.Key)
+                {
+                    case "ItemDataList_SO":
+                        itemDataList = (ItemDataList_SO)item.Value.Result;
+                        break;
+                    case "BluePrintDataList_SO":
+                        bluePrintData = (BluePrintDataList_SO)item.Value.Result;
+                        break;
+                    case "PlayerBagTpl_SO":
+                        playerBagTemp = (InventoryBag_SO)item.Value.Result;
+                        break;
+                }
+            }
+        }
+
 
         private void OnEnable()
         {
@@ -55,7 +114,7 @@ namespace Farm.Inventory
 
         public ItemDetails GetItemDetails(int id)
         {
-            return itemDataList_SO.ItemDetailsList.Find(e => e.itemID == id);
+            return itemDataList.ItemDetailsList.Find(e => e.itemID == id);
         }
         
         private void OnDropItemEvent(int itemID, Vector3 pos, ItemType itemType)
@@ -265,7 +324,6 @@ namespace Farm.Inventory
 
         private void RemoveItem(int id, int removeAmount)
         {
-            Debug.Log("RemoveItem id: "+id);
             var index = GetItemIndexInBag(id);
 
             if (playerBag.ItemList[index].itemAmount > removeAmount)
@@ -353,7 +411,7 @@ namespace Farm.Inventory
         public GameSaveData GenerateSaveData()
         {
             GameSaveData saveData = new GameSaveData();
-            saveData.playerMoney = this.playerMoney;
+            saveData.playerMoney = playerMoney;
 
             saveData.inventoryDict = new Dictionary<string, List<InventoryItem>>();
             saveData.inventoryDict.Add(playerBag.name, playerBag.ItemList);
@@ -367,8 +425,12 @@ namespace Farm.Inventory
 
         public void RestoreData(GameSaveData saveData)
         {
-            this.playerMoney = saveData.playerMoney;
+            playerMoney = saveData.playerMoney;
             playerBag = Instantiate(playerBagTemp);
+            if (!saveData.inventoryDict.ContainsKey(playerBag.name))
+            {
+                Debug.Log($"{playerBag.name} not exists");
+            }
             playerBag.ItemList = saveData.inventoryDict[playerBag.name];
 
             foreach (var item in saveData.inventoryDict)

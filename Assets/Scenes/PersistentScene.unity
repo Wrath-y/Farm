@@ -3157,10 +3157,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b13e494ffec682468c128dcdf393951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDataList_SO: {fileID: 11400000, guid: 8f74f7268a50b5b46b0f3d55e4b5c617, type: 2}
-  bluePrintData: {fileID: 11400000, guid: 52d537c3866e944a99f92b63d88a8e0e, type: 2}
-  playerBagTemp: {fileID: 11400000, guid: 648af73a115294662b75cb689e5abb23, type: 2}
-  playerBag: {fileID: 11400000, guid: 648af73a115294662b75cb689e5abb23, type: 2}
+  aaLoadkeys:
+  - ItemDataList_SO.asset
+  - BluePrintDataList_SO.asset
+  - PlayerBagTpl_SO.asset
+  - PlayerBag_SO.asset
+  itemDataList: {fileID: 0}
+  bluePrintData: {fileID: 0}
+  playerBagTemp: {fileID: 0}
+  playerBag: {fileID: 0}
   playerMoney: 300
 --- !u!4 &1267868092
 Transform:

@@ -1,0 +1,160 @@
+﻿<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:51:8395</timestamp>
+  <msgtype>MsgWXLogLaunch</msgtype>
+  <content>[The WXLogger is launched!]</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Options.OptionsConfig..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.Options.OptionsParser.ConsoleArgsParse; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App..ctor; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:51:9724</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+OptionsConfig,-option=text
+-do=assetListInfo
+-sourceDir=/Users/wrath/Desktop/Farm/webgl
+-dataDir=/Users/wrath/Documents/Unity/Farm/TextToolDatas
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Options.OptionsConfig..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.Options.OptionsParser.ConsoleArgsParse; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App..ctor; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:51:9958</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+UnityBridgeHandler - SetDataDir,/Users/wrath/Documents/Unity/Farm/TextToolDatas/temp</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.UnityBridge.UnityBridgeHandler.SetDataDir; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:0144</timestamp>
+  <msgtype>MsgString</msgtype>
+  <content>WXTextureMinExec</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App..ctor; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:0332</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+IgnoreHandler,/Users/wrath/Documents/Unity/Farm/TextToolDatas/bundlerIgnore.txt</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Ignore.IgnoreHandler..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:0981</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec files,/Users/wrath/Desktop/Farm/webgl/193e347179b70346.webgl.data.unityweb.bin.txt
+/Users/wrath/Desktop/Farm/webgl/81d1b64c657ad39a.webgl.wasm.code.unityweb.wasm.br
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.data
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.framework.js
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.loader.js
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.wasm
+/Users/wrath/Desktop/Farm/webgl/index.html
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:0983</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec filesAB,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:1266</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec copyFiles,/Users/wrath/Desktop/Farm/webgl/81d1b64c657ad39a.webgl.wasm.code.unityweb.wasm.br
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.data
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.framework.js
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.loader.js
+/Users/wrath/Desktop/Farm/webgl/Build/webgl.wasm
+/Users/wrath/Desktop/Farm/webgl/index.html
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:1269</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec assetBundles,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:1270</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec firstBundles,/Users/wrath/Desktop/Farm/webgl/193e347179b70346.webgl.data.unityweb.bin.txt
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:1270</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec copyFiles2,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>17:41:52:1271</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec assetBundles2,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec.todo; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App.process; File:.0
+</stackFrames>
+</wxlog>

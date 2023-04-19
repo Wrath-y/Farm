@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Farm.CropPlant;
 using Farm.Save;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +14,9 @@ namespace Farm.Map
 {
     public class GridMapManager : Singleton<GridMapManager>, ISaveable
     {
+        public List<string> aaLoadkeys;
+        private Dictionary<string, AsyncOperationHandle<RuleTile>> _operationDictionary;
+        
         public RuleTile digTile;
         public RuleTile waterTile;
         private Tilemap _digTilemap;
@@ -26,6 +32,46 @@ namespace Farm.Map
         private Grid _curGrid;
         
         public string GUID => GetComponent<DataGUID>().guid;
+        
+        private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+            if (_operationDictionary == null)
+                _operationDictionary = new Dictionary<string, AsyncOperationHandle<RuleTile>>();
+
+            AsyncOperationHandle<IList<IResourceLocation>> locations
+                = Addressables.LoadResourceLocationsAsync(keys,
+                    Addressables.MergeMode.Union, typeof(RuleTile));
+
+            yield return locations;
+
+            var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+            foreach (IResourceLocation location in locations.Result) {
+                AsyncOperationHandle<RuleTile> handle =
+                    Addressables.LoadAssetAsync<RuleTile>(location);
+                handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+                loadOps.Add(handle);
+            }
+
+            yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+            // Ready.Invoke();
+            OnAssetsReady();
+        }
+        
+        private void OnAssetsReady() {
+            foreach (var item in _operationDictionary) {
+                Debug.Log($"{item.Key} = {item.Value.Result.name}");
+                switch (item.Key)
+                {
+                    case "DigTile":
+                        digTile = item.Value.Result;
+                        break;
+                    case "WaterTile":
+                        waterTile = item.Value.Result;
+                        break;
+                }
+            }
+        }
         
         private void OnEnable()
         {

@@ -41,7 +41,6 @@ public class LightManager : MonoBehaviour
 
     private void OnLightShiftChangeEvent(Season season, LightShift lightShift, float timeDifference)
     {
-        Debug.Log("OnLightShiftChangeEvent");
         _currentSeason = season;
         _timeDifference = timeDifference;
         if (_currentLightShift != lightShift)
