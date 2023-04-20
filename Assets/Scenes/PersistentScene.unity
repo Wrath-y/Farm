@@ -883,8 +883,8 @@ MonoBehaviour:
   aaLoadkeys:
   - DigTile
   - WaterTile
-  digTile: {fileID: 11400000, guid: 195466f8e22cf41c8a5c7a24c51d4f7e, type: 2}
-  waterTile: {fileID: 11400000, guid: 6cd5b14b78c494bd88af37cb522160a6, type: 2}
+  digTile: {fileID: 0}
+  waterTile: {fileID: 0}
   mapDataList:
   - {fileID: 11400000, guid: 2c11358edfaa64e88a46583f58696d18, type: 2}
   - {fileID: 11400000, guid: ee72edccf4659d64885cd2daf9e0a411, type: 2}

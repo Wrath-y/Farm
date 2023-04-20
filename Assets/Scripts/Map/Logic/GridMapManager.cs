@@ -33,6 +33,13 @@ namespace Farm.Map
         
         public string GUID => GetComponent<DataGUID>().guid;
         
+        protected override void Awake()
+        {
+            base.Awake();
+            // Ready.AddListener(OnAssetsReady);
+            StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+        }
+        
         private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
             if (_operationDictionary == null)
                 _operationDictionary = new Dictionary<string, AsyncOperationHandle<RuleTile>>();
