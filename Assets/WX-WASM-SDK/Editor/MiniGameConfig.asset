@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MiniGameConfig
   m_EditorClassIdentifier: 
   ProjectConf:
-    projectName: 
+    projectName: Farm
     Appid: wxd11c47fa600c13d9
-    CDN: 
+    CDN: https://wrath.cc
     assetLoadType: 1
     VideoUrl: 
     DST: /Users/wrath/Desktop/Farm
