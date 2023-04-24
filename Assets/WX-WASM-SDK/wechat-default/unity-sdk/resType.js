@@ -50,7 +50,7 @@ export default {
   },
   GetStorageInfoSyncOption: {
     currentSize: 'int',
-    keys: 'array',
+    keys: 'string[]',
     limitSize: 'int',
   },
   SystemInfo: {
@@ -113,7 +113,7 @@ export default {
     cardId: 'string',
   },
   AddCardSuccessCallbackResult: {
-    cardList: 'array',
+    cardList: 'AddCardResponseInfo[]',
     errMsg: 'string',
   },
   AddCardResponseInfo: {
@@ -133,8 +133,8 @@ export default {
     errMsg: 'string',
   },
   ChooseImageSuccessCallbackResult: {
-    tempFilePaths: 'array',
-    tempFiles: 'array',
+    tempFilePaths: 'string[]',
+    tempFiles: 'ImageFile[]',
     errMsg: 'string',
   },
   ImageFile: {
@@ -142,7 +142,7 @@ export default {
     size: 'int',
   },
   ChooseMediaSuccessCallbackResult: {
-    tempFiles: 'array',
+    tempFiles: 'MediaFile[]',
     type: 'string',
     errMsg: 'string',
   },
@@ -156,7 +156,7 @@ export default {
     width: 'int',
   },
   ChooseMessageFileSuccessCallbackResult: {
-    tempFiles: 'array',
+    tempFiles: 'ChooseFile[]',
     errMsg: 'string',
   },
   ChooseFile: {
@@ -175,20 +175,20 @@ export default {
     errMsg: 'string',
   },
   BLEPeripheralService: {
-    characteristics: 'array',
+    characteristics: 'Characteristic[]',
     uuid: 'string',
   },
   Characteristic: {
     uuid: 'string',
-    descriptors: 'array',
+    descriptors: 'Descriptor[]',
     permission: 'CharacteristicPermission',
     properties: 'CharacteristicProperties',
-    value: 'array',
+    value: 'ArrayBuffer[]',
   },
   Descriptor: {
     uuid: 'string',
     permission: 'DescriptorPermission',
-    value: 'array',
+    value: 'ArrayBuffer[]',
   },
   DescriptorPermission: {
     read: 'bool',
@@ -220,14 +220,14 @@ export default {
     callbackId: 'int',
     characteristicId: 'string',
     serviceId: 'string',
-    value: 'array',
+    value: 'ArrayBuffer[]',
   },
   AdvertiseReqObj: {
     beacon: 'BeaconInfoObj',
     connectable: 'bool',
     deviceName: 'string',
-    manufacturerData: 'array',
-    serviceUuids: 'array',
+    manufacturerData: 'ManufacturerData[]',
+    serviceUuids: 'string[]',
   },
   BeaconInfoObj: {
     major: 'int',
@@ -237,14 +237,14 @@ export default {
   },
   ManufacturerData: {
     manufacturerId: 'string',
-    manufacturerSpecificData: 'array',
+    manufacturerSpecificData: 'ArrayBuffer[]',
   },
   FaceDetectSuccessCallbackResult: {
     angleArray: 'FaceAngel',
     confArray: 'FaceConf',
     detectRect: 'object',
-    faceInfo: 'array',
-    pointArray: 'array',
+    faceInfo: 'IAnyObject[]',
+    pointArray: 'IAnyObject[]',
     x: 'int',
     y: 'int',
     errMsg: 'string',
@@ -265,7 +265,7 @@ export default {
     errMsg: 'string',
   },
   GetBLEDeviceCharacteristicsSuccessCallbackResult: {
-    characteristics: 'array',
+    characteristics: 'BLECharacteristic[]',
     errMsg: 'string',
   },
   BLECharacteristic: {
@@ -285,7 +285,7 @@ export default {
     errMsg: 'string',
   },
   GetBLEDeviceServicesSuccessCallbackResult: {
-    services: 'array',
+    services: 'BLEService[]',
     errMsg: 'string',
   },
   BLEService: {
@@ -306,7 +306,7 @@ export default {
     errCode: 'int',
   },
   GetBeaconsSuccessCallbackResult: {
-    beacons: 'array',
+    beacons: 'BeaconInfo[]',
     errMsg: 'string',
   },
   BeaconInfo: {
@@ -323,13 +323,13 @@ export default {
     errMsg: 'string',
   },
   GetBluetoothDevicesSuccessCallbackResult: {
-    devices: 'array',
+    devices: 'BlueToothDevice[]',
     errMsg: 'string',
   },
   BlueToothDevice: {
     RSSI: 'int',
-    advertisData: 'array',
-    advertisServiceUUIDs: 'array',
+    advertisData: 'ArrayBuffer[]',
+    advertisServiceUUIDs: 'string[]',
     connectable: 'bool',
     deviceId: 'string',
     localName: 'string',
@@ -358,7 +358,7 @@ export default {
     data: 'string',
   },
   GetConnectedBluetoothDevicesSuccessCallbackResult: {
-    devices: 'array',
+    devices: 'BluetoothDeviceInfo[]',
     errMsg: 'string',
   },
   BluetoothDeviceInfo: {
@@ -419,7 +419,7 @@ export default {
   },
   GetStorageInfoSuccessCallbackOption: {
     currentSize: 'int',
-    keys: 'array',
+    keys: 'string[]',
     limitSize: 'int',
   },
   GetUserInfoSuccessCallbackResult: {
@@ -467,7 +467,7 @@ export default {
   JoinVoIPChatSuccessCallbackResult: {
     errCode: 'int',
     errMsg: 'string',
-    openIdList: 'array',
+    openIdList: 'string[]',
   },
   LoginSuccessCallbackResult: {
     code: 'string',
@@ -488,7 +488,7 @@ export default {
     characteristicId: 'string',
     deviceId: 'string',
     serviceId: 'string',
-    value: 'array',
+    value: 'ArrayBuffer[]',
   },
   OnBLEConnectionStateChangeCallbackResult: {
     connected: 'bool',
@@ -508,14 +508,14 @@ export default {
     discovering: 'bool',
   },
   OnBeaconUpdateCallbackResult: {
-    beacons: 'array',
+    beacons: 'BeaconInfo[]',
   },
   OnBluetoothAdapterStateChangeCallbackResult: {
     available: 'bool',
     discovering: 'bool',
   },
   OnBluetoothDeviceFoundCallbackResult: {
-    devices: 'array',
+    devices: 'BlueToothDevice[]',
   },
   OnCompassChangeCallbackResult: {
     accuracy: 'int',
@@ -596,9 +596,9 @@ export default {
     header: 'object',
   },
   OnTouchStartCallbackResult: {
-    changedTouches: 'array',
+    changedTouches: 'Touch[]',
     timeStamp: 'int',
-    touches: 'array',
+    touches: 'Touch[]',
   },
   Touch: {
     clientX: 'int',
@@ -619,12 +619,12 @@ export default {
   OnVoIPChatMembersChangedCallbackResult: {
     errCode: 'int',
     errMsg: 'string',
-    openIdList: 'array',
+    openIdList: 'string[]',
   },
   OnVoIPChatSpeakersChangedCallbackResult: {
     errCode: 'int',
     errMsg: 'string',
-    openIdList: 'array',
+    openIdList: 'string[]',
   },
   OnVoIPChatStateChangedCallbackResult: {
     code: 'int',
@@ -679,9 +679,11 @@ export default {
     errMsg: 'string',
   },
   RequestSubscribeMessageSuccessCallbackResult: {
+    anyKeyWord: 'string',
     errMsg: 'string',
   },
   RequestSubscribeSystemMessageSuccessCallbackResult: {
+    anyKeyWord: 'string',
     errMsg: 'string',
   },
   ReserveChannelsLiveOption: {
@@ -725,7 +727,7 @@ export default {
     errMsg: 'string',
   },
   UpdatableMessageFrontEndTemplateInfo: {
-    parameterList: 'array',
+    parameterList: 'UpdatableMessageFrontEndParameter[]',
   },
   UpdatableMessageFrontEndParameter: {
     name: 'string',
@@ -749,13 +751,13 @@ export default {
     isLive: 'bool',
   },
   GetUserCurrentGameliveInfoSuccessCallbackOption: {
-    feedIdList: 'array',
+    feedIdList: 'string[]',
   },
   GetUserGameLiveDetailsSuccessCallbackOption: {
     encryptedData: 'string',
     iv: 'string',
     cloudID: 'string',
-    feedIdList: 'array',
+    feedIdList: 'string[]',
     errMsg: 'string',
   },
   GameClubDataType: {

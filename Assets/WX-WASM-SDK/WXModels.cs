@@ -4094,6 +4094,10 @@ namespace WeChatWASM
             /// 分区 ID
             /// </summary>
                 public string zoneId;
+            /// <summary> 
+            /// 开发者业务订单号，每个订单号只能使用一次，重复使用会失败。要求32个字符内，只能是数字、大小写字母、符号 `_-|*@`
+            /// </summary>
+                public string outTradeNo;
     }
     [Preserve]
     public class MidasPaymentError {

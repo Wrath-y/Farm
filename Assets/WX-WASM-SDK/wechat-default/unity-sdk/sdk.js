@@ -58,8 +58,27 @@ export function formatResponse(type, data) {
       } else {
         data[key] = typeMap[conf[key]];
       }
-    } else if (typeof data[key] === 'object' && ResType[conf[key]]) {
-      formatResponse(conf[key], data[key]);
+    } else if (conf[key] === 'int' && typeof data[key] === 'string') {
+      data[key] = Number(data[key]);
+    } else if (conf[key] === 'string' && typeof data[key] === 'number') {
+      data[key] = `${data[key]}`;
+    } else if (conf[key] === 'bool' && (typeof data[key] === 'number' || typeof data[key] === 'string')) {
+      data[key] = !!data[key];
+    } else if (typeof data[key] === 'object' && conf[key]) {
+      const array = conf[key].match(/(.+)\[\]/);
+      if (array) {
+        for (const itemKey of Object.keys(data[key])) {
+          if (array[1] === 'string') {
+            data[key][itemKey] = `${data[key][itemKey]}`;
+          } else if (array[1] === 'number') {
+            data[key][itemKey] = Number(data[key][itemKey]);
+          } else {
+            formatResponse(array[1], data[key][itemKey]);
+          }
+        }
+      } else {
+        formatResponse(conf[key], data[key]);
+      }
     } else if (typeof data[key] === 'object' && conf[key] === 'object') {
       Object.keys(data[key]).forEach((v) => {
         if (typeof data[key][v] === 'object') {
@@ -70,6 +89,10 @@ export function formatResponse(type, data) {
       });
     }
   });
+  // 如果有动态参数则不处理
+  if (conf.anyKeyWord) {
+    return;
+  }
   Object.keys(data).forEach((key) => {
     if (typeof conf[key] === 'undefined') {
       delete data[key];

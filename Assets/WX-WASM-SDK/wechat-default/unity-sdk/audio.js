@@ -7,7 +7,9 @@
 /* eslint-disable no-plusplus */
 import moduleHelper from './module-helper';
 import { uid } from './utils';
-import { isAndroid, webAudioNeedResume, isSupportBufferURL, isSupportPlayBackRate, isSupportCacheAudio } from '../check-version';
+import {
+  isAndroid, webAudioNeedResume, isSupportBufferURL, isSupportPlayBackRate, isSupportCacheAudio,
+} from '../check-version';
 
 // UnityAudio对象池
 const WEBAudio = {
@@ -217,8 +219,7 @@ const resumeWebAudio = () => {
 
 const createInnerAudio = () => {
   const id = uid();
-  const audio =
-  isSupportCacheAudio && WEBAudio.audioCache.length
+  const audio = isSupportCacheAudio && WEBAudio.audioCache.length
     ? WEBAudio.audioCache.pop()
     : wx.createInnerAudioContext();
   audios[id] = audio;
@@ -575,12 +576,14 @@ export default {
             }
           });
           this.source.mediaElement.onCanplay(() => {
-            const { duration } = this.source.mediaElement;
-            setTimeout(() => {
-              if (soundClip && this.source && this.source.mediaElement) {
-                soundClip.length = Math.round(this.source.mediaElement.duration * 44100);
-              }
-            }, 0);
+            if (typeof this.source !== 'undefined') {
+              const { duration } = this.source.mediaElement;
+              setTimeout(() => {
+                if (soundClip && this.source && this.source.mediaElement) {
+                  soundClip.length = Math.round(this.source.mediaElement.duration * 44100);
+                }
+              }, 0);
+            }
           });
           this.source.start(startTime, startOffset);
           this.source.playbackStartTime = startTime - startOffset / this.source.playbackRateValue;
@@ -822,6 +825,9 @@ export default {
           //   },
           // });
           const innerFixPlay = () => {
+            if (!this.source) {
+              return;
+            }
             this.source.needCanPlay = true;
             if (this.source.fixPlayTicker) {
               // 防止安卓重复触发导致error
@@ -849,6 +855,9 @@ export default {
                 }
               } else {
                 this.source.mediaElement.onCanplay(() => {
+                  if (!this.source) {
+                    return;
+                  }
                   this.source.needCanPlay = false;
                   this.source.readyToPlay = true;
                   if (typeof this.source.mediaElement !== 'undefined') {
@@ -874,6 +883,9 @@ export default {
             }
           };
           this.source._reset = () => {
+            if (!this.source) {
+              return;
+            }
             this.source.readyToPlay = false;
             this.source.isPlaying = false;
             this.source.stopCache = false;
