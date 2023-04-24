@@ -2,14 +2,57 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 using UnityEngine.Pool;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.Serialization;
 
 public class PoolManager : MonoBehaviour
 {
+    public List<string> aaLoadkeys;
+    private Dictionary<string, AsyncOperationHandle<GameObject>> _operationDictionary;
+    public UnityEvent ready;
+    
     public List<GameObject> poolPrefabs;
     private List<ObjectPool<GameObject>> _poolEffectList = new List<ObjectPool<GameObject>>();
     private Queue<GameObject> _soundQueue = new Queue<GameObject>();
 
+    protected void Awake()
+    {
+        ready.AddListener(OnAssetsReady);
+        ready.AddListener(Init);
+        StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+    }
+    
+    private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+        if (_operationDictionary == null)
+            _operationDictionary = new Dictionary<string, AsyncOperationHandle<GameObject>>();
+
+        AsyncOperationHandle<IList<IResourceLocation>> locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(GameObject));
+
+        yield return locations;
+        
+        var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+        foreach (IResourceLocation location in locations.Result) {
+            AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(location);
+            handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+            loadOps.Add(handle);
+        }
+
+        yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+        ready.Invoke();
+    }
+    
+    private void OnAssetsReady() {
+        foreach (var item in _operationDictionary) {
+            poolPrefabs.Add(item.Value.Result);
+        }
+    }
+    
     private void OnEnable()
     {
         EventHandler.ParticleEffectEvent += OnParticleEffectEvent;
@@ -22,7 +65,7 @@ public class PoolManager : MonoBehaviour
         EventHandler.InitSoundEffect -= InitSoundEffect;
     }
 
-    private void Start()
+    private void Init()
     {
         CreatePool();
     }

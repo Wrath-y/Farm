@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sound
+  m_EditorClassIdentifier: 
+  m_GroupName: Sound
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c1f85f87b732144a1baab9ab923731c5
+  m_SerializeEntries:
+  - m_GUID: cf86112b554e742348c219caeefa3439
+    m_Address: SoundDetailsList_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30ef09e9c92dc4425b357c8684e4cab9
+    m_Address: SceneSoundList_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e8d88d301d2c84b1e885efa34b67c1ea, type: 2}
+    - {fileID: 11400000, guid: 8b3e15b073348463fa24506d6f9a8545, type: 2}

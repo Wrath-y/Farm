@@ -2,15 +2,60 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Farm.CropPlant
 {
     public class CropManager : Singleton<CropManager>
     {
+        public List<string> aaLoadkeys;
+        private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
+        
         public CropDataList_SO cropData;
         private Transform _cropParent;
-        private Grid _curGrid;
         private Season _curSeason;
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            // Ready.AddListener(OnAssetsReady);
+            StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+        }
+        
+        private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+            if (_operationDictionary == null)
+                _operationDictionary = new Dictionary<string, AsyncOperationHandle<ScriptableObject>>();
+
+            AsyncOperationHandle<IList<IResourceLocation>> locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(ScriptableObject));
+
+            yield return locations;
+
+            var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+            foreach (IResourceLocation location in locations.Result) {
+                AsyncOperationHandle<ScriptableObject> handle = Addressables.LoadAssetAsync<ScriptableObject>(location);
+                handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+                loadOps.Add(handle);
+            }
+
+            yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+            // Ready.Invoke();
+            OnAssetsReady();
+        }
+        
+        private void OnAssetsReady() {
+            foreach (var item in _operationDictionary) {
+                switch (item.Key)
+                {
+                    case "CropDataList_SO":
+                        cropData = (CropDataList_SO)item.Value.Result;
+                        break;
+                }
+            }
+        }
         
         private void OnEnable()
         {
@@ -85,7 +130,6 @@ namespace Farm.CropPlant
         
         private void OnAfterLoadedSceneEvent()
         {
-            _curGrid = FindObjectOfType<Grid>();
             _cropParent = GameObject.FindWithTag("CropParent").transform;
         }
 

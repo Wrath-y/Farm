@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Inventory
+  m_EditorClassIdentifier: 
+  m_GroupName: Inventory
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a46a21e6fca68416a9ea185a9bd85c25
+  m_SerializeEntries:
+  - m_GUID: 9209046bd1ef0474f95294ac994d5659
+    m_Address: BoxBagTemplate
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 648af73a115294662b75cb689e5abb23
+    m_Address: PlayerBag_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee86ae24365584e36b9859a4f0bc2d94
+    m_Address: PlayerBagTpl_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52d537c3866e944a99f92b63d88a8e0e
+    m_Address: BluePrintDataList_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f74f7268a50b5b46b0f3d55e4b5c617
+    m_Address: ItemDataList_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 65e0779751eda4f5ebd4daf64fc63b3d, type: 2}
+    - {fileID: 11400000, guid: f44ee1650f9f74902a031dc6d3176b9a, type: 2}

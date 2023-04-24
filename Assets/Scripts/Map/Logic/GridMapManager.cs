@@ -5,9 +5,11 @@ using Farm.CropPlant;
 using Farm.Save;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace Farm.Map
@@ -15,14 +17,15 @@ namespace Farm.Map
     public class GridMapManager : Singleton<GridMapManager>, ISaveable
     {
         public List<string> aaLoadkeys;
-        private Dictionary<string, AsyncOperationHandle<RuleTile>> _operationDictionary;
+        private Dictionary<string, AsyncOperationHandle> _operationDictionary;
+        public UnityEvent ready;
         
         public RuleTile digTile;
         public RuleTile waterTile;
+        public List<MapData_SO> mapDataList;
+        
         private Tilemap _digTilemap;
         private Tilemap _waterTilemap;
-        public List<MapData_SO> mapDataList;
-        private Season _curSeason;
 
         // 场景名称+坐标对应的瓦片信息
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
@@ -36,45 +39,54 @@ namespace Farm.Map
         protected override void Awake()
         {
             base.Awake();
-            // Ready.AddListener(OnAssetsReady);
+            ready.AddListener(OnAssetsReady);
+            ready.AddListener(Init);
             StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
         }
         
         private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
             if (_operationDictionary == null)
-                _operationDictionary = new Dictionary<string, AsyncOperationHandle<RuleTile>>();
+                _operationDictionary = new Dictionary<string, AsyncOperationHandle>();
 
-            AsyncOperationHandle<IList<IResourceLocation>> locations
-                = Addressables.LoadResourceLocationsAsync(keys,
-                    Addressables.MergeMode.Union, typeof(RuleTile));
-
+            AsyncOperationHandle<IList<IResourceLocation>> locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(RuleTile));
             yield return locations;
 
             var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
 
             foreach (IResourceLocation location in locations.Result) {
-                AsyncOperationHandle<RuleTile> handle =
-                    Addressables.LoadAssetAsync<RuleTile>(location);
+                AsyncOperationHandle<RuleTile> handle = Addressables.LoadAssetAsync<RuleTile>(location);
+                handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+                loadOps.Add(handle);
+            }
+            
+            locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(MapData_SO));
+            yield return locations;
+
+            foreach (IResourceLocation location in locations.Result) {
+                AsyncOperationHandle<MapData_SO> handle = Addressables.LoadAssetAsync<MapData_SO>(location);
                 handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
                 loadOps.Add(handle);
             }
 
             yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
 
-            // Ready.Invoke();
-            OnAssetsReady();
+            ready.Invoke();
         }
         
         private void OnAssetsReady() {
             foreach (var item in _operationDictionary) {
-                Debug.Log($"{item.Key} = {item.Value.Result.name}");
                 switch (item.Key)
                 {
                     case "DigTile":
-                        digTile = item.Value.Result;
+                        digTile = (RuleTile)item.Value.Result;
                         break;
                     case "WaterTile":
-                        waterTile = item.Value.Result;
+                        waterTile = (RuleTile)item.Value.Result;
+                        break;
+                    case "MapData_Start":
+                    case "MapData_Field":
+                    case "MapData_Home":
+                        mapDataList.Add((MapData_SO)item.Value.Result);
                         break;
                 }
             }
@@ -97,7 +109,7 @@ namespace Farm.Map
 
         }
 
-        private void Start()
+        private void Init()
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
@@ -203,7 +215,6 @@ namespace Farm.Map
             {
                 _firstLoadDict[SceneManager.GetActiveScene().name] = false;
                 // 预先生成农作物
-                Debug.Log("预先生成农作物");
                 EventHandler.CallGenerateCropEvent();
             }
 
@@ -212,7 +223,6 @@ namespace Farm.Map
 
         private void OnGameDayEvent(int day, Season season)
         {
-            _curSeason = season;
             foreach (var tile in _tileDetailsDict)
             {
                 if (tile.Value.daysSinceWatered > -1)

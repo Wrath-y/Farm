@@ -67,7 +67,6 @@ namespace Farm.Inventory
         
         private void OnAssetsReady() {
             foreach (var item in _operationDictionary) {
-                Debug.Log($"{item.Key} = {item.Value.Result.name}");
                 switch (item.Key)
                 {
                     case "ItemDataList_SO":

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: 
+  m_GroupName: NPC
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c3b589b1300924ceb962df6e5d07f1b5
+  m_SerializeEntries:
+  - m_GUID: 9f20fd2f494884eb89268d40a62d5aa0
+    m_Address: MayorShop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 12b80789b1a095a44a9f7cef61560dc4
+    m_Address: MajorSchedule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98ac1b1c2620e554c8942dd0f7b2d0f0
+    m_Address: SceneRouteDataList_SO
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fe7722030206b4b3c9f08e8566d67294, type: 2}
+    - {fileID: 11400000, guid: cff0d3bf5b834402dae2bbd0459780e8, type: 2}

@@ -883,12 +883,15 @@ MonoBehaviour:
   aaLoadkeys:
   - DigTile
   - WaterTile
+  - MapData_Start
+  - MapData_Field
+  - MapData_Home
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
   digTile: {fileID: 0}
   waterTile: {fileID: 0}
-  mapDataList:
-  - {fileID: 11400000, guid: 2c11358edfaa64e88a46583f58696d18, type: 2}
-  - {fileID: 11400000, guid: ee72edccf4659d64885cd2daf9e0a411, type: 2}
-  - {fileID: 11400000, guid: 5301f0d28266f4a078cbeb90c58c2ebc, type: 2}
+  mapDataList: []
 --- !u!4 &203769509
 Transform:
   m_ObjectHideFlags: 0
@@ -1155,7 +1158,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435078203}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fac020d9a3badca4bb2a258add0cb831, type: 3}
   m_Name: 
@@ -1210,7 +1213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a526a92288ea14685d9832f6ee9176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneRouteDate: {fileID: 11400000, guid: 98ac1b1c2620e554c8942dd0f7b2d0f0, type: 2}
+  aaLoadkeys:
+  - SceneRouteDataList_SO
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
+  sceneRouteDate: {fileID: 0}
   npcPositionList:
   - npc: {fileID: 63165040}
     startScene: 01.Field
@@ -1320,7 +1328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c78837bcb168641ba3511bb4c19985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cropData: {fileID: 11400000, guid: 227a9c9b2e1bab841b3b98a969f4a1e5, type: 2}
+  aaLoadkeys:
+  - CropDataList_SO
+  cropData: {fileID: 0}
 --- !u!4 &490731367
 Transform:
   m_ObjectHideFlags: 0
@@ -2467,7 +2477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &978670738
 Transform:
   m_ObjectHideFlags: 0
@@ -2686,12 +2696,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954ce171948eb43ba908f4e3192c017a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolPrefabs:
-  - {fileID: 6851781377367801694, guid: 1d3cfa11125c84fc29f7447cee405a8c, type: 3}
-  - {fileID: 3104498423940096768, guid: 836aa6e6768ee4bd08b6761617e2ede1, type: 3}
-  - {fileID: 4795792970492846947, guid: c60898371172a41289c6d6a2b7c81276, type: 3}
-  - {fileID: 4795792970492846947, guid: fd52ed82bb9aabc4696eb7d27643dc2d, type: 3}
-  - {fileID: 460074009030534681, guid: 8a64f235de1604ec9a8c8b978d02d90d, type: 3}
+  aaLoadkeys:
+  - LeavesFalling01
+  - LeavesFalling02
+  - RockParticle
+  - ReapParticle
+  - Sound
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
+  poolPrefabs: []
 --- !u!4 &1054331304
 Transform:
   m_ObjectHideFlags: 0
@@ -3654,8 +3668,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c411ccfed34f4250a5b2fbbf070ab658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundDetailsData: {fileID: 11400000, guid: cf86112b554e742348c219caeefa3439, type: 2}
-  sceneSoundData: {fileID: 11400000, guid: 30ef09e9c92dc4425b357c8684e4cab9, type: 2}
+  aaLoadkeys:
+  - SoundDetailsList_SO
+  - SceneSoundList_SO
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
+  soundDetailsData: {fileID: 0}
+  sceneSoundData: {fileID: 0}
   ambientSource: {fileID: 180793632}
   gameSource: {fileID: 609125464}
   audioMixer: {fileID: 24100000, guid: 65cdc2ca6e9fe442c94500b0e83dcb01, type: 2}

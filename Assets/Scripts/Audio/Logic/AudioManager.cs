@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
+using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    public List<string> aaLoadkeys;
+    private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
+    public UnityEvent ready;
+    
     [Header("音乐数据库")]
     public SoundDetailsList_SO soundDetailsData;
     public SceneSoundList_SO sceneSoundData;
@@ -26,6 +34,49 @@ public class AudioManager : Singleton<AudioManager>
     
     public float MusicStartSecond => Random.Range(5f, 15f);
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        ready.AddListener(OnAssetsReady);
+        StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+    }
+    
+    private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+        if (_operationDictionary == null)
+            _operationDictionary = new Dictionary<string, AsyncOperationHandle<ScriptableObject>>();
+
+        AsyncOperationHandle<IList<IResourceLocation>> locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(ScriptableObject));
+
+        yield return locations;
+        
+        var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+        foreach (IResourceLocation location in locations.Result) {
+            AsyncOperationHandle<ScriptableObject> handle = Addressables.LoadAssetAsync<ScriptableObject>(location);
+            handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+            loadOps.Add(handle);
+        }
+
+        yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+        ready.Invoke();
+    }
+    
+    private void OnAssetsReady() {
+        foreach (var item in _operationDictionary) {
+            switch (item.Key)
+            {
+                case "SoundDetailsList_SO":
+                    soundDetailsData = (SoundDetailsList_SO)item.Value.Result;
+                    break;
+                case "SceneSoundList_SO":
+                    sceneSoundData = (SceneSoundList_SO)item.Value.Result;
+                    break;
+            }
+        }
+    }
+    
     private void OnEnable()
     {
         EventHandler.AfterLoadedSceneEvent += OnAfterSceneLoadedEvent;

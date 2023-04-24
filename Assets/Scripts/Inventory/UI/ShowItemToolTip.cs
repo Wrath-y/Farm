@@ -19,7 +19,7 @@ namespace Farm.Inventory
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_slotUI.itemDetails == null)
+            if (_slotUI.itemDetails == null || _slotUI.itemDetails.itemID == 0)
             {
                 InventoryUI.ItemToolTip.gameObject.SetActive(false);
                 return;
