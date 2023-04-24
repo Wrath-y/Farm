@@ -1,0 +1,10 @@
+!#
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/af1dd8e93dec8484deb9d78c8e635c75_unitybuiltinshaders_80b00504857291a6830fad224ea15287.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/crop_assets_all_449c0d8d789bb280d38db1441871b515.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/inventory_assets_all_176bd532dbf9603fcd81f2b4969e5ff2.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/light_assets_all_2ff79039b0ceff1d3e55253dc6ccdcaf.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/mapdata_assets_all_2b7de63adb5563fa1f18d63de911cc79.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/npc_assets_all_7015886c7c022f0ffe7b278e3d4e02a1.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/prefab_assets_all_1c3867dac12100e08281af6b8f1bd843.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/ruletiles_assets_all_3f017e4b7460b92975abb736a135227a.bundle
+!/Users/wrath/Desktop/Farm/webgl/StreamingAssets/aa/WebGL/sound_assets_all_43ac23d441c10a318c190d0edc46736c.bundle

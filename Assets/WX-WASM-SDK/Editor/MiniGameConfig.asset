@@ -15,8 +15,8 @@ MonoBehaviour:
   ProjectConf:
     projectName: Farm
     Appid: wxd11c47fa600c13d9
-    CDN: https://wrath.cc
-    assetLoadType: 1
+    CDN: https://wrath-game.oss-cn-shanghai.aliyuncs.com/farm
+    assetLoadType: 0
     VideoUrl: 
     DST: /Users/wrath/Desktop/Farm
     StreamCDN: 
@@ -27,7 +27,7 @@ MonoBehaviour:
     MemorySize: 256
     HideAfterCallMain: 1
     preloadFiles: 
-    Orientation: 0
+    Orientation: 1
     bgImageSrc: Assets/WX-WASM-SDK/wechat-default/images/background.jpg
     dataFileSubPrefix: 
     maxStorage: 200
