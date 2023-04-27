@@ -38,8 +38,8 @@ public class AudioManager : Singleton<AudioManager>
     {
         base.Awake();
 
-        ready.AddListener(OnAssetsReady);
-        StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+        // ready.AddListener(OnAssetsReady);
+        // StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
     }
     
     private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {

@@ -6,9 +6,15 @@ Removed - 删除功能/接口
 Fixed - 修复问题
 Others - 其他 
 -->
+## 2023-04-26
+### Changed
+* 更新启动插件1.1.19
 ## 2023-03-31
 ### Feature
 * 优化启动插件内存占用
+## 2023-02-22
+### Feature
+* 支持开通高性能模式的游戏禁止回退成普通模式运行，通过`disableHighPerformanceFallback`修改
 
 ## 2023-02-15
 ### Fixed

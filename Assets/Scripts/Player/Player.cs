@@ -19,6 +19,8 @@ public class Player : MonoBehaviour, ISaveable
     private Animator[] _animators;
     private bool _inputDisable;
     private bool _useTool;
+    private VariableJoystick _variableJoystick;
+
     
     public string GUID => GetComponent<DataGUID>().guid;
 
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour, ISaveable
     {
         ISaveable saveable = this;
         saveable.RegisterSaveable();
+        _variableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<VariableJoystick>();
     }
 
     private void OnEnable()
@@ -143,17 +146,29 @@ public class Player : MonoBehaviour, ISaveable
         _inputX = Input.GetAxisRaw("Horizontal");
         _inputY = Input.GetAxisRaw("Vertical");
 
-        if (_inputX != 0 && _inputY != 0)
+        if (_variableJoystick != null)
         {
-            _inputX *= 0.6f;
-            _inputY *= 0.6f;
+            _inputX = _variableJoystick.Horizontal;
+            _inputY = _variableJoystick.Vertical;
         }
+        else
+        {
+            _inputX = Input.GetAxisRaw("Horizontal");
+            _inputY = Input.GetAxisRaw("Vertical");
+            
+            if (_inputX != 0 && _inputY != 0)
+            {
+                _inputX *= 0.6f;
+                _inputY *= 0.6f;
+            }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _inputX *= 0.5f;
-            _inputY *= 0.5f;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _inputX *= 0.5f;
+                _inputY *= 0.5f;
+            }
         }
+        
         _movementInput = new Vector2(_inputX, _inputY);
         _isMoving = _movementInput != Vector2.zero;
     }

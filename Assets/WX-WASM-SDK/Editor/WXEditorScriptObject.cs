@@ -119,6 +119,12 @@ namespace WeChatWASM
         /// 是否需要启动时自动检查小游戏是否有新版本
         /// </summary>
         public bool needCheckUpdate = false;
+
+        /// <summary>
+        /// 是否禁止开启高性能模式后在不支持的iOS设备上回退为普通模式
+        /// 注意：不要随意修改，只有开通高性能模式后并确认不回退才修改
+        /// </summary>
+        public bool disableHighPerformanceFallback = false;
     }
 
     [Serializable]

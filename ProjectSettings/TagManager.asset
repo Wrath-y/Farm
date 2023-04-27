@@ -11,6 +11,7 @@ TagManager:
   - Water
   - CropParent
   - MenuCanvas
+  - JoyStick
   layers:
   - Default
   - TransparentFX

@@ -194,7 +194,7 @@ checkVersion().then((enable) => {
     const systeminfo = wx.getSystemInfoSync();
     const bootinfo = {
       renderer: systeminfo.renderer || '',
-      abi: systeminfo.ebi || '',
+      abi: systeminfo.abi || '',
       brand: systeminfo.brand,
       model: systeminfo.model,
       platform: systeminfo.platform,

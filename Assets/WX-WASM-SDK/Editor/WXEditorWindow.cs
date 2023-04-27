@@ -67,6 +67,7 @@ namespace WeChatWASM
         public bool needCacheTextures = false;
         public int loadingBarWidth = 240;
         public bool needCheckUpdate = false;
+        public bool disableHighPerformanceFallback = false;
 
         [MenuItem("微信小游戏 / 转换小游戏", false, 1)]
         public static void Open()
@@ -165,6 +166,7 @@ namespace WeChatWASM
             needCacheTextures = config.ProjectConf.needCacheTextures;
             loadingBarWidth = config.ProjectConf.loadingBarWidth;
             needCheckUpdate = config.ProjectConf.needCheckUpdate;
+            disableHighPerformanceFallback = config.ProjectConf.disableHighPerformanceFallback;
         }
 
         private void OnFocus()
@@ -216,6 +218,7 @@ namespace WeChatWASM
             config.ProjectConf.needCacheTextures = needCacheTextures;
             config.ProjectConf.loadingBarWidth = loadingBarWidth;
             config.ProjectConf.needCheckUpdate = needCheckUpdate;
+            config.ProjectConf.disableHighPerformanceFallback = disableHighPerformanceFallback;
         }
 
 
@@ -937,11 +940,16 @@ namespace WeChatWASM
                 {
                     old="$UNITY_COLORSPACE",
                     newStr=GetColorSpace()
+                },
+                new Rule()
+                {
+                    old="$DISABLE_HIGHPERFORMANCE_FALLBACK",
+                    newStr=disableHighPerformanceFallback ? "true" : "false"
                 }
             };
 
             List<Rule> replaceList = new List<Rule>(replaceArrayList);
-            List<string> files = new List<string> { "game.js", "game.json", "project.config.json", "unity-namespace.js" };
+            List<string> files = new List<string> { "game.js", "game.json", "project.config.json", "unity-namespace.js", "check-version.js" };
 
 
 

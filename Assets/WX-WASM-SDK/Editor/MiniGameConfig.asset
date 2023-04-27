@@ -37,6 +37,7 @@ MonoBehaviour:
     needCacheTextures: 1
     loadingBarWidth: 240
     needCheckUpdate: 0
+    disableHighPerformanceFallback: 0
   SDKOptions:
     UseAudioApi: 0
     UseFriendRelation: 0

@@ -1546,6 +1546,7 @@ const isWK = false;
                 _changeReadyState.call(_this, XMLHttpRequest.LOADING);
 
                 _this.response = data;
+                _this.profile = _ref.profile;
 
                 if (responseType === 'text') {
                   if (data instanceof ArrayBuffer) {

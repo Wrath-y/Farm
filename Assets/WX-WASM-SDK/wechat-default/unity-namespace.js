@@ -45,9 +45,9 @@ unityNamespace.isErasableFile = function (info) {
 const { version, SDKVersion, platform, renderer, system } = wx.getSystemInfoSync();
 unityNamespace.version = version;
 unityNamespace.SDKVersion = SDKVersion;
-unityNamespace.platform = platform
-unityNamespace.renderer = renderer
-unityNamespace.system = system
+unityNamespace.platform = platform;
+unityNamespace.renderer = renderer;
+unityNamespace.system = system;
 unityNamespace.isPc = platform === 'windows';
 unityNamespace.isDevtools = platform === 'devtools';
 unityNamespace.isMobile = !unityNamespace.isPc && !unityNamespace.isDevtools;
