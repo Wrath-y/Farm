@@ -26,6 +26,7 @@ public class CursorManager : MonoBehaviour
     private bool _cursorEnable;
     private bool _cursorPositionValid;
     private ItemDetails _curItem;
+    private bool _isMobile = true;
     private Transform PlayerTransform => FindObjectOfType<Player>().transform;
 
     private void OnEnable()
@@ -44,6 +45,16 @@ public class CursorManager : MonoBehaviour
 
     private void Start()
     {
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.WindowsPlayer ||
+            Application.platform == RuntimePlatform.OSXEditor ||
+            Application.platform == RuntimePlatform.OSXPlayer ||
+            Application.platform == RuntimePlatform.LinuxEditor ||
+            Application.platform == RuntimePlatform.LinuxPlayer)
+        {
+            _isMobile = false;
+        }
+
         _cursorCanvas = GameObject.FindGameObjectWithTag("CursorCanvas").GetComponent<RectTransform>();
         _cursorImage = _cursorCanvas.GetChild(0).GetComponent<Image>();
         //拿到建造图标
@@ -63,7 +74,15 @@ public class CursorManager : MonoBehaviour
             return;
         }
 
-        _cursorImage.transform.position = Input.mousePosition;
+        if (_isMobile && Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            _cursorImage.transform.position = touch.position;
+        }
+        else
+        {
+            _cursorImage.transform.position = Input.mousePosition;
+        }
         if (!InteractWithUI() && _cursorEnable)
         {
             SetCursorImage(_curSprite);
@@ -126,6 +145,15 @@ public class CursorManager : MonoBehaviour
 
     private void CheckPlayerInput()
     {
+        if (Input.touchCount > 0 && _cursorPositionValid)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && _cursorPositionValid)
         {
             EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
@@ -172,7 +200,31 @@ public class CursorManager : MonoBehaviour
 
     private void CheckCursorValid()
     {
-        _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -_mainCamera.transform.position.z));
+        if (Input.touchCount > 0)
+        {
+            // 获取第一个触摸点的位置
+            Vector2 touchPosition = Input.GetTouch(0).position;
+    
+            // 获取设备的屏幕宽度和高度
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+    
+            // 获取摄像机到屏幕左下角的距离
+            float cameraDistance = Vector3.Distance(_mainCamera.transform.position, Vector3.zero);
+    
+            // 计算适当的比例因子
+            float scaleFactor = cameraDistance / (2 * Mathf.Tan(_mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad));
+    
+            // 将屏幕坐标转换为世界坐标
+            Vector3 touchPosition3D = new Vector3(touchPosition.x / screenWidth - 0.5f, touchPosition.y / screenHeight - 0.5f, 0f);
+            _mouseWorldPos = _mainCamera.transform.position + touchPosition3D * scaleFactor;
+        }
+        else
+        {
+            _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                -_mainCamera.transform.position.z));
+        }
+
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
         //建造图片跟随移动

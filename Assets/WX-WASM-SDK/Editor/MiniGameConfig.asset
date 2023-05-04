@@ -50,7 +50,7 @@ MonoBehaviour:
     Webgl2: 0
     DeleteStreamingAssets: 1
     ProfilingMemory: 0
-    CleanBuild: 0
+    CleanBuild: 1
     CustomNodePath: 
   CompressTexture:
     halfSize: 0
