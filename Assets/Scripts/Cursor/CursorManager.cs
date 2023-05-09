@@ -145,9 +145,11 @@ public class CursorManager : MonoBehaviour
 
     private void CheckPlayerInput()
     {
+        Debug.Log($"触摸个数{Input.touchCount} {_cursorPositionValid}");
         if (Input.touchCount > 0 && _cursorPositionValid)
         {
             Touch touch = Input.GetTouch(0);
+            Debug.Log($"触摸类型{touch.phase}");
             if (touch.phase == TouchPhase.Began)
             {
                 EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
@@ -200,30 +202,30 @@ public class CursorManager : MonoBehaviour
 
     private void CheckCursorValid()
     {
-        if (Input.touchCount > 0)
-        {
-            // 获取第一个触摸点的位置
-            Vector2 touchPosition = Input.GetTouch(0).position;
-    
-            // 获取设备的屏幕宽度和高度
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
-    
-            // 获取摄像机到屏幕左下角的距离
-            float cameraDistance = Vector3.Distance(_mainCamera.transform.position, Vector3.zero);
-    
-            // 计算适当的比例因子
-            float scaleFactor = cameraDistance / (2 * Mathf.Tan(_mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad));
-    
-            // 将屏幕坐标转换为世界坐标
-            Vector3 touchPosition3D = new Vector3(touchPosition.x / screenWidth - 0.5f, touchPosition.y / screenHeight - 0.5f, 0f);
-            _mouseWorldPos = _mainCamera.transform.position + touchPosition3D * scaleFactor;
-        }
-        else
-        {
+        // if (Input.touchCount > 0)
+        // {
+        //     // 获取第一个触摸点的位置
+        //     Vector2 touchPosition = Input.GetTouch(0).position;
+        //
+        //     // 获取设备的屏幕宽度和高度
+        //     float screenWidth = Screen.width;
+        //     float screenHeight = Screen.height;
+        //
+        //     // 获取摄像机到屏幕左下角的距离
+        //     float cameraDistance = Vector3.Distance(_mainCamera.transform.position, Vector3.zero);
+        //
+        //     // 计算适当的比例因子
+        //     float scaleFactor = cameraDistance / (2 * Mathf.Tan(_mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad));
+        //
+        //     // 将屏幕坐标转换为世界坐标
+        //     // Vector3 touchPosition3D = new Vector3(touchPosition.x / screenWidth - 0.5f, touchPosition.y / screenHeight - 0.5f, 0f);
+        //     _mouseWorldPos = _mainCamera.transform.position;
+        // }
+        // else
+        // {
             _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                 -_mainCamera.transform.position.z));
-        }
+        // }
 
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
@@ -264,10 +266,20 @@ public class CursorManager : MonoBehaviour
             case ItemType.ChopTool:
                 if (crop != null)
                 {
-                    if (crop.CanHarvest && crop.cropDetails.CheckToolAvailable(_curItem.itemID)) SetCursorValid(); else SetCursorInValid();
+                    if (crop.CanHarvest && crop.cropDetails.CheckToolAvailable(_curItem.itemID))
+                    {
+                        Debug.Log($"1 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
+                        SetCursorValid();
+                    }
+                    else
+                    {
+                        Debug.Log($"2 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
+                        SetCursorInValid();
+                    }
                 }
                 else
                 {
+                    Debug.Log($"3 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
                     SetCursorInValid();
                 }
                 break;
