@@ -145,11 +145,9 @@ public class CursorManager : MonoBehaviour
 
     private void CheckPlayerInput()
     {
-        Debug.Log($"触摸个数{Input.touchCount} {_cursorPositionValid}");
         if (Input.touchCount > 0 && _cursorPositionValid)
         {
             Touch touch = Input.GetTouch(0);
-            Debug.Log($"触摸类型{touch.phase}");
             if (touch.phase == TouchPhase.Began)
             {
                 EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
@@ -268,18 +266,15 @@ public class CursorManager : MonoBehaviour
                 {
                     if (crop.CanHarvest && crop.cropDetails.CheckToolAvailable(_curItem.itemID))
                     {
-                        Debug.Log($"1 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
                         SetCursorValid();
                     }
                     else
                     {
-                        Debug.Log($"2 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
                         SetCursorInValid();
                     }
                 }
                 else
                 {
-                    Debug.Log($"3 触摸个数{Input.touchCount} 坐标{_mouseWorldPos}");
                     SetCursorInValid();
                 }
                 break;
