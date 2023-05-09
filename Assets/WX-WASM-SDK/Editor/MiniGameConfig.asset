@@ -18,7 +18,7 @@ MonoBehaviour:
     CDN: https://wrath-game.oss-cn-shanghai.aliyuncs.com/farm
     assetLoadType: 0
     VideoUrl: 
-    DST: /Users/wrath/Desktop/Farm
+    DST: C:/Users/80565/Desktop/farm
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;
