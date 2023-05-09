@@ -12,6 +12,7 @@ TagManager:
   - CropParent
   - MenuCanvas
   - JoyStick
+  - DialogBox
   layers:
   - Default
   - TransparentFX

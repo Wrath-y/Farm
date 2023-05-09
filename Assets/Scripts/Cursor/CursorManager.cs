@@ -6,9 +6,10 @@ using Farm.Inventory;
 using Farm.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class CursorManager : MonoBehaviour
+public class CursorManager : Singleton<CursorManager>
 {
     public Sprite normal, tool, seed, item;
 
@@ -198,6 +199,12 @@ public class CursorManager : MonoBehaviour
         return false;
     }
 
+    public Vector3 GetMouseWorldPos()
+    {
+        return _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+            -_mainCamera.transform.position.z));
+    }
+
     private void CheckCursorValid()
     {
         // if (Input.touchCount > 0)
@@ -221,10 +228,11 @@ public class CursorManager : MonoBehaviour
         // }
         // else
         // {
-            _mouseWorldPos = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                -_mainCamera.transform.position.z));
+            
         // }
 
+        _mouseWorldPos = GetMouseWorldPos();
+        
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
         var playerGridPos = _curGrid.WorldToCell(PlayerTransform.position);
         //建造图片跟随移动

@@ -148,6 +148,8 @@ namespace Farm.Inventory
                 bagUI.SetActive(false);
                 _bagOpened = false;
             }
+            
+            EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);
         }
         
         // 打开通用包裹UI事件

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,17 @@ namespace Farm.Dialogue
             _uiSign = transform.GetChild(1).gameObject;
             FillDialogueStack();
         }
-        
+
+        private void Update()
+        {
+            _uiSign.SetActive(_canTalk);
+
+            if (_canTalk && !_isTalking && (Input.GetKeyDown(KeyCode.Space) || CursorClickEvent.Instance.IsShowNpcDialogue(CursorManager.Instance.GetMouseWorldPos())) )
+            {
+                StartCoroutine(DialogueRoutine());
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -40,17 +51,7 @@ namespace Farm.Dialogue
                 _canTalk = false;
             }
         }
-        
-        private void Update()
-        {
-            _uiSign.SetActive(_canTalk);
 
-            if (_canTalk & Input.GetKeyDown(KeyCode.Space) && !_isTalking)
-            {
-                StartCoroutine(DialogueRoutine());
-            }
-        }
-        
         // 构建对话堆栈
         private void FillDialogueStack()
         {
