@@ -19,7 +19,7 @@ namespace Farm.Transition
         protected override void Awake()
         {
             base.Awake();
-            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
+            // Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
             SceneManager.LoadScene("UI", LoadSceneMode.Additive);
         }
         
