@@ -143,9 +143,6 @@ public class Player : MonoBehaviour, ISaveable
 
     private void PlayerInput()
     {
-        _inputX = Input.GetAxisRaw("Horizontal");
-        _inputY = Input.GetAxisRaw("Vertical");
-
         if (_variableJoystick != null)
         {
             _inputX = _variableJoystick.Horizontal;
@@ -155,19 +152,19 @@ public class Player : MonoBehaviour, ISaveable
         {
             _inputX = Input.GetAxisRaw("Horizontal");
             _inputY = Input.GetAxisRaw("Vertical");
-            
-            if (_inputX != 0 && _inputY != 0)
-            {
-                _inputX *= 0.6f;
-                _inputY *= 0.6f;
-            }
-
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 _inputX *= 0.5f;
                 _inputY *= 0.5f;
             }
         }
+        
+        if (_inputX != 0 && _inputY != 0)
+        {
+            _inputX *= 0.6f;
+            _inputY *= 0.6f;
+        }
+
         
         _movementInput = new Vector2(_inputX, _inputY);
         _isMoving = _movementInput != Vector2.zero;
