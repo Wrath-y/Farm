@@ -26,7 +26,7 @@ MonoBehaviour:
     AssetsUrl: 
     MemorySize: 256
     HideAfterCallMain: 1
-    preloadFiles: 
+    preloadFiles: crop_assets_all;
     Orientation: 1
     bgImageSrc: Assets/WX-WASM-SDK/wechat-default/images/background.jpg
     dataFileSubPrefix: 
