@@ -8,9 +8,12 @@ namespace Farm.Inventory
     {
         public Image itemIcon;
         public Text itemName;
-        public InputField tradeAmount;
+        public Text tradeAmount;
         public Button submitButton;
         public Button cancelButton;
+        public Button buy1;
+        public Button buy10;
+        public Button buy50;
 
         private ItemDetails _item;
         private bool _isSellTrade;
@@ -19,6 +22,9 @@ namespace Farm.Inventory
         {
             cancelButton.onClick.AddListener(CancelTrade);
             submitButton.onClick.AddListener(TradeItem);
+            buy1.onClick.AddListener(AddTradeAmount1);
+            buy10.onClick.AddListener(AddTradeAmount10);
+            buy50.onClick.AddListener(AddTradeAmount50);
         }
 
         // 设置TradeUI显示详情
@@ -28,7 +34,7 @@ namespace Farm.Inventory
             itemIcon.sprite = item.itemIcon;
             itemName.text = item.itemName;
             _isSellTrade = isSell;
-            tradeAmount.text = string.Empty;
+            tradeAmount.text = "0";
         }
 
         private void TradeItem()
@@ -44,6 +50,34 @@ namespace Farm.Inventory
         private void CancelTrade()
         {
             gameObject.SetActive(false);
+        }
+        
+        private void AddTradeAmount1()
+        {
+            AddTradeAmount(1);
+        }
+        
+        private void AddTradeAmount10()
+        {
+            AddTradeAmount(10);
+        }
+        
+        private void AddTradeAmount50()
+        {
+            AddTradeAmount(50);
+        }
+
+        private void AddTradeAmount(int amount)
+        {
+            if (int.TryParse(tradeAmount.text, out int currentAmount))
+            {
+                int newAmount = currentAmount + amount;
+                tradeAmount.text = newAmount.ToString();
+            }
+            else
+            {
+                Debug.LogError($"Trade amount {tradeAmount.text} is not a valid integer.");
+            }
         }
     }
 }
