@@ -767,11 +767,7 @@ PlayerSettings:
   activeInputHandler: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  qualitySettingsNames:
-  - Very Low
-  - Low
-  - Medium
-  - High
+  qualitySettingsNames: []
   projectName: 
   organizationId: 
   cloudEnabled: 0
