@@ -42,7 +42,7 @@ public class ItemEditor : EditorWindow
         
         _itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRowTemplate.uxml");
 
-        _defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/M Studio/Art/Items/Icons/icon_M.png");
+        _defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/StaticResources/Art/Items/Icons/icon_M.png");
 
         _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
