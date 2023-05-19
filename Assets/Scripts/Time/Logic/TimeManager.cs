@@ -121,7 +121,7 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     {
         _gameTime = new DateTimeData
         {
-            Year = 2022,
+            Year = 2023,
             Month = 1,
             Day = 1,
             Hour = 7,

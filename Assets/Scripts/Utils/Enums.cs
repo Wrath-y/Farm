@@ -57,3 +57,8 @@ public enum SoundName
     Pickup, Plant, TreeFalling, Rustle,
     AmbientCountryside1, AmbientCountryside2, MusicCalm1, MusicCalm2, MusicCalm3, MusicCalm4, MusicCalm5, MusicCalm6, AmbientIndoor1
 }
+
+public enum NPCShopType
+{
+    Crop
+}
