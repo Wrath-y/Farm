@@ -48,6 +48,7 @@ public class ItemEditor : EditorWindow
         _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
         _iconPreview = _itemDetailsSection.Q<VisualElement>("Icon");
 
+        root.Q<Button>("SortBtn").clicked += OnSortBtnClicked;
         root.Q<Button>("AddBtn").clicked += OnAddBtnClicked;
         root.Q<Button>("DelBtn").clicked += OnDelBtnClicked;
 
@@ -55,6 +56,12 @@ public class ItemEditor : EditorWindow
         GenrateListView();
     }
 
+    private void OnSortBtnClicked()
+    {
+        _itemList.Sort((item1, item2) => item1.itemID.CompareTo(item2.itemID));
+        _itemListView.Rebuild();
+    }
+    
     private void OnAddBtnClicked()
     {
         ItemDetails newItem = new ItemDetails();
