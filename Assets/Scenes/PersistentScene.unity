@@ -393,6 +393,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfcec5e4083f4acb9dc72b0671e0cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aaLoadkeys:
+  - MayorShop
+  shopItemCount: 4
   shopType: 0
 --- !u!114 &63165048
 MonoBehaviour:
