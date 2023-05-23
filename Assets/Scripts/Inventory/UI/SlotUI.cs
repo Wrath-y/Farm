@@ -53,6 +53,7 @@ public class SlotUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, ID
 
         if (slotType == SlotType.Bag)
         {
+            Debug.Log($"OnPointerClick{itemDetails.itemID}");
             EventHandler.CallItemSelected(itemDetails, isSelected);
         }
     }

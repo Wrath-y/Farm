@@ -107,8 +107,9 @@ public class CursorManager : Singleton<CursorManager>
             _buildImage.gameObject.SetActive(false);
             return;
         }
-
+        
         _curItem = itemDetails;
+        Debug.Log($"OnItemSelectedEvent {_curItem}");
         // TODO 新类型需添加鼠标样式
         _curSprite = itemDetails.itemType switch
         {
@@ -151,6 +152,7 @@ public class CursorManager : Singleton<CursorManager>
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
+                Debug.Log($"CheckPlayerInput {_curItem.itemID}");
                 EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
             }
         }

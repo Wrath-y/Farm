@@ -10689,10 +10689,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6309 <color=\"black\">\u7A7A\u683C <color=\"white\">\u7EE7\u7EED"
+  m_text: "\u70B9\u51FB\u5C4F\u5E55\u7EE7\u7EED"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: af8343464c7b841168ad0c9e0c0a36e1, type: 2}
-  m_sharedMaterial: {fileID: -9078275009115238261, guid: af8343464c7b841168ad0c9e0c0a36e1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5da2de0e4a3e541f5babdfca442670d7, type: 2}
+  m_sharedMaterial: {fileID: 3355191320806170175, guid: 5da2de0e4a3e541f5babdfca442670d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
