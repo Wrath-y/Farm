@@ -30,7 +30,7 @@ namespace Farm.Dialogue
         {
             _uiSign.SetActive(_canTalk);
 
-            if (_canTalk && !_isTalking && (Input.GetKeyDown(KeyCode.Space) || CursorClickEvent.Instance.IsShowNpcDialogue(CursorManager.Instance.GetMouseWorldPos())) )
+            if (_canTalk && !_isTalking && Input.touchCount > 0 && (Input.GetKeyDown(KeyCode.Space) || CursorClickEvent.Instance.IsShowNpcDialogue(CursorManager.Instance.GetMouseWorldPos())) )
             {
                 StartCoroutine(DialogueRoutine());
             }
