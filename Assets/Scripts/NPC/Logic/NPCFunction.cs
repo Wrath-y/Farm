@@ -95,8 +95,8 @@ public class NPCFunction : MonoBehaviour
         var cropDetailsList = CropManager.Instance.cropData.cropDetailsList;
         if (_seedCropDetails == null)
         {
-            // 遍历 cropDetailsList 变量获取所有 seedItemID 属性值第一位是2 的元素
-            _seedCropDetails = cropDetailsList.Where(crop => crop.seedItemID.ToString()[0] == '2').ToList();
+            // 遍历 cropDetailsList 变量获取所有 seedItemID 属性值第一位是1 的元素
+            _seedCropDetails = cropDetailsList.Where(crop => crop.seedItemID.ToString()[0] == '1').ToList();
         }
         
         int totalElements = _seedCropDetails.Count;
