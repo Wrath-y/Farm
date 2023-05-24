@@ -122,6 +122,7 @@ namespace Farm.Save
             {
                 saveable.RestoreData(jsonData.dataDict[saveable.GUID]);
             }
+            EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);
         }
     }
 }

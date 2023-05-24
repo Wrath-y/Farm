@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: MayorShop
   m_EditorClassIdentifier: 
   ItemList:
-  - itemID: 1007
+  - itemID: 1045
     itemAmount: 1
-  - itemID: 1019
+  - itemID: 1025
     itemAmount: 1
-  - itemID: 1023
+  - itemID: 1027
     itemAmount: 1
-  - itemID: 1047
+  - itemID: 1015
     itemAmount: 1

@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     private GameObject _menuCanvas;
     public GameObject menuPrefab;
 
+    public Button mobileSettingsBtn;
     public Button settingsBtn;
     public GameObject pausePanel;
     public Slider volumeSlider;
@@ -15,7 +16,15 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        settingsBtn.onClick.AddListener(TogglePausePanel);
+        if (GameObject.FindWithTag("JoyStick").GetComponent<VariableJoystick>() == null)
+        {
+            settingsBtn.onClick.AddListener(TogglePausePanel);
+        }
+        else
+        {
+            mobileSettingsBtn.onClick.AddListener(TogglePausePanel);
+        }
+        
         volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
     }
 
@@ -41,7 +50,7 @@ public class UIManager : MonoBehaviour
             Destroy(_menuCanvas.transform.GetChild(0).gameObject);
     }
 
-    private void TogglePausePanel()
+    public void TogglePausePanel()
     {
         bool isOpen = pausePanel.activeInHierarchy;
 
@@ -49,12 +58,14 @@ public class UIManager : MonoBehaviour
         {
             pausePanel.SetActive(false);
             Time.timeScale = 1;
+            EventHandler.CallUpdateGameStateEvent(GameState.Gameplay);
         }
         else
         {
             System.GC.Collect();
             pausePanel.SetActive(true);
             Time.timeScale = 0;
+            EventHandler.CallUpdateGameStateEvent(GameState.Pause);
         }
     }
 
@@ -67,9 +78,9 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator BackToMenu()
     {
-        pausePanel.SetActive(false);
         EventHandler.CallEndGameEvent();
         yield return new WaitForSeconds(1f);
         Instantiate(menuPrefab, _menuCanvas.transform);
+        pausePanel.SetActive(false);
     }
 }

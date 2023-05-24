@@ -114,6 +114,7 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     private void OnStartNewGameEvent(int obj)
     {
         NewGameTime();
+        _gamePause = false;
         // gameClockPause = false;
     }
 

@@ -152,13 +152,15 @@ public class CursorManager : Singleton<CursorManager>
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log($"CheckPlayerInput {_curItem.itemID}");
+                Debug.Log($"Mobile CheckPlayerInput {_curItem.itemID}");
                 EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
+                return;
             }
         }
 
         if (Input.GetMouseButtonDown(0) && _cursorPositionValid)
         {
+            Debug.Log($"PC CheckPlayerInput {_curItem.itemID}");
             EventHandler.CallMouseClickedEvent(_mouseWorldPos, _curItem);
         }
     }
