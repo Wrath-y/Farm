@@ -84,4 +84,11 @@ public class UIManager : MonoBehaviour
         Instantiate(menuPrefab, _menuCanvas.transform);
         pausePanel.SetActive(false);
     }
+    
+    public void SaveGame()
+    {
+        Time.timeScale = 1;
+        EventHandler.CallSaveGameEvent();
+        pausePanel.SetActive(false);
+    }
 }

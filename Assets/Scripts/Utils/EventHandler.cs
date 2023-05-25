@@ -183,4 +183,10 @@ public static class EventHandler
     {
         EndGameEvent?.Invoke();
     }
+    
+    public static event Action SaveGameEvent;
+    public static void CallSaveGameEvent()
+    {
+        SaveGameEvent?.Invoke();
+    }
 }

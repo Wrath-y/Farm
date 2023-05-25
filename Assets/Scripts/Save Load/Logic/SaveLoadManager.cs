@@ -36,12 +36,14 @@ namespace Farm.Save
         {
             EventHandler.StartNewGameEvent += OnStartNewGameEvent;
             EventHandler.EndGameEvent += OnEndGameEvent;
+            EventHandler.SaveGameEvent += OnSaveGameEvent;
         }
 
         private void OnDisable()
         {
             EventHandler.StartNewGameEvent -= OnStartNewGameEvent;
             EventHandler.EndGameEvent -= OnEndGameEvent;
+            EventHandler.SaveGameEvent -= OnSaveGameEvent;
         }
 
 
@@ -62,6 +64,11 @@ namespace Farm.Save
         {
             currentDataIndex = index;
         }
+        private void OnSaveGameEvent()
+        {
+            Save(currentDataIndex);
+        }
+        
         public void RegisterSaveable(ISaveable saveable)
         {
             if (!saveableList.Contains(saveable))
