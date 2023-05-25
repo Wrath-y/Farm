@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     private DateTimeData _gameTime;
     private bool _gamePause;
     private float _tikTime;
+    private float _acceleratedTimes = 1;
+    private bool _isResetSecondThreshold = false;
     
     //灯光时间差
     private float timeDifference;
@@ -82,8 +85,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
         if (Input.GetKey(KeyCode.G))
         {
             _gameTime.Day++;
-            EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
-            EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
         }
     }
     
@@ -198,6 +199,30 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
         }
 
         return LightShift.Morning;
+    }
+
+    public void AcceleratedTime()
+    {
+        _acceleratedTimes += 1;
+        Settings.SecondThreshold = (float)((decimal)Settings.SecondThreshold / 100m);
+        Debug.Log($"now SecondThreshold is {Settings.SecondThreshold}");
+        StartCoroutine(ResetSecondThreshold());
+    }
+    
+    IEnumerator ResetSecondThreshold()
+    {
+        if (_isResetSecondThreshold)
+        {
+            yield break;
+        }
+
+        Debug.Log("will ResetSecondThreshold");
+        _isResetSecondThreshold = true;
+        yield return new WaitForSeconds(Settings.AccelerationDuration);
+
+        _acceleratedTimes = 1;
+        Settings.SecondThreshold = Settings.OriginSecondThreshold;
+        Debug.Log("has ResetSecondThreshold");
     }
     
     public GameSaveData GenerateSaveData()

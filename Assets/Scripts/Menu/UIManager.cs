@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     private GameObject _menuCanvas;
     public GameObject menuPrefab;
 
+    public Button acceleratedTimeButton;
     public Button mobileSettingsBtn;
     public Button settingsBtn;
     public GameObject pausePanel;
@@ -24,7 +25,7 @@ public class UIManager : MonoBehaviour
         {
             mobileSettingsBtn.onClick.AddListener(TogglePausePanel);
         }
-        
+        acceleratedTimeButton.onClick.AddListener(TimeManager.Instance.AcceleratedTime);
         volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
     }
 
