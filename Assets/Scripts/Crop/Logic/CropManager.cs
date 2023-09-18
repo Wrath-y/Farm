@@ -133,7 +133,7 @@ namespace Farm.CropPlant
             _cropParent = GameObject.FindWithTag("CropParent").transform;
         }
 
-        private void OnPlantSeedEvent(int id, TileDetails tileDetails)
+        public void OnPlantSeedEvent(int id, TileDetails tileDetails)
         {
             CropDetails curCrop = GetCropDetails(id);
             Debug.Log("OnPlantSeedEvent"+id);
