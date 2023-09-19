@@ -200,9 +200,9 @@ namespace Farm.Map
                                         gridY = y,
                                         canDig = true,
                                     };
-                                    Vector3 pos = new Vector3(tileDetails.gridX + 0.5f, tileDetails.gridY + 0.5f, 0);
-                                    Transform cropParent = GameObject.FindWithTag("CropParent").transform;
-                                    Instantiate(itemSpawnDatas[i].crop, pos, Quaternion.identity, cropParent);
+                                    // Vector3 pos = new Vector3(tileDetails.gridX + 0.5f, tileDetails.gridY + 0.5f, 0);
+                                    // Transform cropParent = GameObject.FindWithTag("CropParent").transform;
+                                    // Instantiate(itemSpawnDatas[i].crop, pos, Quaternion.identity, cropParent);
                                 }
 
                                 break;
@@ -229,6 +229,7 @@ namespace Farm.Map
         {
             groundTileMap.ClearAllTiles();
             itemTileMap.ClearAllTiles();
+            return;
             Transform cropParent = GameObject.FindWithTag("CropParent").transform;
             // 获取所有子元素的 Transform
             Transform[] children = cropParent.GetComponentsInChildren<Transform>();
