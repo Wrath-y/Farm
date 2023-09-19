@@ -16,7 +16,7 @@ namespace Farm.Map
 
     public class MapGenerator : MonoBehaviour
     {
-        public Tilemap groundTileMap;
+        public Tilemap groundMidTileMap;
         public Tilemap itemTileMap;
 
         [Header("地图的宽度和高度")] public int width;
@@ -166,7 +166,7 @@ namespace Farm.Map
                 for (int y = 0; y < height; y++)
                 {
                     TileBase tile = IsGround(x, y) ? groundTile : waterTile;
-                    groundTileMap.SetTile(new Vector3Int(x, y), tile);
+                    groundMidTileMap.SetTile(new Vector3Int(x, y), tile);
                 }
             }
 
@@ -227,7 +227,7 @@ namespace Farm.Map
 
         public void CleanTileMap()
         {
-            groundTileMap.ClearAllTiles();
+            groundMidTileMap.ClearAllTiles();
             itemTileMap.ClearAllTiles();
             return;
             Transform cropParent = GameObject.FindWithTag("CropParent").transform;
