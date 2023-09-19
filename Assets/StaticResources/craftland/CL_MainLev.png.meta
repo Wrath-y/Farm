@@ -43,7 +43,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -61,14 +61,14 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
+  ignorePngGamma: 1
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -100278,8 +100278,8 @@ TextureImporter:
       CL_MainLev_2676: 1793558805
       CL_MainLev_4711: 2118848298
       CL_MainLev_568: 1166019659
-      CL_MainLev_3566: 408937760
       CL_MainLev_2842: 498162423
+      CL_MainLev_3566: 408937760
       CL_MainLev_1902: 561017779
       CL_MainLev_2438: 934546281
       CL_MainLev_2134: -117741937
@@ -102257,8 +102257,8 @@ TextureImporter:
       CL_MainLev_4068: -2038452985
       CL_MainLev_3793: -749952673
       CL_MainLev_4533: -406272641
-      CL_MainLev_2880: -2138507392
       CL_MainLev_4134: 701569011
+      CL_MainLev_2880: -2138507392
       CL_MainLev_1530: -90867192
       CL_MainLev_1577: 404801955
       CL_MainLev_1668: -17198639
@@ -102411,8 +102411,8 @@ TextureImporter:
       CL_MainLev_3716: -1758520817
       CL_MainLev_4158: 2072597014
       CL_MainLev_2292: -1302355107
-      CL_MainLev_2884: -1702293352
       CL_MainLev_383: 63622974
+      CL_MainLev_2884: -1702293352
       CL_MainLev_3711: -1158030296
       CL_MainLev_1254: 1900338711
       CL_MainLev_714: 922611822
@@ -102573,29 +102573,28 @@ TextureImporter:
       CL_MainLev_4665: 1778792814
       CL_MainLev_749: 692107123
       CL_MainLev_124: -1737045121
-      CL_MainLev_3747: -137674480
-      CL_MainLev_1496: 1956636326
       CL_MainLev_317: 1705370081
+      CL_MainLev_3747: -137674480
       CL_MainLev_4646: 587289232
       CL_MainLev_3730: 929848827
+      CL_MainLev_1496: 1956636326
       CL_MainLev_2768: 3111188
-      CL_MainLev_1165: -2028601484
+      CL_MainLev_3167: 427415239
       CL_MainLev_2905: 1402506142
       CL_MainLev_4443: -311836391
-      CL_MainLev_3830: -921680100
+      CL_MainLev_1165: -2028601484
       CL_MainLev_3039: 499239496
-      CL_MainLev_3167: 427415239
-      CL_MainLev_1693: 1852451767
       CL_MainLev_2801: -1567287891
-      CL_MainLev_LightGrassy_26: -12300374
+      CL_MainLev_1693: 1852451767
+      CL_MainLev_3830: -921680100
       CL_MainLev_537: -1823823836
       CL_MainLev_724: -1866198
       CL_MainLev_4337: -1074419634
       CL_MainLev_1008: 683948734
       CL_MainLev_2763: 2139612668
       CL_MainLev_3130: -2061763697
+      CL_MainLev_LightGrassy_26: -12300374
       CL_MainLev_2163: 1098051845
-      CL_MainLev_1721: -1080706770
       CL_MainLev_3355: 877709231
       CL_MainLev_1182: 35475150
       CL_MainLev_2638: 1090005687
@@ -102610,18 +102609,19 @@ TextureImporter:
       CL_MainLev_LightGrassy_36: 26210497
       CL_MainLev_2833: -1220875056
       CL_MainLev_1018: 14599697
-      CL_MainLev_2813: 611630799
+      CL_MainLev_1721: -1080706770
       CL_MainLev_4701: 1496000281
       CL_MainLev_848: -1205482779
+      CL_MainLev_1926: 392063725
       CL_MainLev_3298: -1344271776
       CL_MainLev_3464: -1301331008
-      CL_MainLev_1926: 392063725
       CL_MainLev_385: 1554949626
       CL_MainLev_489: -1503102847
       CL_MainLev_1070: 1118694757
       CL_MainLev_2389: 1071446739
       CL_MainLev_2152: -763676126
       CL_MainLev_4730: 1111085836
+      CL_MainLev_2813: 611630799
       CL_MainLev_534: 1355736175
       CL_MainLev_3559: 1836457380
       CL_MainLev_3525: 2063740670

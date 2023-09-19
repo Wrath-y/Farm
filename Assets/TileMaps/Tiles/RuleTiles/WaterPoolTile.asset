@@ -160,12 +160,6 @@ MonoBehaviour:
     m_Sprites:
     - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: -1119551624, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 106801900, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
-    - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     - {fileID: 1714089215, guid: 5f1658cda1d5c43388391482ee73b92e, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
