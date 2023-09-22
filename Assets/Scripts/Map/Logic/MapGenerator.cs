@@ -16,6 +16,7 @@ namespace Farm.Map
 
     public class MapGenerator : MonoBehaviour
     {
+        public Tilemap groundBottomTileMap;
         public Tilemap groundMidTileMap;
         public Tilemap itemTileMap;
 
@@ -39,8 +40,8 @@ namespace Farm.Map
         [Header("移除孤岛Tile的次数")]
         public int removeSeparateTileNumberOfTimes;
 
-        [Header("表示地面和物品的瓦片地图")]
-        public TileBase groundTile;
+        [FormerlySerializedAs("groundTile")] [Header("表示地面和物品的瓦片地图")]
+        public TileBase groundBottomTile;
         public TileBase waterTile;
 
         // 存储地图数据的二维数组
@@ -165,8 +166,11 @@ namespace Farm.Map
             {
                 for (int y = 0; y < height; y++)
                 {
-                    TileBase tile = IsGround(x, y) ? groundTile : waterTile;
-                    groundMidTileMap.SetTile(new Vector3Int(x, y), tile);
+                    groundBottomTileMap.SetTile(new Vector3Int(x, y), groundBottomTile);
+                    if (!IsGround(x, y))
+                    {
+                        groundMidTileMap.SetTile(new Vector3Int(x, y), waterTile);
+                    }
                 }
             }
 
@@ -227,6 +231,7 @@ namespace Farm.Map
 
         public void CleanTileMap()
         {
+            groundBottomTileMap.ClearAllTiles();
             groundMidTileMap.ClearAllTiles();
             itemTileMap.ClearAllTiles();
             return;

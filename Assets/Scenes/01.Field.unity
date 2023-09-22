@@ -2124,7 +2124,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -28558,7 +28557,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -51271,7 +51269,6 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -51415,7 +51412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2043033252
 Transform:
   m_ObjectHideFlags: 0
@@ -51444,6 +51441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2097931537}
   - component: {fileID: 2097931536}
+  - component: {fileID: 2097931538}
   m_Layer: 0
   m_Name: Grid Tilemap
   m_TagString: Untagged
@@ -51490,6 +51488,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2097931538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097931535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0049116179174971a491d6cfea1ef5f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundBottomTileMap: {fileID: 684667228}
+  groundMidTileMap: {fileID: 1888630645}
+  itemTileMap: {fileID: 0}
+  width: 0
+  height: 0
+  seed: 0
+  useRandomSeed: 0
+  lacunarity: 0
+  waterProbability: 0
+  itemSpawnDatas: []
+  removeSeparateTileNumberOfTimes: 0
+  groundBottomTile: {fileID: 0}
+  waterTile: {fileID: 0}
 --- !u!1 &2134098243
 GameObject:
   m_ObjectHideFlags: 0
