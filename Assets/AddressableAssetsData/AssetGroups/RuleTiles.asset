@@ -17,12 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: df5e434a6a3544b4487a7639785f12ae
   m_SerializeEntries:
-  - m_GUID: 195466f8e22cf41c8a5c7a24c51d4f7e
-    m_Address: DigTile
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 6cd5b14b78c494bd88af37cb522160a6
     m_Address: WaterTile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a73bcc85503ac435aa132ec816f8f77d
+    m_Address: DigTile
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

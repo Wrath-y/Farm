@@ -59,26 +59,26 @@ TagManager:
   - name: GroundTop
     uniqueID: 2403298235
     locked: 0
-  - name: Stuff1
+  - name: GridStuff1
     uniqueID: 3327065057
     locked: 0
-  - name: Stuff2
+  - name: GridStuff2
     uniqueID: 176458233
     locked: 0
-  - name: Dig
+  - name: GridDig
     uniqueID: 3208412395
     locked: 0
-  - name: Water
+  - name: GridWater
     uniqueID: 3570743499
+    locked: 0
+  - name: GridFront1
+    uniqueID: 1246329585
+    locked: 0
+  - name: GridFront2
+    uniqueID: 3882723591
     locked: 0
   - name: Instance
     uniqueID: 1059886271
-    locked: 0
-  - name: Front1
-    uniqueID: 1246329585
-    locked: 0
-  - name: Front2
-    uniqueID: 3882723591
     locked: 0
   - name: Collision
     uniqueID: 3785700471

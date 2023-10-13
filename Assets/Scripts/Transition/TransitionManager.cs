@@ -47,6 +47,7 @@ namespace Farm.Transition
 
         private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
         {
+            Debug.Log("transition");
             if (!_isFaded)
             {
                 StartCoroutine(Transition(targetSceneName, targetPos));
