@@ -110,7 +110,7 @@ public class CursorManager : Singleton<CursorManager>
         }
         
         _curItem = itemDetails;
-        Debug.Log($"OnItemSelectedEvent {_curItem}");
+        Debug.Log($"OnItemSelectedEvent {_curItem.itemType}");
         // TODO 新类型需添加鼠标样式
         _curSprite = itemDetails.itemType switch
         {
@@ -132,7 +132,7 @@ public class CursorManager : Singleton<CursorManager>
         {
             _buildImage.gameObject.SetActive(true);
             _buildImage.sprite = itemDetails.itemOnWorldSprite;
-            _buildImage.SetNativeSize();
+            // _buildImage.SetNativeSize();
         }
     }
 

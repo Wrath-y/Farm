@@ -100,8 +100,9 @@ public class Player : MonoBehaviour, ISaveable
         
         if (itemDetails.itemType != ItemType.Seed && itemDetails.itemType != ItemType.Commodity && itemDetails.itemType != ItemType.Furniture)
         {
-            _mouseX = mouseWorldPos.x - transform.position.x;
-            _mouseY = mouseWorldPos.y - (transform.position.y + 0.85f);
+            Vector3 pos = transform.position;
+            _mouseX = mouseWorldPos.x - pos.x;
+            _mouseY = mouseWorldPos.y - (pos.y + 0.85f);
             if (Mathf.Abs(_mouseX) > MathF.Abs(_mouseY))
             {
                 _mouseY = 0;
