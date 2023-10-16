@@ -84,6 +84,7 @@ public class CursorManager : Singleton<CursorManager>
         {
             _cursorImage.transform.position = Input.mousePosition;
         }
+        
         if (!InteractWithUI() && _cursorEnable)
         {
             SetCursorImage(_curSprite);
@@ -145,6 +146,9 @@ public class CursorManager : Singleton<CursorManager>
         _curGrid = FindObjectOfType<Grid>();
     }
 
+    /**
+     *  检查是否有触摸/点击输入且光标位置有效 
+     */
     private void CheckPlayerInput()
     {
         if (Input.touchCount > 0 && _cursorPositionValid)
@@ -193,6 +197,9 @@ public class CursorManager : Singleton<CursorManager>
         _buildImage.color = new Color(1, 0, 0, 0.5f);
     }
 
+    /**
+     * 检查当前的事件系统是否存在，并且鼠标是否悬停在UI对象上方
+     */
     private bool InteractWithUI()
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
