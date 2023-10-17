@@ -357,6 +357,7 @@ namespace Farm.Map
 
                 if (tileDetails.seedItemId > -1)
                 {
+                    Debug.Log($"CallPlantSeedEvent {tileDetails}");
                     EventHandler.CallPlantSeedEvent(tileDetails.seedItemId, tileDetails);
                 }
             }
