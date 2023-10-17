@@ -21,10 +21,6 @@ MonoBehaviour:
     m_Address: MapData_Home
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 2c11358edfaa64e88a46583f58696d18
-    m_Address: MapData_Start
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ee72edccf4659d64885cd2daf9e0a411
     m_Address: MapData_Field
     m_ReadOnly: 0

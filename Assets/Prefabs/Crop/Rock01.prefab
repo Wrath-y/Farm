@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5162821375774514115, guid: 19e1850d6ef18764bae135e321883842, type: 3}
+      propertyPath: m_Size.x
+      value: 1.4774008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162821375774514115, guid: 19e1850d6ef18764bae135e321883842, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4262509
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162821375774514115, guid: 19e1850d6ef18764bae135e321883842, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.017050266
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162821375774514115, guid: 19e1850d6ef18764bae135e321883842, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.9292276
+      objectReference: {fileID: 0}
     - target: {fileID: 7687289002835363518, guid: 19e1850d6ef18764bae135e321883842, type: 3}
       propertyPath: m_Size.x
       value: 1.35
@@ -66,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 7687289002835363518, guid: 19e1850d6ef18764bae135e321883842, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b40fde803efab463bbc950e4d29ee5ce, type: 3}
+      objectReference: {fileID: 555592989, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
     - target: {fileID: 7687289002835363518, guid: 19e1850d6ef18764bae135e321883842, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -90,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a811d17c4b946589cfee1e0be74b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedItemID: 1021
+  seedItemID: 2500
   growthDays: 0
 --- !u!1 &6289579494230428958 stripped
 GameObject:
@@ -110,16 +126,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2524271}
+  m_Offset: {x: -0.010599613, y: 0.60619664}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.35, y: 1.2}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.8125, y: 1.625}
     newSize: {x: 1.35, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8839817, y: 0.38446617}
+  m_Size: {x: 1.3433275, y: 0.5752721}
   m_EdgeRadius: 0

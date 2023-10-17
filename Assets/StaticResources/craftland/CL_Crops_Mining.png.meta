@@ -5618,7 +5618,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_264
+      name: CL_Crops_TreeSeed_Icon
       rect:
         serializedVersion: 2
         x: 1
@@ -5639,7 +5639,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_265
+      name: CL_Crops_TreeSeed
       rect:
         serializedVersion: 2
         x: 19
@@ -5660,7 +5660,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_266
+      name: CL_Crops_Tree5
       rect:
         serializedVersion: 2
         x: 131
@@ -5744,7 +5744,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_270
+      name: CL_Crops_Tree4
       rect:
         serializedVersion: 2
         x: 88
@@ -5933,7 +5933,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_279
+      name: CL_Crops_Grass3
       rect:
         serializedVersion: 2
         x: 576
@@ -5954,7 +5954,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_280
+      name: CL_Crops_Tree3
       rect:
         serializedVersion: 2
         x: 46
@@ -6143,7 +6143,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_289
+      name: CL_Crops_Tree1
       rect:
         serializedVersion: 2
         x: 2
@@ -6164,7 +6164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_290
+      name: CL_Crops_Tree2
       rect:
         serializedVersion: 2
         x: 16
@@ -6185,7 +6185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_291
+      name: CL_Crops_TreeTrunk
       rect:
         serializedVersion: 2
         x: 176
@@ -6248,7 +6248,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_294
+      name: CL_Crops_Grass_Icon1
       rect:
         serializedVersion: 2
         x: 416
@@ -6269,7 +6269,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_295
+      name: CL_Crops_Grass1_1
       rect:
         serializedVersion: 2
         x: 434
@@ -6395,7 +6395,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_301
+      name: CL_Crops_Grass1
       rect:
         serializedVersion: 2
         x: 480
@@ -6479,7 +6479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_305
+      name: CL_Crops_Grass2
       rect:
         serializedVersion: 2
         x: 576
@@ -6983,7 +6983,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_329
+      name: CL_Crops_Wood_Icon
       rect:
         serializedVersion: 2
         x: 208
@@ -7004,7 +7004,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_330
+      name: CL_Crops_Wood
       rect:
         serializedVersion: 2
         x: 227
@@ -7046,7 +7046,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_332
+      name: CL_Crops_Rock_Icon
       rect:
         serializedVersion: 2
         x: 272
@@ -7067,7 +7067,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_333
+      name: CL_Crops_Rock
       rect:
         serializedVersion: 2
         x: 293
@@ -7319,7 +7319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_345
+      name: CL_Crops_Rock1
       rect:
         serializedVersion: 2
         x: 322
@@ -7403,7 +7403,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_349
+      name: CL_Crops_Rock2
       rect:
         serializedVersion: 2
         x: 273
@@ -7865,7 +7865,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_371
+      name: CL_Crops_Rock3
       rect:
         serializedVersion: 2
         x: 304
@@ -9012,15 +9012,14 @@ TextureImporter:
       CL_Crops_Mining_413: -2121236344
       CL_Crops_Mining_Tomato_6: 644829715
       CL_Crops_Mining_Red_bell_pepper: 152699944
+      CL_Crops_Grass2: 516619738
       CL_Crops_Mining_293: 701528407
       CL_Crops_Mining_96: 1127869223
-      CL_Crops_Mining_305: 516619738
-      CL_Crops_Mining_333: 1462240903
       CL_Crops_Mining_Strawberry_4: -1464083136
       CL_Crops_Mining_Carrot_1: 1846530723
       CL_Crops_Mining_Carrot_4: -794356109
       CL_Crops_Mining_211: 1824213397
-      CL_Crops_Mining_265: -458724330
+      CL_Crops_Grass3: 1103199196
       CL_Crops_Mining_2: 1385751780
       CL_Crops_Mining_340: 315142733
       CL_Crops_Mining_307: -115370149
@@ -9032,407 +9031,408 @@ TextureImporter:
       CL_Crops_Mining_Wheat_2: 891179395
       CL_Crops_Mining_375: 1954234351
       CL_Crops_Mining_262: 1661438503
+      CL_Crops_Rock1: 555592989
       CL_Crops_Mining_240: 1311112074
       CL_Crops_Mining_263: 36683145
       CL_Crops_Mining_57: -718661669
       CL_Crops_Mining_140: -493066861
       CL_Crops_Mining_Cabbage_3: -1627125964
+      CL_Crops_Rock3: -608392936
       CL_Crops_Mining_1: 1748627238
       CL_Crops_Mining_50: 327699145
       CL_Crops_Mining_250: 2026756145
       CL_Crops_Mining_Wheat_5: -1702293891
-      CL_Crops_Mining_295: -331717481
-      CL_Crops_Mining_378: 1672795468
-      CL_Crops_Mining_83: 708159624
-      CL_Crops_Mining_379: -1684072346
-      CL_Crops_Mining_49: 1039830219
-      CL_Crops_Mining_196: 1433208348
-      CL_Crops_Mining_247: 1764849327
-      CL_Crops_Mining_408: 807473289
-      CL_Crops_Mining_321: 1590119590
-      CL_Crops_Mining_111: -142936202
-      CL_Crops_Mining_144: 813673762
-      CL_Crops_Mining_323: 2111237126
-      CL_Crops_Mining_198: 162808344
-      CL_Crops_Mining_267: -1519175012
-      CL_Crops_Mining_361: -159932520
-      CL_Crops_Mining_409: 1116056537
-      CL_Crops_Mining_294: -1415958727
-      CL_Crops_Mining_337: 1038162937
-      CL_Crops_Mining_166: -27509343
-      CL_Crops_Mining_280: -1514417803
-      CL_Crops_Mining_54: 1636987476
-      CL_Crops_Mining_252: 1225022623
-      CL_Crops_Mining_109: -488888938
-      CL_Crops_Mining_317: 1263192213
-      CL_Crops_Mining_377: -1627125964
-      CL_Crops_Mining_Green_bell_pepper: -1887744437
-      CL_Crops_Mining_24: -1783164897
-      CL_Crops_Mining_Red_bell_pepper_Seed: -1407906991
-      CL_Crops_Mining_416: -816330887
-      CL_Crops_Mining_Cauliflower_2: 965789376
-      CL_Crops_Mining_Cauliflower: -27509343
-      CL_Crops_Mining_18: -1484282454
-      CL_Crops_Mining_Yellow_bell_pepper_2: 1341409221
-      CL_Crops_Mining_6: -1336856913
-      CL_Crops_Mining_346: -1864840909
-      CL_Crops_Mining_210: -875172109
-      CL_Crops_Mining_71: -369302754
-      CL_Crops_Mining_19: 662448241
-      CL_Crops_Mining_121: -1816874443
-      CL_Crops_Mining_182: -1228769388
-      CL_Crops_Mining_405: 1409703865
-      CL_Crops_Mining_Green_bell_pepper_3: 1839259115
-      CL_Crops_Mining_246: -1778365621
-      CL_Crops_Mining_273: 2014809327
-      CL_Crops_Mining_Strawberry_7: -939639168
-      CL_Crops_Mining_Corn_7: -333798336
-      CL_Crops_Mining_Yellow_bell_pepper_Seed: -1703294797
-      CL_Crops_Mining_258: -617027557
-      CL_Crops_Mining_Wheat_Box: 1171106789
-      CL_Crops_Mining_298: -964303921
-      CL_Crops_Mining_Red_bell_pepper_3: 727235079
-      CL_Crops_Mining_320: -1679277516
-      CL_Crops_Mining_60: 965789376
-      CL_Crops_Mining_Green_bell_pepper_Box: 143893031
-      CL_Crops_Mining_Tomato_1: -1787035136
-      CL_Crops_Mining_220: 1456948184
-      CL_Crops_Mining_309: 943260086
-      CL_Crops_Mining_Tomato_3: -1434344579
-      CL_Crops_Mining_215: -1703294797
-      CL_Crops_Mining_404: 1727496358
-      CL_Crops_Mining_51: 1624397531
-      CL_Crops_Mining_420: 1479909400
-      CL_Crops_Mining_Carrot_5: 1588681633
-      CL_Crops_Mining_Tomato_4: -1944706537
-      CL_Crops_Mining_58: 90575477
-      CL_Crops_Mining_99: 604539393
-      CL_Crops_Mining_400: -859385551
-      CL_Crops_Mining_Strawberry: 323679595
-      CL_Crops_Mining_102: -357163109
-      CL_Crops_Mining_322: -1853696437
-      CL_Crops_Mining_Saccharum_1: -1096040964
-      CL_Crops_Mining_Red_bell_pepper_4: -1962312498
-      CL_Crops_Mining_251: -2097073066
-      CL_Crops_Mining_Red_bell_pepper_7: 399041411
-      CL_Crops_Mining_418: -1369607641
-      CL_Crops_Mining_292: 490358159
-      CL_Crops_Mining_271: -2064405318
-      CL_Crops_Mining_88: 655148651
-      CL_Crops_Mining_130: -1048532888
-      CL_Crops_Mining_Cabbage_4: 954962395
-      CL_Crops_Mining_213: 1395635258
-      CL_Crops_Mining_161: 739331172
-      CL_Crops_Mining_165: 1863889539
-      CL_Crops_Mining_149: -687093862
-      CL_Crops_Mining_Beetroot_2: 466702792
-      CL_Crops_Mining_Corn_3: 1769942819
-      CL_Crops_Mining_310: 335075811
-      CL_Crops_Mining_313: -514535826
-      CL_Crops_Mining_137: -1180862305
-      CL_Crops_Mining_73: 1474169443
-      CL_Crops_Mining_176: -497249660
-      CL_Crops_Mining_Carrot_2: 1924278182
-      CL_Crops_Mining_115: -1967270304
-      CL_Crops_Mining_Strawberry_6: -193856124
-      CL_Crops_Mining_290: -464502573
-      CL_Crops_Mining_411: 1535149850
-      CL_Crops_Mining_87: 910244632
-      CL_Crops_Mining_300: -1560126773
-      CL_Crops_Mining_380: 1215558897
-      CL_Crops_Mining_316: -1171835792
-      CL_Crops_Mining_341: 581290922
-      CL_Crops_Mining_Saccharum_Box: 525575268
-      CL_Crops_Mining_Yellow_bell_pepper_6: 723619853
-      CL_Crops_Mining_Beetroot__Box: 633873546
-      CL_Crops_Mining_239: 141612286
-      CL_Crops_Mining_Red_bell_pepper_1: -1986932170
-      CL_Crops_Mining_384: 1971537431
-      CL_Crops_Mining_390: -373756546
-      CL_Crops_Mining_217: -1035002303
-      CL_Crops_Mining_275: 1087035673
-      CL_Crops_Mining_358: -94445625
-      CL_Crops_Mining_7: 2137220182
-      CL_Crops_Mining_126: -468125081
-      CL_Crops_Mining_241: -66552700
-      CL_Crops_Mining_36: -1377237365
-      CL_Crops_Mining_311: 1731195811
-      CL_Crops_Mining_Beetroot_3: 1479909400
-      CL_Crops_Mining_177: 80311743
-      CL_Crops_Mining_422: -1876186097
-      CL_Crops_Mining_82: -1902332823
-      CL_Crops_Mining_122: -1944706537
-      CL_Crops_Mining_173: -648109150
-      CL_Crops_Mining_Saccharum_4: -687093862
-      CL_Crops_Mining_214: 1151031670
-      CL_Crops_Mining_86: 642762796
-      CL_Crops_Mining_270: -891692062
-      CL_Crops_Mining_127: 1378392803
-      CL_Crops_Mining_366: 882231545
-      CL_Crops_Mining_301: 2125025086
-      CL_Crops_Mining_367: 83517645
-      CL_Crops_Mining_Tomato_Box: -528372296
-      CL_Crops_Mining_5: 479263056
-      CL_Crops_Mining_387: -1919842035
-      CL_Crops_Mining_Cauliflower_5: 1678591108
-      CL_Crops_Mining_110: 1261407670
-      CL_Crops_Mining_16: -1285139659
-      CL_Crops_Mining_Carrot_3: 912668831
-      CL_Crops_Mining_74: -1778365621
-      CL_Crops_Mining_325: 1924278182
-      CL_Crops_Mining_Tomato_2: -863507759
-      CL_Crops_Mining_8: -1194034766
-      CL_Crops_Mining_410: -34828046
-      CL_Crops_Mining_257: 1777725538
-      CL_Crops_Mining_141: -1001162473
-      CL_Crops_Mining_255: -1834017554
-      CL_Crops_Mining_327: -1801744158
-      CL_Crops_Mining_Saccharum_3: 37820420
-      CL_Crops_Mining_Cauliflower_3: -1902332823
-      CL_Crops_Mining_352: 797664092
-      CL_Crops_Mining_Saccharum_2: -3977157
-      CL_Crops_Mining_Corn_5: -1055110539
-      CL_Crops_Mining_360: 519143803
-      CL_Crops_Mining_201: -1672936712
-      CL_Crops_Mining_Tomato_7: -1708139537
-      CL_Crops_Mining_53: -379076947
-      CL_Crops_Mining_Wheat_4: -1622952625
-      CL_Crops_Mining_254: -1986932170
-      CL_Crops_Mining_304: 1167429971
-      CL_Crops_Mining_407: 862813995
-      CL_Crops_Mining_348: -1428602302
-      CL_Crops_Mining_Corn_1: 943260086
-      CL_Crops_Mining_281: -242637964
-      CL_Crops_Mining_335: 1264473160
-      CL_Crops_Mining_297: 1642207649
-      CL_Crops_Mining_112: 221716000
-      CL_Crops_Mining_285: 1221520444
-      CL_Crops_Mining_Carrot_Seed: -1783164897
-      CL_Crops_Mining_Saccharum_Seed: 2113285563
-      CL_Crops_Mining_326: -1000419636
-      CL_Crops_Mining_Yellow_bell_pepper_1: 1096154252
-      CL_Crops_Mining_Strawberry_3: -66552700
-      CL_Crops_Mining_253: -606506829
-      CL_Crops_Mining_45: 2009576924
-      CL_Crops_Mining_296: 53116694
-      CL_Crops_Mining_306: 399041411
-      CL_Crops_Mining_Yellow_bell_pepper_5: 393245644
-      CL_Crops_Mining_369: 1341409221
-      CL_Crops_Mining_114: 1846530723
-      CL_Crops_Mining_Cabbage_5: -1081298992
-      CL_Crops_Mining_Cabbage_Box: -497249660
-      CL_Crops_Mining_331: -1920632981
-      CL_Crops_Mining_Saccharum_7: 984753335
-      CL_Crops_Mining_Green_bell_pepper_4: 444449827
-      CL_Crops_Mining_200: -1887744437
-      CL_Crops_Mining_48: -681703837
-      CL_Crops_Mining_59: 526450790
-      CL_Crops_Mining_342: -93695694
-      CL_Crops_Mining_116: -617027557
-      CL_Crops_Mining_277: 912668831
-      CL_Crops_Mining_359: 1862546515
-      CL_Crops_Mining_256: 723619853
-      CL_Crops_Mining_106: 439787487
-      CL_Crops_Mining_Corn_Seed: -497249660
-      CL_Crops_Mining_38: 919398127
-      CL_Crops_Mining_264: 1505551795
-      CL_Crops_Mining_365: 1332361782
-      CL_Crops_Mining_32: 449568300
-      CL_Crops_Mining_406: 644829715
-      CL_Crops_Mining_259: -527012710
-      CL_Crops_Mining_Red_bell_pepper_6: -1864840909
-      CL_Crops_Mining_56: 891179395
-      CL_Crops_Mining_168: 367423714
-      CL_Crops_Mining_Wheat_3: 268496588
-      CL_Crops_Mining_243: 1420930866
-      CL_Crops_Mining_Strawberry_1: -1403841460
-      CL_Crops_Mining_204: -1339485357
-      CL_Crops_Mining_288: -443970694
-      CL_Crops_Mining_363: -921073700
-      CL_Crops_Mining_244: -1571039229
-      CL_Crops_Mining_351: -1597401795
-      CL_Crops_Mining_315: 99622747
-      CL_Crops_Mining_93: 1815241431
-      CL_Crops_Mining_284: 466702792
-      CL_Crops_Mining_97: -11104422
-      CL_Crops_Mining_Corn_Box: 487453039
-      CL_Crops_Mining_Cabbage: 1971537431
-      CL_Crops_Mining_Red_bell_pepper_2: -1300422064
-      CL_Crops_Mining_381: -280311574
-      CL_Crops_Mining_314: -1826450119
-      CL_Crops_Mining_108: -1344775684
-      CL_Crops_Mining_324: -125374108
-      CL_Crops_Mining_303: -82263879
-      CL_Crops_Mining_419: -1662711225
-      CL_Crops_Mining_386: -343930962
-      CL_Crops_Mining_197: -2058034949
-      CL_Crops_Mining_249: -984636880
-      CL_Crops_Mining_Yellow_bell_pepper_3: -36583612
-      CL_Crops_Mining_64: -147710304
-      CL_Crops_Mining_286: -1081298992
-      CL_Crops_Mining_199: 1148299176
-      CL_Crops_Mining_368: -3977157
-      CL_Crops_Mining_Saccharum_5: -1012065251
-      CL_Crops_Mining_Yellow_bell_pepper_4: -162114754
-      CL_Crops_Mining_382: -1482753647
-      CL_Crops_Mining_Cauliflower_4: 1167429971
-      CL_Crops_Mining_373: 149750723
-      CL_Crops_Mining_224: -284643041
-      CL_Crops_Mining_415: -1124698061
-      CL_Crops_Mining_339: 1996391009
-      CL_Crops_Mining_21: 863944427
-      CL_Crops_Mining_330: 152699944
-      CL_Crops_Mining_388: -1136748246
-      CL_Crops_Mining_Beetroot_1: 1384886456
-      CL_Crops_Mining_289: 1963742792
-      CL_Crops_Mining_345: -1403841460
-      CL_Crops_Mining_343: 1615967747
-      CL_Crops_Mining_216: -2063511884
-      CL_Crops_Mining_Green_bell_pepper_7: -155286802
-      CL_Crops_Mining_20: 629049123
-      CL_Crops_Mining_374: 1588681633
-      CL_Crops_Mining_417: -1996357164
-      CL_Crops_Mining_399: -1638221675
-      CL_Crops_Mining_412: 1880105780
-      CL_Crops_Mining_72: 2034465547
-      CL_Crops_Mining_237: -1012065251
-      CL_Crops_Mining_347: -831805402
-      CL_Crops_Mining_242: -1132484728
-      CL_Crops_Mining_23: -2114300157
-      CL_Crops_Mining_22: 20256735
-      CL_Crops_Mining_414: -963869948
-      CL_Crops_Mining_34: -1453474329
-      CL_Crops_Mining_371: -1968845673
-      CL_Crops_Mining_84: 487453039
-      CL_Crops_Mining_68: -1809347414
-      CL_Crops_Mining_27: 1641730209
-      CL_Crops_Mining_167: -1708139537
-      CL_Crops_Mining_Cabbage_2: -891692062
-      CL_Crops_Mining_80: -1293799807
-      CL_Crops_Mining_336: 157484624
-      CL_Crops_Mining_95: -683841150
-      CL_Crops_Mining_159: 891179395
-      CL_Crops_Mining_Corn_6: -1017921909
-      CL_Crops_Mining_353: 596902353
-      CL_Crops_Mining_332: -806245830
-      CL_Crops_Mining_Wheat_1: -2104224494
-      CL_Crops_Mining_Strawberry_Box: -1228769388
-      CL_Crops_Mining_33: -1825733764
-      CL_Crops_Mining_212: -123131813
-      CL_Crops_Mining_147: -810321052
-      CL_Crops_Mining_Saccharum_6: 1963742792
-      CL_Crops_Mining_37: -835223802
-      CL_Crops_Mining_185: -1977543660
-      CL_Crops_Mining_194: -162114754
-      CL_Crops_Mining_334: -1434344579
-      CL_Crops_Mining_142: 1240638134
-      CL_Crops_Mining_272: -1096040964
-      CL_Crops_Mining_350: 1057019981
-      CL_Crops_Mining_357: 1069107357
-      CL_Crops_Mining_Green_bell_pepper_5: 964721612
-      CL_Crops_Mining_Saccharum: -1679277516
-      CL_Crops_Mining_Tomato_5: 2014809327
-      CL_Crops_Mining_0: 1165870845
-      CL_Crops_Mining_175: -530909942
-      CL_Crops_Mining_98: -1796170391
-      CL_Crops_Mining_55: -1876066262
-      CL_Crops_Mining_202: -1028724769
-      CL_Crops_Mining_Yellow_bell_pepper_7: 1731195811
-      CL_Crops_Mining_Beetroot_4: 121885046
-      CL_Crops_Mining_236: 419690066
-      CL_Crops_Mining_308: -515853490
-      CL_Crops_Mining_Beetroot: -1336856913
-      CL_Crops_Mining_123: 689708468
-      CL_Crops_Mining_Cabbage_1: -1299518412
-      CL_Crops_Mining_35: -1050346591
-      CL_Crops_Mining_Red_bell_pepper_5: 797664092
-      CL_Crops_Mining_Strawberry_Seed: -1834017554
-      CL_Crops_Mining_Cabbage_Seed: 596902353
-      CL_Crops_Mining_67: 475198852
-      CL_Crops_Mining_356: -608392936
-      CL_Crops_Mining_287: 1138679679
-      CL_Crops_Mining_349: -275999383
-      CL_Crops_Mining_Corn: -776721897
-      CL_Crops_Mining_372: -1284062278
-      CL_Crops_Mining_302: -1017921909
-      CL_Crops_Mining_261: 143893031
-      CL_Crops_Mining_Tomato: 1263192213
-      CL_Crops_Mining_245: 630989724
-      CL_Crops_Mining_385: 1292454641
-      CL_Crops_Mining_278: 1384886456
-      CL_Crops_Mining_148: -1217511542
-      CL_Crops_Mining_291: 1901645384
-      CL_Crops_Mining_52: -2004553715
-      CL_Crops_Mining_282: 422455589
-      CL_Crops_Mining_312: -21835242
-      CL_Crops_Mining_283: 1513177794
-      CL_Crops_Mining_94: 392732911
-      CL_Crops_Mining_113: 2123569784
-      CL_Crops_Mining_318: -1946744979
-      CL_Crops_Mining_319: 984753335
-      CL_Crops_Mining_370: -2014911397
-      CL_Crops_Mining_Cauliflower_Box: 604539393
-      CL_Crops_Mining_266: 1592024763
-      CL_Crops_Mining_203: 525575268
-      CL_Crops_Mining_Carrot: -1445224105
-      CL_Crops_Mining_69: -1946293549
-      CL_Crops_Mining_186: -601799988
-      CL_Crops_Mining_248: 1648298234
-      CL_Crops_Mining_376: 362256810
-      CL_Crops_Mining_Red_bell_pepper_Box: -1853696437
-      CL_Crops_Mining_160: -1472581392
-      CL_Crops_Mining_421: 1875238682
-      CL_Crops_Mining_Wheat_Seed: 626627850
-      CL_Crops_Mining_Green_bell_pepper_Seed: -307953800
-      CL_Crops_Mining_Green_bell_pepper_6: -453439392
-      CL_Crops_Mining_355: 184950011
-      CL_Crops_Mining_274: 398663570
-      CL_Crops_Mining_47: 1103199196
-      CL_Crops_Mining_17: 323679595
-      CL_Crops_Mining_Strawberry_2: 739331172
-      CL_Crops_Mining_143: 456073961
-      CL_Crops_Mining_279: -506407386
-      CL_Crops_Mining_Yellow_bell_pepper_Box: 1332361782
-      CL_Crops_Mining_Cauliflower_1: -1560126773
-      CL_Crops_Mining_383: -691421258
-      CL_Crops_Mining_Wheat: -206453453
-      CL_Crops_Mining_146: -551553943
-      CL_Crops_Mining_139: 1678591108
-      CL_Crops_Mining_184: 954524237
-      CL_Crops_Mining_85: 1048455410
-      CL_Crops_Mining_Corn_4: -1377237365
-      CL_Crops_Mining_70: 819433633
-      CL_Crops_Mining_276: -1514154278
-      CL_Crops_Mining_183: -826159746
-      CL_Crops_Mining_328: -1239365871
-      CL_Crops_Mining_299: 654117719
-      CL_Crops_Mining_225: -1962069092
-      CL_Crops_Mining_3: -678466295
-      CL_Crops_Mining_Yellow_bell_pepper: -1171835792
-      CL_Crops_Mining_25: 1955644097
-      CL_Crops_Mining_329: 2139919040
-      CL_Crops_Mining_362: -1042514732
-      CL_Crops_Mining_238: 1248158355
-      CL_Crops_Mining_Beetroot_5: 529986817
-      CL_Crops_Mining_Carrot_Box: 1874918569
-      CL_Crops_Mining_66: -257623001
-      CL_Crops_Mining_268: -1810477553
-      CL_Crops_Mining_164: 1300709427
-      CL_Crops_Mining_Green_bell_pepper_1: -2114300157
-      CL_Crops_Mining_125: -211249967
-      CL_Crops_Mining_124: 37128095
-      CL_Crops_Mining_Beetroot_Seed: -827112371
-      CL_Crops_Mining_269: 444449827
-      CL_Crops_Mining_Cauliflower_Seed: -468125081
-      CL_Crops_Mining_145: 810583499
-      CL_Crops_Mining_218: 792499276
-      CL_Crops_Mining_354: -1591139189
-      CL_Crops_Mining_260: -1407906991
-      CL_Crops_Mining_65: 624329602
-      CL_Crops_Mining_Corn_2: 1769942819
-      CL_Crops_Mining_344: -1979751653
-      CL_Crops_Mining_Green_bell_pepper_2: 1447201684
-      CL_Crops_Mining_26: 1965118055
+      CL_Crops_Mining_378: 708159624
+      CL_Crops_Mining_83: -1684072346
+      CL_Crops_Mining_379: 1039830219
+      CL_Crops_Mining_49: 1433208348
+      CL_Crops_Mining_196: 1764849327
+      CL_Crops_Mining_247: 807473289
+      CL_Crops_Mining_408: 1590119590
+      CL_Crops_Mining_321: -142936202
+      CL_Crops_Mining_111: 813673762
+      CL_Crops_Mining_144: 2111237126
+      CL_Crops_Mining_323: 162808344
+      CL_Crops_Mining_198: -1519175012
+      CL_Crops_Mining_267: -159932520
+      CL_Crops_Mining_361: 1116056537
+      CL_Crops_Mining_409: -1415958727
+      CL_Crops_Mining_337: -27509343
+      CL_Crops_Mining_166: 1636987476
+      CL_Crops_Mining_54: 1225022623
+      CL_Crops_Mining_252: -488888938
+      CL_Crops_Mining_109: 1263192213
+      CL_Crops_Mining_317: -1627125964
+      CL_Crops_Mining_377: -1887744437
+      CL_Crops_Mining_Green_bell_pepper: -1783164897
+      CL_Crops_Mining_24: -1407906991
+      CL_Crops_Mining_Red_bell_pepper_Seed: -816330887
+      CL_Crops_Mining_416: 965789376
+      CL_Crops_Mining_Cauliflower_2: -27509343
+      CL_Crops_Mining_Cauliflower: -1484282454
+      CL_Crops_Mining_18: 1341409221
+      CL_Crops_Mining_Yellow_bell_pepper_2: -1336856913
+      CL_Crops_Mining_6: -1864840909
+      CL_Crops_Mining_346: -875172109
+      CL_Crops_Mining_210: -369302754
+      CL_Crops_Mining_71: 662448241
+      CL_Crops_Mining_19: -1816874443
+      CL_Crops_Mining_121: -1228769388
+      CL_Crops_Mining_182: 1409703865
+      CL_Crops_Mining_405: 1839259115
+      CL_Crops_Mining_Green_bell_pepper_3: -1778365621
+      CL_Crops_Mining_246: 2014809327
+      CL_Crops_Mining_273: -939639168
+      CL_Crops_Mining_Strawberry_7: -333798336
+      CL_Crops_Mining_Corn_7: -1703294797
+      CL_Crops_Mining_Yellow_bell_pepper_Seed: 1462240903
+      CL_Crops_Rock: -617027557
+      CL_Crops_Mining_258: 1171106789
+      CL_Crops_Mining_Wheat_Box: -964303921
+      CL_Crops_Mining_298: 727235079
+      CL_Crops_Mining_Red_bell_pepper_3: -1679277516
+      CL_Crops_Mining_320: 965789376
+      CL_Crops_Mining_60: 143893031
+      CL_Crops_Mining_Green_bell_pepper_Box: -1787035136
+      CL_Crops_Mining_Tomato_1: 1456948184
+      CL_Crops_Mining_220: 943260086
+      CL_Crops_Mining_309: -1434344579
+      CL_Crops_Mining_Tomato_3: -1703294797
+      CL_Crops_Mining_215: -683841150
+      CL_Crops_Tree1: -1136748246
+      CL_Crops_Rock_Icon: 1727496358
+      CL_Crops_Mining_404: 1624397531
+      CL_Crops_Mining_51: 1479909400
+      CL_Crops_Mining_420: 1588681633
+      CL_Crops_Mining_Carrot_5: -1944706537
+      CL_Crops_Mining_Tomato_4: 90575477
+      CL_Crops_Mining_58: 604539393
+      CL_Crops_Mining_99: -859385551
+      CL_Crops_Mining_400: 323679595
+      CL_Crops_Mining_Strawberry: -357163109
+      CL_Crops_Mining_102: -1853696437
+      CL_Crops_Mining_322: -1096040964
+      CL_Crops_Mining_Saccharum_1: -1962312498
+      CL_Crops_Mining_Red_bell_pepper_4: -2097073066
+      CL_Crops_Mining_251: 399041411
+      CL_Crops_Mining_Red_bell_pepper_7: -1369607641
+      CL_Crops_Mining_418: 490358159
+      CL_Crops_Mining_292: -2064405318
+      CL_Crops_Mining_271: 655148651
+      CL_Crops_Mining_88: -1048532888
+      CL_Crops_Mining_130: 954962395
+      CL_Crops_Mining_Cabbage_4: 1996391009
+      CL_Crops_Wood: 1395635258
+      CL_Crops_Mining_213: 739331172
+      CL_Crops_Mining_161: 1863889539
+      CL_Crops_Mining_165: -687093862
+      CL_Crops_Mining_149: 466702792
+      CL_Crops_Mining_Beetroot_2: 1769942819
+      CL_Crops_Mining_Corn_3: 335075811
+      CL_Crops_Mining_310: -514535826
+      CL_Crops_Mining_313: -1180862305
+      CL_Crops_Mining_137: 1474169443
+      CL_Crops_Mining_73: -497249660
+      CL_Crops_Mining_176: 1924278182
+      CL_Crops_Mining_Carrot_2: -1967270304
+      CL_Crops_Mining_115: -193856124
+      CL_Crops_Mining_Strawberry_6: 1535149850
+      CL_Crops_Mining_411: 910244632
+      CL_Crops_Mining_87: -1560126773
+      CL_Crops_Mining_300: 1215558897
+      CL_Crops_Mining_380: -2125082802
+      CL_Crops_Tree2: -1171835792
+      CL_Crops_Mining_316: 581290922
+      CL_Crops_Mining_341: 525575268
+      CL_Crops_Mining_Saccharum_Box: 723619853
+      CL_Crops_Mining_Yellow_bell_pepper_6: 633873546
+      CL_Crops_Mining_Beetroot__Box: 141612286
+      CL_Crops_Mining_239: -1986932170
+      CL_Crops_Mining_Red_bell_pepper_1: -1136748246
+      CL_Crops_Mining_384: -373756546
+      CL_Crops_Mining_390: -1035002303
+      CL_Crops_Mining_217: 1087035673
+      CL_Crops_Mining_275: -94445625
+      CL_Crops_Mining_358: 2137220182
+      CL_Crops_Mining_7: -468125081
+      CL_Crops_Mining_126: -66552700
+      CL_Crops_Mining_241: -1377237365
+      CL_Crops_Mining_36: 1731195811
+      CL_Crops_Mining_311: 1479909400
+      CL_Crops_Mining_Beetroot_3: 80311743
+      CL_Crops_Mining_177: -1876186097
+      CL_Crops_Mining_422: -1902332823
+      CL_Crops_Mining_82: -1944706537
+      CL_Crops_Mining_122: -648109150
+      CL_Crops_Mining_173: -687093862
+      CL_Crops_Mining_Saccharum_4: 1151031670
+      CL_Crops_Mining_214: 642762796
+      CL_Crops_Mining_86: 1378392803
+      CL_Crops_Mining_127: 882231545
+      CL_Crops_Mining_366: 83517645
+      CL_Crops_Mining_367: -528372296
+      CL_Crops_Mining_Tomato_Box: 479263056
+      CL_Crops_Mining_5: -1919842035
+      CL_Crops_Mining_387: 1678591108
+      CL_Crops_Mining_Cauliflower_5: 1261407670
+      CL_Crops_Mining_110: -1285139659
+      CL_Crops_Mining_16: 912668831
+      CL_Crops_Mining_Carrot_3: -1778365621
+      CL_Crops_Mining_74: 1924278182
+      CL_Crops_Mining_325: -863507759
+      CL_Crops_Mining_Tomato_2: -1194034766
+      CL_Crops_Mining_8: -34828046
+      CL_Crops_Mining_410: 1777725538
+      CL_Crops_Mining_257: -1001162473
+      CL_Crops_Mining_141: -1834017554
+      CL_Crops_Mining_255: -1801744158
+      CL_Crops_Mining_327: 37820420
+      CL_Crops_Mining_Saccharum_3: -1902332823
+      CL_Crops_Mining_Cauliflower_3: 797664092
+      CL_Crops_Mining_352: -3977157
+      CL_Crops_Mining_Saccharum_2: -1055110539
+      CL_Crops_Mining_Corn_5: 519143803
+      CL_Crops_Mining_360: -1672936712
+      CL_Crops_Mining_201: -1708139537
+      CL_Crops_Mining_Tomato_7: -379076947
+      CL_Crops_Mining_53: -1622952625
+      CL_Crops_Mining_Wheat_4: -1986932170
+      CL_Crops_Mining_254: 1167429971
+      CL_Crops_Mining_304: 862813995
+      CL_Crops_Mining_407: -1428602302
+      CL_Crops_Mining_348: 943260086
+      CL_Crops_Mining_Corn_1: -242637964
+      CL_Crops_Mining_281: 1264473160
+      CL_Crops_Mining_335: 1642207649
+      CL_Crops_Mining_297: 221716000
+      CL_Crops_Mining_112: 1221520444
+      CL_Crops_Mining_285: -1783164897
+      CL_Crops_Mining_Carrot_Seed: 2113285563
+      CL_Crops_Mining_Saccharum_Seed: -1000419636
+      CL_Crops_Mining_326: 1096154252
+      CL_Crops_Mining_Yellow_bell_pepper_1: -66552700
+      CL_Crops_Mining_Strawberry_3: -606506829
+      CL_Crops_Mining_253: 2009576924
+      CL_Crops_Mining_45: 53116694
+      CL_Crops_Mining_296: 399041411
+      CL_Crops_Mining_306: 393245644
+      CL_Crops_Mining_Yellow_bell_pepper_5: 1341409221
+      CL_Crops_Mining_369: 1846530723
+      CL_Crops_Mining_114: -1081298992
+      CL_Crops_Mining_Cabbage_5: -497249660
+      CL_Crops_Mining_Cabbage_Box: -1920632981
+      CL_Crops_Mining_331: 984753335
+      CL_Crops_Mining_Saccharum_7: 444449827
+      CL_Crops_Mining_Green_bell_pepper_4: 1225022623
+      CL_Crops_Tree3: -1887744437
+      CL_Crops_Mining_200: -681703837
+      CL_Crops_Mining_48: -458724330
+      CL_Crops_TreeSeed: 526450790
+      CL_Crops_Mining_59: -93695694
+      CL_Crops_Mining_342: -617027557
+      CL_Crops_Mining_116: 912668831
+      CL_Crops_Mining_277: 1862546515
+      CL_Crops_Mining_359: 723619853
+      CL_Crops_Mining_256: 439787487
+      CL_Crops_Mining_106: 1378392803
+      CL_Crops_Grass1: -497249660
+      CL_Crops_Mining_Corn_Seed: 919398127
+      CL_Crops_Mining_38: 1332361782
+      CL_Crops_Mining_365: 449568300
+      CL_Crops_Mining_32: 644829715
+      CL_Crops_Mining_406: -527012710
+      CL_Crops_Mining_259: -1864840909
+      CL_Crops_Mining_Red_bell_pepper_6: 891179395
+      CL_Crops_Mining_56: 367423714
+      CL_Crops_Mining_168: 268496588
+      CL_Crops_Mining_Wheat_3: 1420930866
+      CL_Crops_Mining_243: -1403841460
+      CL_Crops_Mining_Strawberry_1: -1339485357
+      CL_Crops_Mining_204: -443970694
+      CL_Crops_Mining_288: -921073700
+      CL_Crops_Mining_363: -1571039229
+      CL_Crops_Mining_244: -1597401795
+      CL_Crops_Mining_351: 99622747
+      CL_Crops_Mining_315: 1815241431
+      CL_Crops_Mining_93: 466702792
+      CL_Crops_Mining_284: -11104422
+      CL_Crops_Mining_97: 487453039
+      CL_Crops_Mining_Corn_Box: 1971537431
+      CL_Crops_Mining_Cabbage: 475198852
+      CL_Crops_Rock2: -1300422064
+      CL_Crops_Mining_Red_bell_pepper_2: -280311574
+      CL_Crops_Mining_381: -1826450119
+      CL_Crops_Mining_314: 1459894480
+      CL_Crops_TreeTrunk: -1344775684
+      CL_Crops_Mining_108: -125374108
+      CL_Crops_Mining_324: -82263879
+      CL_Crops_Mining_303: -1662711225
+      CL_Crops_Mining_419: -343930962
+      CL_Crops_Mining_386: -2058034949
+      CL_Crops_Mining_197: -984636880
+      CL_Crops_Mining_249: -36583612
+      CL_Crops_Mining_Yellow_bell_pepper_3: -147710304
+      CL_Crops_Mining_64: -1081298992
+      CL_Crops_Mining_286: 1148299176
+      CL_Crops_Mining_199: 1151031670
+      CL_Crops_Tree4: -3977157
+      CL_Crops_Mining_368: -1012065251
+      CL_Crops_Mining_Saccharum_5: -162114754
+      CL_Crops_Mining_Yellow_bell_pepper_4: -1482753647
+      CL_Crops_Mining_382: 1167429971
+      CL_Crops_Mining_Cauliflower_4: 149750723
+      CL_Crops_Mining_373: -284643041
+      CL_Crops_Mining_224: -1124698061
+      CL_Crops_Mining_415: 1996391009
+      CL_Crops_Mining_339: 863944427
+      CL_Crops_Mining_21: -1136748246
+      CL_Crops_Mining_388: 1384886456
+      CL_Crops_Mining_Beetroot_1: 1615967747
+      CL_Crops_Mining_343: -2063511884
+      CL_Crops_Mining_216: -155286802
+      CL_Crops_Mining_Green_bell_pepper_7: 629049123
+      CL_Crops_Mining_20: 1588681633
+      CL_Crops_Mining_374: -1996357164
+      CL_Crops_Mining_417: -1638221675
+      CL_Crops_Mining_399: 1880105780
+      CL_Crops_Mining_412: 2034465547
+      CL_Crops_Mining_72: -1012065251
+      CL_Crops_Mining_237: -831805402
+      CL_Crops_Mining_347: -1132484728
+      CL_Crops_Mining_242: -2114300157
+      CL_Crops_Mining_23: 20256735
+      CL_Crops_Mining_22: -1962069092
+      CL_Crops_Wood_Icon: -963869948
+      CL_Crops_Mining_414: -1453474329
+      CL_Crops_Mining_34: 487453039
+      CL_Crops_Grass1_1: -331717481
+      CL_Crops_Mining_84: -1809347414
+      CL_Crops_Mining_68: 1641730209
+      CL_Crops_Mining_27: -1708139537
+      CL_Crops_Mining_167: -891692062
+      CL_Crops_Mining_Cabbage_2: -1293799807
+      CL_Crops_Mining_80: 157484624
+      CL_Crops_Mining_336: -683841150
+      CL_Crops_Mining_95: 891179395
+      CL_Crops_Mining_159: -1017921909
+      CL_Crops_Mining_Corn_6: 596902353
+      CL_Crops_Mining_353: -2104224494
+      CL_Crops_Mining_Wheat_1: -1228769388
+      CL_Crops_Mining_Strawberry_Box: -1825733764
+      CL_Crops_Mining_33: -123131813
+      CL_Crops_Mining_212: -810321052
+      CL_Crops_Mining_147: 1963742792
+      CL_Crops_Mining_Saccharum_6: -835223802
+      CL_Crops_Mining_37: -1977543660
+      CL_Crops_Mining_185: -162114754
+      CL_Crops_Mining_194: -1434344579
+      CL_Crops_Mining_334: 1240638134
+      CL_Crops_Mining_142: -1096040964
+      CL_Crops_Mining_272: 1057019981
+      CL_Crops_Mining_350: 1069107357
+      CL_Crops_Mining_357: 964721612
+      CL_Crops_Mining_Green_bell_pepper_5: -1679277516
+      CL_Crops_Mining_Saccharum: 2014809327
+      CL_Crops_Mining_Tomato_5: 1165870845
+      CL_Crops_Mining_0: -530909942
+      CL_Crops_Mining_175: -1796170391
+      CL_Crops_Mining_98: -1876066262
+      CL_Crops_Mining_55: -1028724769
+      CL_Crops_Mining_202: 1731195811
+      CL_Crops_Mining_Yellow_bell_pepper_7: 121885046
+      CL_Crops_Mining_Beetroot_4: 419690066
+      CL_Crops_Mining_236: -515853490
+      CL_Crops_Mining_308: -1336856913
+      CL_Crops_Mining_Beetroot: 689708468
+      CL_Crops_Mining_123: -1299518412
+      CL_Crops_Mining_Cabbage_1: -1050346591
+      CL_Crops_Mining_35: 797664092
+      CL_Crops_Mining_Red_bell_pepper_5: -1834017554
+      CL_Crops_Mining_Strawberry_Seed: 596902353
+      CL_Crops_Mining_Cabbage_Seed: -1946744979
+      CL_Crops_Tree5: 919398127
+      CL_Crops_TreeSeed_Icon: 475198852
+      CL_Crops_Mining_67: -608392936
+      CL_Crops_Mining_356: 1138679679
+      CL_Crops_Mining_287: -776721897
+      CL_Crops_Mining_Corn: -1284062278
+      CL_Crops_Mining_372: -1017921909
+      CL_Crops_Mining_302: 143893031
+      CL_Crops_Mining_261: 1263192213
+      CL_Crops_Mining_Tomato: 630989724
+      CL_Crops_Mining_245: 1292454641
+      CL_Crops_Mining_385: 1384886456
+      CL_Crops_Mining_278: -1217511542
+      CL_Crops_Mining_148: -2004553715
+      CL_Crops_Mining_52: 422455589
+      CL_Crops_Mining_282: -21835242
+      CL_Crops_Mining_312: 1513177794
+      CL_Crops_Mining_283: 392732911
+      CL_Crops_Mining_94: 2123569784
+      CL_Crops_Mining_113: -1946744979
+      CL_Crops_Mining_318: 984753335
+      CL_Crops_Mining_319: -2014911397
+      CL_Crops_Mining_370: 604539393
+      CL_Crops_Mining_Cauliflower_Box: 525575268
+      CL_Crops_Grass_Icon1: -1415958727
+      CL_Crops_Mining_203: -1445224105
+      CL_Crops_Mining_Carrot: -1946293549
+      CL_Crops_Mining_69: -601799988
+      CL_Crops_Mining_186: 1648298234
+      CL_Crops_Mining_248: 362256810
+      CL_Crops_Mining_376: -1853696437
+      CL_Crops_Mining_Red_bell_pepper_Box: -1472581392
+      CL_Crops_Mining_160: 1875238682
+      CL_Crops_Mining_421: 626627850
+      CL_Crops_Mining_Wheat_Seed: -307953800
+      CL_Crops_Mining_Green_bell_pepper_Seed: -453439392
+      CL_Crops_Mining_Green_bell_pepper_6: 184950011
+      CL_Crops_Mining_355: 398663570
+      CL_Crops_Mining_274: 1103199196
+      CL_Crops_Mining_47: 323679595
+      CL_Crops_Mining_17: 739331172
+      CL_Crops_Mining_Strawberry_2: 456073961
+      CL_Crops_Mining_143: -1560126773
+      CL_Crops_Mining_Cauliflower_1: 1332361782
+      CL_Crops_Mining_Yellow_bell_pepper_Box: -691421258
+      CL_Crops_Mining_383: -206453453
+      CL_Crops_Mining_Wheat: -551553943
+      CL_Crops_Mining_146: 1678591108
+      CL_Crops_Mining_139: 954524237
+      CL_Crops_Mining_184: 1048455410
+      CL_Crops_Mining_85: -1377237365
+      CL_Crops_Mining_Corn_4: 819433633
+      CL_Crops_Mining_70: -1514154278
+      CL_Crops_Mining_276: -826159746
+      CL_Crops_Mining_183: -1239365871
+      CL_Crops_Mining_328: 654117719
+      CL_Crops_Mining_299: -1962069092
+      CL_Crops_Mining_225: -678466295
+      CL_Crops_Mining_3: -1171835792
+      CL_Crops_Mining_Yellow_bell_pepper: 1955644097
+      CL_Crops_Mining_25: -1042514732
+      CL_Crops_Mining_362: 1248158355
+      CL_Crops_Mining_238: 529986817
+      CL_Crops_Mining_Beetroot_5: 1874918569
+      CL_Crops_Mining_Carrot_Box: -257623001
+      CL_Crops_Mining_66: -1810477553
+      CL_Crops_Mining_268: 1300709427
+      CL_Crops_Mining_164: -2114300157
+      CL_Crops_Mining_Green_bell_pepper_1: -211249967
+      CL_Crops_Mining_125: 37128095
+      CL_Crops_Mining_124: -827112371
+      CL_Crops_Mining_Beetroot_Seed: 444449827
+      CL_Crops_Mining_269: -468125081
+      CL_Crops_Mining_Cauliflower_Seed: 810583499
+      CL_Crops_Mining_145: 792499276
+      CL_Crops_Mining_218: -1591139189
+      CL_Crops_Mining_354: -1407906991
+      CL_Crops_Mining_260: 624329602
+      CL_Crops_Mining_65: 1769942819
+      CL_Crops_Mining_Corn_2: -1979751653
+      CL_Crops_Mining_344: 1447201684
+      CL_Crops_Mining_Green_bell_pepper_2: 1965118055
+      CL_Crops_Mining_26: -331717481
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
