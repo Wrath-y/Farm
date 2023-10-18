@@ -24,6 +24,9 @@ public class GridMap : MonoBehaviour
         }
     }
 
+    /**
+     * 在编辑器中关闭对应GameObject后调用此方法
+     */
     private void OnDisable()
     {
         if (!Application.IsPlaying(this))
@@ -38,7 +41,7 @@ public class GridMap : MonoBehaviour
             #endif
         }
     }
-
+    
     private void UpdateTileProperties()
     {
         _curTileMap.CompressBounds();
@@ -48,6 +51,7 @@ public class GridMap : MonoBehaviour
             {
                 Vector3Int starPos = _curTileMap.cellBounds.min;
                 Vector3Int endPos = _curTileMap.cellBounds.max;
+                Debug.Log($"UpdateTileProperties{starPos}, {endPos}");
 
                 for (int x = starPos.x; x < endPos.x; x++)
                 {
