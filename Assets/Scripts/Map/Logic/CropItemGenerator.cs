@@ -90,12 +90,14 @@ namespace Farm.Map
             
             for (int i = 0; i < itemSpawnDatas.Count; i++)
             {
-                if (itemSpawnDatas[i].curNum >= itemSpawnDatas[i].maxNum) return;
-
                 foreach (var tile in _tileDetailsDict)
                 {
+                    if (itemSpawnDatas[i].curNum >= itemSpawnDatas[i].maxNum) return;
+                    
                     float randValue = UnityEngine.Random.Range(1, weightTotal + 1);
                     float temp = 0;
+                    // Debug.Log($"{tile.Value.gridX}, {tile.Value.gridY} {IsInMapRange(tile.Value.gridX, tile.Value.gridY)} {GetEigthNeighborsGroundCount(tile.Value.gridX, tile.Value.gridY)}");
+                    
                     if (IsGround(tile.Value.gridX, tile.Value.gridY) && GetEigthNeighborsGroundCount(tile.Value.gridX, tile.Value.gridY) == 8)
                     {
                         temp += itemSpawnDatas[i].weight;
@@ -104,18 +106,16 @@ namespace Farm.Map
                             // 命中
                             if (itemSpawnDatas[i].cropItem)
                             {
-                                CropGenerator cropGenerator = itemSpawnDatas[i].cropItem.AddComponent<CropGenerator>();
+                                Vector3 pos = new Vector3(tile.Value.gridX + 0.5f, tile.Value.gridY + 0.5f, 0);
+                                Transform cropParent = GameObject.FindWithTag("CropParent").transform;
+                                GameObject newCropItem = Instantiate(itemSpawnDatas[i].cropItem, pos, Quaternion.identity, cropParent);
+                                
+                                CropGenerator cropGenerator = newCropItem.AddComponent<CropGenerator>();
                                 cropGenerator.seedItemID = itemSpawnDatas[i].seedId;
                                 cropGenerator.growthDays = UnityEngine.Random.Range(itemSpawnDatas[i].minGrowthDay,
                                     itemSpawnDatas[i].maxGrowthDay + 1);
-
-                                Vector3 pos = new Vector3(tile.Value.gridX + 0.5f, tile.Value.gridY + 0.5f, 0);
-                                Transform cropParent = GameObject.FindWithTag("CropParent").transform;
-                                Instantiate(itemSpawnDatas[i].cropItem, pos, Quaternion.identity, cropParent);
                                 itemSpawnDatas[i].curNum++;
                             }
-
-                            break;
                         }
                     }
                 }
@@ -129,7 +129,6 @@ namespace Farm.Map
             UnityEngine.Random.InitState(seed);
             
             mapData = new float[mapDataSo.gridWidth+1,mapDataSo.gridHeight+1];
-            Debug.Log($"{mapDataSo.gridWidth+1}, {mapDataSo.gridHeight+1}");
             
             float randomOffset = UnityEngine.Random.Range(-10000, 10000);
             
@@ -145,7 +144,6 @@ namespace Farm.Map
                 };
 
                 float noiseValue = Mathf.PerlinNoise( tileDetails.gridX * lacunarity + randomOffset, tileDetails.gridY * lacunarity + randomOffset);
-                Debug.Log($"{tileDetails.gridX}, {tileDetails.gridY}");
                 
                 if (tileProperty.gridType == GridType.RandCropItem)
                 {
@@ -219,7 +217,7 @@ namespace Farm.Map
 
         public bool IsInMapRange(int x, int y)
         {
-            return mapData[x, y] == 0;
+            return mapData[x, y] != 0;
         }
 
         public bool IsGround(int x, int y)
@@ -230,12 +228,16 @@ namespace Farm.Map
 
         public void CleanTileMap()
         {
-            return;
+            foreach (var itemSpawn in itemSpawnDatas)
+            {
+                itemSpawn.curNum = 0;
+            }
+
             Transform cropParent = GameObject.FindWithTag("CropParent").transform;
             // 获取所有子元素的 Transform
             Transform[] children = cropParent.GetComponentsInChildren<Transform>();
 
-// 遍历并销毁所有子元素
+            // 遍历并销毁所有子元素
             foreach (Transform child in children)
             {
                 // 跳过父 Transform
