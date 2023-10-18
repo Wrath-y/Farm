@@ -51,7 +51,6 @@ public class GridMap : MonoBehaviour
             {
                 Vector3Int starPos = _curTileMap.cellBounds.min;
                 Vector3Int endPos = _curTileMap.cellBounds.max;
-                Debug.Log($"UpdateTileProperties{starPos}, {endPos}");
 
                 for (int x = starPos.x; x < endPos.x; x++)
                 {

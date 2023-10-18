@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Farm.CropPlant;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -14,7 +13,7 @@ namespace Farm.Map
         public int weight;
     }
 
-    public class MapGenerator : MonoBehaviour
+    public class MapAllGenerator : MonoBehaviour
     {
         public Tilemap groundBottomTileMap;
         public Tilemap groundMidTileMap;
@@ -25,7 +24,6 @@ namespace Farm.Map
 
         [Header("若useRandomSeed为true将使用seed进行生成")]
         public int seed;
-
         public bool useRandomSeed;
 
         [Header("地图裂隙性")]

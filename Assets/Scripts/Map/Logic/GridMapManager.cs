@@ -9,7 +9,6 @@ using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace Farm.Map
@@ -83,7 +82,6 @@ namespace Farm.Map
                     case "WaterTile":
                         waterTile = (RuleTile)item.Value.Result;
                         break;
-                    case "MapData_Start":
                     case "MapData_Field":
                     case "MapData_Home":
                         mapDataList.Add((MapData_SO)item.Value.Result);
@@ -276,6 +274,9 @@ namespace Farm.Map
                     case GridType.NPCObstacle:
                         tileDetails.isNPCObstacle = tileProperty.boolTypeValue;
                         break;
+                    case GridType.RandCropItem:
+                        tileDetails.isRandCropItem = tileProperty.boolTypeValue;
+                        break;
                 }
                 
                 string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + mapData.sceneName;
@@ -316,7 +317,7 @@ namespace Farm.Map
             Vector3Int pos = new Vector3Int(tile.gridX, tile.gridY, 0);
             if (_digTilemap == null)
             {
-                Debug.Log("_digTilemap == null");
+                Debug.LogError($"_digTilemap {tile.gridX}, {tile.gridY} is nil");
                 return;
             }
             _digTilemap.SetTile(pos, digTile);
@@ -327,7 +328,7 @@ namespace Farm.Map
             Vector3Int pos = new Vector3Int(tile.gridX, tile.gridY, 0);
             if (_waterTilemap == null)
             {
-                Debug.Log("_waterTilemap == null");
+                Debug.LogError($"_waterTilemap {tile.gridX}, {tile.gridY} is nil");
                 return;
             }
             _waterTilemap.SetTile(pos, waterTile);
@@ -357,7 +358,6 @@ namespace Farm.Map
 
                 if (tileDetails.seedItemId > -1)
                 {
-                    Debug.Log($"CallPlantSeedEvent {tileDetails}");
                     EventHandler.CallPlantSeedEvent(tileDetails.seedItemId, tileDetails);
                 }
             }
@@ -383,7 +383,6 @@ namespace Farm.Map
         
         public void UpdateTileDetails(TileDetails tileDetails)
         {
-            Debug.Log("gridmapmanager UpdateTileDetails");
             string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + SceneManager.GetActiveScene().name;
             if (!_tileDetailsDict.ContainsKey(key))
             {

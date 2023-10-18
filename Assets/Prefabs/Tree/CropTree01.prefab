@@ -357,6 +357,7 @@ MonoBehaviour:
     canDropItem: 0
     canPlaceFurniture: 0
     isNPCObstacle: 0
+    isRandCropItem: 0
     daysSinceDug: -1
     daysSinceWatered: -1
     seedItemId: -1

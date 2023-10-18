@@ -136,7 +136,6 @@ namespace Farm.CropPlant
         public void OnPlantSeedEvent(int id, TileDetails tileDetails)
         {
             CropDetails curCrop = GetCropDetails(id);
-            Debug.Log("OnPlantSeedEvent"+id);
             // if (curCrop == null || !SeasonAvailable(curCrop))
             // {
             //     return;
@@ -149,18 +148,17 @@ namespace Farm.CropPlant
             //     tileDetails.growthDays = 0;
             // }
             
-            if (curCrop != null && SeasonAvailable(curCrop) && tileDetails.seedItemId == -1)    //用于第一次种植
+            if (curCrop == null) Debug.LogError($"crop {id} is nil");
+
+            if (!SeasonAvailable(curCrop)) return;
+            
+            if (tileDetails.seedItemId == -1)    //用于第一次种植
             {
                 tileDetails.seedItemId = id;
                 tileDetails.growthDays = 0;
-                //显示农作物
-                DisplayCropPlant(tileDetails, curCrop);
             }
-            else if (tileDetails.seedItemId != -1)  //用于刷新地图
-            {
-                //显示农作物
-                DisplayCropPlant(tileDetails, curCrop);
-            }
+            //显示农作物
+            DisplayCropPlant(tileDetails, curCrop);
         }
     }
 }
