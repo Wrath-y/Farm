@@ -13,6 +13,7 @@ TagManager:
   - MenuCanvas
   - JoyStick
   - DialogBox
+  - RandCropParent
   layers:
   - Default
   - TransparentFX

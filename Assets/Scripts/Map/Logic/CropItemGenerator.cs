@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.Serialization;
 
 namespace Farm.Map
 {
@@ -27,7 +28,7 @@ namespace Farm.Map
         private Dictionary<string, TileDetails> _tileDetailsDict = new Dictionary<string, TileDetails>();
 
         [Header("地图上生成的item")]
-        public List<CropItemData> itemSpawnDatas;
+        public List<CropItemData> itemSpawnDataList;
         
         [Header("若useRandomSeed为true将使用seed进行生成")]
         public int seed;
@@ -36,11 +37,10 @@ namespace Farm.Map
         [Header("地图裂隙性")]
         public float lacunarity;
         
-        [Header("水的概率，地图中小于此概率的区域将被视为水")] [Range(0, 1f)]
-        public float waterProbability;
-        
         // 存储地图数据的二维数组
-        private float[,] mapData; // Ture:ground，Flase:water
+        private Dictionary<string, float> _mapData = new Dictionary<string, float>();
+        
+        private Dictionary<string, float> _mapDataUsed = new Dictionary<string, float>();
         
         private void OnEnable()
         {
@@ -72,7 +72,7 @@ namespace Farm.Map
                 }
             }
             
-            itemSpawnDatas.Sort((data1, data2) => { return data1.weight.CompareTo(data2.weight); });
+            itemSpawnDataList.Sort((data1, data2) => { return data2.weight.CompareTo(data1.weight); });
             
             GenerateTileMap();
         }
@@ -83,38 +83,39 @@ namespace Farm.Map
 
             // 物品
             int weightTotal = 0;
-            for (int i = 0; i < itemSpawnDatas.Count; i++)
+            foreach (var itemSpawn in itemSpawnDataList)
             {
-                weightTotal += itemSpawnDatas[i].weight;
+                weightTotal += itemSpawn.weight;
             }
-            
-            for (int i = 0; i < itemSpawnDatas.Count; i++)
+
+            foreach (var itemSpawn in itemSpawnDataList)
             {
                 foreach (var tile in _tileDetailsDict)
                 {
-                    if (itemSpawnDatas[i].curNum >= itemSpawnDatas[i].maxNum) return;
+                    if (itemSpawn.curNum >= itemSpawn.maxNum) break;
                     
                     float randValue = UnityEngine.Random.Range(1, weightTotal + 1);
                     float temp = 0;
-                    // Debug.Log($"{tile.Value.gridX}, {tile.Value.gridY} {IsInMapRange(tile.Value.gridX, tile.Value.gridY)} {GetEigthNeighborsGroundCount(tile.Value.gridX, tile.Value.gridY)}");
                     
-                    if (IsGround(tile.Value.gridX, tile.Value.gridY) && GetEigthNeighborsGroundCount(tile.Value.gridX, tile.Value.gridY) == 8)
+                    if (IsInMapRange(tile.Value.gridX, tile.Value.gridY) && GetEightNeighborsGroundCount(tile.Value.gridX, tile.Value.gridY) == 8 && CanGenerate(tile.Value.gridX, tile. Value.gridY))
                     {
-                        temp += itemSpawnDatas[i].weight;
+                        temp += itemSpawn.weight;
                         if (randValue < temp)
                         {
                             // 命中
-                            if (itemSpawnDatas[i].cropItem)
+                            if (itemSpawn.cropItem)
                             {
                                 Vector3 pos = new Vector3(tile.Value.gridX + 0.5f, tile.Value.gridY + 0.5f, 0);
-                                Transform cropParent = GameObject.FindWithTag("CropParent").transform;
-                                GameObject newCropItem = Instantiate(itemSpawnDatas[i].cropItem, pos, Quaternion.identity, cropParent);
+                                Transform cropParent = GameObject.FindWithTag("RandCropParent").transform;
+                                GameObject newCropItem = Instantiate(itemSpawn.cropItem, pos, Quaternion.identity, cropParent);
                                 
                                 CropGenerator cropGenerator = newCropItem.AddComponent<CropGenerator>();
-                                cropGenerator.seedItemID = itemSpawnDatas[i].seedId;
-                                cropGenerator.growthDays = UnityEngine.Random.Range(itemSpawnDatas[i].minGrowthDay,
-                                    itemSpawnDatas[i].maxGrowthDay + 1);
-                                itemSpawnDatas[i].curNum++;
+                                cropGenerator.seedItemID = itemSpawn.seedId;
+                                cropGenerator.growthDays = UnityEngine.Random.Range(itemSpawn.minGrowthDay, itemSpawn.maxGrowthDay + 1);
+
+                                _mapDataUsed.Add(tile.Value.gridX + "," + tile.Value.gridY, 1);
+                                
+                                itemSpawn.curNum++;
                             }
                         }
                     }
@@ -127,8 +128,6 @@ namespace Farm.Map
             // 对于种子的应用
             if (!useRandomSeed) seed = Time.time.GetHashCode();
             UnityEngine.Random.InitState(seed);
-            
-            mapData = new float[mapDataSo.gridWidth+1,mapDataSo.gridHeight+1];
             
             float randomOffset = UnityEngine.Random.Range(-10000, 10000);
             
@@ -164,25 +163,21 @@ namespace Farm.Map
                         _tileDetailsDict.Add(key, tileDetails);
                     }
                     
-                    mapData[tileDetails.gridX, tileDetails.gridY] = noiseValue;
+                    _mapData.Add(tileDetails.gridX + "," + tileDetails.gridY, noiseValue);
                     if (noiseValue < minValue) minValue = noiseValue;
                     if (noiseValue > maxValue) maxValue = noiseValue;
-                    
-                    continue;
                 }
-                    
-                mapData[Mathf.Abs(tileDetails.gridX), Mathf.Abs(tileDetails.gridY)] = 0;
             }
 
             // 平滑到0~1
             foreach (TileProperty tileProperty in mapDataSo.tileProperties)
             {
                 if (tileProperty.gridType != GridType.RandCropItem) continue;
-                mapData[tileProperty.tileCoordinate.x, tileProperty.tileCoordinate.y] = Mathf.InverseLerp(minValue, maxValue, mapData[tileProperty.tileCoordinate.x, tileProperty.tileCoordinate.y]);
+                _mapData[tileProperty.tileCoordinate.x + "," + tileProperty.tileCoordinate.y] = Mathf.InverseLerp(minValue, maxValue, _mapData[tileProperty.tileCoordinate.x + "," + tileProperty.tileCoordinate.y]);
             }
         }
         
-        public TileDetails GetTileDetails(string key)
+        private TileDetails GetTileDetails(string key)
         {
             if (!_tileDetailsDict.ContainsKey(key))
             {
@@ -192,48 +187,58 @@ namespace Farm.Map
             return _tileDetailsDict[key];
         }
         
-        private int GetEigthNeighborsGroundCount(int x, int y)
+        private int GetEightNeighborsGroundCount(int x, int y)
         {
             int count = 0;
             // top
-            if (IsInMapRange(x, y + 1) && IsGround(x, y + 1)) count += 1;
+            if (IsInMapRange(x, y + 1) && IsUsefulTile(x, y)) count += 1;
             // bottom
-            if (IsInMapRange(x, y - 1) && IsGround(x, y - 1)) count += 1;
+            if (IsInMapRange(x, y - 1) && IsUsefulTile(x, y)) count += 1;
             // left
-            if (IsInMapRange(x - 1, y) && IsGround(x - 1, y)) count += 1;
+            if (IsInMapRange(x - 1, y) && IsUsefulTile(x, y)) count += 1;
             // right
-            if (IsInMapRange(x + 1, y) && IsGround(x + 1, y)) count += 1;
+            if (IsInMapRange(x + 1, y) && IsUsefulTile(x, y)) count += 1;
 
             // left top
-            if (IsInMapRange(x - 1, y + 1) && IsGround(x - 1, y + 1)) count += 1;
+            if (IsInMapRange(x - 1, y + 1) && IsUsefulTile(x, y)) count += 1;
             // right top
-            if (IsInMapRange(x + 1, y + 1) && IsGround(x + 1, y + 1)) count += 1;
+            if (IsInMapRange(x + 1, y + 1) && IsUsefulTile(x, y)) count += 1;
             // left bottom
-            if (IsInMapRange(x - 1, y - 1) && IsGround(x - 1, y - 1)) count += 1;
+            if (IsInMapRange(x - 1, y - 1) && IsUsefulTile(x, y)) count += 1;
             // right bottom
-            if (IsInMapRange(x + 1, y - 1) && IsGround(x + 1, y - 1)) count += 1;
+            if (IsInMapRange(x + 1, y - 1) && IsUsefulTile(x, y)) count += 1;
             return count;
         }
 
-        public bool IsInMapRange(int x, int y)
+        /**
+         * if containsKey return true
+         */
+        private bool IsInMapRange(int x, int y)
         {
-            return mapData[x, y] != 0;
+            return _mapData.ContainsKey(x + "," + y);
         }
 
-        public bool IsGround(int x, int y)
+        /**
+         * if not containsKey and more big than lacunarity return true
+         */
+        private bool IsUsefulTile(int x, int y)
         {
-            return mapData[x, y] > waterProbability;
+            return !_mapDataUsed.ContainsKey(x + "," + y);
         }
-
+        
+        private bool CanGenerate(int x, int y)
+        {
+            return _mapData[x + "," + y] > lacunarity;
+        }
 
         public void CleanTileMap()
         {
-            foreach (var itemSpawn in itemSpawnDatas)
+            foreach (var itemSpawn in itemSpawnDataList)
             {
                 itemSpawn.curNum = 0;
             }
 
-            Transform cropParent = GameObject.FindWithTag("CropParent").transform;
+            Transform cropParent = GameObject.FindWithTag("RandCropParent").transform;
             // 获取所有子元素的 Transform
             Transform[] children = cropParent.GetComponentsInChildren<Transform>();
 
@@ -249,6 +254,8 @@ namespace Farm.Map
                 // 销毁子元素的 GameObject
                 Destroy(child.gameObject);
             }
+
+            _mapDataUsed = new Dictionary<string, float>();
         }
 
     }
