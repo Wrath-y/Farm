@@ -40,6 +40,8 @@ namespace Farm.CropPlant
                     tile.gridY = cropGridPos.y;
                 }
 
+                if (tile.isRandCropItem) return;
+
                 tile.daysSinceWatered = -1;
                 tile.seedItemId = seedItemID;
                 tile.growthDays = growthDays;

@@ -15,6 +15,7 @@ namespace Farm.CropPlant
         
         public CropDataList_SO cropData;
         private Transform _cropParent;
+        private Transform _randCropParent;
         private Season _curSeason;
         
         protected override void Awake()
@@ -71,9 +72,9 @@ namespace Farm.CropPlant
             EventHandler.GameDayEvent -= OnGameDayEvent;
         }
 
-        public CropDetails GetCropDetails(int id)
+        public CropDetails GetCropDetails(int seedItemId)
         {
-            return cropData.cropDetailsList.Find(c => c.seedItemID == id);
+            return cropData.cropDetailsList.Find(c => c.seedItemID == seedItemId);
         }
 
         private bool SeasonAvailable(CropDetails crop)
@@ -112,6 +113,19 @@ namespace Farm.CropPlant
 
             Vector3 pos = new Vector3(tileDetails.gridX + 0.5f, tileDetails.gridY + 0.5f, 0);
 
+            if (tileDetails.isRandCropItem)
+            {
+                if (_randCropParent == null)
+                {
+                    _randCropParent = GameObject.FindWithTag("CropParent").transform;
+                }
+                GameObject randCropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, _randCropParent);
+                randCropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
+
+                randCropInstance.GetComponent<Crop>().cropDetails = cropDetails;
+                randCropInstance.GetComponent<Crop>().tileDetails = tileDetails;
+                return;
+            }
             if (_cropParent == null)
             {
                 _cropParent = GameObject.FindWithTag("CropParent").transform;
@@ -131,22 +145,12 @@ namespace Farm.CropPlant
         private void OnAfterLoadedSceneEvent()
         {
             _cropParent = GameObject.FindWithTag("CropParent").transform;
+            _randCropParent = GameObject.FindWithTag("RandCropParent").transform;
         }
 
         public void OnPlantSeedEvent(int id, TileDetails tileDetails)
         {
             CropDetails curCrop = GetCropDetails(id);
-            // if (curCrop == null || !SeasonAvailable(curCrop))
-            // {
-            //     return;
-            // }
-            //
-            // if (curCrop.seedItemID <= 0)
-            // {
-            //     Debug.Log("tileDetails.seedItemId = id");
-            //     tileDetails.seedItemId = id;
-            //     tileDetails.growthDays = 0;
-            // }
             
             if (curCrop == null) Debug.LogError($"crop {id} is nil");
 
@@ -157,6 +161,7 @@ namespace Farm.CropPlant
                 tileDetails.seedItemId = id;
                 tileDetails.growthDays = 0;
             }
+            
             //显示农作物
             DisplayCropPlant(tileDetails, curCrop);
         }

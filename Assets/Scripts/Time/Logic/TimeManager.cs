@@ -82,9 +82,12 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
             }
         }
 
-        if (Input.GetKey(KeyCode.G))
+        if (Input.GetKey(KeyCode.T))
         {
             _gameTime.Day++;
+            EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
+            EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+            EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
         }
     }
     
@@ -116,7 +119,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     {
         NewGameTime();
         _gamePause = false;
-        // gameClockPause = false;
     }
 
     private void NewGameTime()

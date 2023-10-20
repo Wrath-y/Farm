@@ -283,6 +283,7 @@ public class CursorManager : Singleton<CursorManager>
             case ItemType.ChopTool:
                 if (crop != null)
                 {
+                    Debug.Log($"{crop.CanHarvest}");
                     if (crop.CanHarvest && crop.cropDetails.CheckToolAvailable(_curItem.itemID))
                     {
                         SetCursorValid();
@@ -294,6 +295,7 @@ public class CursorManager : Singleton<CursorManager>
                 }
                 else
                 {
+                    Debug.Log($"crop is nil");
                     SetCursorInValid();
                 }
                 break;

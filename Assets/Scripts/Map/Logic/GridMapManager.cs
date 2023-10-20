@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 namespace Farm.Map
@@ -31,7 +32,7 @@ namespace Farm.Map
         // 场景是否是第一次加载,用于判断是否预先生成农作物
         private Dictionary<string, bool> _firstLoadDict = new Dictionary<string, bool>();
         private List<ReapItem> _reapItemsInRadius;
-        private Grid _curGrid;
+        public Grid curGrid;
         
         public string GUID => GetComponent<DataGUID>().guid;
         
@@ -104,7 +105,6 @@ namespace Farm.Map
             EventHandler.AfterLoadedSceneEvent -= OnAfterLoadedSceneEvent;
             EventHandler.GameDayEvent -= OnGameDayEvent;
             EventHandler.RefreshCurrentMap -= RefreshMap;
-
         }
 
         private void Init()
@@ -122,7 +122,7 @@ namespace Farm.Map
         // 执行实际工具或物品功能
         private void OnExecuteActionAfterAnimation(Vector3 mouseWorldPos, ItemDetails itemDetails)
         {
-            var curTile = GetTileDetailsByMouseGridPos(_curGrid.WorldToCell(mouseWorldPos));
+            var curTile = GetTileDetailsByMouseGridPos(curGrid.WorldToCell(mouseWorldPos));
 
             if (curTile == null)
             {
@@ -205,7 +205,7 @@ namespace Farm.Map
 
         private void OnAfterLoadedSceneEvent()
         {
-            _curGrid = FindObjectOfType<Grid>();
+            curGrid = FindObjectOfType<Grid>();
             _digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
             _waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
 
@@ -215,7 +215,7 @@ namespace Farm.Map
                 // 预先生成农作物
                 EventHandler.CallGenerateCropEvent();
             }
-
+            
             RefreshMap();
         }
 
@@ -306,6 +306,11 @@ namespace Farm.Map
 
             return _tileDetailsDict[key];
         }
+        
+        public Dictionary<string, TileDetails> GetAllTileDetails()
+        {
+            return _tileDetailsDict;
+        }
 
         public TileDetails GetTileDetailsByMouseGridPos(Vector3Int mouseGridPos)
         {
@@ -334,7 +339,9 @@ namespace Farm.Map
             _waterTilemap.SetTile(pos, waterTile);
         }
         
-        // DisplayMap 显示地图瓦片
+        /**
+         * 显示地图瓦片
+         */
         private void DisplayMap(string sceneName)
         {
             foreach (var tile in _tileDetailsDict)
