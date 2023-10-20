@@ -42,6 +42,23 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        RectTransform joyStickBoxRect = GameObject.FindWithTag("JoyStickBox").GetComponent<RectTransform>();
+        // 是安卓平板
+        if ((float)Screen.width / Screen.height < 1.7f)
+        {
+            Vector2 anPos = joyStickBoxRect.anchoredPosition;
+            anPos.x = 40;
+            anPos.y = 60;
+            joyStickBoxRect.anchoredPosition = anPos;
+        }
+        // 是Ipad
+        if ((float)Screen.width / Screen.height < 1.5f)
+        {
+            Vector2 anPos = joyStickBoxRect.anchoredPosition;
+            anPos.x = 40;
+            anPos.y = 60;
+            joyStickBoxRect.anchoredPosition = anPos;
+        }
         _menuCanvas = GameObject.FindWithTag("MenuCanvas");
         Instantiate(menuPrefab, _menuCanvas.transform);
     }
