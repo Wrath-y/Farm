@@ -172,8 +172,8 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
                             }
                             _gameTime.Season = (Season)seasonNumber;
                         }
-                        EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
                     }
+                    EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
                 }
                 EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
             }
