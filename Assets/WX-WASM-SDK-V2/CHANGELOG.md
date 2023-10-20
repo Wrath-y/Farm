@@ -6,7 +6,160 @@ Removed - 删除功能/接口
 Fixed - 修复问题
 Others - 其他 
 -->
+## 2023-10-11
+### Feature
+* 适配Video Player, 安卓3.0.0基础库/IOS 3.1.1基础库且只支持播放一个视
 
+## 2023-9-26
+### Feature
+* 适配Application.targetFramerate，无需再调用小游戏的帧率设置API
+### Fixed
+* 修复wasm分包patch未生效的问题
+* 修复WXAssetBundle在异常时上报错误
+* 更新适配插件版本到1.2.31
+
+## 2023-09-20
+### Feature
+* API协议更新至3.0.1版本，增加模糊地理位置获取接口
+* 更新适配插件版本到1.2.29
+
+## 2023-09-01
+### Feature
+* 微信压缩纹理工具Unity全版本支持
+### Fixed 
+* 修复WXAssetBundle WXUnload后再次Load同个AssetBundle可能出现的异常
+* 优化WXAssetBundle当UnityWebRequest异常时DownloadHandlerWXAssetBundle.assetBundle返回null，不再直接崩溃
+* 更新适配插件版本到1.2.26
+
+## 2023-08-24
+### Feature
+* 适配AudioClip.GetData
+* 更新适配插件版本到1.2.25
+### Fixed 
+* 修复旧版本安卓使用系统字体报错'SC Font not found in TTC File'
+* 资源优化工具支持ASTC6*6格式
+
+## 2023-08-18
+### Feature
+* 增加downloadfile（优化构建，支持创建类时传入success等会回调）
+* 重构fs.readFile和fs.readFileSync，支持position和length参数
+* 增加onMouseDown等PC点击事件
+* 支持通过 `minigame/unity-namespace.js` 中函数 `isReportableHttpError` 忽略非重要网络异常上报，如心跳、数据分析接口
+### Fixed 
+* 修复使用 `WXAssetBundle` 且请求了不同版本的资源时报错'readFileSync:fail no such file or directory'
+* pc下载资源出现'still downloading xxx'弹框时用户可尝试重启小游戏
+* 修复最佳实践检测工具首资源包是否压缩判断
+
+## 2023-08-10
+### Feature
+* 增加隐私信息授权API（requirePrivacyAuthorize等）
+* 增加API-requestSubscribeLiveActivity
+* WXAssetBundle兼容WebGL浏览器环境(回退至UnityWebRequestAssetBundle模式运行)
+ 
+## 2023-08-3
+### Feature
+更新内容：
+* 首资源包压缩后在pc上运行的基础库版本限制调整，CDN加载(>=2.32.3)，小游戏分包加载(2.29.2)
+* 完善FileSystemManager
+* Video支持修改属性
+* development模式下，增加渲染性能检测日志
+* 启动卡住时补充上报dependency
+* 更新适配插件为1.2.23
+### Fixed 
+* 修复微信系统字体加载时报错'SC Font not found in TTC File'
+* 忽略unity分析的网络失败上报
+* 修正网络个数和HTTP2.0检测
+* 修复wx.onCompassChange
+
+## 2023-07-27
+### Feature
+* 转换插件添加启动并行下载配置
+* 详细缓存日志不写入日志管理器
+* pc增加是否支持brotli压缩条件判断
+### Fixed
+* 修复系统字体未正常预下载
+* PC微信因loadSubPackage无回调的容错处理
+* 修复最佳实践检测工具首资源包brotli压缩后仍提示未gzip/br压缩
+* 修复AudioSource修改pitch失效
+* 修复PC端OnKeyDown回调报错
+
+## 2023-07-20
+### Feature
+* 补充启动阶段关键日志
+* 新增米大师接口RequestMidasPaymentGameItem
+* 更新适配插件1.2.19
+### Fixed
+* 首资源包校验兼容微信纹理压缩工具
+* 移除不用的纹理下载API
+
+## 2023-07-12
+### Feature
+* 增加选项Il2CppCodeGeneration，默认为Il2CppCodeGeneration.OptimizeSize
+* 启动期间校验首资源包大小
+* 更新适配插件1.2.18
+
+## 2023-07-05
+### Feature
+* iOS高性能模式自动GC策略(默认10s GC)，可通过MiniGameConfig.asset-CompileOption-iOSAutoGCInterval调整间隔
+* 支持对首资源包进行brotli压缩
+### Fixed
+* 性能面板数值显示优化
+
+## 2023-06-29
+### Feature
+* 最佳实践预下载及网络下载检测项调整
+* 增加OpenCustomerServiceChat
+* 优化WXTouchInputOverride，在touchend时触发点击事件
+
+### Fixed
+* 修复微信系统字体在iOS上部分字符缺失
+* 修复微信系统字体在安卓上字形异常
+* 修复导出webgl的兼容逻辑
+
+## 2023-06-16
+### Fixed
+* 修复Unity压缩选项导致出包错误
+* 调整默认打开窗口宽度
+* 修复打包后分包插件提示: '当前项目模板过旧，请使用新版unity导出插件重新导出项目
+
+## 2023-06-14
+### Feature
+* 移除对Node.js依赖；
+* 优化面板，提供Instant Game AutoStreaming自动配置与上传。
+* 增加API getlogmanager/getrealtimelogmanager
+### Fixed
+* iOS高性能最低支持版本调整
+* 微信系统字体预载bug修复
+* 音频FMOD导出适配
+
+## 2023-06-12
+### Fixed
+* plugins目录增加link.xml, 避免动态创建的类型被裁剪(如litjson解析)
+
+## 2023-06-7
+### Feature
+* UnityWebRequest支持timeout属性
+* 二次启动最佳实践检测逻辑调整
+### Fixed
+* 修复Unity 2022引擎版本导出Web版本的模板
+* dev版本不处理symbols数据
+* 修复微信系统字体多行重写的问题
+* 修复微信系统字体在iOS系统部分缺失符号
+
+## 2023-06-1
+### Feature
+* 支持Unity 2022引擎版本导出微信小游戏
+* 优化framework胶水层获取Canvas与宽高属性的性能损耗
+* ProfileStats性能面板增加FrameTime
+* 支持WASM生成external symbols优化，无需Node支持
+* 增加API CreateFeedbackButton
+* 广告API customAd增加onHide
+* 更新适配插件1.2.11
+### Fixed
+* 修复Android首次退出小游戏后会继续播放的问题
+* DoExport增加返回值方便第三方工具集成
+* innerAudio onError增加回调信息
+ 
 ## 2023-05-24
 ### Feature
 * 更新适配插件1.2.5

@@ -2,17 +2,17 @@ const { version, SDKVersion, platform, system } = wx.getSystemInfoSync();
 const accountInfo = wx.getAccountInfoSync();
 const envVersion = accountInfo?.miniProgram?.envVersion;
 function compareVersion(v1, v2) {
-  if (!v1 || !v2) {
-    return false;
-  }
-  return (v1
-    .split('.')
-    .map(v => v.padStart(2, '0'))
-    .join('')
+    if (!v1 || !v2) {
+        return false;
+    }
+    return (v1
+        .split('.')
+        .map(v => v.padStart(2, '0'))
+        .join('')
         >= v2
-          .split('.')
-          .map(v => v.padStart(2, '0'))
-          .join(''));
+            .split('.')
+            .map(v => v.padStart(2, '0'))
+            .join(''));
 }
 export const isPc = platform === 'windows' || platform === 'mac';
 export const isIOS = platform === 'ios';
@@ -24,7 +24,7 @@ export const isDevelop = envVersion === 'develop';
 
 const disableHighPerformanceFallback = $DISABLE_HIGHPERFORMANCE_FALLBACK && isIOS;
 
-const isH5Renderer = GameGlobal.isIOSHighPerformanceMode;
+export const isH5Renderer = GameGlobal.isIOSHighPerformanceMode;
 
 const systemVersionArr = system ? system.split(' ') : [];
 const systemVersion = systemVersionArr.length ? systemVersionArr[systemVersionArr.length - 1] : '';
@@ -33,9 +33,7 @@ const isPcWeChatVersionValid = compareVersion(version, '3.3');
 
 const isLibVersionValid = compareVersion(SDKVersion, '2.17.0');
 
-const isH5LibVersionValid = compareVersion(SDKVersion, '2.19.1');
-
-const isWssLibVersionValid = compareVersion(SDKVersion, '2.21.1');
+const isH5LibVersionValid = compareVersion(SDKVersion, '2.23.1');
 
 const isIOSH5SystemVersionValid = compareVersion(systemVersion, '14.0');
 
@@ -45,14 +43,25 @@ const isWebgl2 = () => GameGlobal.managerConfig.contextConfig.contextType === 2;
 
 export const isSupportBufferURL = !isPc
     && (isH5Renderer
-      ? compareVersion(SDKVersion, '2.29.1') && compareVersion(version, '8.0.30')
-      : typeof wx.createBufferURL === 'function');
+        ? compareVersion(SDKVersion, '2.29.1') && compareVersion(version, '8.0.30')
+        : typeof wx.createBufferURL === 'function');
 
 export const isSupportPlayBackRate = !isAndroid || compareVersion(version, '8.0.23');
 
 export const isSupportCacheAudio = !isIOS || compareVersion(version, '8.0.31');
 
-const canUseH5Renderer = (GameGlobal.canUseH5Renderer = isH5Renderer && isH5LibVersionValid);
+export const isSupportInnerAudio = compareVersion(version, '8.0.38');
+
+
+const isPcBrotliInvalid = isPc && !compareVersion(SDKVersion, $LOAD_DATA_FROM_SUBPACKAGE ? '2.29.2' : '2.32.3');
+const isMobileBrotliInvalid = isMobile && !compareVersion(SDKVersion, '2.21.1');
+
+const isBrotliInvalid = $COMPRESS_DATA_PACKAGE && (isPcBrotliInvalid || isMobileBrotliInvalid);
+
+
+GameGlobal.canUseH5Renderer = isH5Renderer && isH5LibVersionValid;
+
+GameGlobal.canUseiOSAutoGC = isH5Renderer && compareVersion(SDKVersion, '2.32.1');
 
 const isPcInvalid = isPc && !isPcWeChatVersionValid;
 
@@ -60,55 +69,63 @@ const isMobileInvalid = isMobile && !isLibVersionValid;
 
 const isIOSH5Invalid = (isH5Renderer && !isH5LibVersionValid) || (!isH5Renderer && disableHighPerformanceFallback);
 
+export const isSupportVideoDecoder = compareVersion(version, '8.0.38') && ((isIOS && compareVersion(SDKVersion, '3.1.1')) || (isAndroid && compareVersion(SDKVersion, '3.0.0'))) && !isDevtools;
 
-const useWss = false;
-
-const isWssNotEnable = canUseH5Renderer && !isWssLibVersionValid && useWss;
 
 const isWebgl2SystemVersionInvalid = () => isIOS && isWebgl2() && !isIOSWebgl2SystemVersionValid;
 
-export const webAudioNeedResume = compareVersion(SDKVersion, '2.25.3');
+export const webAudioNeedResume = compareVersion(SDKVersion, '2.25.3') && isH5Renderer;
 
 const needToastEnableHpMode = isDevelop && isIOS && isH5LibVersionValid && isIOSH5SystemVersionValid && !isH5Renderer;
 export function canUseCoverview() {
-  return isMobile || isDevtools;
+    return isMobile || isDevtools;
 }
 if (needToastEnableHpMode) {
-  console.error('此AppID未开通高性能模式\n请前往mp后台-能力地图-开发提效包-高性能模式开通\n可大幅提升游戏运行性能');
+    console.error('此AppID未开通高性能模式\n请前往mp后台-能力地图-开发提效包-高性能模式开通\n可大幅提升游戏运行性能');
+    
+    
+    
+    
+    
+    
+    
 }
 export default () => new Promise((resolve) => {
-  if (!isDevtools) {
-    if (isPcInvalid
+    if (!isDevtools) {
+        if (isPcInvalid
             || isMobileInvalid
             || isIOSH5Invalid
-            || isWssNotEnable
-            || isWebgl2SystemVersionInvalid()) {
-      let updateWechat = true;
-      let content = '当前微信版本过低\n请更新微信后进行游戏';
-      if (!isIOSH5SystemVersionValid || isWebgl2SystemVersionInvalid()) {
-        content = '当前操作系统版本过低\n请更新iOS系统后进行游戏';
-        updateWechat = false;
-      }
-      wx.showModal({
-        title: '提示',
-        content,
-        showCancel: false,
-        confirmText: updateWechat ? '更新微信' : '确定',
-        success(res) {
-          if (res.confirm) {
-            const showUpdateWechat = updateWechat && typeof wx.createBufferURL === 'function';
-            if (showUpdateWechat) {
-              wx.updateWeChatApp();
-            } else {
-              wx.exitMiniProgram({
-                success: () => { },
-              });
+            || isWebgl2SystemVersionInvalid()
+            || isBrotliInvalid) {
+            let updateWechat = true;
+            let content = '当前微信版本过低\n请更新微信后进行游戏';
+            if (isIOS) {
+                if (!isIOSH5SystemVersionValid || isWebgl2SystemVersionInvalid()) {
+                    content = '当前操作系统版本过低\n请更新iOS系统后进行游戏';
+                    updateWechat = false;
+                }
             }
-          }
-        },
-      });
-      return resolve(false);
+            wx.showModal({
+                title: '提示',
+                content,
+                showCancel: false,
+                confirmText: updateWechat ? '更新微信' : '确定',
+                success(res) {
+                    if (res.confirm) {
+                        const showUpdateWechat = updateWechat && typeof wx.createBufferURL === 'function';
+                        if (showUpdateWechat) {
+                            wx.updateWeChatApp();
+                        }
+                        else {
+                            wx.exitMiniProgram({
+                                success: () => { },
+                            });
+                        }
+                    }
+                },
+            });
+            return resolve(false);
+        }
     }
-  }
-  return resolve(true);
+    return resolve(true);
 });

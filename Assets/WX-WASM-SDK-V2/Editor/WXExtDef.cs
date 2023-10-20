@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 
 namespace WeChatWASM
 {
@@ -59,29 +61,35 @@ namespace WeChatWASM
 #else
             WXExtEnvDef.SETDEF("UNITY_2021", false);
 #endif
+#if UNITY_2022
+            WXExtEnvDef.SETDEF("UNITY_2022", true);
+#else
+            WXExtEnvDef.SETDEF("UNITY_2022", false);
+#endif
+#if UNITY_2022_2_OR_NEWER
+            WXExtEnvDef.SETDEF("UNITY_2022_2_OR_NEWER", true);
+#else
+            WXExtEnvDef.SETDEF("UNITY_2022_2_OR_NEWER", false);
+#endif
+#if UNITY_INSTANTGAME
+            WXExtEnvDef.SETDEF("UNITY_INSTANTGAME", true);
+#else
+            WXExtEnvDef.SETDEF("UNITY_INSTANTGAME", false);
+#endif
             RegisterController();
         }
 
         private static void RegisterController()
         {
-            WXExtEnvDef.RegisterAction("WXEditorWindow.Init", (args) =>
-            {
-#if UNITY_2021_2_OR_NEWER
-                PlayerSettings.WebGL.debugSymbolMode = WebGLDebugSymbolMode.Embedded;
-#else
-                PlayerSettings.WebGL.debugSymbols = true;
-#endif
-                return null;
-            });
-
-            WXExtEnvDef.RegisterAction("WXEditorWindow.Build", (args) =>
-            {
-#if UNITY_2021_2_OR_NEWER
-            // 默认更改为OptimizeSize，减少代码包体积
-            EditorUserBuildSettings.il2CppCodeGeneration = UnityEditor.Build.Il2CppCodeGeneration.OptimizeSize;
-#endif
-                return null;
-            });
+            //             WXExtEnvDef.RegisterAction("WXEditorWindow.Init", (args) =>
+            //             {
+            // #if UNITY_2021_2_OR_NEWER
+            //                 PlayerSettings.WebGL.debugSymbolMode = WebGLDebugSymbolMode.External;
+            // #else
+            //                 PlayerSettings.WebGL.debugSymbols = true;
+            // #endif
+            //                 return null;
+            //             });
         }
     }
 }

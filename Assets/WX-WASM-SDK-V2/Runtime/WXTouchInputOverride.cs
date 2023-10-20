@@ -1,7 +1,10 @@
+#if UNITY_WEBGL || UNITY_EDITOR
 using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 using WeChatWASM;
 
@@ -34,6 +37,7 @@ public class WXTouchInputOverride : BaseInput
     protected override void OnEnable()
     {
         base.OnEnable();
+        if (string.IsNullOrEmpty(WeChatWASM.WX.GetSystemInfoSync().platform)) return;
         InitWechatTouchEvents();
         if (_standaloneInputModule)
         {
@@ -124,6 +128,21 @@ public class WXTouchInputOverride : BaseInput
 
             // Debug.Log($"OnWxTouchEnd:{wxTouch.identifier}");
             UpdateTouchData(data, new Vector2(wxTouch.clientX, wxTouch.clientY), touchEvent.timeStamp, TouchPhase.Ended);
+        }
+
+        GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+        if (selectedObject != null)
+        {
+            Button button = selectedObject.GetComponent<Button>();
+            if (button != null)
+            {
+                int clickListenerCount = button.onClick.GetPersistentEventCount();
+                if (clickListenerCount > 0) {
+                    button.onClick.SetPersistentListenerState(0, UnityEventCallState.EditorAndRuntime);
+                    button.onClick.Invoke();
+                    button.onClick.SetPersistentListenerState(0, UnityEventCallState.Off);
+                }
+            }
         }
     }
 
@@ -246,3 +265,4 @@ public class WXTouchInputOverride : BaseInput
 
 #endif
 }
+#endif

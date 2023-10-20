@@ -11160,7 +11160,7 @@ GameObject:
   - component: {fileID: 1623268362}
   m_Layer: 5
   m_Name: JoyStick
-  m_TagString: Untagged
+  m_TagString: JoyStickBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11181,11 +11181,11 @@ RectTransform:
   m_Father: {fileID: 1459958833}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.13158001}
-  m_AnchorMax: {x: 0.25475308, y: 1}
-  m_AnchoredPosition: {x: 17, y: -96}
-  m_SizeDelta: {x: -42, y: -192}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 70, y: 70}
+  m_SizeDelta: {x: 302.94, y: 306.34}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1623422810
 GameObject:
   m_ObjectHideFlags: 0
@@ -11758,7 +11758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 20
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0
@@ -13631,7 +13631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 20
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0

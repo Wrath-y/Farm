@@ -1,5 +1,5 @@
+#if UNITY_WEBGL || UNITY_EDITOR
 using System;
-
 using UnityEngine;
 
 namespace WeChatWASM
@@ -70,21 +70,21 @@ namespace WeChatWASM
         /// <summary>
         /// [wx.authorize(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/authorize/wx.authorize.html)
         /// 需要基础库： `1.2.0`
-        /// 提前向用户发起授权请求。调用后会立刻弹窗询问用户是否同意授权小程序使用某项功能或获取用户的某些数据，但不会实际调用对应接口。如果用户之前已经同意授权，则不会出现弹窗，直接返回成功。更多用法详见 [用户授权](https://developers.weixin.qq.com/minigame/dev/guide/framework/authorize.html)。
+        /// 提前向用户发起授权请求。调用后会立刻弹窗询问用户是否同意授权小程序使用某项功能或获取用户的某些数据，但不会实际调用对应接口。如果用户之前已经同意授权，则不会出现弹窗，直接返回成功。更多用法详见 [用户授权](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/authorize.html)。
         /// **注意事项**
         /// - 小游戏内使用 `wx.authorize({scope: "scope.userInfo"})`，不会弹出授权窗口，请使用 [wx.createUserInfoButton](https://developers.weixin.qq.com/minigame/dev/api/open-api/user-info/wx.createUserInfoButton.html)
         /// - 需要授权 `scope.userLocation` 时必须[配置地理位置用途说明](https://developers.weixin.qq.com/minigame/dev/reference/configuration/app.html#permission)。
         /// **示例代码**
         /// ```js
-        /// // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+        /// // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.writePhotosAlbum" 这个 scope
         /// wx.getSetting({
         /// success(res) {
-        /// if (!res.authSetting['scope.record']) {
+        /// if (!res.authSetting['scope.writePhotosAlbum']) {
         /// wx.authorize({
-        /// scope: 'scope.record',
+        /// scope: 'scope.writePhotosAlbum',
         /// success () {
-        /// // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-        /// wx.startRecord()
+        /// // 用户已经同意保存到相册功能，后续调用 wx.saveImageToPhotosAlbum 接口不会弹窗询问
+        /// wx.saveImageToPhotosAlbum()
         /// }
         /// })
         /// }
@@ -223,11 +223,20 @@ namespace WeChatWASM
         }
 
         /// <summary>
-        /// [wx.closeSocket(Object object)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.closeSocket.html)
+        /// [wx.compressImage(Object object)](https://developers.weixin.qq.com/minigame/dev/api/media/image/wx.compressImage.html)
+        /// 需要基础库： `3.0.1`
+        /// 压缩图片接口，可选压缩质量
+        /// **示例代码**
+        /// ```js
+        /// wx.compressImage({
+        /// src: '', // 图片路径
+        /// quality: 80 // 压缩质量
+        /// })
+        /// ```
         /// </summary>
-        public static void CloseSocket(CloseSocketOption callback)
+        public static void CompressImage(CompressImageOption callback)
         {
-            WXSDKManagerHandler.Instance.CloseSocket(callback);
+            WXSDKManagerHandler.Instance.CompressImage(callback);
         }
 
         /// <summary>
@@ -380,6 +389,27 @@ namespace WeChatWASM
         public static void GetBLEMTU(GetBLEMTUOption callback)
         {
             WXSDKManagerHandler.Instance.GetBLEMTU(callback);
+        }
+
+        /// <summary>
+        /// [wx.getBackgroundFetchData(object object)](https://developers.weixin.qq.com/minigame/dev/api/storage/background-fetch/wx.getBackgroundFetchData.html)
+        /// 需要基础库： `3.0.1`
+        /// 拉取 backgroundFetch 客户端缓存数据。
+        /// 当调用接口时，若当次请求未结束，会先返回本地的旧数据（之前打开小程序时请求的），如果本地没有旧数据，安卓上会返回fail，不会等待请求完成，iOS上会返回success但fetchedData为空，也不会等待请求完成。
+        /// </summary>
+        public static void GetBackgroundFetchData(GetBackgroundFetchDataOption callback)
+        {
+            WXSDKManagerHandler.Instance.GetBackgroundFetchData(callback);
+        }
+
+        /// <summary>
+        /// [wx.getBackgroundFetchToken(Object object)](https://developers.weixin.qq.com/minigame/dev/api/storage/background-fetch/wx.getBackgroundFetchToken.html)
+        /// 需要基础库： `3.0.1`
+        /// 获取设置过的自定义登录态。若无，则返回 fail。
+        /// </summary>
+        public static void GetBackgroundFetchToken(GetBackgroundFetchTokenOption callback)
+        {
+            WXSDKManagerHandler.Instance.GetBackgroundFetchToken(callback);
         }
 
         /// <summary>
@@ -536,12 +566,8 @@ namespace WeChatWASM
 
         /// <summary>
         /// [wx.getFuzzyLocation(Object object)](https://developers.weixin.qq.com/minigame/dev/api/location/wx.getFuzzyLocation.html)
-        /// 需要基础库： `2.25.0`
+        /// 需要基础库： `3.0.1`
         /// 获取当前的模糊地理位置。
-        /// ## 使用方法
-        /// 自 2022 年 7 月 14 日后发布的小程序，若使用该接口，需要在 app.json 中进行声明，否则将无法正常使用该接口，2022年7月14日前发布的小程序不受影响。[具体规则见公告](https://developers.weixin.qq.com/community/develop/doc/000a02f2c5026891650e7f40351c01)
-        /// ## 申请开通
-        /// 暂只针对具备与地理位置强相关的使用场景的小程序开放，在小程序管理后台，「开发」-「开发管理」-「接口设置」中自助开通该接口权限。 从2022年7月14日开始在代码审核环节将检测该接口是否已完成开通，如未开通，将在代码提审环节进行拦截。
         /// **示例代码**
         /// ```js
         /// wx.getFuzzyLocation({
@@ -668,7 +694,6 @@ namespace WeChatWASM
         /// <summary>
         /// [wx.getLocation(Object object)](https://developers.weixin.qq.com/minigame/dev/api/location/wx.getLocation.html)
         /// 获取当前的地理位置、速度。当用户离开小程序后，此接口无法调用。开启高精度定位，接口耗时会增加，可指定 highAccuracyExpireTime 作为超时时间。地图相关使用的坐标格式应为 gcj02。
-        /// 高频率调用会导致耗电，如有需要可使用持续定位接口 `wx.onLocationChange`。
         /// 基础库 `2.17.0` 版本起 `wx.getLocation` 增加调用频率限制，[相关公告](https://developers.weixin.qq.com/community/develop/doc/000aee91a98d206bc6dbe722b51801)。
         /// **示例代码**
         /// ```js
@@ -710,6 +735,27 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.getPrivacySetting(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/privacy/wx.getPrivacySetting.html)
+        /// 需要基础库： `2.32.3`
+        /// 查询隐私授权情况。隐私合规开发指南详情可见[《小游戏隐私合规开发指南》](https://developers.weixin.qq.com/community/develop/doc/000aa25cf1c8a0e64310ac3ef66401?highLine=%25E9%259A%2590%25E7%25A7%2581)
+        /// **示例代码**
+        /// ```js
+        /// wx.getPrivacySetting({
+        /// success: res => {
+        /// console.log(res)
+        /// // 返回结果为: res = { needAuthorization: true/false, privacyContractName: '《xxx隐私保护指引》' }
+        /// },
+        /// fail: () => {},
+        /// complete() => {}
+        /// })
+        /// ```
+        /// </summary>
+        public static void GetPrivacySetting(GetPrivacySettingOption callback)
+        {
+            WXSDKManagerHandler.Instance.GetPrivacySetting(callback);
+        }
+
+        /// <summary>
         /// [wx.getScreenBrightness(Object object)](https://developers.weixin.qq.com/minigame/dev/api/device/screen/wx.getScreenBrightness.html)
         /// 需要基础库： `1.2.0`
         /// 获取屏幕亮度
@@ -724,7 +770,7 @@ namespace WeChatWASM
         /// <summary>
         /// [wx.getSetting(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/setting/wx.getSetting.html)
         /// 需要基础库： `1.2.0`
-        /// 获取用户的当前设置。**返回值中只会出现小程序已经向用户请求过的[权限](https://developers.weixin.qq.com/minigame/dev/guide/framework/authorize.html)**。
+        /// 获取用户的当前设置。**返回值中只会出现小程序已经向用户请求过的[权限](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/authorize.html)**。
         /// **示例代码**
         /// ```js
         /// wx.getSetting({
@@ -1092,7 +1138,7 @@ namespace WeChatWASM
 
         /// <summary>
         /// [wx.login(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/login/wx.login.html)
-        /// 调用接口获取登录凭证（code）。通过凭证进而换取用户登录态信息，包括用户在当前小程序的唯一标识（openid）、微信开放平台帐号下的唯一标识（unionid，若当前小程序已绑定到微信开放平台帐号）及本次登录的会话密钥（session_key）等。用户数据的加解密通讯需要依赖会话密钥完成。
+        /// 调用接口获取登录凭证（code）。通过凭证进而换取用户登录态信息，包括用户在当前小程序的唯一标识（openid）、微信开放平台账号下的唯一标识（unionid，若当前小程序已绑定到微信开放平台账号）及本次登录的会话密钥（session_key）等。用户数据的加解密通讯需要依赖会话密钥完成。
         /// **示例代码**
         /// ```js
         /// wx.login({
@@ -1307,6 +1353,24 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.openCustomerServiceChat(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/service-chat/wx.openCustomerServiceChat.html)
+        /// 需要基础库： `2.30.4`
+        /// 打开微信客服，页面产生点击事件（例如 button 上 bindtap 的回调中）后才可调用。了解更多信息，可以参考[微信客服介绍](https://work.weixin.qq.com/kf/)。
+        /// **示例代码**
+        /// ```js
+        /// wx.openCustomerServiceChat({
+        /// extInfo: {url: ''},
+        /// corpId: '',
+        /// success(res) {}
+        /// })
+        /// ```
+        /// </summary>
+        public static void OpenCustomerServiceChat(OpenCustomerServiceChatOption callback)
+        {
+            WXSDKManagerHandler.Instance.OpenCustomerServiceChat(callback);
+        }
+
+        /// <summary>
         /// [wx.openCustomerServiceConversation(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/customer-message/wx.openCustomerServiceConversation.html)
         /// 需要基础库： `2.0.3`
         /// 进入客服会话。要求在用户发生过至少一次 touch 事件后才能调用。后台接入方式与小程序一致，详见 [客服消息接入](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/customer-message/customer-message.html)
@@ -1319,9 +1383,27 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.openPrivacyContract(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/privacy/wx.openPrivacyContract.html)
+        /// 需要基础库： `2.32.3`
+        /// 跳转至隐私协议页面。隐私合规开发指南详情可见[《小游戏隐私合规开发指南》](https://developers.weixin.qq.com/community/develop/doc/000aa25cf1c8a0e64310ac3ef66401?highLine=%25E9%259A%2590%25E7%25A7%2581)
+        /// **示例代码**
+        /// ```js
+        /// wx.openPrivacyContract({
+        /// success: () => {}, // 打开成功
+        /// fail: () => {}, // 打开失败
+        /// complete() => {}
+        /// })
+        /// ```
+        /// </summary>
+        public static void OpenPrivacyContract(OpenPrivacyContractOption callback)
+        {
+            WXSDKManagerHandler.Instance.OpenPrivacyContract(callback);
+        }
+
+        /// <summary>
         /// [wx.openSetting(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/setting/wx.openSetting.html)
         /// 需要基础库： `1.1.0`
-        /// 调起客户端小程序设置界面，返回用户设置的操作结果。**设置界面只会出现小程序已经向用户请求过的[权限](https://developers.weixin.qq.com/minigame/dev/guide/framework/authorize.html)**。
+        /// 调起客户端小程序设置界面，返回用户设置的操作结果。**设置界面只会出现小程序已经向用户请求过的[权限](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/authorize.html)**。
         /// ****
         /// - 注意：[2.3.0](https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html) 版本开始，用户发生点击行为后，才可以跳转打开设置页，管理授权信息。[详情](https://developers.weixin.qq.com/community/develop/doc/000cea2305cc5047af5733de751008)
         /// **示例代码**
@@ -1697,6 +1779,34 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.requirePrivacyAuthorize(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/privacy/wx.requirePrivacyAuthorize.html)
+        /// 需要基础库： `2.32.3`
+        /// 模拟隐私接口调用，并触发隐私弹窗逻辑。隐私合规开发指南详情可见[《小游戏隐私合规开发指南》](https://developers.weixin.qq.com/community/develop/doc/000aa25cf1c8a0e64310ac3ef66401?highLine=%25E9%259A%2590%25E7%25A7%2581)
+        /// ****
+        /// ## 具体说明：
+        /// 调用 wx.requirePrivacyAuthorize() 时：
+        /// - 1. 如果用户之前已经同意过隐私授权，会立即返回success回调，不会触发 wx.onNeedPrivacyAuthorization 事件。
+        /// - 2. 如果用户之前没有授权过，并且开发者注册了 [wx.onNeedPrivacyAuthorization()](https://developers.weixin.qq.com/minigame/dev/api/open-api/privacy/wx.onNeedPrivacyAuthorization.html) 事件监听，就会立即触发 wx.onNeedPrivacyAuthorization 事件，然后开发者在 onNeedPrivacyAuthorization 回调中弹出自定义隐私授权弹窗，用户点了同意后开发者调用 wx.onNeedPrivacyAuthorization 的回调接口 resolve({ event: 'agree' })，会触发 requirePrivacyAuthorize 的 success 回调。用户点击拒绝授权后开发者调用 wx.onNeedPrivacyAuthorization 的回调接口 resolve({ event: 'disagree' }) 的话，会触发 requirePrivacyAuthorize 的 fail 回调。
+        /// - 3. 如果用户之前没有授权过，并且开发者没有注册 [wx.onNeedPrivacyAuthorization()](https://developers.weixin.qq.com/minigame/dev/api/open-api/privacy/wx.onNeedPrivacyAuthorization.html) 事件监听，就会立即弹出平台提供的统一隐私授权弹窗，用户点了同意之后，会触发 requirePrivacyAuthorize 的 success 回调，用户点了拒绝后会触发 requirePrivacyAuthorize 的 fail 回调。
+        /// - 4. 基于上述特性，开发者可以在调用任何真实隐私接口之前调用 wx.requirePrivacyAuthorize 接口来模拟隐私接口调用，并触发隐私弹窗（包括自定义弹窗或平台弹窗）逻辑。
+        /// **示例代码**
+        /// ```js
+        /// wx.requirePrivacyAuthorize({
+        /// success: () => {
+        /// // 用户同意授权
+        /// // runGame() 继续游戏逻辑
+        /// },
+        /// fail: () => {}, // 用户拒绝授权
+        /// complete: () => {}
+        /// })
+        /// ```
+        /// </summary>
+        public static void RequirePrivacyAuthorize(RequirePrivacyAuthorizeOption callback)
+        {
+            WXSDKManagerHandler.Instance.RequirePrivacyAuthorize(callback);
+        }
+
+        /// <summary>
         /// [wx.restartMiniProgram(Object object)](https://developers.weixin.qq.com/minigame/dev/api/navigate/wx.restartMiniProgram.html)
         /// 需要基础库： `2.22.1`
         /// 重启当前小程序
@@ -1771,14 +1881,6 @@ namespace WeChatWASM
         }
 
         /// <summary>
-        /// [wx.sendSocketMessage(Object object)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.sendSocketMessage.html)
-        /// </summary>
-        public static void SendSocketMessage(SendSocketMessageOption callback)
-        {
-            WXSDKManagerHandler.Instance.SendSocketMessage(callback);
-        }
-
-        /// <summary>
         /// [wx.setBLEMTU(Object object)](https://developers.weixin.qq.com/minigame/dev/api/device/bluetooth-ble/wx.setBLEMTU.html)
         /// 需要基础库： `2.11.0`
         /// 协商设置蓝牙低功耗的最大传输单元 (Maximum Transmission Unit, MTU)。需在 [wx.createBLEConnection](https://developers.weixin.qq.com/minigame/dev/api/device/bluetooth-ble/wx.createBLEConnection.html) 调用成功后调用。仅安卓系统 5.1 以上版本有效，iOS 因系统限制不支持。
@@ -1786,6 +1888,16 @@ namespace WeChatWASM
         public static void SetBLEMTU(SetBLEMTUOption callback)
         {
             WXSDKManagerHandler.Instance.SetBLEMTU(callback);
+        }
+
+        /// <summary>
+        /// [wx.setBackgroundFetchToken(object object)](https://developers.weixin.qq.com/minigame/dev/api/storage/background-fetch/wx.setBackgroundFetchToken.html)
+        /// 需要基础库： `3.0.1`
+        /// 设置自定义登录态，在周期性拉取数据时带上，便于第三方服务器验证请求合法性
+        /// </summary>
+        public static void SetBackgroundFetchToken(SetBackgroundFetchTokenOption callback)
+        {
+            WXSDKManagerHandler.Instance.SetBackgroundFetchToken(callback);
         }
 
         /// <summary>
@@ -2242,6 +2354,9 @@ namespace WeChatWASM
         /// [wx.updateShareMenu(Object object)](https://developers.weixin.qq.com/minigame/dev/api/share/wx.updateShareMenu.html)
         /// 需要基础库： `1.2.0`
         /// 更新转发属性
+        /// ****
+        /// ## 注意事项
+        /// - bug：在iOS上，如果 withShareTicket 传了 true ，同时 isUpdatableMessage 传了 false，会导致 withShareTicket 失效。解决办法：当 withShareTicket 传了 true 的时候，isUpdatableMessage 传 true 或者不传都可以，但不要传 false。如果需要关掉动态消息设置，则另外单独调用一次 wx.updateShareMenu({ isUpdatableMessage: false }) 即可。
         /// **示例代码**
         /// ```js
         /// wx.updateShareMenu({
@@ -2421,6 +2536,20 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.requestMidasPaymentGameItem(Object object)]
+        /// 发起米大师支付
+        /// </summary>
+        public static void RequestMidasPaymentGameItem(RequestMidasPaymentGameItemOption callback)
+        {
+            WXSDKManagerHandler.Instance.RequestMidasPaymentGameItem(callback);
+        }
+
+        public static void RequestSubscribeLiveActivity(RequestSubscribeLiveActivityOption callback)
+        {
+            WXSDKManagerHandler.Instance.RequestSubscribeLiveActivity(callback);
+        }
+
+        /// <summary>
         /// [wx.operateGameRecorderVideo(Object object)](https://developers.weixin.qq.com/minigame/dev/api/game-recorder/wx.operateGameRecorderVideo.html)
         /// 需要基础库： `2.26.1`
         /// 分享游戏对局回放。安卓微信8.0.28开始支持，iOS微信8.0.30开始支持。
@@ -2571,22 +2700,6 @@ namespace WeChatWASM
         }
 
         /// <summary>
-        /// 停止纹理下载
-        /// </summary>
-        public static void StopDownloadTexture()
-        {
-            WXSDKManagerHandler.Instance.StopDownloadTexture();
-        }
-
-        /// <summary>
-        /// 开始纹理下载
-        /// </summary>
-        public static void StarDownloadTexture()
-        {
-            WXSDKManagerHandler.Instance.StarDownloadTexture();
-        }
-
-        /// <summary>
         /// [wx.onAccelerometerChange(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/accelerometer/wx.onAccelerometerChange.html)
         /// 监听加速度数据事件。频率根据 [wx.startAccelerometer()](https://developers.weixin.qq.com/minigame/dev/api/device/accelerometer/wx.startAccelerometer.html) 的 interval 参数, 接口调用后会自动开始监听。
         /// **示例代码**
@@ -2728,9 +2841,26 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [wx.onBackgroundFetchData(function listener)](https://developers.weixin.qq.com/minigame/dev/api/storage/background-fetch/wx.onBackgroundFetchData.html)
+        /// 需要基础库： `3.0.1`
+        /// 监听收到 backgroundFetch 数据事件。如果监听时请求已经完成，则事件不会触发。建议和 [wx.getBackgroundFetchData](https://developers.weixin.qq.com/minigame/dev/api/storage/background-fetch/wx.getBackgroundFetchData.html) 配合使用
+        /// </summary>
+        public static void OnBackgroundFetchData(Action<OnBackgroundFetchDataListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OnBackgroundFetchData(result);
+        }
+
+
+        /// <summary>
         /// [wx.onBeaconServiceChange(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/ibeacon/wx.onBeaconServiceChange.html)
         /// 需要基础库： `2.9.2`
         /// 监听 Beacon 服务状态变化事件，仅能注册一个监听
+        /// **示例代码**
+        /// ```js
+        /// wx.onBeaconServiceChange(res => {
+        /// console.log(res.available, res.discovering)
+        /// })
+        /// ```
         /// </summary>
         public static void OnBeaconServiceChange(Action<OnBeaconServiceChangeListenerResult> result)
         {
@@ -2746,6 +2876,12 @@ namespace WeChatWASM
         /// [wx.onBeaconUpdate(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/ibeacon/wx.onBeaconUpdate.html)
         /// 需要基础库： `2.9.2`
         /// 监听 Beacon 设备更新事件，仅能注册一个监听
+        /// **示例代码**
+        /// ```js
+        /// wx.onBeaconUpdate(res => {
+        /// console.log(res.beacons)
+        /// })
+        /// ```
         /// </summary>
         public static void OnBeaconUpdate(Action<OnBeaconUpdateListenerResult> result)
         {
@@ -3063,6 +3199,48 @@ namespace WeChatWASM
 
 
         /// <summary>
+        /// [wx.onMouseDown(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/mouse-event/wx.onMouseDown.html)
+        /// 监听鼠标按键按下事件
+        /// </summary>
+        public static void OnMouseDown(Action<OnMouseDownListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OnMouseDown(result);
+        }
+
+        public static void OffMouseDown(Action<OnMouseDownListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OffMouseDown(result);
+        }
+
+        /// <summary>
+        /// [wx.onMouseMove(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/mouse-event/wx.onMouseMove.html)
+        /// 监听鼠标移动事件
+        /// </summary>
+        public static void OnMouseMove(Action<OnMouseMoveListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OnMouseMove(result);
+        }
+
+        public static void OffMouseMove(Action<OnMouseMoveListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OffMouseMove(result);
+        }
+
+        /// <summary>
+        /// [wx.onMouseUp(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/mouse-event/wx.onMouseUp.html)
+        /// 监听鼠标按键弹起事件
+        /// </summary>
+        public static void OnMouseUp(Action<OnMouseDownListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OnMouseUp(result);
+        }
+
+        public static void OffMouseUp(Action<OnMouseDownListenerResult> result)
+        {
+            WXSDKManagerHandler.Instance.OffMouseUp(result);
+        }
+
+        /// <summary>
         /// [wx.onNetworkStatusChange(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/network/wx.onNetworkStatusChange.html)
         /// 需要基础库： `1.1.0`
         /// 监听网络状态变化事件
@@ -3111,7 +3289,7 @@ namespace WeChatWASM
         /// <summary>
         /// [wx.onShareMessageToFriend(function listener)](https://developers.weixin.qq.com/minigame/dev/api/share/wx.onShareMessageToFriend.html)
         /// 需要基础库： `2.9.4`
-        /// 监听主域接收 `wx.shareMessageToFriend` 接口的成功失败通知
+        /// 监听主域接收`wx.shareMessageToFriend`接口的成功失败通知事件
         /// </summary>
         public static void OnShareMessageToFriend(Action<OnShareMessageToFriendListenerResult> result)
         {
@@ -3132,42 +3310,6 @@ namespace WeChatWASM
         {
             WXSDKManagerHandler.Instance.OffShow(result);
         }
-
-        /// <summary>
-        /// [wx.onSocketClose(function listener)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.onSocketClose.html)
-        /// </summary>
-        public static void OnSocketClose(Action<SocketTaskOnCloseListenerResult> result)
-        {
-            WXSDKManagerHandler.Instance.OnSocketClose(result);
-        }
-
-
-        /// <summary>
-        /// [wx.onSocketError(function listener)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.onSocketError.html)
-        /// </summary>
-        public static void OnSocketError(Action<GeneralCallbackResult> result)
-        {
-            WXSDKManagerHandler.Instance.OnSocketError(result);
-        }
-
-
-        /// <summary>
-        /// [wx.onSocketMessage(function listener)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.onSocketMessage.html)
-        /// </summary>
-        public static void OnSocketMessage(Action<SocketTaskOnMessageListenerResult> result)
-        {
-            WXSDKManagerHandler.Instance.OnSocketMessage(result);
-        }
-
-
-        /// <summary>
-        /// [wx.onSocketOpen(function listener)](https://developers.weixin.qq.com/minigame/dev/api/network/websocket/wx.onSocketOpen.html)
-        /// </summary>
-        public static void OnSocketOpen(Action<OnSocketOpenListenerResult> result)
-        {
-            WXSDKManagerHandler.Instance.OnSocketOpen(result);
-        }
-
 
         /// <summary>
         /// [wx.onTouchCancel(function listener)](https://developers.weixin.qq.com/minigame/dev/api/device/touch-event/wx.onTouchCancel.html)
@@ -3439,7 +3581,7 @@ namespace WeChatWASM
         /// <summary>
         /// [Object wx.getAccountInfoSync()](https://developers.weixin.qq.com/minigame/dev/api/open-api/account-info/wx.getAccountInfoSync.html)
         /// 需要基础库： `2.11.2`
-        /// 获取当前帐号信息。线上小程序版本号仅支持在正式版小程序中获取，开发版和体验版中无法获取。
+        /// 获取当前账号信息。线上小程序版本号仅支持在正式版小程序中获取，开发版和体验版中无法获取。
         /// **示例代码**
         /// ```js
         /// const accountInfo = wx.getAccountInfoSync();
@@ -3831,6 +3973,86 @@ namespace WeChatWASM
         }
 
         /// <summary>
+        /// [[DownloadTask](https://developers.weixin.qq.com/minigame/dev/api/network/download/DownloadTask.html) wx.downloadFile(Object object)](https://developers.weixin.qq.com/minigame/dev/api/network/download/wx.downloadFile.html)
+        /// 下载文件资源到本地。客户端直接发起一个 HTTPS GET 请求，返回文件的本地临时路径 (本地路径)，单次下载允许的最大文件为 200MB。使用前请注意阅读[相关说明](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/network.html)。
+        /// 注意：请在服务端响应的 header 中指定合理的 `Content-Type` 字段，以保证客户端正确处理文件类型。
+        /// **示例代码**
+        /// ```js
+        /// wx.downloadFile({
+        /// url: 'https://example.com/audio/123', //仅为示例，并非真实的资源
+        /// success (res) {
+        /// // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        /// if (res.statusCode === 200) {
+        /// wx.playVoice({
+        /// filePath: res.tempFilePath
+        /// })
+        /// }
+        /// }
+        /// })
+        /// ```
+        /// </summary>
+        /// <returns></returns>
+        public static WXDownloadTask DownloadFile(DownloadFileOption option)
+        {
+            return WXSDKManagerHandler.Instance.DownloadFile(option);
+        }
+
+        /// <summary>
+        /// [[FeedbackButton](https://developers.weixin.qq.com/minigame/dev/api/open-api/feedback/FeedbackButton.html) wx.createFeedbackButton(Object object)](https://developers.weixin.qq.com/minigame/dev/api/open-api/feedback/wx.createFeedbackButton.html)
+        /// 需要基础库： `2.1.2`
+        /// 创建打开意见反馈页面的按钮
+        /// </summary>
+        /// <returns></returns>
+        public static WXFeedbackButton CreateFeedbackButton(CreateOpenSettingButtonOption option)
+        {
+            return WXSDKManagerHandler.Instance.CreateFeedbackButton(option);
+        }
+
+        /// <summary>
+        /// [[LogManager](https://developers.weixin.qq.com/minigame/dev/api/base/debug/LogManager.html) wx.getLogManager(Object object)](https://developers.weixin.qq.com/minigame/dev/api/base/debug/wx.getLogManager.html)
+        /// 需要基础库： `2.1.0`
+        /// 获取日志管理器对象。
+        /// **示例代码**
+        /// ```js
+        /// const logger = wx.getLogManager({level: 1})
+        /// logger.log({str: 'hello world'}, 'basic log', 100, [1, 2, 3])
+        /// logger.info({str: 'hello world'}, 'info log', 100, [1, 2, 3])
+        /// logger.debug({str: 'hello world'}, 'debug log', 100, [1, 2, 3])
+        /// logger.warn({str: 'hello world'}, 'warn log', 100, [1, 2, 3])
+        /// ```
+        /// </summary>
+        /// <returns></returns>
+        public static WXLogManager GetLogManager(GetLogManagerOption option)
+        {
+            return WXSDKManagerHandler.Instance.GetLogManager(option);
+        }
+
+        /// <summary>
+        /// [[RealtimeLogManager](https://developers.weixin.qq.com/minigame/dev/api/base/debug/RealtimeLogManager.html) wx.getRealtimeLogManager()](https://developers.weixin.qq.com/minigame/dev/api/base/debug/wx.getRealtimeLogManager.html)
+        /// 需要基础库： `2.14.4`
+        /// 获取实时日志管理器对象。
+        /// **示例代码**
+        /// ```js
+        /// // 小程序端
+        /// const logger = wx.getRealtimeLogManager()
+        /// logger.info({str: 'hello world'}, 'info log', 100, [1, 2, 3])
+        /// logger.error({str: 'hello world'}, 'error log', 100, [1, 2, 3])
+        /// logger.warn({str: 'hello world'}, 'warn log', 100, [1, 2, 3])
+        /// // 插件端，基础库 2.16.0 版本后支持，只允许采用 key-value 的新格式上报
+        /// const logManager = wx.getRealtimeLogManager()
+        /// const logger = logManager.tag('plugin-log1')
+        /// logger.info('key1', 'value1')
+        /// logger.error('key2', {str: 'value2'})
+        /// logger.warn('key3', 'value3')
+        /// ```
+        /// </summary>
+        /// <returns></returns>
+        public static WXRealtimeLogManager GetRealtimeLogManager()
+        {
+            return WXSDKManagerHandler.Instance.GetRealtimeLogManager();
+        }
+
+        /// <summary>
         /// [[UpdateManager](https://developers.weixin.qq.com/minigame/dev/api/base/update/UpdateManager.html) wx.getUpdateManager()](https://developers.weixin.qq.com/minigame/dev/api/base/update/wx.getUpdateManager.html)
         /// 需要基础库： `1.9.90`
         /// 获取**全局唯一**的版本更新管理器，用于管理小程序更新。关于小程序的更新机制，可以查看[运行机制](https://developers.weixin.qq.com/minigame/dev/guide/runtime/operating-mechanism.html)文档。
@@ -3838,7 +4060,7 @@ namespace WeChatWASM
         /// [示例代码](https://developers.weixin.qq.com/minigame/dev/api/base/update/UpdateManager.html#示例代码)
         /// </summary>
         /// <returns></returns>
-        public static UpdateManager GetUpdateManager()
+        public static WXUpdateManager GetUpdateManager()
         {
             return WXSDKManagerHandler.Instance.GetUpdateManager();
         }
@@ -3849,10 +4071,11 @@ namespace WeChatWASM
         /// 创建视频解码器，可逐帧获取解码后的数据
         /// </summary>
         /// <returns></returns>
-        public static VideoDecoder CreateVideoDecoder()
+        public static WXVideoDecoder CreateVideoDecoder()
         {
             return WXSDKManagerHandler.Instance.CreateVideoDecoder();
         }
 
     }
 }
+#endif

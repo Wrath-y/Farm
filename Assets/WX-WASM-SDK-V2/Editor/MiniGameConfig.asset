@@ -17,6 +17,7 @@ MonoBehaviour:
     Appid: wxd11c47fa600c13d9
     CDN: https://wrath-game.oss-cn-shanghai.aliyuncs.com/farm
     assetLoadType: 0
+    compressDataPackage: 0
     VideoUrl: 
     DST: /Users/wrath/Desktop/Farm
     StreamCDN: 
@@ -47,6 +48,7 @@ MonoBehaviour:
     DevelopBuild: 0
     AutoProfile: 0
     ScriptOnly: 0
+    Il2CppOptimizeSize: 1
     profilingFuncs: 0
     Webgl2: 0
     fbslim: 1
@@ -54,6 +56,10 @@ MonoBehaviour:
     ProfilingMemory: 0
     CleanBuild: 0
     CustomNodePath: 
+    showMonitorSuggestModal: 1
+    enableProfileStats: 0
+    enableRenderAnalysis: 0
+    iOSAutoGCInterval: 10000
   CompressTexture:
     halfSize: 0
     useDXT5: 0
