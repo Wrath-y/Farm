@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class TimeUI : MonoBehaviour
 {
-    public RectTransform dayNightImage;
-    public RectTransform clockParent;
+    // public RectTransform dayNightImage;
+    // public RectTransform clockParent;
     public Image seasonImage;
     public TextMeshProUGUI dateText;
     public TextMeshProUGUI timeText;
@@ -19,11 +19,11 @@ public class TimeUI : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < clockParent.childCount; i++)
-        {
-            _clockBlocks.Add(clockParent.GetChild(i).gameObject);
-            clockParent.GetChild(i).gameObject.SetActive(false);
-        }
+        // for (int i = 0; i < clockParent.childCount; i++)
+        // {
+        //     _clockBlocks.Add(clockParent.GetChild(i).gameObject);
+        //     clockParent.GetChild(i).gameObject.SetActive(false);
+        // }
     }
 
     private void OnEnable()
@@ -48,7 +48,7 @@ public class TimeUI : MonoBehaviour
         dateText.text = year + "年" + month.ToString("00") + "月" + day.ToString("00") + "日";
         seasonImage.sprite = seasonSprites[(int)season];
         
-        SwitchHour(hour);
+        // SwitchHour(hour);
     }
 
     private void SwitchHour(int hour)
@@ -86,6 +86,6 @@ public class TimeUI : MonoBehaviour
 
     private void DayNightImageRotate(int hour)
     {
-        dayNightImage.DORotate(new Vector3(0, 0, hour * 15 - 90), 1f);
+        // dayNightImage.DORotate(new Vector3(0, 0, hour * 15 - 90), 1f);
     }
 }
