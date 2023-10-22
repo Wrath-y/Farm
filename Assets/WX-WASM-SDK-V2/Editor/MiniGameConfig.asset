@@ -19,13 +19,13 @@ MonoBehaviour:
     assetLoadType: 0
     compressDataPackage: 0
     VideoUrl: 
-    DST: /Users/wrath/Desktop/Farm
+    DST: C:/Users/80565/Desktop/farm
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;
     bundleExcludeExtensions: json;
     AssetsUrl: 
-    MemorySize: 256
+    MemorySize: 512
     HideAfterCallMain: 1
     preloadFiles: 
     Orientation: 1
