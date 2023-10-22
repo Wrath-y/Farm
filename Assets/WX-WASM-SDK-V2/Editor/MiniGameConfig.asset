@@ -29,7 +29,7 @@ MonoBehaviour:
     HideAfterCallMain: 1
     preloadFiles: 
     Orientation: 1
-    bgImageSrc: Assets/WX-WASM-SDK-V2/Runtime/wechat-default/images/background.jpg
+    bgImageSrc: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_grey_pressed.png
     dataFileSubPrefix: 
     maxStorage: 200
     defaultReleaseSize: 31457280
