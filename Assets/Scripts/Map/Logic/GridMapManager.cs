@@ -179,15 +179,15 @@ namespace Farm.Map
                     break;
                 case ItemType.ReapTool:
                     var reapCount = 0;
-                    for (int i = 0; i < _reapItemsInRadius.Count; i++)
+                    foreach (ReapItem reapItem in _reapItemsInRadius)
                     {
                         if (reapCount > Settings.ReapAmount)
                         {
                             break;
                         }
-                        EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, _reapItemsInRadius[i].transform.position + Vector3.up);
-                        _reapItemsInRadius[i].SpawnHarvestItems();
-                        Destroy(_reapItemsInRadius[i].gameObject);
+                        EventHandler.CallParticleEffectEvent(ParticleEffectType.ReapableScenery, reapItem.transform.position + Vector3.up);
+                        reapItem.SpawnHarvestItems();
+                        Destroy(reapItem.gameObject);
                         reapCount++;
                     }
                     EventHandler.CallPlaySoundEvent(SoundName.Reap);
@@ -400,20 +400,21 @@ namespace Farm.Map
             _tileDetailsDict[key] = tileDetails;
         }
 
-        // 判断鼠标点击位置的农作物
+        // 判断鼠标点击位置是否有Collider2D且有Crop组件
         public Crop GetCropObject(Vector3 mouseWorldPos)
         {
             Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
-            Crop curCrop = null;
-            for (int i = 0; i < colliders.Length; i++)
+            Crop crop = null;
+            foreach (Collider2D coll in colliders)
             {
-                if (colliders[i].GetComponent<Crop>())
+                crop = coll.GetComponent<Crop>();
+                if (crop)
                 {
-                    return colliders[i].GetComponent<Crop>();
+                    break;
                 }
             }
 
-            return curCrop;
+            return crop;
         }
 
         // 返回工具范围内的杂草
@@ -424,18 +425,11 @@ namespace Farm.Map
             Collider2D[] colliders = new Collider2D[20];
             Physics2D.OverlapCircleNonAlloc(mouseWorldPos, tool.itemUseRadius, colliders);
 
-            if (colliders.Length > 0)
+            foreach (Collider2D coll in colliders)
             {
-                for (int i = 0; i < colliders.Length; i++)
+                if (coll.GetComponent<ReapItem>())
                 {
-                    if (colliders[i] != null)
-                    {
-                        if (colliders[i].GetComponent<ReapItem>())
-                        {
-                            var item = colliders[i].GetComponent<ReapItem>();
-                            _reapItemsInRadius.Add((item));
-                        }
-                    }
+                    _reapItemsInRadius.Add(coll.GetComponent<ReapItem>());
                 }
             }
 
@@ -449,7 +443,7 @@ namespace Farm.Map
             gridDimensions = Vector2Int.zero; // 网格范围
             gridOrigin = Vector2Int.zero; // 网格原点
 
-            foreach (var mapData in mapDataList)
+            foreach (MapData_SO mapData in mapDataList)
             {
                 if (mapData.sceneName == sceneName)
                 {
