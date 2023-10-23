@@ -664,8 +664,8 @@ MonoBehaviour:
   - itemID: 2503
     itemName: "\u6742\u83491"
     itemType: 9
-    itemIcon: {fileID: 1378392803, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
-    itemOnWorldSprite: {fileID: 0}
+    itemIcon: {fileID: 910244632, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSprite: {fileID: 910244632, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -676,8 +676,8 @@ MonoBehaviour:
   - itemID: 2504
     itemName: "\u6742\u83492"
     itemType: 9
-    itemIcon: {fileID: 516619738, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
-    itemOnWorldSprite: {fileID: 0}
+    itemIcon: {fileID: 1456948184, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSprite: {fileID: 1456948184, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -688,8 +688,8 @@ MonoBehaviour:
   - itemID: 2505
     itemName: "\u6742\u83493"
     itemType: 9
-    itemIcon: {fileID: 1103199196, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
-    itemOnWorldSprite: {fileID: 0}
+    itemIcon: {fileID: -1514154278, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSprite: {fileID: -1514154278, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0

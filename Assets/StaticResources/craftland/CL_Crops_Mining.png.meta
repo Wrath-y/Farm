@@ -5933,7 +5933,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Grass3
+      name: CL_Crops_Grass6
       rect:
         serializedVersion: 2
         x: 576
@@ -6353,7 +6353,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_299
+      name: CL_Crops_Grass3
       rect:
         serializedVersion: 2
         x: 434
@@ -6395,7 +6395,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Grass1
+      name: CL_Crops_Grass4
       rect:
         serializedVersion: 2
         x: 480
@@ -6479,7 +6479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Grass2
+      name: CL_Crops_Grass5
       rect:
         serializedVersion: 2
         x: 576
@@ -6563,7 +6563,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_309
+      name: CL_Crops_Grass2
       rect:
         serializedVersion: 2
         x: 432
@@ -8012,7 +8012,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crops_Mining_378
+      name: CL_Crops_Grass1
       rect:
         serializedVersion: 2
         x: 465
@@ -9012,14 +9012,14 @@ TextureImporter:
       CL_Crops_Mining_413: -2121236344
       CL_Crops_Mining_Tomato_6: 644829715
       CL_Crops_Mining_Red_bell_pepper: 152699944
-      CL_Crops_Grass2: 516619738
+      CL_Crops_Grass2: 1456948184
       CL_Crops_Mining_293: 701528407
       CL_Crops_Mining_96: 1127869223
       CL_Crops_Mining_Strawberry_4: -1464083136
       CL_Crops_Mining_Carrot_1: 1846530723
       CL_Crops_Mining_Carrot_4: -794356109
       CL_Crops_Mining_211: 1824213397
-      CL_Crops_Grass3: 1103199196
+      CL_Crops_Grass3: -1514154278
       CL_Crops_Mining_2: 1385751780
       CL_Crops_Mining_340: 315142733
       CL_Crops_Mining_307: -115370149
@@ -9034,15 +9034,14 @@ TextureImporter:
       CL_Crops_Rock1: 555592989
       CL_Crops_Mining_240: 1311112074
       CL_Crops_Mining_263: 36683145
-      CL_Crops_Mining_57: -718661669
+      CL_Crops_Rock3: -608392936
       CL_Crops_Mining_140: -493066861
       CL_Crops_Mining_Cabbage_3: -1627125964
-      CL_Crops_Rock3: -608392936
+      CL_Crops_Mining_57: -718661669
       CL_Crops_Mining_1: 1748627238
       CL_Crops_Mining_50: 327699145
       CL_Crops_Mining_250: 2026756145
       CL_Crops_Mining_Wheat_5: -1702293891
-      CL_Crops_Mining_378: 708159624
       CL_Crops_Mining_83: -1684072346
       CL_Crops_Mining_379: 1039830219
       CL_Crops_Mining_49: 1433208348
@@ -9059,6 +9058,7 @@ TextureImporter:
       CL_Crops_Mining_409: -1415958727
       CL_Crops_Mining_337: -27509343
       CL_Crops_Mining_166: 1636987476
+      CL_Crops_Grass6: 1103199196
       CL_Crops_Mining_54: 1225022623
       CL_Crops_Mining_252: -488888938
       CL_Crops_Mining_109: 1263192213
@@ -9096,7 +9096,6 @@ TextureImporter:
       CL_Crops_Mining_Green_bell_pepper_Box: -1787035136
       CL_Crops_Mining_Tomato_1: 1456948184
       CL_Crops_Mining_220: 943260086
-      CL_Crops_Mining_309: -1434344579
       CL_Crops_Mining_Tomato_3: -1703294797
       CL_Crops_Mining_215: -683841150
       CL_Crops_Tree1: -1136748246
@@ -9161,6 +9160,7 @@ TextureImporter:
       CL_Crops_Mining_311: 1479909400
       CL_Crops_Mining_Beetroot_3: 80311743
       CL_Crops_Mining_177: -1876186097
+      CL_Crops_Grass4: 1378392803
       CL_Crops_Mining_422: -1902332823
       CL_Crops_Mining_82: -1944706537
       CL_Crops_Mining_122: -648109150
@@ -9235,7 +9235,7 @@ TextureImporter:
       CL_Crops_Mining_359: 723619853
       CL_Crops_Mining_256: 439787487
       CL_Crops_Mining_106: 1378392803
-      CL_Crops_Grass1: -497249660
+      CL_Crops_Grass1: 910244632
       CL_Crops_Mining_Corn_Seed: 919398127
       CL_Crops_Mining_38: 1332361782
       CL_Crops_Mining_365: 449568300
@@ -9377,6 +9377,7 @@ TextureImporter:
       CL_Crops_Grass_Icon1: -1415958727
       CL_Crops_Mining_203: -1445224105
       CL_Crops_Mining_Carrot: -1946293549
+      CL_Crops_Grass5: 516619738
       CL_Crops_Mining_69: -601799988
       CL_Crops_Mining_186: 1648298234
       CL_Crops_Mining_248: 362256810
@@ -9406,7 +9407,6 @@ TextureImporter:
       CL_Crops_Mining_276: -826159746
       CL_Crops_Mining_183: -1239365871
       CL_Crops_Mining_328: 654117719
-      CL_Crops_Mining_299: -1962069092
       CL_Crops_Mining_225: -678466295
       CL_Crops_Mining_3: -1171835792
       CL_Crops_Mining_Yellow_bell_pepper: 1955644097
