@@ -80,7 +80,7 @@ public class CursorManager : Singleton<CursorManager>
             Touch touch = Input.GetTouch(0);
             _cursorImage.transform.position = touch.position;
         }
-        else
+        if (!_isMobile)
         {
             _cursorImage.transform.position = Input.mousePosition;
         }
