@@ -1628,7 +1628,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crafting_72
+      name: CL_Crafting_WateringCan
       rect:
         serializedVersion: 2
         x: 144
@@ -2951,7 +2951,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crafting_135
+      name: CL_Crafting_Pickaxe
       rect:
         serializedVersion: 2
         x: 0
@@ -2972,7 +2972,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crafting_136
+      name: CL_Crafting_Hoe
       rect:
         serializedVersion: 2
         x: 16
@@ -2993,7 +2993,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crafting_137
+      name: CL_Crafting_Chop
       rect:
         serializedVersion: 2
         x: 32
@@ -3014,7 +3014,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CL_Crafting_138
+      name: CL_Crafting_Reap
       rect:
         serializedVersion: 2
         x: 48
@@ -4924,6 +4924,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CL_Crafting_Basket
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ba817a32bb4f842980ff8e292484c5
+      internalID: 1821730206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -4935,6 +4956,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      CL_Crafting_Basket: 1821730206
       CL_Crafting_38: 2020158103
       CL_Crafting_133: -1673963201
       CL_Crafting_185: -1932469346
@@ -4942,7 +4964,6 @@ TextureImporter:
       CL_Crafting_93: 1702916876
       CL_Crafting_190: 1138181688
       CL_Crafting_124: 1666549043
-      CL_Crafting_138: -1670531545
       CL_Crafting_51: 275389544
       CL_Crafting_34: -493444586
       CL_Crafting_225: 2146869149
@@ -4970,6 +4991,7 @@ TextureImporter:
       CL_Crafting_84: 1531941314
       CL_Crafting_194: 637625920
       CL_Crafting_166: -1179599080
+      CL_Crafting_Chop: -836220577
       CL_Crafting_197: -939822959
       CL_Crafting_28: -513099133
       CL_Crafting_GravelRoad_4: 1630671848
@@ -4988,7 +5010,6 @@ TextureImporter:
       CL_Crafting_227: 1471351095
       CL_Crafting_153: -1196731286
       CL_Crafting_3: 972999696
-      CL_Crafting_136: 354471947
       CL_Crafting_103: -2001227756
       CL_Crafting_22: -995241727
       CL_Crafting_172: -1519164338
@@ -5016,6 +5037,7 @@ TextureImporter:
       CL_Crafting_189: 1541259726
       CL_Crafting_188: -1770391166
       CL_Crafting_174: -1359710331
+      CL_Crafting_WateringCan: 1110179922
       CL_Crafting_221: -2090562091
       CL_Crafting_94: -724415713
       CL_Crafting_31: 1819830402
@@ -5031,6 +5053,7 @@ TextureImporter:
       CL_Crafting_118: 734727438
       CL_Crafting_145: 963774895
       CL_Crafting_21: -41967404
+      CL_Crafting_Hoe: 354471947
       CL_Crafting_39: -90240277
       CL_Crafting_218: -531027572
       CL_Crafting_98: -2095829605
@@ -5063,7 +5086,6 @@ TextureImporter:
       CL_Crafting_112: 666839023
       CL_Crafting_191: -1536520598
       CL_Crafting_161: -2062747432
-      CL_Crafting_137: -836220577
       CL_Crafting_30: 722899435
       CL_Crafting_203: -618486974
       CL_Crafting_186: -722812393
@@ -5084,7 +5106,6 @@ TextureImporter:
       CL_Crafting_134: -61110908
       CL_Crafting_176: -1553149251
       CL_Crafting_63: 1215986118
-      CL_Crafting_72: 1110179922
       CL_Crafting_99: 1947562558
       CL_Crafting_170: -197870756
       CL_Crafting_70: -1183503706
@@ -5122,7 +5143,6 @@ TextureImporter:
       CL_Crafting_193: 871135975
       CL_Crafting_199: 1064614719
       CL_Crafting_91: 2110932283
-      CL_Crafting_135: 1201919015
       CL_Crafting_71: -432001724
       CL_Crafting_43: -1718353082
       CL_Crafting_62: -1423819428
@@ -5151,6 +5171,7 @@ TextureImporter:
       CL_Crafting_210: -1294706304
       CL_Crafting_139: -706829618
       CL_Crafting_59: -227367435
+      CL_Crafting_Pickaxe: 1201919015
       CL_Crafting_15: 69259095
       CL_Crafting_148: 2014639385
       CL_Crafting_122: -17267401
@@ -5159,6 +5180,7 @@ TextureImporter:
       CL_Crafting_44: 797417492
       CL_Crafting_217: -1079309692
       CL_Crafting_76: -1739503840
+      CL_Crafting_Reap: -1670531545
       CL_Crafting_50: -1841525770
       CL_Crafting_58: 2039233584
       CL_Crafting_6: -802221736

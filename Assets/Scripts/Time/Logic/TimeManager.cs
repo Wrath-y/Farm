@@ -87,8 +87,9 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     private void OnAfterSceneLoadedEvent()
     {
         _gamePause = false;
-        EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
         EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+        EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+        EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
         //切换灯光
         EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
 
