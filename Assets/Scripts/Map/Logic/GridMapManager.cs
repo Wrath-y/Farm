@@ -33,6 +33,8 @@ namespace Farm.Map
         private Dictionary<string, bool> _firstLoadDict = new Dictionary<string, bool>();
         private List<ReapItem> _reapItemsInRadius;
         public Grid curGrid;
+
+        private Collider2D[] _cropCollider2Ds = new Collider2D[2];
         
         public string GUID => GetComponent<DataGUID>().guid;
         
@@ -403,11 +405,11 @@ namespace Farm.Map
         // 判断鼠标点击位置是否有Collider2D且有Crop组件
         public Crop GetCropObject(Vector3 mouseWorldPos)
         {
-            Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
+            int numColliders = Physics2D.OverlapPointNonAlloc(mouseWorldPos, _cropCollider2Ds);
             Crop crop = null;
-            foreach (Collider2D coll in colliders)
+            for (int i = 0; i < numColliders; i++)
             {
-                crop = coll.GetComponent<Crop>();
+                crop = _cropCollider2Ds[i].GetComponent<Crop>();
                 if (crop)
                 {
                     break;
