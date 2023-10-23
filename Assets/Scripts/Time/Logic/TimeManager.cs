@@ -21,7 +21,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
     private DateTimeData _gameTime;
     private bool _gamePause;
     private float _tikTime;
-    private float _acceleratedTimes = 1;
     private bool _isResetSecondThreshold = false;
     
     //灯光时间差
@@ -54,10 +53,6 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
         ISaveable saveable = this;
         saveable.RegisterSaveable();
         _gamePause = true;
-        // EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
-        // EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
-        // //切换灯光
-        // EventHandler.CallLightShiftChangeEvent(_gameTime.Season, GetCurrentLightShift(), timeDifference);
     }
 
     private void Update()
@@ -70,7 +65,7 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
         _tikTime += Time.deltaTime;
         if (_tikTime > Settings.SecondThreshold)
         {
-            _tikTime -= Settings.SecondThreshold;
+            _tikTime = 0f;
             UpdateGameTime();
         }
 
@@ -82,18 +77,16 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
             }
         }
 
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKey(KeyCode.G))
         {
-            _gameTime.Day++;
-            EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
-            EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
-            EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+            // 时间过去10天
+            AcceleratedTime();
         }
     }
     
     private void OnAfterSceneLoadedEvent()
     {
-        // gameClockPause = false;
+        _gamePause = false;
         EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
         EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
         //切换灯光
@@ -103,7 +96,7 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
 
     private void OnBeforeSceneUnloadEvent()
     {
-        // _gamePause = true;
+        _gamePause = true;
     }
     
     private void OnUpdateGameStateEvent(GameState gameState)
@@ -205,26 +198,14 @@ public class TimeManager : Singleton<TimeManager>, ISaveable
 
     public void AcceleratedTime()
     {
-        _acceleratedTimes += 1;
-        Settings.SecondThreshold = (float)((decimal)Settings.SecondThreshold / 100m);
-        Debug.Log($"now SecondThreshold is {Settings.SecondThreshold}");
-        StartCoroutine(ResetSecondThreshold());
-    }
-    
-    IEnumerator ResetSecondThreshold()
-    {
-        if (_isResetSecondThreshold)
+        for (int i = 0; i < 10; i++)
         {
-            yield break;
+            _gameTime.Day++;
+            UpdateGameTime();
+            EventHandler.CallGameMinuteEvent(_gameTime.Minute, _gameTime.Hour, _gameTime.Day, _gameTime.Season);
+            EventHandler.CallGameDateEvent(_gameTime.Hour, _gameTime.Day, _gameTime.Month, _gameTime.Year, _gameTime.Season);
+            EventHandler.CallGameDayEvent(_gameTime.Day, _gameTime.Season);
         }
-
-        Debug.Log("will ResetSecondThreshold");
-        _isResetSecondThreshold = true;
-        yield return new WaitForSeconds(Settings.AccelerationDuration);
-
-        _acceleratedTimes = 1;
-        Settings.SecondThreshold = Settings.OriginSecondThreshold;
-        Debug.Log("has ResetSecondThreshold");
     }
     
     public GameSaveData GenerateSaveData()
