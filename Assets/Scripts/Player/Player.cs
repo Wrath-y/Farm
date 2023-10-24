@@ -173,7 +173,6 @@ public class Player : MonoBehaviour, ISaveable
             _inputY *= 0.6f;
         }
 
-        
         _movementInput = new Vector2(_inputX, _inputY);
         _isMoving = _movementInput != Vector2.zero;
     }
