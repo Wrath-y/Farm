@@ -12,11 +12,367 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: UI KenneyUIPackRPGExpansion
   m_EditorClassIdentifier: 
-  m_GroupName: UI_KenneyUIPackRPGExpansion
+  m_GroupName: UI KenneyUIPackRPGExpansion
   m_Data:
     m_SerializedData: []
   m_GUID: 31827e61c934845f2bbd72409425d5fa
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 75b15fec93b5f4092b0af98ec3d2e5d8
+    m_Address: KenneyUIPackRPGExpansion/arrowBeige_left.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea98bc21d511e4b2a9b219d940ed5f2e
+    m_Address: KenneyUIPackRPGExpansion/arrowBeige_right.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8cac1e29b14b42b5a9ded67b2db3bec
+    m_Address: KenneyUIPackRPGExpansion/arrowBlue_left.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 33ee8e5db15d04bf3b9bc5b8801f36e2
+    m_Address: KenneyUIPackRPGExpansion/arrowBlue_right.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: edde5620259f443bba9a9cfc7a7fe3c2
+    m_Address: KenneyUIPackRPGExpansion/arrowBrown_left.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6ea5ee04adb7f46808d0ebb3f5e5e10a
+    m_Address: KenneyUIPackRPGExpansion/arrowBrown_right.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10eb0ff8869074dffbbd60c62bb49fde
+    m_Address: KenneyUIPackRPGExpansion/arrowSilver_left.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6897c751a23044ada87de82dbb5b38f9
+    m_Address: KenneyUIPackRPGExpansion/arrowSilver_right.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3683c418477c2419b955eded1cf12d4d
+    m_Address: KenneyUIPackRPGExpansion/barBack_horizontalLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dcf8748498d1745cca69331bf6d5cb6a
+    m_Address: KenneyUIPackRPGExpansion/barBack_horizontalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed2873536cae945b18f8df213c4bc7e4
+    m_Address: KenneyUIPackRPGExpansion/barBack_horizontalRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6510bec3106b34b0ca326124121ff28f
+    m_Address: KenneyUIPackRPGExpansion/barBack_verticalBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0ef462c057424f6b8825eac5a445234
+    m_Address: KenneyUIPackRPGExpansion/barBack_verticalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dfa7dd112bf68493d96314b0e7824dde
+    m_Address: KenneyUIPackRPGExpansion/barBack_verticalTop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0d1c226ba7f674658bc697d1858711a7
+    m_Address: KenneyUIPackRPGExpansion/barBlue_horizontalBlue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19cbdaca6c5d34d48b59b4bbbc701dde
+    m_Address: KenneyUIPackRPGExpansion/barBlue_horizontalLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89a7f9677cf7443048a10477b99560fd
+    m_Address: KenneyUIPackRPGExpansion/barBlue_horizontalRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6a6d4f21819441c885620dd2b017ed4
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barBlue_verticalBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adff757d821954c798f4ecc483c4eaae
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barBlue_verticalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e78c438b677b44a0857d6c066dc9bb9
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barBlue_verticalTop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d142e3ca087b84b5a823f24fe57d4522
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_horizontalLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d1f1ff57afc443c1ab9c51726836b9a
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_horizontalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1cb1b602338824b2398ad0115af727ab
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_horizontalRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b889eae17da0e4b8199f59c330155676
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_verticalBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d06fc6dcfb10749768d0c16da5b06190
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_verticalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ba6e39a2f241847938f1682f7682ff23
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barGreen_verticalTop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89de38df16f4d4d92a35acc13516762f
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_horizontalLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 026557b6d7f1c43fc94454e9b9159c7b
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_horizontalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aad8e61da2ea34bc1b19db2d9951bddd
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_horizontalRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 110b71c5f060041efb0b6cd5033a2e43
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_verticalBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 890c89080f8f149d8964b448e66137c4
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_verticalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2aa0451185dfb4d27a8702465dc2e163
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barRed_verticalTop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21e49a3e99d6544678490b026f52e61d
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_horizontalLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65286d9e7a31045eba9fb5e2e3d0ab0e
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_horizontalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82ba0f51e4acd4cf383c01bc3db47439
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_horizontalRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11286e9d28b814fde95a367f6070c907
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_verticalBottom.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8e7858a367f0471ab04e7f70372788c
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_verticalMid.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f772a1abbbc44c6188852d43a6cda0b
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/barYellow_verticalTop.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: da6cbd2f16fa149d59b310f8809798b1
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c8e2b411167614cd3bac63f63e487b0d
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_beige_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2a4aedb2828e4a119e084fcb82104a5
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df5c03d6ae16a411da71b6cf48af2aef
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_blue_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ce5ad37f43f04fc9a0a94eaa05d0a64
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f325bc043d1ca401491497f496eca6cc
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_brown_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dba8aa7908d984e60bb6d7a751195d96
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 43c0d2a3537ab45bdb99fcae16df4311
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonLong_grey_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0c84c2a74256420e879973f74f860c3
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonRound_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7104f13e433ad4be9a8d921c88d427d6
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonRound_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 66dc16519b57240a9bed70839a7cd6b0
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonRound_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c42b6692bd2f944549b6bb112d6819cf
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonRound_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee620c55bc3304bfda510511397fe5c5
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8ce7c1f9f1024f77aa5e2d8688f4630
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_beige_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97ddad841475440cabefb20a5fd318a9
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4f5fdc1f6e994805962d21ba6b9da5e
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_blue_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 050a84de0e58f49e5b07a831da8ff3de
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 202822879b1044474a30460fde2adeb4
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_brown_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c0993cd805e8c4f33b1e63a9c00ce3ea
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2abce0891b6dc468e939a114a612b0a2
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/buttonSquare_grey_pressed.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e35ec5f0ea22457e96428daa7451ddd
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorGauntlet_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2c63cfb175210495bb0ab28716afe423
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorGauntlet_bronze.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62b20bbcbe3e0482c89c31b6f680d810
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorGauntlet_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 527f9fd24dd83448ba4838d46e1406b2
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorHand_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 73dc772594efe4354901b424f1bff489
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorHand_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1355dacc11f10424bb405f98974eca33
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorHand_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c77a14a232dc14f239569ae2cb24a77f
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorSword_bronze.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c693f469555b140ae89106b4dcbcae23
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorSword_gold.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39f10e78596cb4a90b51d4fb0fe6a704
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/cursorSword_silver.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2d21483e13a8472191e4ce9672c2700
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCheck_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 535482fd39c4b4e328a1b21d024f3cb0
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCheck_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08b1c1a33d00e46a9bc0d72489123614
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCheck_bronze.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71d86407848840946a7b4240efd5ca4b
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCheck_green.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7beb5fd8ed75427ba4db5223e4ed7ea
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCheck_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8e255693843f4dea9f6b370e59fa6bb
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCircle_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41cc1de33861c41928f83174fd53cbfc
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCircle_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ec7c79cf35fe49278d985582ce2b1ca
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCircle_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8e307e1f7bfab41bba4710ad427052c3
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCircle_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9437a1223aee046fdb27be2a33b2025d
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 762fa46455d454d8292521d6da4a2787
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d78e41dab8e7e4f149c3a5b8da6d36e2
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_dark_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 493d4a1db106c466186503b43927e16f
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_grey.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 402f82c17e7a16444b325a9a289c0f42
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_red.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 070852e002314475e94f8c2bf8e175b6
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panel_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b63f8de08420446c3ac9e9b344c7dbef
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panel_beigeLight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0dd932d3a364d476282f94fef60b3369
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panel_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panel_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 83ae7c858a754443bbe8af2b0fc73a97
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panelInset_beige.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5743abd587a784ded91a96d8678ff026
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panelInset_beigeLight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: daaef004aca4f404d9dbf5861ab2da3f
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panelInset_blue.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 326000b45882845e78bffe27c48a11bd
+    m_Address: Assets/StaticResources/KenneyUIPackRPGExpansion/panelInset_brown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
   m_SchemaSet:
