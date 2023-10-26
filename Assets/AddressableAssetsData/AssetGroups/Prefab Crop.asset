@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab Crop
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefab Crop
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 48a1e90f13436441cbbaf665195c501e
+  m_SerializeEntries:
+  - m_GUID: 19e1850d6ef18764bae135e321883842
+    m_Address: Assets/Prefabs/Crop/CropBase.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f837a7c494d9c264fb1198dc48903bbc
+    m_Address: Assets/Prefabs/Crop/CropTree01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e25bc317bbf3b9442950e87ffe887d49
+    m_Address: Assets/Prefabs/Crop/Grass01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65c4b8397edf69145a0ff42bce867118
+    m_Address: Assets/Prefabs/Crop/Grass02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21014257e7ae57e459ab1f60f37ba1a1
+    m_Address: Assets/Prefabs/Crop/Grass03.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21ec249741d254456ae5ae918b72a10c
+    m_Address: Assets/Prefabs/Crop/Rock01.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 582e3a2d6857449a6b3cbd061e4c7f56
+    m_Address: Assets/Prefabs/Crop/Rock02.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 72a2f2ad3b4554b8ebe5afc14c416457
+    m_Address: Assets/Prefabs/Crop/Tree01_Trunk.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 302a622a65c604601a338815fde961a0, type: 2}
+    - {fileID: 11400000, guid: 842f92343bae248a9b82fde737c09894, type: 2}
