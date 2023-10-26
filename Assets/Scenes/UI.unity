@@ -2208,83 +2208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452689922a0c54a7bbfe558c416922a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &259664798
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 259664799}
-  - component: {fileID: 259664801}
-  - component: {fileID: 259664800}
-  m_Layer: 5
-  m_Name: Season
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &259664799
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259664798}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 494753780}
-  m_Father: {fileID: 1626560651}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 34, y: 20}
-  m_Pivot: {x: 0, y: 1}
---- !u!114 &259664800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259664798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &259664801
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259664798}
-  m_CullTransparentMesh: 1
 --- !u!1001 &274900401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4070,7 +3993,7 @@ GameObject:
   - component: {fileID: 494753782}
   - component: {fileID: 494753781}
   m_Layer: 5
-  m_Name: SeasonImage
+  m_Name: SeasonIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4083,17 +4006,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494753779}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 259664799}
-  m_RootOrder: 0
+  m_Father: {fileID: 1626560651}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -55.849995, y: 0}
   m_SizeDelta: {x: 32, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494753781
@@ -4116,7 +4039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e1913dcf6f8154697bb5933cfefc440c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4270,6 +4193,7 @@ GameObject:
   - component: {fileID: 503435127}
   - component: {fileID: 503435129}
   - component: {fileID: 503435128}
+  - component: {fileID: 503435130}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -4318,7 +4242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4336,6 +4260,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503435126}
   m_CullTransparentMesh: 1
+--- !u!114 &503435130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503435126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  aaLoadkeys:
+  - KenneyUIPackRPGExpansion/panel_brown.png
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &508571863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,6 +6449,7 @@ GameObject:
   - component: {fileID: 1060724614}
   - component: {fileID: 1060724617}
   - component: {fileID: 1060724616}
+  - component: {fileID: 1060724618}
   m_Layer: 5
   m_Name: GameTime
   m_TagString: Untagged
@@ -6551,7 +6498,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6569,6 +6516,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060724613}
   m_CullTransparentMesh: 1
+--- !u!114 &1060724618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060724613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  aaLoadkeys:
+  - KenneyUIPackRPGExpansion/panel_brown.png
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1080504263
 GameObject:
   m_ObjectHideFlags: 0
@@ -10463,7 +10432,8 @@ RectTransform:
   m_Children:
   - {fileID: 1060724614}
   - {fileID: 503435127}
-  - {fileID: 259664799}
+  - {fileID: 1709012904}
+  - {fileID: 494753780}
   m_Father: {fileID: 1459958833}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10484,14 +10454,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55763236d935345f1a15da32434201a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aaLoadkeys:
+  - Default/Icon/ui_time_12.png
+  - Default/Icon/ui_time_13.png
+  - Default/Icon/ui_time_14.png
+  - Default/Icon/ui_time_15.png
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
   seasonImage: {fileID: 494753781}
   dateText: {fileID: 1773457804}
   timeText: {fileID: 1130117636}
-  seasonSprites:
-  - {fileID: 21300000, guid: 8b9910d91179b4a099ab476320fa5ae7, type: 3}
-  - {fileID: 21300000, guid: 9a3bd1653028b428e882fa7ea297e736, type: 3}
-  - {fileID: 21300000, guid: a94f97806ef1a4a20ad529791fc938a5, type: 3}
-  - {fileID: 21300000, guid: cf64f70ccd4ea4cb3948f885a2e21562, type: 3}
 --- !u!1001 &1633193507
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10916,6 +10889,105 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698313532}
+  m_CullTransparentMesh: 1
+--- !u!1 &1709012903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1709012904}
+  - component: {fileID: 1709012907}
+  - component: {fileID: 1709012906}
+  - component: {fileID: 1709012905}
+  m_Layer: 5
+  m_Name: SeasonBg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1709012904
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709012903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1626560651}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 34, y: 20}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1709012905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709012903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  aaLoadkeys:
+  - KenneyUIPackRPGExpansion/panel_brown.png
+  ready:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1709012906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709012903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1709012907
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709012903}
   m_CullTransparentMesh: 1
 --- !u!1 &1720968837
 GameObject:

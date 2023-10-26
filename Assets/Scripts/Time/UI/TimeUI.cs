@@ -1,29 +1,68 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class TimeUI : MonoBehaviour
 {
+    public List<string> aaLoadkeys;
+    private Dictionary<string, AsyncOperationHandle> _operationDictionary;
+    public UnityEvent ready;
+    
     // public RectTransform dayNightImage;
     // public RectTransform clockParent;
     public Image seasonImage;
     public TextMeshProUGUI dateText;
     public TextMeshProUGUI timeText;
-    public Sprite[] seasonSprites;
+    private Sprite[] _seasonSprites = new Sprite[4];
 
     private List<GameObject> _clockBlocks = new List<GameObject>();
-
-    private void Awake()
+    
+    protected void Awake()
     {
         // for (int i = 0; i < clockParent.childCount; i++)
         // {
         //     _clockBlocks.Add(clockParent.GetChild(i).gameObject);
         //     clockParent.GetChild(i).gameObject.SetActive(false);
         // }
+        ready.AddListener(OnAssetsReady);
+        StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+    }
+        
+    private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys)
+    {
+        if (_operationDictionary == null)
+            _operationDictionary = new Dictionary<string, AsyncOperationHandle>();
+
+        AsyncOperationHandle<IList<IResourceLocation>> locations = Addressables.LoadResourceLocationsAsync(keys, Addressables.MergeMode.Union, typeof(Sprite));
+        yield return locations;
+
+        var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
+
+        foreach (IResourceLocation location in locations.Result) {
+            AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(location);
+            handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+            loadOps.Add(handle);
+        }
+
+        yield return Addressables.ResourceManager.CreateGenericGroupOperation(loadOps, true);
+
+        ready.Invoke();
+    }
+        
+    private void OnAssetsReady()
+    {
+        int index = 0;
+        foreach (var item in _operationDictionary)
+        {
+            _seasonSprites[index] = (Sprite)item.Value.Result;
+            index++;
+        }
     }
 
     private void OnEnable()
@@ -46,7 +85,7 @@ public class TimeUI : MonoBehaviour
     private void OnGameDateEvent(int hour, int day, int month, int year, Season season)
     {
         dateText.text = year + "年" + month.ToString("00") + "月" + day.ToString("00") + "日";
-        seasonImage.sprite = seasonSprites[(int)season];
+        seasonImage.sprite = _seasonSprites[(int)season];
         
         // SwitchHour(hour);
     }
