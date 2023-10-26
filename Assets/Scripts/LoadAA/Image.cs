@@ -8,23 +8,24 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace LoadAA
 {
-    public class Image : Singleton<Image>
+    public class Image : MonoBehaviour
     {
         public AssetReference spriteRef;
-        public List<string> aaLoadkeys;
+        public UnityEngine.UI.Image.Type imageType;
+        public int pixelsPerUnitMultiplier;
         private Dictionary<string, AsyncOperationHandle> _operationDictionary;
-        public UnityEvent ready;
         
-        protected override void Awake()
+        protected void Start()
         {
-            base.Awake();
-
             spriteRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
             {
                 var img = gameObject.GetComponent<UnityEngine.UI.Image>();
-                img.sprite = (Sprite)obj.Result;
-                img.type = UnityEngine.UI.Image.Type.Sliced;
-                img.pixelsPerUnitMultiplier = 1;
+                img.sprite = obj.Result;
+                img.type = imageType;
+                if (imageType == UnityEngine.UI.Image.Type.Sliced)
+                {
+                    img.pixelsPerUnitMultiplier = pixelsPerUnitMultiplier;
+                }
             };
         }
     }

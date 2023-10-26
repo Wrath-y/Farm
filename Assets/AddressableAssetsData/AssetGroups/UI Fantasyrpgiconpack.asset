@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI Fantasyrpgiconpack
+  m_EditorClassIdentifier: 
+  m_GroupName: UI Fantasyrpgiconpack
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b496d3247dd565e47982438fc12a0a1b
+  m_SerializeEntries:
+  - m_GUID: b7f9b1774b253409389be38f83e7bcda
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/221.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dff9f4c2ac9fd44868da09c7682e05ee
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/222.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bdfc5e15d91574d6ab440e66ad3743a7
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/222_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6ef0ce2bdf1c49b58194a2a1cdd1543
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/222_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b09b02dfa3c64cdfa6bfe5286645cb0
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/222_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3340fe00a043a47f6babbeaa32493e64
+    m_Address: fantasyrpgiconpack/Individual icons (16x16)/103.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7a61bca110f1d8c4e884ea990363617c, type: 2}
+    - {fileID: 11400000, guid: 570dc3cc31f79154f93fdb8809d900a2, type: 2}

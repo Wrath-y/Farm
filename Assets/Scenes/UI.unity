@@ -704,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -1446,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -2101,7 +2101,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -2222,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -2776,7 +2776,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -4277,11 +4277,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  aaLoadkeys:
-  - KenneyUIPackRPGExpansion/panel_brown.png
-  ready:
-    m_PersistentCalls:
-      m_Calls: []
+  imageType: 1
+  pixelsPerUnitMultiplier: 1
 --- !u!1 &508571863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,11 +6530,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  aaLoadkeys:
-  - KenneyUIPackRPGExpansion/panel_brown.png
-  ready:
-    m_PersistentCalls:
-      m_Calls: []
+  imageType: 1
+  pixelsPerUnitMultiplier: 1
 --- !u!1 &1080504263
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,6 +7109,7 @@ GameObject:
   - component: {fileID: 1099907463}
   - component: {fileID: 1099907465}
   - component: {fileID: 1099907464}
+  - component: {fileID: 1099907466}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -7162,7 +7157,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3340fe00a043a47f6babbeaa32493e64, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7180,6 +7175,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099907462}
   m_CullTransparentMesh: 1
+--- !u!114 &1099907466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099907462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 3340fe00a043a47f6babbeaa32493e64
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  pixelsPerUnitMultiplier: 0
 --- !u!1 &1121306437
 GameObject:
   m_ObjectHideFlags: 0
@@ -9278,7 +9292,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -9492,7 +9506,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -9610,6 +9624,7 @@ GameObject:
   - component: {fileID: 1556606043}
   - component: {fileID: 1556606046}
   - component: {fileID: 1556606045}
+  - component: {fileID: 1556606048}
   - component: {fileID: 1556606044}
   - component: {fileID: 1556606047}
   m_Layer: 5
@@ -9635,11 +9650,11 @@ RectTransform:
   m_Father: {fileID: 1200380343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -21.26, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -9.99, y: -12}
   m_SizeDelta: {x: 22, y: 22}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556606044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9680,7 +9695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9754,6 +9769,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1556606048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556606042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: b7f9b1774b253409389be38f83e7bcda
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  pixelsPerUnitMultiplier: 1
 --- !u!1001 &1557544328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9881,7 +9915,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -10592,7 +10626,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -10946,11 +10980,8 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  aaLoadkeys:
-  - KenneyUIPackRPGExpansion/panel_brown.png
-  ready:
-    m_PersistentCalls:
-      m_Calls: []
+  imageType: 1
+  pixelsPerUnitMultiplier: 1
 --- !u!114 &1709012906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13353,7 +13384,7 @@ PrefabInstance:
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b7f9b1774b253409389be38f83e7bcda, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460280, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Enabled
       value: 1
