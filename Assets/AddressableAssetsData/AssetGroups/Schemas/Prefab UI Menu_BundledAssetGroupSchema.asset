@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d17a21594effb4e9591490b009e7aa, type: 3}
-  m_Name: MapData_BundledAssetGroupSchema
+  m_Name: Prefab UI Menu_BundledAssetGroupSchema
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: 9e87a1948521f4a1ba42ac1088f40d87, type: 2}
+  m_Group: {fileID: 11400000, guid: 3e3947722e01b4a35af44541c2bdc948, type: 2}
   m_InternalBundleIdMode: 1
   m_Compression: 1
   m_IncludeAddressInCatalog: 1

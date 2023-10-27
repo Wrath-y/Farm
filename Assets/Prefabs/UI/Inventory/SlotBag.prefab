@@ -95,7 +95,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
   pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &3510966119309443541
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +339,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
   pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!114 &3510966119501460283
 MonoBehaviour:
   m_ObjectHideFlags: 0

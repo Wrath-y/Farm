@@ -5,13 +5,15 @@ using Farm.CropPlant;
 using Farm.Inventory;
 using Farm.Map;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CursorManager : Singleton<CursorManager>
 {
-    public Sprite normal, tool, seed, item;
+    public AssetReference normalRef, toolRef, seedRef, itemRef;
+    private Sprite _normal, _tool, _seed, _item;
 
     private Sprite _curSprite;
     private Image _cursorImage;
@@ -29,6 +31,26 @@ public class CursorManager : Singleton<CursorManager>
     private ItemDetails _curItem;
     private bool _isMobile = true;
     private Transform PlayerTransform => FindObjectOfType<Player>().transform;
+
+    protected void Awake()
+    {
+        normalRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        {
+            _normal = obj.Result;
+        };
+        toolRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        {
+            _tool = obj.Result;
+        };
+        seedRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        {
+            _seed = obj.Result;
+        };
+        itemRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        {
+            _item = obj.Result;
+        };
+    }
 
     private void OnEnable()
     {
@@ -62,8 +84,8 @@ public class CursorManager : Singleton<CursorManager>
         _buildImage = _cursorCanvas.GetChild(1).GetComponent<Image>();
         _buildImage.gameObject.SetActive(false);
 
-        _curSprite = normal;
-        SetCursorImage(normal);
+        _curSprite = _normal;
+        SetCursorImage(_normal);
         
         _mainCamera = Camera.main;
     }
@@ -93,7 +115,7 @@ public class CursorManager : Singleton<CursorManager>
         }
         else
         {
-            SetCursorImage(normal);
+            SetCursorImage(_normal);
             _buildImage.gameObject.SetActive(false);
         }
     }
@@ -104,7 +126,7 @@ public class CursorManager : Singleton<CursorManager>
         {
             _curItem = null;
             _cursorEnable = false;
-            _curSprite = normal;
+            _curSprite = _normal;
             _buildImage.gameObject.SetActive(false);
             return;
         }
@@ -114,16 +136,16 @@ public class CursorManager : Singleton<CursorManager>
         // TODO 新类型需添加鼠标样式
         _curSprite = itemDetails.itemType switch
         {
-            ItemType.Seed => seed,
-            ItemType.Commodity => item,
-            ItemType.ChopTool => tool,
-            ItemType.HoeTool => tool,
-            ItemType.WaterTool => tool,
-            ItemType.BreakTool => tool,
-            ItemType.ReapTool => tool,
-            ItemType.Furniture => tool,
-            ItemType.CollectTool => tool,
-            _ => normal
+            ItemType.Seed => _seed,
+            ItemType.Commodity => _item,
+            ItemType.ChopTool => _tool,
+            ItemType.HoeTool => _tool,
+            ItemType.WaterTool => _tool,
+            ItemType.BreakTool => _tool,
+            ItemType.ReapTool => _tool,
+            ItemType.Furniture => _tool,
+            ItemType.CollectTool => _tool,
+            _ => _normal
         };
         _cursorEnable = true;
         

@@ -697,6 +697,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (4)
@@ -1334,7 +1338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34e451941ecbccd41b871668489cecbf, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1439,6 +1443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (7)
@@ -2094,6 +2102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (9)
@@ -2215,6 +2227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (6)
@@ -2769,6 +2785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (8)
@@ -4278,7 +4298,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 1
-  pixelsPerUnitMultiplier: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 4
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &508571863
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,7 +5872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1751274114, guid: f8e92fae0aa6a43d9ace4c8c14baa3c1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6531,7 +6558,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 1
-  pixelsPerUnitMultiplier: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 4
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1080504263
 GameObject:
   m_ObjectHideFlags: 0
@@ -7193,7 +7227,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
   pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1121306437
 GameObject:
   m_ObjectHideFlags: 0
@@ -7348,8 +7389,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: 0, y: -1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1130117636
 MonoBehaviour:
@@ -8775,7 +8816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502f2c9323fb14de89a3f4bc5fa26961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPrefab: {fileID: 6360919777790599261, guid: f1ceb0bdb361a402db524eed26edf2ed, type: 3}
+  menuPrefabRef:
+    m_AssetGUID: f1ceb0bdb361a402db524eed26edf2ed
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   acceleratedTimeButton: {fileID: 408920560}
   mobileSettingsBtn: {fileID: 1626560650}
   settingsBtn: {fileID: 1626560650}
@@ -9285,6 +9330,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (2)
@@ -9499,6 +9548,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (1)
@@ -9786,8 +9839,15 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  imageType: 1
-  pixelsPerUnitMultiplier: 1
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1001 &1557544328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9908,6 +9968,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (3)
@@ -10619,6 +10683,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag (5)
@@ -10981,7 +11049,14 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   imageType: 1
-  pixelsPerUnitMultiplier: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 4
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!114 &1709012906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13377,6 +13452,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1200380343}
     m_Modifications:
+    - target: {fileID: 1407971776599860569, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
+      propertyPath: fillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3510966119501460277, guid: 75fe21ed88623d44d8b868d62d8e0c46, type: 3}
       propertyPath: m_Name
       value: SlotBag

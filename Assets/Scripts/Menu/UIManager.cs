@@ -1,12 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
     private GameObject _menuCanvas;
-    public GameObject menuPrefab;
+    public AssetReference menuPrefabRef;
+    private GameObject _menuPrefab;
 
     public Button acceleratedTimeButton;
     public Button mobileSettingsBtn;
@@ -59,8 +61,14 @@ public class UIManager : MonoBehaviour
             anPos.y = 60;
             joyStickBoxRect.anchoredPosition = anPos;
         }
-        _menuCanvas = GameObject.FindWithTag("MenuCanvas");
-        Instantiate(menuPrefab, _menuCanvas.transform);
+        
+        menuPrefabRef.InstantiateAsync().Completed += (obj) =>
+        {
+            _menuCanvas = GameObject.FindWithTag("MenuCanvas");
+            _menuPrefab = obj.Result;
+            Instantiate(_menuPrefab, _menuCanvas.transform);
+        };
+        
     }
     private void OnAfterSceneLoadedEvent()
     {
@@ -98,7 +106,7 @@ public class UIManager : MonoBehaviour
     {
         EventHandler.CallEndGameEvent();
         yield return new WaitForSeconds(1f);
-        Instantiate(menuPrefab, _menuCanvas.transform);
+        Instantiate(_menuPrefab, _menuCanvas.transform);
         pausePanel.SetActive(false);
     }
     

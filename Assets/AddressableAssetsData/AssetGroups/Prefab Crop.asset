@@ -18,35 +18,35 @@ MonoBehaviour:
   m_GUID: 48a1e90f13436441cbbaf665195c501e
   m_SerializeEntries:
   - m_GUID: 19e1850d6ef18764bae135e321883842
-    m_Address: Assets/Prefabs/Crop/CropBase.prefab
+    m_Address: Crop/CropBase.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f837a7c494d9c264fb1198dc48903bbc
-    m_Address: Assets/Prefabs/Crop/CropTree01.prefab
+    m_Address: Crop/CropTree01.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e25bc317bbf3b9442950e87ffe887d49
-    m_Address: Assets/Prefabs/Crop/Grass01.prefab
+    m_Address: Crop/Grass01.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 65c4b8397edf69145a0ff42bce867118
-    m_Address: Assets/Prefabs/Crop/Grass02.prefab
+    m_Address: Crop/Grass02.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 21014257e7ae57e459ab1f60f37ba1a1
-    m_Address: Assets/Prefabs/Crop/Grass03.prefab
+    m_Address: Crop/Grass03.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 21ec249741d254456ae5ae918b72a10c
-    m_Address: Assets/Prefabs/Crop/Rock01.prefab
+    m_Address: Crop/Rock01.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 582e3a2d6857449a6b3cbd061e4c7f56
-    m_Address: Assets/Prefabs/Crop/Rock02.prefab
+    m_Address: Crop/Rock02.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 72a2f2ad3b4554b8ebe5afc14c416457
-    m_Address: Assets/Prefabs/Crop/Tree01_Trunk.prefab
+    m_Address: Crop/Tree01_Trunk.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
