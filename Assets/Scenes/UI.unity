@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 19573257}
   - component: {fileID: 19573260}
   - component: {fileID: 19573259}
+  - component: {fileID: 19573261}
   - component: {fileID: 19573258}
   m_Layer: 5
   m_Name: Buy1Btn
@@ -436,7 +437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -454,6 +455,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19573256}
   m_CullTransparentMesh: 1
+--- !u!114 &19573261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19573256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &66997580
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +852,6 @@ GameObject:
   m_Component:
   - component: {fileID: 104184554}
   - component: {fileID: 104184557}
-  - component: {fileID: 104184556}
   - component: {fileID: 104184555}
   m_Layer: 5
   m_Name: SlotHolder
@@ -894,36 +920,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &104184556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104184553}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4597b7896e8654752b4a00f098f2bdde, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &104184557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1093,6 +1089,7 @@ GameObject:
   - component: {fileID: 164116334}
   - component: {fileID: 164116337}
   - component: {fileID: 164116336}
+  - component: {fileID: 164116338}
   - component: {fileID: 164116335}
   m_Layer: 5
   m_Name: CancelBtn
@@ -1185,7 +1182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 402f82c17e7a16444b325a9a289c0f42, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1203,6 +1200,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164116333}
   m_CullTransparentMesh: 1
+--- !u!114 &164116338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164116333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 402f82c17e7a16444b325a9a289c0f42
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &177466810
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2613,7 @@ GameObject:
   - component: {fileID: 303642231}
   - component: {fileID: 303642234}
   - component: {fileID: 303642233}
+  - component: {fileID: 303642235}
   - component: {fileID: 303642232}
   m_Layer: 5
   m_Name: 'Buy10Btn '
@@ -2683,7 +2707,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2701,6 +2725,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303642230}
   m_CullTransparentMesh: 1
+--- !u!114 &303642235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303642230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &318521395
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,6 +3705,7 @@ GameObject:
   - component: {fileID: 408920559}
   - component: {fileID: 408920562}
   - component: {fileID: 408920561}
+  - component: {fileID: 408920563}
   - component: {fileID: 408920560}
   m_Layer: 5
   m_Name: AcceleratedTimeButton
@@ -3748,7 +3799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dba8aa7908d984e60bb6d7a751195d96, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3766,6 +3817,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408920558}
   m_CullTransparentMesh: 1
+--- !u!114 &408920563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408920558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: dba8aa7908d984e60bb6d7a751195d96
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &441730903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4533,13 +4610,14 @@ GameObject:
   - component: {fileID: 521419306}
   - component: {fileID: 521419305}
   - component: {fileID: 521419304}
+  - component: {fileID: 521419307}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &521419303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4655,6 +4733,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521419302}
   m_CullTransparentMesh: 1
+--- !u!114 &521419307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521419302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: da6cbd2f16fa149d59b310f8809798b1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &538292258
 GameObject:
   m_ObjectHideFlags: 0
@@ -4712,8 +4816,16 @@ MonoBehaviour:
   dragItem: {fileID: 615253099}
   bagUI: {fileID: 2079265731}
   baseBag: {fileID: 1326379604}
-  shopSlotPrefab: {fileID: 3510966119501460277, guid: f5f901bb4c69f4635ac858cf4023c92e, type: 3}
-  boxSlotPrefab: {fileID: 3510966119501460277, guid: 2ba267f553f09d4408c9ed3066ed7e5d, type: 3}
+  shopSlotPrefabRef:
+    m_AssetGUID: f5f901bb4c69f4635ac858cf4023c92e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  boxSlotPrefabRef:
+    m_AssetGUID: 2ba267f553f09d4408c9ed3066ed7e5d
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   tradeUI: {fileID: 1623422814}
   playerMoneyText: {fileID: 323714502}
   playerSlots:
@@ -5008,6 +5120,7 @@ GameObject:
   - component: {fileID: 688342214}
   - component: {fileID: 688342217}
   - component: {fileID: 688342216}
+  - component: {fileID: 688342219}
   - component: {fileID: 688342215}
   - component: {fileID: 688342218}
   m_Layer: 5
@@ -5078,7 +5191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: da6cbd2f16fa149d59b310f8809798b1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5152,6 +5265,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &688342219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688342213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: da6cbd2f16fa149d59b310f8809798b1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 4
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &692731104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5240,10 +5379,11 @@ GameObject:
   - component: {fileID: 712347021}
   - component: {fileID: 712347025}
   - component: {fileID: 712347024}
+  - component: {fileID: 712347026}
   - component: {fileID: 712347023}
   - component: {fileID: 712347022}
   m_Layer: 5
-  m_Name: CancelButton (Legacy)
+  m_Name: CancelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5366,7 +5506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4f5fdc1f6e994805962d21ba6b9da5e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5384,6 +5524,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712347020}
   m_CullTransparentMesh: 1
+--- !u!114 &712347026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712347020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: f4f5fdc1f6e994805962d21ba6b9da5e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1001 &713963574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6128,6 +6294,7 @@ GameObject:
   - component: {fileID: 839777169}
   - component: {fileID: 839777171}
   - component: {fileID: 839777170}
+  - component: {fileID: 839777172}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -6193,6 +6360,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839777168}
   m_CullTransparentMesh: 1
+--- !u!114 &839777172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839777168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 685d5cf44ae40447797111f9a96f79b7
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1001 &866476799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6577,6 +6770,7 @@ GameObject:
   - component: {fileID: 1080504264}
   - component: {fileID: 1080504268}
   - component: {fileID: 1080504267}
+  - component: {fileID: 1080504269}
   - component: {fileID: 1080504266}
   - component: {fileID: 1080504265}
   m_Layer: 5
@@ -6703,7 +6897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 202822879b1044474a30460fde2adeb4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6721,6 +6915,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080504263}
   m_CullTransparentMesh: 1
+--- !u!114 &1080504269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080504263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 202822879b1044474a30460fde2adeb4
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1081182656
 GameObject:
   m_ObjectHideFlags: 0
@@ -6732,10 +6952,11 @@ GameObject:
   - component: {fileID: 1081182657}
   - component: {fileID: 1081182661}
   - component: {fileID: 1081182660}
+  - component: {fileID: 1081182662}
   - component: {fileID: 1081182659}
   - component: {fileID: 1081182658}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: SleepButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6858,7 +7079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b8ce7c1f9f1024f77aa5e2d8688f4630, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6876,6 +7097,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081182656}
   m_CullTransparentMesh: 1
+--- !u!114 &1081182662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081182656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: b8ce7c1f9f1024f77aa5e2d8688f4630
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1089354320
 GameObject:
   m_ObjectHideFlags: 0
@@ -6888,13 +7135,14 @@ GameObject:
   - component: {fileID: 1089354324}
   - component: {fileID: 1089354323}
   - component: {fileID: 1089354322}
+  - component: {fileID: 1089354325}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1089354321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6998,6 +7246,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089354320}
   m_CullTransparentMesh: 1
+--- !u!114 &1089354325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089354320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 43c0d2a3537ab45bdb99fcae16df4311
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1095751964
 GameObject:
   m_ObjectHideFlags: 0
@@ -7009,9 +7283,10 @@ GameObject:
   - component: {fileID: 1095751965}
   - component: {fileID: 1095751968}
   - component: {fileID: 1095751967}
+  - component: {fileID: 1095751969}
   - component: {fileID: 1095751966}
   m_Layer: 5
-  m_Name: QuitButton (1)
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7114,7 +7389,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dba8aa7908d984e60bb6d7a751195d96, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7132,6 +7407,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095751964}
   m_CullTransparentMesh: 1
+--- !u!114 &1095751969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095751964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: dba8aa7908d984e60bb6d7a751195d96
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1099907462
 GameObject:
   m_ObjectHideFlags: 0
@@ -7246,6 +7547,7 @@ GameObject:
   - component: {fileID: 1121306438}
   - component: {fileID: 1121306442}
   - component: {fileID: 1121306441}
+  - component: {fileID: 1121306443}
   - component: {fileID: 1121306440}
   - component: {fileID: 1121306439}
   m_Layer: 5
@@ -7336,7 +7638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b8ce7c1f9f1024f77aa5e2d8688f4630, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7354,6 +7656,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121306437}
   m_CullTransparentMesh: 1
+--- !u!114 &1121306443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121306437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: b8ce7c1f9f1024f77aa5e2d8688f4630
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 8
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1130117634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7701,6 +8029,7 @@ GameObject:
   - component: {fileID: 1210987754}
   - component: {fileID: 1210987756}
   - component: {fileID: 1210987755}
+  - component: {fileID: 1210987757}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -7748,7 +8077,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b63f8de08420446c3ac9e9b344c7dbef, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7766,6 +8095,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210987753}
   m_CullTransparentMesh: 1
+--- !u!114 &1210987757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210987753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: b63f8de08420446c3ac9e9b344c7dbef
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1220729432
 GameObject:
   m_ObjectHideFlags: 0
@@ -8009,6 +8364,7 @@ GameObject:
   - component: {fileID: 1268481210}
   - component: {fileID: 1268481213}
   - component: {fileID: 1268481212}
+  - component: {fileID: 1268481214}
   - component: {fileID: 1268481211}
   m_Layer: 5
   m_Name: 'Buy50Btn '
@@ -8102,7 +8458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8120,6 +8476,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268481209}
   m_CullTransparentMesh: 1
+--- !u!114 &1268481214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268481209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1300211593
 GameObject:
   m_ObjectHideFlags: 0
@@ -8207,6 +8589,7 @@ GameObject:
   - component: {fileID: 1313879824}
   - component: {fileID: 1313879826}
   - component: {fileID: 1313879825}
+  - component: {fileID: 1313879827}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -8256,7 +8639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ec7c79cf35fe49278d985582ce2b1ca, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8274,6 +8657,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313879823}
   m_CullTransparentMesh: 1
+--- !u!114 &1313879827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313879823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 5ec7c79cf35fe49278d985582ce2b1ca
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1326379604
 GameObject:
   m_ObjectHideFlags: 0
@@ -8285,6 +8694,7 @@ GameObject:
   - component: {fileID: 1326379609}
   - component: {fileID: 1326379608}
   - component: {fileID: 1326379607}
+  - component: {fileID: 1326379610}
   - component: {fileID: 1326379606}
   - component: {fileID: 1326379605}
   m_Layer: 5
@@ -8354,7 +8764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8394,6 +8804,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 104, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1326379610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326379604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1373724686
 GameObject:
   m_ObjectHideFlags: 0
@@ -8977,6 +9413,7 @@ GameObject:
   - component: {fileID: 1496286767}
   - component: {fileID: 1496286770}
   - component: {fileID: 1496286769}
+  - component: {fileID: 1496286771}
   - component: {fileID: 1496286768}
   m_Layer: 5
   m_Name: SubmitBtn
@@ -9069,7 +9506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71d86407848840946a7b4240efd5ca4b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9087,6 +9524,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496286766}
   m_CullTransparentMesh: 1
+--- !u!114 &1496286771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496286766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 71d86407848840946a7b4240efd5ca4b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1498806853
 GameObject:
   m_ObjectHideFlags: 0
@@ -9837,7 +10300,8 @@ MonoBehaviour:
   spriteRef:
     m_AssetGUID: b7f9b1774b253409389be38f83e7bcda
     m_SubObjectName: 
-    m_SubObjectType: 
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   imageType: 0
   useSpriteMesh: 0
@@ -10359,6 +10823,7 @@ GameObject:
   - component: {fileID: 1623422811}
   - component: {fileID: 1623422813}
   - component: {fileID: 1623422812}
+  - component: {fileID: 1623422815}
   - component: {fileID: 1623422814}
   m_Layer: 5
   m_Name: TradeUI
@@ -10416,7 +10881,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10454,6 +10919,32 @@ MonoBehaviour:
   buy1: {fileID: 19573258}
   buy10: {fileID: 303642232}
   buy50: {fileID: 1268481211}
+--- !u!114 &1623422815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623422810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1626560649
 GameObject:
   m_ObjectHideFlags: 0
@@ -12107,6 +12598,7 @@ GameObject:
   - component: {fileID: 1979364253}
   - component: {fileID: 1979364252}
   - component: {fileID: 1979364251}
+  - component: {fileID: 1979364254}
   m_Layer: 5
   m_Name: ContinueBox
   m_TagString: Untagged
@@ -12134,7 +12626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ce5ad37f43f04fc9a0a94eaa05d0a64, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12173,6 +12665,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -43.5}
   m_SizeDelta: {x: 67, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1979364254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979364250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 3ce5ad37f43f04fc9a0a94eaa05d0a64
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 16
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1983446854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12184,6 +12702,7 @@ GameObject:
   - component: {fileID: 1983446855}
   - component: {fileID: 1983446858}
   - component: {fileID: 1983446857}
+  - component: {fileID: 1983446859}
   m_Layer: 5
   m_Name: WillBuyAmount
   m_TagString: Untagged
@@ -12232,7 +12751,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12250,6 +12769,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983446854}
   m_CullTransparentMesh: 1
+--- !u!114 &1983446859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983446854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 4
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &1998489616
 GameObject:
   m_ObjectHideFlags: 0
@@ -12342,6 +12887,7 @@ GameObject:
   - component: {fileID: 2040769851}
   - component: {fileID: 2040769850}
   - component: {fileID: 2040769849}
+  - component: {fileID: 2040769852}
   m_Layer: 5
   m_Name: RestTab
   m_TagString: Untagged
@@ -12420,7 +12966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12438,6 +12984,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040769847}
   m_CullTransparentMesh: 1
+--- !u!114 &2040769852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040769847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &2049557215
 GameObject:
   m_ObjectHideFlags: 0
@@ -12671,6 +13243,7 @@ GameObject:
   - component: {fileID: 2054582360}
   - component: {fileID: 2054582362}
   - component: {fileID: 2054582361}
+  - component: {fileID: 2054582363}
   m_Layer: 5
   m_Name: IconHolder
   m_TagString: Untagged
@@ -12719,7 +13292,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 070852e002314475e94f8c2bf8e175b6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12737,6 +13310,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054582359}
   m_CullTransparentMesh: 1
+--- !u!114 &2054582363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054582359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 070852e002314475e94f8c2bf8e175b6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &2061597471
 GameObject:
   m_ObjectHideFlags: 0
@@ -12748,6 +13347,7 @@ GameObject:
   - component: {fileID: 2061597472}
   - component: {fileID: 2061597474}
   - component: {fileID: 2061597473}
+  - component: {fileID: 2061597475}
   m_Layer: 5
   m_Name: CoinBG
   m_TagString: Untagged
@@ -12796,7 +13396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 070852e002314475e94f8c2bf8e175b6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12814,6 +13414,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061597471}
   m_CullTransparentMesh: 1
+--- !u!114 &2061597475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061597471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 070852e002314475e94f8c2bf8e175b6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &2065136074
 GameObject:
   m_ObjectHideFlags: 0
@@ -12925,6 +13551,7 @@ GameObject:
   - component: {fileID: 2073285594}
   - component: {fileID: 2073285598}
   - component: {fileID: 2073285597}
+  - component: {fileID: 2073285599}
   - component: {fileID: 2073285596}
   - component: {fileID: 2073285595}
   m_Layer: 5
@@ -13051,7 +13678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4f5fdc1f6e994805962d21ba6b9da5e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13069,6 +13696,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073285593}
   m_CullTransparentMesh: 1
+--- !u!114 &2073285599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073285593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: f4f5fdc1f6e994805962d21ba6b9da5e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 2
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &2079265731
 GameObject:
   m_ObjectHideFlags: 0
@@ -13080,6 +13733,7 @@ GameObject:
   - component: {fileID: 2079265732}
   - component: {fileID: 2079265734}
   - component: {fileID: 2079265733}
+  - component: {fileID: 2079265735}
   m_Layer: 5
   m_Name: PlayerBag
   m_TagString: Untagged
@@ -13129,7 +13783,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e95878cf57d6545c0a933f6f6aadbb47, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13147,6 +13801,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079265731}
   m_CullTransparentMesh: 1
+--- !u!114 &2079265735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079265731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: e95878cf57d6545c0a933f6f6aadbb47
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1001 &2102402786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13271,6 +13951,7 @@ GameObject:
   - component: {fileID: 2124259017}
   - component: {fileID: 2124259020}
   - component: {fileID: 2124259019}
+  - component: {fileID: 2124259021}
   - component: {fileID: 2124259018}
   m_Layer: 5
   m_Name: SettingTab
@@ -13351,7 +14032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 070852e002314475e94f8c2bf8e175b6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13369,6 +14050,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124259016}
   m_CullTransparentMesh: 1
+--- !u!114 &2124259021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124259016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 070852e002314475e94f8c2bf8e175b6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 1
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 1
+  pixelsPerUnitMultiplier: 1
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1 &2135438196
 GameObject:
   m_ObjectHideFlags: 0
@@ -13380,8 +14087,9 @@ GameObject:
   - component: {fileID: 2135438197}
   - component: {fileID: 2135438199}
   - component: {fileID: 2135438198}
+  - component: {fileID: 2135438200}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: ConIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13427,7 +14135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 685d5cf44ae40447797111f9a96f79b7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13445,6 +14153,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135438196}
   m_CullTransparentMesh: 1
+--- !u!114 &2135438200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135438196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4e08ee31954131b7eb4202071ff92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 685d5cf44ae40447797111f9a96f79b7
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  imageType: 0
+  useSpriteMesh: 0
+  preserveAspect: 0
+  fillCenter: 0
+  pixelsPerUnitMultiplier: 0
+  fillMethod: 0
+  fillOrigin: 0
+  fillAmount: 0
+  fillClockwise: 0
 --- !u!1001 &3510966118046595234
 PrefabInstance:
   m_ObjectHideFlags: 0

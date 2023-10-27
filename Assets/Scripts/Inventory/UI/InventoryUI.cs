@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
@@ -20,8 +21,11 @@ namespace Farm.Inventory
         
         [Header("通用背包")]
         [SerializeField] private GameObject baseBag;
-        public GameObject shopSlotPrefab;
-        public GameObject boxSlotPrefab;
+        public AssetReference shopSlotPrefabRef;
+        private GameObject _shopSlotPrefab;
+        
+        public AssetReference boxSlotPrefabRef;
+        private GameObject _boxSlotPrefab;
         
         [Header("交易UI")]
         public TradeUI tradeUI;
@@ -29,6 +33,18 @@ namespace Farm.Inventory
         
         [SerializeField] private SlotUI[] playerSlots;
         [SerializeField] private List<SlotUI> baseBagSlots;
+
+        protected void Awake()
+        {
+            shopSlotPrefabRef.LoadAssetAsync<GameObject>().Completed += (obj) =>
+            {
+                _shopSlotPrefab = obj.Result;
+            };
+            boxSlotPrefabRef.LoadAssetAsync<GameObject>().Completed += (obj) =>
+            {
+                _boxSlotPrefab = obj.Result;
+            };
+        }
 
         private void OnEnable()
         {
@@ -157,8 +173,8 @@ namespace Farm.Inventory
         {
             GameObject prefab = slotType switch
             {
-                SlotType.Shop => shopSlotPrefab,
-                SlotType.Box => boxSlotPrefab,
+                SlotType.Shop => _shopSlotPrefab,
+                SlotType.Box => _boxSlotPrefab,
                 _ => null,
             };
 
