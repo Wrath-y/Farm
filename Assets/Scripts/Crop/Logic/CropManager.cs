@@ -117,7 +117,11 @@ namespace Farm.CropPlant
             {
                 if (_randCropParent == null)
                 {
-                    _randCropParent = GameObject.FindWithTag("CropParent").transform;
+                    _randCropParent = GameObject.FindWithTag("CropParent")?.transform;
+                    if (_randCropParent == null)
+                    {
+                        return;
+                    }
                 }
                 GameObject randCropInstance = Instantiate(cropPrefab, pos, Quaternion.identity, _randCropParent);
                 randCropInstance.GetComponentInChildren<SpriteRenderer>().sprite = cropSprite;
@@ -144,8 +148,8 @@ namespace Farm.CropPlant
         
         private void OnAfterLoadedSceneEvent()
         {
-            _cropParent = GameObject.FindWithTag("CropParent").transform;
-            _randCropParent = GameObject.FindWithTag("RandCropParent").transform;
+            _cropParent = GameObject.FindWithTag("CropParent")?.transform;
+            _randCropParent = GameObject.FindWithTag("RandCropParent")?.transform;
         }
 
         public void OnPlantSeedEvent(int id, TileDetails tileDetails)

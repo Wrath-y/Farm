@@ -82,10 +82,10 @@ PrefabInstance:
     - target: {fileID: 7687289002835363518, guid: 19e1850d6ef18764bae135e321883842, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 475198852, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7687289002835363518, guid: 19e1850d6ef18764bae135e321883842, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19e1850d6ef18764bae135e321883842, type: 3}
@@ -139,3 +139,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.937665, y: 0.6270609}
   m_EdgeRadius: 0
+--- !u!114 &3119513443120808498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289579494230428958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8302e5a37e3c4594aa4b45a4e1a45ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 600864a2d32066845ad14abd9d19136f
+    m_SubObjectName: CL_Crops_Rock2
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0

@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace LoadAA
 {
@@ -10,6 +12,7 @@ namespace LoadAA
     public class Image : MonoBehaviour
     {
         public AssetReference spriteRef;
+        private AsyncOperationHandle<Sprite> _opHandle;
         public UnityEngine.UI.Image.Type imageType;
         public bool useSpriteMesh;
         public bool preserveAspect;
@@ -20,9 +23,12 @@ namespace LoadAA
         public float fillAmount;
         public bool fillClockwise;
         
-        protected void Awake()
+        public IEnumerator Start()
         {
-            spriteRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+            _opHandle = spriteRef.LoadAssetAsync<Sprite>();
+            yield return _opHandle;
+            
+            _opHandle.Completed += (obj) =>
             {
                 var img = gameObject.GetComponent<UnityEngine.UI.Image>();
                 img.sprite = obj.Result;
@@ -46,6 +52,10 @@ namespace LoadAA
                     img.fillClockwise = fillClockwise;
                 }
             };
+        }
+        
+        private void OnDestroy() {
+            Addressables.Release(_opHandle);
         }
     }
 }

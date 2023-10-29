@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 8959553622898958773}
   - component: {fileID: 8959553622898958774}
   - component: {fileID: 8959553622898958775}
+  - component: {fileID: 812722712764577662}
   m_Layer: 0
   m_Name: Tree01_Bottom
   m_TagString: Untagged
@@ -194,7 +195,7 @@ SpriteRenderer:
   m_SortingLayerID: 1059886271
   m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1459894480, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -202,7 +203,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!61 &8959553622898958774
@@ -243,6 +244,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0084a1b9a3099435c9a32703b4022367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &812722712764577662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959553622898958769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8302e5a37e3c4594aa4b45a4e1a45ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 600864a2d32066845ad14abd9d19136f
+    m_SubObjectName: CL_Crops_TreeTrunk
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
 --- !u!1 &8959553622969292871
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +274,7 @@ GameObject:
   - component: {fileID: 8959553622969292859}
   - component: {fileID: 8959553622969292868}
   - component: {fileID: 2682136117407203783}
+  - component: {fileID: 3275417645479653827}
   m_Layer: 0
   m_Name: Tree01_Top
   m_TagString: Untagged
@@ -318,7 +338,7 @@ SpriteRenderer:
   m_SortingLayerID: 1059886271
   m_SortingLayer: 10
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1946744979, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -326,7 +346,7 @@ SpriteRenderer:
   m_Size: {x: 2.625, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &8959553622969292868
@@ -361,3 +381,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3275417645479653827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8959553622969292871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8302e5a37e3c4594aa4b45a4e1a45ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 600864a2d32066845ad14abd9d19136f
+    m_SubObjectName: CL_Crops_Tree5
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0

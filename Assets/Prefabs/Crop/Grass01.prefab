@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1773731204327058519}
   - component: {fileID: 7687289002835363518}
+  - component: {fileID: 6917360636531936391}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -159,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 1059886271
   m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: 910244632, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,6 +168,24 @@ SpriteRenderer:
   m_Size: {x: 0.9375, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &6917360636531936391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731214162232931872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8302e5a37e3c4594aa4b45a4e1a45ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRef:
+    m_AssetGUID: 600864a2d32066845ad14abd9d19136f
+    m_SubObjectName: CL_Crops_Grass1
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0

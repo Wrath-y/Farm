@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Sound : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public void SetSound(SoundDetails soundDetails)
     {
