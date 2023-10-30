@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace Farm.Transition
@@ -20,7 +21,8 @@ namespace Farm.Transition
         {
             base.Awake();
             // Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
-            SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+            // SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+            Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
         }
         
         private void OnEnable()
@@ -80,7 +82,9 @@ namespace Farm.Transition
         // 加载场景并设置为激活
         private IEnumerator LoadSceneSetActive(string sceneName)
         {
-            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            // yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            var opHandle = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            yield return opHandle;
         
             Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
             SceneManager.SetActiveScene(newScene);

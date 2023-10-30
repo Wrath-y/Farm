@@ -26,6 +26,7 @@ namespace Farm.Save
             
             jsonFolder = Application.persistentDataPath + "/SAVE_DATA/";
 
+            Debug.Log(jsonFolder);
             if (!Directory.Exists(jsonFolder))
             {
                 Directory.CreateDirectory(jsonFolder);
