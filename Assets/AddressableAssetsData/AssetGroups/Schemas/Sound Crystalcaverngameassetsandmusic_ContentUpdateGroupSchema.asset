@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9226bdfcaf24078b71f0d380b8a6b7b, type: 3}
-  m_Name: SceneSoundList_SO
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Sound Crystalcaverngameassetsandmusic_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  sceneSoundList:
-  - sceneName: 01.Field
-    ambient: 13
-    music: 22
-  - sceneName: 02.Home
-    ambient: 21
-    music: 22
+  m_Group: {fileID: 11400000, guid: cf578651e46f2428e9e544ddc31f3087, type: 2}
+  m_StaticContent: 0

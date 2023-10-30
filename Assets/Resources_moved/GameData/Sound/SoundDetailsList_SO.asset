@@ -15,111 +15,161 @@ MonoBehaviour:
   soundDetailsList:
   - soundName: 1
     soundClip: {fileID: 8300000, guid: 1cf39d963249a4c64afe6b317bdb047d, type: 3}
+    soundClipRef:
+      m_AssetGUID: 1cf39d963249a4c64afe6b317bdb047d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 0.8
     soundPitchMax: 1.2
     soundVolume: 0.2
   - soundName: 2
     soundClip: {fileID: 8300000, guid: 1cf39d963249a4c64afe6b317bdb047d, type: 3}
+    soundClipRef:
+      m_AssetGUID: 1cf39d963249a4c64afe6b317bdb047d
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.2
   - soundName: 3
     soundClip: {fileID: 8300000, guid: 3c33b11cb6a0542208c10d6607b8eadd, type: 3}
+    soundClipRef:
+      m_AssetGUID: 3c33b11cb6a0542208c10d6607b8eadd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 4
     soundClip: {fileID: 8300000, guid: 34c10126353a04f689103a4eef5ef807, type: 3}
+    soundClipRef:
+      m_AssetGUID: 34c10126353a04f689103a4eef5ef807
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 5
     soundClip: {fileID: 8300000, guid: 0a5f8e3edbda34f6e81a29a026e24bde, type: 3}
+    soundClipRef:
+      m_AssetGUID: 0a5f8e3edbda34f6e81a29a026e24bde
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 6
     soundClip: {fileID: 8300000, guid: 22f1f3f6ef598445caa1c80378816d88, type: 3}
+    soundClipRef:
+      m_AssetGUID: 22f1f3f6ef598445caa1c80378816d88
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 7
     soundClip: {fileID: 8300000, guid: dfd8a18a6871e416baaa019c6a15bc5b, type: 3}
+    soundClipRef:
+      m_AssetGUID: dfd8a18a6871e416baaa019c6a15bc5b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 8
     soundClip: {fileID: 8300000, guid: 47f1d36433bc74d619a07da42a5c1c35, type: 3}
+    soundClipRef:
+      m_AssetGUID: 47f1d36433bc74d619a07da42a5c1c35
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 9
     soundClip: {fileID: 8300000, guid: 2f85979c70b704c088a323c9ec914c1b, type: 3}
+    soundClipRef:
+      m_AssetGUID: 2f85979c70b704c088a323c9ec914c1b
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 10
     soundClip: {fileID: 8300000, guid: 1709ac57f51cc4233975045944429a49, type: 3}
+    soundClipRef:
+      m_AssetGUID: 1709ac57f51cc4233975045944429a49
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 11
     soundClip: {fileID: 8300000, guid: b44ecb692ea0d419ebaa15c7225ec0de, type: 3}
+    soundClipRef:
+      m_AssetGUID: b44ecb692ea0d419ebaa15c7225ec0de
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 12
     soundClip: {fileID: 8300000, guid: 557c2d5a64f0f4c35a7cb042a14b1e17, type: 3}
+    soundClipRef:
+      m_AssetGUID: 557c2d5a64f0f4c35a7cb042a14b1e17
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1.2
     soundVolume: 0.4
   - soundName: 13
     soundClip: {fileID: 8300000, guid: 344798fd54f2e460c81e4916851bdda2, type: 3}
+    soundClipRef:
+      m_AssetGUID: 344798fd54f2e460c81e4916851bdda2
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1
     soundVolume: 0.8
   - soundName: 14
     soundClip: {fileID: 8300000, guid: 68e0649cf9a1248fab8ec3cdada154f1, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 15
-    soundClip: {fileID: 8300000, guid: 19ae04b67a7c24cf4ba914ae9800b63a, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 16
-    soundClip: {fileID: 8300000, guid: 333d02cff30ef445bb1bff438aae0a21, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 17
-    soundClip: {fileID: 8300000, guid: b200afd9ae2d844c2aed0d4afe5bf3af, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 18
-    soundClip: {fileID: 8300000, guid: 14ca30f28b06842489a979361ec0e7a2, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 19
-    soundClip: {fileID: 8300000, guid: 269cec7ff7a924b448012d97e95dbef9, type: 3}
-    soundPitchMin: 1
-    soundPitchMax: 1
-    soundVolume: 0.8
-  - soundName: 20
-    soundClip: {fileID: 8300000, guid: 0a72c64f54f5c41b78d71858bf685eb2, type: 3}
+    soundClipRef:
+      m_AssetGUID: 68e0649cf9a1248fab8ec3cdada154f1
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1
     soundVolume: 0.8
   - soundName: 21
     soundClip: {fileID: 8300000, guid: 023dcec8da95f453a8a2c28b43a216e5, type: 3}
+    soundClipRef:
+      m_AssetGUID: 023dcec8da95f453a8a2c28b43a216e5
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1
     soundVolume: 0.8
   - soundName: 22
     soundClip: {fileID: 8300000, guid: 28379ca01a3e44be0a310f4dcb4b3a6e, type: 3}
+    soundClipRef:
+      m_AssetGUID: 28379ca01a3e44be0a310f4dcb4b3a6e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
     soundPitchMin: 1
     soundPitchMax: 1
     soundVolume: 0.8

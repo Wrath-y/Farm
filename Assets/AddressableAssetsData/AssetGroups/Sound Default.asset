@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sound Default
+  m_EditorClassIdentifier: 
+  m_GroupName: Sound Default
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ba07d3e73cdd44742b0679c558a7bf01
+  m_SerializeEntries:
+  - m_GUID: 1cf39d963249a4c64afe6b317bdb047d
+    m_Address: Footstep/footstep.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 557c2d5a64f0f4c35a7cb042a14b1e17
+    m_Address: Footstep/rustle.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c33b11cb6a0542208c10d6607b8eadd
+    m_Address: Tools/Axe.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47f1d36433bc74d619a07da42a5c1c35
+    m_Address: Tools/Basket.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a5f8e3edbda34f6e81a29a026e24bde
+    m_Address: Tools/Hoe.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34c10126353a04f689103a4eef5ef807
+    m_Address: Tools/PickAxe.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 22f1f3f6ef598445caa1c80378816d88
+    m_Address: Tools/Scythe.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dfd8a18a6871e416baaa019c6a15bc5b
+    m_Address: Tools/WateringCan.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2f85979c70b704c088a323c9ec914c1b
+    m_Address: Pickup/pickup_pop.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1709ac57f51cc4233975045944429a49
+    m_Address: Crops/plant_seed.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0586bd608f5b1415593dcb1a8056105c
+    m_Address: Crops/pluck.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6469d0b23654644cdbb8a891d70b674b
+    m_Address: Crops/stone_shatter.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b44ecb692ea0d419ebaa15c7225ec0de
+    m_Address: Crops/tree_falling.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50aa2bebc26914662a023e793cd79a9a
+    m_Address: Crops/wood_splinters.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 344798fd54f2e460c81e4916851bdda2
+    m_Address: AmbientSounds/countryside1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 68e0649cf9a1248fab8ec3cdada154f1
+    m_Address: AmbientSounds/countryside2.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 023dcec8da95f453a8a2c28b43a216e5
+    m_Address: AmbientSounds/indoors1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b94ca61b47960469799df9ec848791f4, type: 2}
+    - {fileID: 11400000, guid: beb96be5bf2904666a3e3e24030ff121, type: 2}

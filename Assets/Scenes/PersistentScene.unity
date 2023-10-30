@@ -3820,8 +3820,8 @@ MonoBehaviour:
   ready:
     m_PersistentCalls:
       m_Calls: []
-  soundDetailsData: {fileID: 11400000, guid: cf86112b554e742348c219caeefa3439, type: 2}
-  sceneSoundData: {fileID: 11400000, guid: 30ef09e9c92dc4425b357c8684e4cab9, type: 2}
+  soundDetailsData: {fileID: 0}
+  sceneSoundData: {fileID: 0}
   ambientSource: {fileID: 180793632}
   gameSource: {fileID: 609125464}
   audioMixer: {fileID: 24100000, guid: 65cdc2ca6e9fe442c94500b0e83dcb01, type: 2}

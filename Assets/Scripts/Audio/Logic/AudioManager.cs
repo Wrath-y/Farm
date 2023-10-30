@@ -37,9 +37,9 @@ public class AudioManager : Singleton<AudioManager>
     protected override void Awake()
     {
         base.Awake();
-
-        // ready.AddListener(OnAssetsReady);
-        // StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
+    
+        ready.AddListener(OnAssetsReady);
+        StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
     }
     
     private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
@@ -69,6 +69,17 @@ public class AudioManager : Singleton<AudioManager>
             {
                 case "SoundDetailsList_SO":
                     soundDetailsData = (SoundDetailsList_SO)item.Value.Result;
+                    for (int i = 0; i < soundDetailsData.soundDetailsList.Count; i++)
+                    {
+                        if (soundDetailsData.soundDetailsList[i].soundClipRef == null) continue;
+
+                        int index = i;
+
+                        soundDetailsData.soundDetailsList[i].soundClipRef.LoadAssetAsync<AudioClip>().Completed += (obj) =>
+                        {
+                            soundDetailsData.soundDetailsList[index].soundClip = obj.Result;
+                        };
+                    }
                     break;
                 case "SceneSoundList_SO":
                     sceneSoundData = (SceneSoundList_SO)item.Value.Result;
