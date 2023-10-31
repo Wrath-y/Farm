@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -100,6 +102,14 @@ public class AudioManager : Singleton<AudioManager>
         EventHandler.AfterLoadedSceneEvent -= OnAfterSceneLoadedEvent;
         EventHandler.PlaySoundEvent -= OnPlaySoundEvent;
         EventHandler.EndGameEvent -= OnEndGameEvent;
+    }
+    
+    private void OnApplicationQuit()
+    {
+        for (int i = 0; i < soundDetailsData.soundDetailsList.Count; i++)
+        {
+            soundDetailsData.soundDetailsList[i].soundClip = null;
+        }
     }
 
     private void OnEndGameEvent()
