@@ -15,6 +15,7 @@ using Image = UnityEngine.UI.Image;
 
 public class CursorManager : Singleton<CursorManager>, LoadPercent
 {
+    private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
     public AssetReference normalRef, toolRef, seedRef, itemRef;
     private Sprite _normal, _tool, _seed, _item;
 
@@ -34,7 +35,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
     private ItemDetails _curItem;
     private bool _isMobile = true;
     private Transform PlayerTransform => FindObjectOfType<Player>().transform;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -47,7 +48,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
             _normal = obj.Result;
             loadAssetAsyncPercent += 0.25f;
         };
-        aa.AddHandle(normalHandle);
+        aa.AddHandle("cursor normal", normalHandle);
         
         AsyncOperationHandle<Sprite> toolHandle = toolRef.LoadAssetAsync<Sprite>();
         toolHandle.Completed += obj =>
@@ -55,7 +56,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
             _tool = obj.Result;
             loadAssetAsyncPercent += 0.25f;
         };
-        StartCoroutine(LoadAA.LoadPercent.Percent(toolHandle, "toolRef"));
+        aa.AddHandle("cursor tool", toolHandle);
         
         AsyncOperationHandle<Sprite> seedHandle = seedRef.LoadAssetAsync<Sprite>();
         seedHandle.Completed += obj =>
@@ -63,7 +64,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
             _seed = obj.Result;
             loadAssetAsyncPercent += 0.25f;
         };
-        StartCoroutine(LoadAA.LoadPercent.Percent(seedHandle, "seedRef"));
+        aa.AddHandle("cursor seed", seedHandle);
         
         AsyncOperationHandle<Sprite> itemHandle = itemRef.LoadAssetAsync<Sprite>();
         itemHandle.Completed += obj =>
@@ -71,7 +72,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
             _item = obj.Result;
             loadAssetAsyncPercent += 0.25f;
         };
-        StartCoroutine(LoadAA.LoadPercent.Percent(itemHandle, "itemRef"));
+        aa.AddHandle("cursor item", itemHandle);
     }
 
     private void OnEnable()
@@ -382,5 +383,15 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
         if (otherColl != null)
             return otherColl.GetComponent<Furniture>();
         return false;
+    }
+    
+    public void AddHandle(string key, AsyncOperationHandle handle)
+    {
+        _aaHandles.Add(key, handle);
+    }
+
+    public Dictionary<string, AsyncOperationHandle> GetHandles()
+    {
+        return _aaHandles;
     }
 }

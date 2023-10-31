@@ -12,20 +12,26 @@ namespace LoadAA
         {
             AAManager.Instance.RegisterLoadPercent(this);
         }
+
+        public void AddHandle(string key, AsyncOperationHandle handle);
+        public Dictionary<string, AsyncOperationHandle> GetHandles();
         
-        public void AddHandle(AsyncOperationHandle handle);
-        
-        public IEnumerator Percent(AsyncOperationHandle handle, string key)
+        public IEnumerator Percent()
         {
-            while (!handle.IsDone)
+            Dictionary<string, AsyncOperationHandle> handles = GetHandles();
+            foreach (var item in handles)
             {
-                float progress = handle.PercentComplete; // 获取加载进度
-                Debug.Log($"Resource {key} loading progress: {progress * 100}%");
-                var downloadRes = handle.GetDownloadStatus();
-                var percentage = downloadRes.Percent;
-                Debug.Log($"Resource {key} downloading progress: {percentage * 100}%");
-                Debug.Log($"Resource {key} total bytes: {downloadRes.TotalBytes}, downloading bytes: {downloadRes.DownloadedBytes}");
-                yield return null;
+                while (!item.Value.IsDone)
+                {
+                    float progress = item.Value.PercentComplete; // 获取加载进度
+                    Debug.Log($"Resource {item.Key} loading progress: {progress * 100}%");
+                    var downloadRes = item.Value.GetDownloadStatus();
+                    var percentage = downloadRes.Percent;
+                    Debug.Log($"Resource {item.Key} downloading progress: {percentage * 100}%");
+                    Debug.Log(
+                        $"Resource {item.Key} total bytes: {downloadRes.TotalBytes}, downloading bytes: {downloadRes.DownloadedBytes}");
+                    yield return null;
+                }
             }
         }
     }
