@@ -2,7 +2,7 @@
 {
     Seed,Commodity,Furniture,
     HoeTool,ChopTool,BreakTool,ReapTool,WaterTool,CollectTool,
-    ReapableScenery
+    ReapableScenery, FishingRod, FishBait
 }
 
 public enum SlotType

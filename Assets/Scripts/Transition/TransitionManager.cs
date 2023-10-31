@@ -24,6 +24,24 @@ namespace Farm.Transition
             // SceneManager.LoadScene("UI", LoadSceneMode.Additive);
             Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
         }
+
+        bool AllAssetsLoaded()
+        {
+            foreach (var handle in Addressables.ResourceManager.ResourceProviders)
+            {
+                if (!handle.IsDone)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        private IEnumerator LoadAllAssetsAndStartGame()
+        {
+            // 等待所有资源加载完成
+            yield return new WaitUntil(() => AllAssetsLoaded());
+        }
         
         private void OnEnable()
         {

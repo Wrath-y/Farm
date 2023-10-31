@@ -85,6 +85,30 @@ MonoBehaviour:
     canCarried: 1
     itemPrice: 0
     sellPercentage: 0
+  - itemID: 1007
+    itemName: "\u9493\u9C7C\u7AFF"
+    itemType: 10
+    itemIcon: {fileID: 21300000, guid: c6e5d4d3bcc844681a7699adca2efb30, type: 3}
+    itemOnWorldSprite: {fileID: 21300000, guid: c6e5d4d3bcc844681a7699adca2efb30, type: 3}
+    itemDescription: "\u9493\u9C7C\u7AFF,\u53EF\u4EE5\u5728\u6CB3\u8FB9\u4F7F\u7528"
+    itemUseRadius: 4
+    canPickup: 1
+    canDropped: 1
+    canCarried: 1
+    itemPrice: 0
+    sellPercentage: 0
+  - itemID: 1008
+    itemName: "\u9C7C\u9975"
+    itemType: 11
+    itemIcon: {fileID: 21300000, guid: 98938b6d7274f45d5ac8a88f4aa58e05, type: 3}
+    itemOnWorldSprite: {fileID: 21300000, guid: 98938b6d7274f45d5ac8a88f4aa58e05, type: 3}
+    itemDescription: "\u9C7C\u9975"
+    itemUseRadius: 0
+    canPickup: 0
+    canDropped: 0
+    canCarried: 0
+    itemPrice: 10
+    sellPercentage: 0.1
   - itemID: 1027
     itemName: "\u751C\u83DC\u6839\u79CD\u5B50"
     itemType: 0

@@ -1,16 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Farm.CropPlant;
 using Farm.Inventory;
 using Farm.Map;
+using LoadAA;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
-public class CursorManager : Singleton<CursorManager>
+public class CursorManager : Singleton<CursorManager>, LoadPercent
 {
     public AssetReference normalRef, toolRef, seedRef, itemRef;
     private Sprite _normal, _tool, _seed, _item;
@@ -32,24 +35,43 @@ public class CursorManager : Singleton<CursorManager>
     private bool _isMobile = true;
     private Transform PlayerTransform => FindObjectOfType<Player>().transform;
 
-    protected void Awake()
+    protected override void Awake()
     {
-        normalRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        base.Awake();
+        LoadPercent aa = this;
+        aa.RegisterLoadPercent();
+        
+        AsyncOperationHandle<Sprite> normalHandle = normalRef.LoadAssetAsync<Sprite>();
+        normalHandle.Completed += obj =>
         {
             _normal = obj.Result;
+            loadAssetAsyncPercent += 0.25f;
         };
-        toolRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        aa.AddHandle(normalHandle);
+        
+        AsyncOperationHandle<Sprite> toolHandle = toolRef.LoadAssetAsync<Sprite>();
+        toolHandle.Completed += obj =>
         {
             _tool = obj.Result;
+            loadAssetAsyncPercent += 0.25f;
         };
-        seedRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        StartCoroutine(LoadAA.LoadPercent.Percent(toolHandle, "toolRef"));
+        
+        AsyncOperationHandle<Sprite> seedHandle = seedRef.LoadAssetAsync<Sprite>();
+        seedHandle.Completed += obj =>
         {
             _seed = obj.Result;
+            loadAssetAsyncPercent += 0.25f;
         };
-        itemRef.LoadAssetAsync<Sprite>().Completed += (obj) =>
+        StartCoroutine(LoadAA.LoadPercent.Percent(seedHandle, "seedRef"));
+        
+        AsyncOperationHandle<Sprite> itemHandle = itemRef.LoadAssetAsync<Sprite>();
+        itemHandle.Completed += obj =>
         {
             _item = obj.Result;
+            loadAssetAsyncPercent += 0.25f;
         };
+        StartCoroutine(LoadAA.LoadPercent.Percent(itemHandle, "itemRef"));
     }
 
     private void OnEnable()

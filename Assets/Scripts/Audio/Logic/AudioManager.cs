@@ -57,6 +57,17 @@ public class AudioManager : Singleton<AudioManager>
         foreach (IResourceLocation location in locations.Result) {
             AsyncOperationHandle<ScriptableObject> handle = Addressables.LoadAssetAsync<ScriptableObject>(location);
             handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+            
+            while (!handle.IsDone)
+            {
+                // 下载进度（0~1）
+                float progress = handle.PercentComplete; // 获取加载进度
+                Debug.Log($"Resource {location.PrimaryKey} loading progress: {progress * 100}%");
+                var percentage = handle.GetDownloadStatus().Percent;
+                Debug.Log($"Resource {location.PrimaryKey} downloading progress: {percentage * 100}%");
+                yield return null;
+            }
+            
             loadOps.Add(handle);
         }
 
@@ -87,6 +98,8 @@ public class AudioManager : Singleton<AudioManager>
                     sceneSoundData = (SceneSoundList_SO)item.Value.Result;
                     break;
             }
+
+            loadAssetAsyncPercent += 0.5f;
         }
     }
     
