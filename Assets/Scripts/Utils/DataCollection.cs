@@ -90,6 +90,7 @@ public class TileDetails
     public bool canPlaceFurniture;
     public bool isNPCObstacle;
     public bool isRandCropItem;
+    public bool canFish;
     public int daysSinceDug = -1;
     public int daysSinceWatered = -1;
     public int seedItemId = -1;

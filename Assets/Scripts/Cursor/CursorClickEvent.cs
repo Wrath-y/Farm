@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorClickEvent : Singleton<CursorClickEvent>
+namespace Cursor
 {
-    // 判断鼠标点击位置是否是NPC
-    public bool IsShowNpcDialogue(Vector3 mouseWorldPos)
+    public class CursorClickEvent : Singleton<CursorClickEvent>
     {
-        if (GameObject.FindGameObjectWithTag("DialogBox"))
+        // 判断鼠标点击位置是否是NPC
+        public bool IsShowNpcDialogue(Vector3 mouseWorldPos)
         {
-            return true;
-        }
-        Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].GetComponent<Dialogue>())
+            if (GameObject.FindGameObjectWithTag("DialogBox"))
             {
                 return true;
             }
-        }
 
-        return false;
+            Collider2D[] colliders = Physics2D.OverlapPointAll(mouseWorldPos);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].GetComponent<Dialogue>())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

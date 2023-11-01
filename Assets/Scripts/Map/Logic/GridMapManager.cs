@@ -279,6 +279,9 @@ namespace Farm.Map
                     case GridType.RandCropItem:
                         tileDetails.isRandCropItem = tileProperty.boolTypeValue;
                         break;
+                    case GridType.CanFish:
+                        tileDetails.canFish = tileProperty.boolTypeValue;
+                        break;
                 }
                 
                 string key = tileDetails.gridX + "x" + tileDetails.gridY + "y" + mapData.sceneName;

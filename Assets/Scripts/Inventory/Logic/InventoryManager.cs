@@ -106,7 +106,6 @@ namespace Farm.Inventory
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
-            // EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
 
         public ItemDetails GetItemDetails(int id)
@@ -318,8 +317,20 @@ namespace Farm.Inventory
                 _ => null
             };
         }
+        
+        // 背包内是否有指定类型的物品
+        public int HasItem(ItemType itemType)
+        {
+            foreach (InventoryItem item in playerBag.ItemList)
+            {
+                ItemDetails itemDetails = GetItemDetails(item.itemID);
+                if (itemDetails.itemType == itemType) return item.itemID;
+            }
 
-        private void RemoveItem(int id, int removeAmount)
+            return 0;
+        }
+
+        public void RemoveItem(int id, int removeAmount)
         {
             var index = GetItemIndexInBag(id);
 

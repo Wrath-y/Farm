@@ -14,6 +14,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
+namespace Cursor
+{
 public class CursorManager : Singleton<CursorManager>, LoadPercent
 {
     private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
@@ -149,7 +151,6 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
         }
         
         _curItem = itemDetails;
-        Debug.Log($"OnItemSelectedEvent {_curItem.itemType}");
         // TODO 新类型需添加鼠标样式
         _curSprite = itemDetails.itemType switch
         {
@@ -257,30 +258,6 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
 
     private void CheckCursorValid()
     {
-        // if (Input.touchCount > 0)
-        // {
-        //     // 获取第一个触摸点的位置
-        //     Vector2 touchPosition = Input.GetTouch(0).position;
-        //
-        //     // 获取设备的屏幕宽度和高度
-        //     float screenWidth = Screen.width;
-        //     float screenHeight = Screen.height;
-        //
-        //     // 获取摄像机到屏幕左下角的距离
-        //     float cameraDistance = Vector3.Distance(_mainCamera.transform.position, Vector3.zero);
-        //
-        //     // 计算适当的比例因子
-        //     float scaleFactor = cameraDistance / (2 * Mathf.Tan(_mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad));
-        //
-        //     // 将屏幕坐标转换为世界坐标
-        //     // Vector3 touchPosition3D = new Vector3(touchPosition.x / screenWidth - 0.5f, touchPosition.y / screenHeight - 0.5f, 0f);
-        //     _mouseWorldPos = _mainCamera.transform.position;
-        // }
-        // else
-        // {
-            
-        // }
-
         _mouseWorldPos = GetMouseWorldPos();
         
         _mouseGridPos = _curGrid.WorldToCell(_mouseWorldPos);
@@ -389,4 +366,5 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
     {
         return _aaHandles;
     }
+}
 }

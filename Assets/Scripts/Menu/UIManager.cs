@@ -1,4 +1,5 @@
 using System.Collections;
+using Cursor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
@@ -13,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Button acceleratedTimeButton;
     public Button mobileSettingsBtn;
     public Button settingsBtn;
+    public GameObject actionBtn;
     public GameObject pausePanel;
     public Slider volumeSlider;
 
@@ -27,6 +29,9 @@ public class UIManager : MonoBehaviour
         {
             mobileSettingsBtn.onClick.AddListener(TogglePausePanel);
         }
+
+        ActionBtnManager.Instance.actionBtn = actionBtn;
+        actionBtn.GetComponent<Button>().onClick.AddListener(ActionBtnManager.Instance.Click);
         acceleratedTimeButton.onClick.AddListener(TimeManager.Instance.AcceleratedTime);
         volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
     }

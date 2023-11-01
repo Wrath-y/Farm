@@ -15,6 +15,7 @@ TagManager:
   - DialogBox
   - RandCropParent
   - JoyStickBox
+  - ActionBtn
   layers:
   - Default
   - TransparentFX
