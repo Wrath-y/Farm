@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Farm.CropPlant;
 using Farm.Inventory;
 using Farm.Map;
+using Farm.Transition;
 using LoadAA;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -43,35 +44,19 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
         aa.RegisterLoadPercent();
         
         AsyncOperationHandle<Sprite> normalHandle = normalRef.LoadAssetAsync<Sprite>();
-        normalHandle.Completed += obj =>
-        {
-            _normal = obj.Result;
-            loadAssetAsyncPercent += 0.25f;
-        };
+        normalHandle.Completed += obj => _normal = obj.Result;
         aa.AddHandle("cursor normal", normalHandle);
         
         AsyncOperationHandle<Sprite> toolHandle = toolRef.LoadAssetAsync<Sprite>();
-        toolHandle.Completed += obj =>
-        {
-            _tool = obj.Result;
-            loadAssetAsyncPercent += 0.25f;
-        };
+        toolHandle.Completed += obj => _tool = obj.Result;
         aa.AddHandle("cursor tool", toolHandle);
         
         AsyncOperationHandle<Sprite> seedHandle = seedRef.LoadAssetAsync<Sprite>();
-        seedHandle.Completed += obj =>
-        {
-            _seed = obj.Result;
-            loadAssetAsyncPercent += 0.25f;
-        };
+        seedHandle.Completed += obj => _seed = obj.Result;
         aa.AddHandle("cursor seed", seedHandle);
         
         AsyncOperationHandle<Sprite> itemHandle = itemRef.LoadAssetAsync<Sprite>();
-        itemHandle.Completed += obj =>
-        {
-            _item = obj.Result;
-            loadAssetAsyncPercent += 0.25f;
-        };
+        itemHandle.Completed += obj => _item = obj.Result;
         aa.AddHandle("cursor item", itemHandle);
     }
 
@@ -91,6 +76,15 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
 
     private void Start()
     {
+        StartCoroutine(InitIcon());
+    }
+
+    private IEnumerator InitIcon()
+    {
+        while (!TransitionManager.Instance.hasLoadedUI)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
         if (Application.platform == RuntimePlatform.WindowsEditor ||
             Application.platform == RuntimePlatform.WindowsPlayer ||
             Application.platform == RuntimePlatform.OSXEditor ||
@@ -387,6 +381,7 @@ public class CursorManager : Singleton<CursorManager>, LoadPercent
     
     public void AddHandle(string key, AsyncOperationHandle handle)
     {
+        AAManager.Instance.allResourceNum++;
         _aaHandles.Add(key, handle);
     }
 

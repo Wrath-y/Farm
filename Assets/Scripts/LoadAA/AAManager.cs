@@ -9,6 +9,8 @@ namespace LoadAA
     public class AAManager : Singleton<AAManager>
     {
         private List<LoadPercent> loadPercents = new List<LoadPercent>();
+        public int allResourceNum;
+        public int doneResourceNum;
         
         public void RegisterLoadPercent(LoadPercent loadPercent)
         {
@@ -16,17 +18,27 @@ namespace LoadAA
                 loadPercents.Add(loadPercent);
         }
         
-        public void PrintPercent()
+        private IEnumerator PrintPercent()
         {
-            foreach (var loadPercent in loadPercents)
+            yield return new WaitForSeconds(0.5f);
+            
+            for (int i = 0; i < loadPercents.Count; i++)
             {
-                StartCoroutine(loadPercent.Percent());
+                LoadPercent l = loadPercents[i];
+                StartCoroutine(l.Percent());
+                loadPercents.Remove(l);
+            }
+                
+            if (doneResourceNum < allResourceNum)
+            {
+                StartCoroutine(PrintPercent());
             }
         }
 
-        protected void Start()
+        protected override void Awake()
         {
-            PrintPercent();
+            base.Awake();
+            StartCoroutine(PrintPercent());
         }
     }
 }

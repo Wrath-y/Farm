@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
+using Farm.Transition;
+using LoadAA;
 using UnityEngine;
 
 public class Player : MonoBehaviour, ISaveable
@@ -33,6 +35,15 @@ public class Player : MonoBehaviour, ISaveable
     
     private void Start()
     {
+        StartCoroutine(Init());
+    }
+
+    private IEnumerator Init()
+    {
+        while (!TransitionManager.Instance.hasLoadedUI)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
         ISaveable saveable = this;
         saveable.RegisterSaveable();
         _variableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<VariableJoystick>();

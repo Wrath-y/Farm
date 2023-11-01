@@ -4,7 +4,6 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
     private static T _instance;
-    protected float loadAssetAsyncPercent = 0;
 
     public static T Instance
     {

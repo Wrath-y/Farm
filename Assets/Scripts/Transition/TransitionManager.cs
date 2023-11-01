@@ -2,19 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
+using LoadAA;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 namespace Farm.Transition
 {
-    public class TransitionManager : Singleton<TransitionManager>, ISaveable
+    public class TransitionManager : Singleton<TransitionManager>, ISaveable, LoadPercent
     {
+        private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
+        
         [SceneName]
         public string startSceneName = "";
 
         private bool _isFaded;
         private CanvasGroup _fadeCanvasGroup;
+
+        public bool hasLoadedUI;
         public string GUID => GetComponent<DataGUID>().guid;
 
         protected override void Awake()
@@ -22,25 +29,13 @@ namespace Farm.Transition
             base.Awake();
             // Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
             // SceneManager.LoadScene("UI", LoadSceneMode.Additive);
-            Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
-        }
-
-        bool AllAssetsLoaded()
-        {
-            foreach (var handle in Addressables.ResourceManager.ResourceProviders)
-            {
-                if (!handle.IsDone)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        
-        private IEnumerator LoadAllAssetsAndStartGame()
-        {
-            // 等待所有资源加载完成
-            yield return new WaitUntil(() => AllAssetsLoaded());
+            
+            LoadPercent aa = this;
+            aa.RegisterLoadPercent();
+            
+            AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
+            handle.Completed += obj => hasLoadedUI = true;
+            aa.AddHandle("UIScene", handle);
         }
         
         private void OnEnable()
@@ -164,6 +159,17 @@ namespace Farm.Transition
         {
             //加载游戏进度场景
             StartCoroutine(LoadSaveDataScene(saveData.dataSceneName));
+        }
+        
+        public void AddHandle(string key, AsyncOperationHandle handle)
+        {
+            AAManager.Instance.allResourceNum++;
+            _aaHandles.Add(key, handle);
+        }
+
+        public Dictionary<string, AsyncOperationHandle> GetHandles()
+        {
+            return _aaHandles;
         }
     }
 }

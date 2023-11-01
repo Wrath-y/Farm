@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LoadAA;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
@@ -10,8 +11,9 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : Singleton<AudioManager>, LoadPercent
 {
+    private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
     public List<string> aaLoadkeys;
     private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
     public UnityEvent ready;
@@ -39,7 +41,9 @@ public class AudioManager : Singleton<AudioManager>
     protected override void Awake()
     {
         base.Awake();
-    
+        LoadPercent aa = this;
+        aa.RegisterLoadPercent();
+        
         ready.AddListener(OnAssetsReady);
         StartCoroutine(LoadAndAssociateResultWithKey(aaLoadkeys));
     }
@@ -54,20 +58,12 @@ public class AudioManager : Singleton<AudioManager>
         
         var loadOps = new List<AsyncOperationHandle>(locations.Result.Count);
 
+        LoadPercent aa = this;
         foreach (IResourceLocation location in locations.Result) {
             AsyncOperationHandle<ScriptableObject> handle = Addressables.LoadAssetAsync<ScriptableObject>(location);
             handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
             
-            while (!handle.IsDone)
-            {
-                // 下载进度（0~1）
-                float progress = handle.PercentComplete; // 获取加载进度
-                Debug.Log($"Resource {location.PrimaryKey} loading progress: {progress * 100}%");
-                var percentage = handle.GetDownloadStatus().Percent;
-                Debug.Log($"Resource {location.PrimaryKey} downloading progress: {percentage * 100}%");
-                yield return null;
-            }
-            
+            aa.AddHandle(location.PrimaryKey, handle);
             loadOps.Add(handle);
         }
 
@@ -77,6 +73,7 @@ public class AudioManager : Singleton<AudioManager>
     }
     
     private void OnAssetsReady() {
+        LoadPercent aa = this;
         foreach (var item in _operationDictionary) {
             switch (item.Key)
             {
@@ -88,18 +85,18 @@ public class AudioManager : Singleton<AudioManager>
 
                         int index = i;
 
-                        soundDetailsData.soundDetailsList[i].soundClipRef.LoadAssetAsync<AudioClip>().Completed += (obj) =>
+                        var handle = soundDetailsData.soundDetailsList[i].soundClipRef.LoadAssetAsync<AudioClip>();
+                        handle.Completed += (obj) =>
                         {
                             soundDetailsData.soundDetailsList[index].soundClip = obj.Result;
                         };
+                        aa.AddHandle($"SoundDetailsList_SO_{i}", handle);
                     }
                     break;
                 case "SceneSoundList_SO":
                     sceneSoundData = (SceneSoundList_SO)item.Value.Result;
                     break;
             }
-
-            loadAssetAsyncPercent += 0.5f;
         }
     }
     
@@ -201,5 +198,16 @@ public class AudioManager : Singleton<AudioManager>
     public void SetMasterVolume(float value)
     {
         audioMixer.SetFloat("MasterVolume", (value * 100 - 80));
+    }
+    
+    public void AddHandle(string key, AsyncOperationHandle handle)
+    {
+        AAManager.Instance.allResourceNum++;
+        _aaHandles.Add(key, handle);
+    }
+
+    public Dictionary<string, AsyncOperationHandle> GetHandles()
+    {
+        return _aaHandles;
     }
 }
