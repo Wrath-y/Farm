@@ -55,7 +55,7 @@ namespace Cursor
 
         private void Update()
         {
-            if (actionBtn == null || _actionBtnImage == null || _curGrid == null)
+            if (actionBtn == null || _curGrid == null)
             {
                 return;
             }
@@ -82,7 +82,7 @@ namespace Cursor
         // 判断当前位置是否可点击
         private void CheckActioBtnValid()
         {
-            if (_actionBtnImage != null)
+            if (_actionBtnImage == null)
             {
                 _actionBtnImage = actionBtn.GetComponent<Image>();
             }
