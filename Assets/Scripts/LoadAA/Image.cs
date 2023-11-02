@@ -9,7 +9,7 @@ namespace LoadAA
     {
         Bottom, Right, Top, Left
     }
-    public class Image : MonoBehaviour
+    public class Image : Singleton<Image>
     {
         public AssetReference spriteRef;
         private AsyncOperationHandle<Sprite> _opHandle;
@@ -23,7 +23,12 @@ namespace LoadAA
         public float fillAmount;
         public bool fillClockwise;
         
-        public IEnumerator Start()
+        protected override void Awake()
+        {
+            StartCoroutine(Init());
+        }
+        
+        private IEnumerator Init()
         {
             _opHandle = spriteRef.LoadAssetAsync<Sprite>();
             yield return _opHandle;
@@ -54,7 +59,7 @@ namespace LoadAA
             };
         }
         
-        private void OnDestroy() {
+        protected override void OnDestroy() {
             Addressables.Release(_opHandle);
         }
     }
