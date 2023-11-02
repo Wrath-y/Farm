@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 
@@ -22,8 +23,8 @@ public class ItemEditor : EditorWindow
     [MenuItem("UIBuilder/ItemEditor")]
     public static void ShowExample()
     {
-        ItemEditor wnd = GetWindow<ItemEditor>();
-        wnd.titleContent = new GUIContent("ItemEditor");
+        ItemEditor wd = GetWindow<ItemEditor>();
+        wd.titleContent = new GUIContent("ItemEditor");
     }
 
     public void CreateGUI()
@@ -43,7 +44,7 @@ public class ItemEditor : EditorWindow
         _itemRowTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/UIBuilder/ItemRowTemplate.uxml");
 
         _defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/StaticResources/KenneyUIPackRPGExpansion/iconCross_dark_grey.png");
-
+        
         _itemListView = root.Q<VisualElement>("ItemList").Q<ListView>("ListView");
         _itemDetailsSection = root.Q<ScrollView>("ItemDetails");
         _iconPreview = _itemDetailsSection.Q<VisualElement>("Icon");
@@ -155,12 +156,24 @@ public class ItemEditor : EditorWindow
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
             _itemListView.Rebuild();
         });
+        _itemDetailsSection.Q<TextField>("ItemIconRef").value = _activeItem.itemIconRef;
+        _itemDetailsSection.Q<TextField>("ItemIconRef").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemIconRef = e.newValue;
+            _itemListView.Rebuild();
+        });
 
         _itemDetailsSection.Q<ObjectField>("ItemSprite").value = _activeItem.itemOnWorldSprite;
         _itemDetailsSection.Q<ObjectField>("ItemSprite").RegisterValueChangedCallback(e =>
         {
             Sprite newSprite = (Sprite)e.newValue;
             _activeItem.itemOnWorldSprite = newSprite;
+        });
+        _itemDetailsSection.Q<TextField>("ItemSpriteRef").value = _activeItem.itemOnWorldSpriteRef;
+        _itemDetailsSection.Q<TextField>("ItemSpriteRef").RegisterValueChangedCallback(e =>
+        {
+            _activeItem.itemOnWorldSpriteRef = e.newValue;
+            _itemListView.Rebuild();
         });
         
         

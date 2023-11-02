@@ -17,7 +17,9 @@ MonoBehaviour:
     itemName: "\u65A7\u5934"
     itemType: 4
     itemIcon: {fileID: -836220577, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: item
     itemOnWorldSprite: {fileID: -836220577, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: word
     itemDescription: "\u8FD9\u662F\u7528\u6765\u780D\u6811\u7684"
     itemUseRadius: 1
     canPickup: 1
@@ -29,7 +31,9 @@ MonoBehaviour:
     itemName: "\u9504\u5934"
     itemType: 3
     itemIcon: {fileID: 354471947, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 354471947, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u8FD9\u662F\u4E00\u628A\u9504\u5934"
     itemUseRadius: 1
     canPickup: 1
@@ -41,7 +45,9 @@ MonoBehaviour:
     itemName: "\u5341\u5B57\u9550"
     itemType: 5
     itemIcon: {fileID: 1201919015, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1201919015, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u51FF\u77F3\u5934\u7684"
     itemUseRadius: 1
     canPickup: 1
@@ -53,7 +59,9 @@ MonoBehaviour:
     itemName: "\u9570\u5200"
     itemType: 6
     itemIcon: {fileID: -1670531545, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1670531545, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7528\u6765\u9664\u8349"
     itemUseRadius: 1
     canPickup: 1
@@ -65,7 +73,9 @@ MonoBehaviour:
     itemName: "\u83DC\u7BEE\u5B50"
     itemType: 8
     itemIcon: {fileID: 1821730206, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1821730206, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u6536\u5272\u519C\u4F5C\u7269"
     itemUseRadius: 1
     canPickup: 1
@@ -77,7 +87,9 @@ MonoBehaviour:
     itemName: "\u6C34\u58F6"
     itemType: 7
     itemIcon: {fileID: 1110179922, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1110179922, guid: 2793a0b4c90202a498856eb02b11ba61, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u8FD9\u662F\u6C34\u58F6"
     itemUseRadius: 1
     canPickup: 1
@@ -89,7 +101,9 @@ MonoBehaviour:
     itemName: "\u9493\u9C7C\u7AFF"
     itemType: 10
     itemIcon: {fileID: 21300000, guid: c6e5d4d3bcc844681a7699adca2efb30, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 21300000, guid: c6e5d4d3bcc844681a7699adca2efb30, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9493\u9C7C\u7AFF,\u53EF\u4EE5\u5728\u6CB3\u8FB9\u4F7F\u7528"
     itemUseRadius: 4
     canPickup: 1
@@ -101,7 +115,9 @@ MonoBehaviour:
     itemName: "\u9C7C\u9975"
     itemType: 11
     itemIcon: {fileID: 21300000, guid: 98938b6d7274f45d5ac8a88f4aa58e05, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 21300000, guid: 98938b6d7274f45d5ac8a88f4aa58e05, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9C7C\u9975"
     itemUseRadius: 0
     canPickup: 0
@@ -113,7 +129,9 @@ MonoBehaviour:
     itemName: "\u751C\u83DC\u6839\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1979751653, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1979751653, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u751C\u83DC\u6839\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -125,7 +143,9 @@ MonoBehaviour:
     itemName: "\u751C\u83DC\u6839"
     itemType: 1
     itemIcon: {fileID: 121885046, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 121885046, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u751C\u83DC\u6839"
     itemUseRadius: 1
     canPickup: 1
@@ -137,7 +157,9 @@ MonoBehaviour:
     itemName: "\u5377\u5FC3\u83DC\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -27509343, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -27509343, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u5377\u5FC3\u83DC\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -149,7 +171,9 @@ MonoBehaviour:
     itemName: "\u5377\u5FC3\u83DC"
     itemType: 1
     itemIcon: {fileID: 954962395, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 954962395, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u5377\u5FC3\u83DC"
     itemUseRadius: 1
     canPickup: 1
@@ -161,7 +185,9 @@ MonoBehaviour:
     itemName: "\u80E1\u841D\u535C\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1336856913, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1336856913, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u80E1\u841D\u535C\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -173,7 +199,9 @@ MonoBehaviour:
     itemName: "\u80E1\u841D\u535C"
     itemType: 1
     itemIcon: {fileID: -794356109, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -794356109, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u80E1\u841D\u535C"
     itemUseRadius: 1
     canPickup: 1
@@ -185,7 +213,9 @@ MonoBehaviour:
     itemName: "\u82B1\u6930\u83DC\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1445224105, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1445224105, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u82B1\u6930\u83DC\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -197,7 +227,9 @@ MonoBehaviour:
     itemName: "\u82B1\u6930\u83DC"
     itemType: 1
     itemIcon: {fileID: 1167429971, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1167429971, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u82B1\u6930\u83DC"
     itemUseRadius: 1
     canPickup: 1
@@ -209,7 +241,9 @@ MonoBehaviour:
     itemName: "\u7389\u7C73\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: 1971537431, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1971537431, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7389\u7C73\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -221,7 +255,9 @@ MonoBehaviour:
     itemName: "\u7389\u7C73"
     itemType: 1
     itemIcon: {fileID: -776721897, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -776721897, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7389\u7C73"
     itemUseRadius: 1
     canPickup: 1
@@ -233,7 +269,9 @@ MonoBehaviour:
     itemName: "\u9752\u5706\u6912\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -307953800, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -307953800, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9752\u5706\u6912\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -245,7 +283,9 @@ MonoBehaviour:
     itemName: "\u9752\u5706\u6912"
     itemType: 1
     itemIcon: {fileID: -1887744437, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1887744437, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9752\u5706\u6912"
     itemUseRadius: 1
     canPickup: 1
@@ -257,7 +297,9 @@ MonoBehaviour:
     itemName: "\u7EA2\u5706\u6912\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1407906991, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1407906991, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7EA2\u5706\u6912\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -269,7 +311,9 @@ MonoBehaviour:
     itemName: "\u7EA2\u5706\u6912"
     itemType: 1
     itemIcon: {fileID: 152699944, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 152699944, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7EA2\u5706\u6912"
     itemUseRadius: 1
     canPickup: 1
@@ -281,7 +325,9 @@ MonoBehaviour:
     itemName: "\u9EC4\u5706\u6912\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1703294797, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1703294797, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9EC4\u5706\u6912\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -293,7 +339,9 @@ MonoBehaviour:
     itemName: "\u9EC4\u5706\u6912"
     itemType: 1
     itemIcon: {fileID: -1171835792, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1171835792, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9EC4\u5706\u6912"
     itemUseRadius: 1
     canPickup: 1
@@ -305,7 +353,9 @@ MonoBehaviour:
     itemName: "\u7518\u8517\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: 2113285563, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 2113285563, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7518\u8517\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -317,7 +367,9 @@ MonoBehaviour:
     itemName: "\u7518\u8517"
     itemType: 1
     itemIcon: {fileID: -1679277516, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1679277516, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u7518\u8517"
     itemUseRadius: 1
     canPickup: 1
@@ -329,7 +381,9 @@ MonoBehaviour:
     itemName: "\u8349\u8393\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: -1834017554, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1834017554, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u8349\u8393\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -341,7 +395,9 @@ MonoBehaviour:
     itemName: "\u8349\u8393"
     itemType: 1
     itemIcon: {fileID: 323679595, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 323679595, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u8349\u8393"
     itemUseRadius: 1
     canPickup: 1
@@ -353,7 +409,9 @@ MonoBehaviour:
     itemName: "\u5C0F\u9EA6\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: 1648298234, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1648298234, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u5C0F\u9EA6\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -365,7 +423,9 @@ MonoBehaviour:
     itemName: "\u5C0F\u9EA6"
     itemType: 1
     itemIcon: {fileID: -617027557, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -617027557, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u5C0F\u9EA6"
     itemUseRadius: 1
     canPickup: 1
@@ -377,7 +437,9 @@ MonoBehaviour:
     itemName: "\u6811\u82D7\u79CD\u5B50"
     itemType: 0
     itemIcon: {fileID: 919398127, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -458724330, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u6811\u82D7\u79CD\u5B50"
     itemUseRadius: 1
     canPickup: 1
@@ -389,7 +451,9 @@ MonoBehaviour:
     itemName: "\u6728\u5934"
     itemType: 1
     itemIcon: {fileID: -1962069092, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1996391009, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u9488\u53F6\u6728\u5934"
     itemUseRadius: 2
     canPickup: 1
@@ -401,7 +465,9 @@ MonoBehaviour:
     itemName: "\u6811\u6839"
     itemType: 9
     itemIcon: {fileID: 1459894480, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1459894480, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -413,7 +479,9 @@ MonoBehaviour:
     itemName: "\u77F3\u59341"
     itemType: 9
     itemIcon: {fileID: 555592989, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 555592989, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -425,7 +493,9 @@ MonoBehaviour:
     itemName: "\u77F3\u59342"
     itemType: 9
     itemIcon: {fileID: 475198852, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 475198852, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -437,7 +507,9 @@ MonoBehaviour:
     itemName: "\u77F3\u5934"
     itemType: 1
     itemIcon: {fileID: -683841150, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1462240903, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 2
     canPickup: 1
@@ -449,7 +521,9 @@ MonoBehaviour:
     itemName: "\u6742\u83491"
     itemType: 9
     itemIcon: {fileID: 910244632, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 910244632, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -461,7 +535,9 @@ MonoBehaviour:
     itemName: "\u6742\u83492"
     itemType: 9
     itemIcon: {fileID: 1456948184, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 1456948184, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -473,7 +549,9 @@ MonoBehaviour:
     itemName: "\u6742\u83493"
     itemType: 9
     itemIcon: {fileID: -1514154278, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1514154278, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: 
     itemUseRadius: 0
     canPickup: 0
@@ -485,7 +563,9 @@ MonoBehaviour:
     itemName: "\u4E00\u6346\u8349"
     itemType: 1
     itemIcon: {fileID: -1415958727, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -331717481, guid: 600864a2d32066845ad14abd9d19136f, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u4E00\u6346\u6742\u8349"
     itemUseRadius: 1
     canPickup: 1
@@ -497,7 +577,9 @@ MonoBehaviour:
     itemName: "\u50A8\u7269\u7BB1\u56FE\u7EB8"
     itemType: 2
     itemIcon: {fileID: -850421920, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: 21300000, guid: 3775f8176edd949449f110983092e864, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u53EF\u4EE5\u7528\u6765\u5B58\u50A8\u7269\u54C1"
     itemUseRadius: 4
     canPickup: 0
@@ -509,7 +591,9 @@ MonoBehaviour:
     itemName: "\u6728\u5934\u6905\u5B50\u56FE\u7EB8"
     itemType: 2
     itemIcon: {fileID: -850421920, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemIconRef: 
     itemOnWorldSprite: {fileID: -1936580168, guid: d67f8bdea7b454ba08443e00d51268b8, type: 3}
+    itemOnWorldSpriteRef: 
     itemDescription: "\u6728\u5934\u6905\u5B50"
     itemUseRadius: 4
     canPickup: 0
