@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Farm.Save;
+using LoadAA;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -9,8 +10,9 @@ using UnityEngine.Serialization;
 
 namespace Farm.Inventory
 {
-    public class InventoryManager : Singleton<InventoryManager>, ISaveable
+    public class InventoryManager : Singleton<InventoryManager>, ISaveable, LoadPercent
     {
+        private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
         public List<string> aaLoadkeys;
         private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
 
@@ -41,6 +43,9 @@ namespace Farm.Inventory
         }
 
         private IEnumerator LoadAndAssociateResultWithKey(IList<string> keys) {
+            LoadPercent aa = this;
+            aa.RegisterLoadPercent();
+            
             if (_operationDictionary == null)
                 _operationDictionary = new Dictionary<string, AsyncOperationHandle<ScriptableObject>>();
 
@@ -56,6 +61,8 @@ namespace Farm.Inventory
                 AsyncOperationHandle<ScriptableObject> handle =
                     Addressables.LoadAssetAsync<ScriptableObject>(location);
                 handle.Completed += obj => _operationDictionary.Add(location.PrimaryKey, obj);
+                
+                aa.AddHandle(location.PrimaryKey, handle);
                 loadOps.Add(handle);
             }
 
@@ -450,6 +457,17 @@ namespace Farm.Inventory
             }
 
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
+        }
+        
+        public void AddHandle(string key, AsyncOperationHandle handle)
+        {
+            AAManager.Instance.allResourceNum++;
+            _aaHandles.Add(key, handle);
+        }
+
+        public Dictionary<string, AsyncOperationHandle> GetHandles()
+        {
+            return _aaHandles;
         }
     }
 }

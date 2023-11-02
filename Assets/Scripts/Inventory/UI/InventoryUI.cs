@@ -1,15 +1,21 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using LoadAA;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
 
 namespace Farm.Inventory
 {
-    public class InventoryUI : MonoBehaviour
+    public class InventoryUI : Singleton<InventoryUI>, LoadPercent
     {
+        private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
+        
         public ItemToolTip ItemToolTip;
         
         [Header("拖拽图片")]
@@ -34,18 +40,21 @@ namespace Farm.Inventory
         [SerializeField] private SlotUI[] playerSlots;
         [SerializeField] private List<SlotUI> baseBagSlots;
 
-        protected void Awake()
+        protected override void Awake()
         {
-            shopSlotPrefabRef.LoadAssetAsync<GameObject>().Completed += (obj) =>
-            {
-                _shopSlotPrefab = obj.Result;
-            };
-            boxSlotPrefabRef.LoadAssetAsync<GameObject>().Completed += (obj) =>
-            {
-                _boxSlotPrefab = obj.Result;
-            };
+            base.Awake();
+            LoadPercent aa = this;
+            aa.RegisterLoadPercent();
+            
+            var shopSlotPrefabHandle = shopSlotPrefabRef.LoadAssetAsync<GameObject>();
+            shopSlotPrefabHandle.Completed += obj => _shopSlotPrefab = obj.Result;
+            aa.AddHandle("shopSlotPrefab", shopSlotPrefabHandle);
+            
+            var boxSlotPrefabHandle = boxSlotPrefabRef.LoadAssetAsync<GameObject>();
+            boxSlotPrefabHandle.Completed += obj => _boxSlotPrefab = obj.Result;
+            aa.AddHandle("boxSlotPrefab", boxSlotPrefabHandle);
         }
-
+        
         private void OnEnable()
         {
             EventHandler.UpdateInventoryUI += OnUpdateInventoryUI;
@@ -221,6 +230,17 @@ namespace Farm.Inventory
                     slot.slotHighlight.gameObject.SetActive(false);
                 }
             }
+        }
+        
+        public void AddHandle(string key, AsyncOperationHandle handle)
+        {
+            AAManager.Instance.allResourceNum++;
+            _aaHandles.Add(key, handle);
+        }
+
+        public Dictionary<string, AsyncOperationHandle> GetHandles()
+        {
+            return _aaHandles;
         }
     }
 }
