@@ -9,7 +9,9 @@ public class ItemDetails
     public string itemName;
     public ItemType itemType;
     public Sprite itemIcon;
+    public string itemIconRef;
     public Sprite itemOnWorldSprite;
+    public string itemOnWorldSpriteRef;
     public string itemDescription;
     public int itemUseRadius;
     public bool canPickup;
