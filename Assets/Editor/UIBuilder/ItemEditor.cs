@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.UIElements;
 
 
@@ -17,6 +18,7 @@ public class ItemEditor : EditorWindow
     private ItemDetails _activeItem;
     private Sprite _defaultIcon;
     private VisualElement _iconPreview;
+    private List<SpriteRenderer> _spritesToChange;
     
     private ListView _itemListView;
 
@@ -94,6 +96,7 @@ public class ItemEditor : EditorWindow
         _db = AssetDatabase.LoadAssetAtPath<ItemDataList_SO>(path);
 
         _itemList = _db.ItemDetailsList;
+        
         EditorUtility.SetDirty(_db);
     }
 
@@ -154,6 +157,15 @@ public class ItemEditor : EditorWindow
             Sprite newIcon = (Sprite)e.newValue;
             _activeItem.itemIcon = newIcon;
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
+
+            // string guid = string.Empty;
+            // long localId = 0;
+            // AssetDatabase.TryGetGUIDAndLocalFileIdentifier(newIcon.GetInstanceID(), out guid, out localId);
+            // _activeItem.itemIconRefT = new AssetReference(guid);
+            // 获取资源的GUID（全局唯一标识符）
+            string texturePath = AssetDatabase.GetAssetPath(newIcon);
+            Debug.Log("Texture Path: " + texturePath);
+            Debug.Log(e.newValue.name);
             _itemListView.Rebuild();
         });
         _itemDetailsSection.Q<TextField>("ItemIconRef").value = _activeItem.itemIconRef;

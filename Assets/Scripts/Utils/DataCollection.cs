@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
 
 [System.Serializable]
@@ -9,7 +10,9 @@ public class ItemDetails
     public string itemName;
     public ItemType itemType;
     public Sprite itemIcon;
+    public Sprite itemIcon1;
     public string itemIconRef;
+    public AssetReference itemIconRefT;
     public Sprite itemOnWorldSprite;
     public string itemOnWorldSpriteRef;
     public string itemDescription;

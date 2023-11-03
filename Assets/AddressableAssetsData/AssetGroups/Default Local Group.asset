@@ -37,6 +37,10 @@ MonoBehaviour:
     m_Address: Assets/StaticResources/Craftland/CL_Crops_Mining.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2793a0b4c90202a498856eb02b11ba61
+    m_Address: Assets/StaticResources/Craftland/CL_Crafting.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
   m_SchemaSet:
