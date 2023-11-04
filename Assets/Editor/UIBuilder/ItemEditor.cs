@@ -112,8 +112,10 @@ public class ItemEditor : EditorWindow
                 Debug.Log("i > itemList.Count");
                 return;
             }
-            
-            e.Q<VisualElement>("Icon").style.backgroundImage = _itemList[i].itemIcon == null ? _defaultIcon.texture : _itemList[i].itemIcon.texture;
+            var op = _itemList[i].itemIconRef.LoadAssetAsync<Sprite>();
+            Sprite res = op.WaitForCompletion();
+            e.Q<VisualElement>("Icon").style.backgroundImage = res == null ? _defaultIcon.texture : res.texture;
+            Addressables.Release(op);
             e.Q<Label>("Name").text = _itemList[i] == null ? "item is nil" : _itemList[i].itemName;
         };
 
