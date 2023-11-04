@@ -14,6 +14,7 @@ namespace Cursor
         private Grid _curGrid;
         private ItemDetails _curItem;
         private bool _actionBtnValid;
+        
         private Transform PlayerTransform => FindObjectOfType<Player>().transform;
         
         private void OnEnable()
@@ -34,6 +35,7 @@ namespace Cursor
         {
             if (!isSelected)
             {
+                _curItem = null;
                 actionBtn.gameObject.SetActive(false);
                 return;
             }
@@ -53,9 +55,9 @@ namespace Cursor
             actionBtn.gameObject.SetActive(false);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (actionBtn == null || _curGrid == null)
+            if (actionBtn == null || _curGrid == null || _curItem == null)
             {
                 return;
             }
@@ -107,13 +109,46 @@ namespace Cursor
 
             if (!curTile.canFish)
             {
+                var topPos = playerGridPos;
+                topPos.x += 1;
+                TileDetails nearbyTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(topPos);
+                if (nearbyTile != null && nearbyTile.canFish)
+                {
+                    SetActionBtnValid();
+                    return;
+                }
+                
+                var buttomPos = playerGridPos;
+                buttomPos.x -= 1;
+                nearbyTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(buttomPos);
+                if (nearbyTile != null && nearbyTile.canFish)
+                {
+                    SetActionBtnValid();
+                    return;
+                }
+                
+                var leftPos = playerGridPos;
+                leftPos.y -= 1;
+                nearbyTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(leftPos);
+                if (nearbyTile != null && nearbyTile.canFish)
+                {
+                    SetActionBtnValid();
+                    return;
+                }
+                
+                var rightPos = playerGridPos;
+                rightPos.y += 1;
+                nearbyTile = GridMapManager.Instance.GetTileDetailsByMouseGridPos(rightPos);
+                if (nearbyTile != null && nearbyTile.canFish)
+                {
+                    SetActionBtnValid();
+                    return;
+                }
                 SetActionBtnInValid();
                 return;
             }
 
             SetActionBtnValid();
-            
-            return;
         }
         
         private void SetActionBtnValid()
