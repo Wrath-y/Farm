@@ -10,9 +10,8 @@ public class ItemDetails
     public string itemName;
     public ItemType itemType;
     public Sprite itemIcon;
-    public Sprite itemIcon1;
-    public string itemIconRef;
-    public AssetReference itemIconRefT;
+    public string itemIconRefStr;
+    public AssetReference itemIconRef;
     public Sprite itemOnWorldSprite;
     public string itemOnWorldSpriteRef;
     public string itemDescription;

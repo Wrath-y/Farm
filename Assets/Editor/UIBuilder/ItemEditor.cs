@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.U2D;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -158,20 +159,28 @@ public class ItemEditor : EditorWindow
             _activeItem.itemIcon = newIcon;
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
 
-            // string guid = string.Empty;
-            // long localId = 0;
-            // AssetDatabase.TryGetGUIDAndLocalFileIdentifier(newIcon.GetInstanceID(), out guid, out localId);
-            // _activeItem.itemIconRefT = new AssetReference(guid);
-            // 获取资源的GUID（全局唯一标识符）
-            string texturePath = AssetDatabase.GetAssetPath(newIcon);
-            Debug.Log("Texture Path: " + texturePath);
-            Debug.Log(e.newValue.name);
             _itemListView.Rebuild();
         });
-        _itemDetailsSection.Q<TextField>("ItemIconRef").value = _activeItem.itemIconRef;
+        string guid = string.Empty;
+        long localId = 0;
+        AssetDatabase.TryGetGUIDAndLocalFileIdentifier(_activeItem.itemIcon.GetInstanceID(), out guid, out localId);
+        _activeItem.itemIconRef = new AssetReference(guid);
+        _activeItem.itemIconRef.SubObjectName = _itemDetailsSection.Q<ObjectField>("ItemIcon").value.name;
+        _activeItem.itemIconRef.LoadAssetAsync<Sprite>().Completed += obj =>
+        {
+            Debug.Log(obj.Result.name);
+        };
+        if (_activeItem.itemIconRefStr != "")
+        {
+            _itemDetailsSection.Q<TextField>("ItemIconRef").value = _activeItem.itemIconRefStr;
+        }
+        else
+        {
+            _itemDetailsSection.Q<TextField>("ItemIconRef").value = $"{AssetDatabase.GetAssetPath(_activeItem.itemIcon.texture)}[{_itemDetailsSection.Q<ObjectField>("ItemIcon").value.name}]";
+        }
         _itemDetailsSection.Q<TextField>("ItemIconRef").RegisterValueChangedCallback(e =>
         {
-            _activeItem.itemIconRef = e.newValue;
+            _activeItem.itemIconRefStr = e.newValue;
             _itemListView.Rebuild();
         });
 
@@ -187,7 +196,6 @@ public class ItemEditor : EditorWindow
             _activeItem.itemOnWorldSpriteRef = e.newValue;
             _itemListView.Rebuild();
         });
-        
         
         _itemDetailsSection.Q<EnumField>("ItemType").Init(ItemType.Seed);
         _itemDetailsSection.Q<EnumField>("ItemType").value = _activeItem.itemType;
