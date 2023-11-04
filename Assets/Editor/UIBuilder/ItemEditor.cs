@@ -149,51 +149,101 @@ public class ItemEditor : EditorWindow
             _activeItem.itemName = e.newValue;
             _itemListView.Rebuild();
         });
-
-        _iconPreview.style.backgroundImage = _activeItem.itemIcon == null ? _defaultIcon.texture : _activeItem.itemIcon.texture;
-
-        _itemDetailsSection.Q<ObjectField>("ItemIcon").value = _activeItem.itemIcon;
+        
+        if (_activeItem.itemIcon != null)
+        {
+            string guid = string.Empty;
+            long localId = 0;
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(_activeItem.itemIcon.GetInstanceID(), out guid, out localId);
+            _activeItem.itemIconRef = new AssetReference(guid);
+            
+            TextureImporter textureImporter = TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(_activeItem.itemIcon.texture)) as TextureImporter;
+            if (textureImporter.spriteImportMode != SpriteImportMode.Single)
+            {
+                _activeItem.itemIconRef.SubObjectName = _activeItem.itemIcon.name;
+            }
+            
+            _itemDetailsSection.Q<ObjectField>("ItemIcon").value = _activeItem.itemIcon;
+        }
+        
+        if (!string.IsNullOrEmpty(_activeItem.itemIconRef.AssetGUID) && _activeItem.itemIconRef.RuntimeKeyIsValid())
+        {
+            var op = _activeItem.itemIconRef.LoadAssetAsync<Sprite>();
+            Sprite res = op.WaitForCompletion();
+            _itemDetailsSection.Q<ObjectField>("ItemIcon").value = res;
+            Addressables.Release(op);
+            if (_activeItem.itemIcon != null)
+            {
+                _activeItem.itemIcon = null;
+            }
+        }
+        
         _itemDetailsSection.Q<ObjectField>("ItemIcon").RegisterValueChangedCallback(e =>
         {
             Sprite newIcon = (Sprite)e.newValue;
-            _activeItem.itemIcon = newIcon;
             _iconPreview.style.backgroundImage = newIcon == null ? _defaultIcon.texture :  newIcon.texture;
 
+            // _itemDetailsSection.Q<TextField>("ItemIconRef").value = $"{AssetDatabase.GetAssetPath(newIcon.texture)}[{_itemDetailsSection.Q<ObjectField>("ItemIcon").value.name}]";
+            // if (_activeItem.itemIconRef == null)
+            // {
+                string guid = string.Empty;
+                long localId = 0;
+                AssetDatabase.TryGetGUIDAndLocalFileIdentifier(newIcon.GetInstanceID(), out guid, out localId);
+                _activeItem.itemIconRef = new AssetReference(guid);
+                
+                TextureImporter textureImporter = TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(newIcon.texture)) as TextureImporter;
+                if (textureImporter.spriteImportMode != SpriteImportMode.Single)
+                {
+                    _activeItem.itemIconRef.SubObjectName = _itemDetailsSection.Q<ObjectField>("ItemIcon").value.name;
+                }
+            // }
+            
             _itemListView.Rebuild();
         });
-        string guid = string.Empty;
-        long localId = 0;
-        AssetDatabase.TryGetGUIDAndLocalFileIdentifier(_activeItem.itemIcon.GetInstanceID(), out guid, out localId);
-        _activeItem.itemIconRef = new AssetReference(guid);
-        _activeItem.itemIconRef.SubObjectName = _itemDetailsSection.Q<ObjectField>("ItemIcon").value.name;
-        _activeItem.itemIconRef.LoadAssetAsync<Sprite>().Completed += obj =>
+        
+        if (_activeItem.itemOnWorldSprite != null)
         {
-            Debug.Log(obj.Result.name);
-        };
-        if (_activeItem.itemIconRefStr != "")
-        {
-            _itemDetailsSection.Q<TextField>("ItemIconRef").value = _activeItem.itemIconRefStr;
+            string guid = string.Empty;
+            long localId = 0;
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(_activeItem.itemOnWorldSprite.GetInstanceID(), out guid, out localId);
+            _activeItem.itemOnWorldSpriteRef = new AssetReference(guid);
+            
+            TextureImporter textureImporter = TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(_activeItem.itemOnWorldSprite.texture)) as TextureImporter;
+            if (textureImporter.spriteImportMode != SpriteImportMode.Single)
+            {
+                _activeItem.itemOnWorldSpriteRef.SubObjectName = _activeItem.itemOnWorldSprite.name;
+            }
+            
+            _itemDetailsSection.Q<ObjectField>("ItemSprite").value = _activeItem.itemOnWorldSprite;
         }
-        else
+        
+        if (!string.IsNullOrEmpty(_activeItem.itemOnWorldSpriteRef.AssetGUID) && _activeItem.itemOnWorldSpriteRef.RuntimeKeyIsValid())
         {
-            _itemDetailsSection.Q<TextField>("ItemIconRef").value = $"{AssetDatabase.GetAssetPath(_activeItem.itemIcon.texture)}[{_itemDetailsSection.Q<ObjectField>("ItemIcon").value.name}]";
+            var op = _activeItem.itemOnWorldSpriteRef.LoadAssetAsync<Sprite>();
+            Sprite res = op.WaitForCompletion();
+            _itemDetailsSection.Q<ObjectField>("ItemSprite").value = res;
+            Addressables.Release(op);
+            if (_activeItem.itemOnWorldSprite != null)
+            {
+                _activeItem.itemOnWorldSprite = null;
+            }
         }
-        _itemDetailsSection.Q<TextField>("ItemIconRef").RegisterValueChangedCallback(e =>
-        {
-            _activeItem.itemIconRefStr = e.newValue;
-            _itemListView.Rebuild();
-        });
 
-        _itemDetailsSection.Q<ObjectField>("ItemSprite").value = _activeItem.itemOnWorldSprite;
         _itemDetailsSection.Q<ObjectField>("ItemSprite").RegisterValueChangedCallback(e =>
         {
             Sprite newSprite = (Sprite)e.newValue;
-            _activeItem.itemOnWorldSprite = newSprite;
-        });
-        _itemDetailsSection.Q<TextField>("ItemSpriteRef").value = _activeItem.itemOnWorldSpriteRef;
-        _itemDetailsSection.Q<TextField>("ItemSpriteRef").RegisterValueChangedCallback(e =>
-        {
-            _activeItem.itemOnWorldSpriteRef = e.newValue;
+            
+            string guid = string.Empty;
+            long localId = 0;
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(newSprite.GetInstanceID(), out guid, out localId);
+            _activeItem.itemOnWorldSpriteRef = new AssetReference(guid);
+                
+            TextureImporter textureImporter = TextureImporter.GetAtPath(AssetDatabase.GetAssetPath(newSprite.texture)) as TextureImporter;
+            if (textureImporter.spriteImportMode != SpriteImportMode.Single)
+            {
+                _activeItem.itemOnWorldSpriteRef.SubObjectName = _itemDetailsSection.Q<ObjectField>("ItemSprite").value.name;
+            }
+            
             _itemListView.Rebuild();
         });
         

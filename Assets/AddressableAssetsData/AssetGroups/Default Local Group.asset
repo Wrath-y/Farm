@@ -41,6 +41,16 @@ MonoBehaviour:
     m_Address: Assets/StaticResources/Craftland/CL_Crafting.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c6e5d4d3bcc844681a7699adca2efb30
+    m_Address: Assets/StaticResources/fantasyrpgiconpack/Expansions/02 - Fishing
+      set/Individual icons (16x16)/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98938b6d7274f45d5ac8a88f4aa58e05
+    m_Address: Assets/StaticResources/fantasyrpgiconpack/Expansions/02 - Fishing
+      set/Individual icons (16x16)/14.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
   m_SchemaSet:

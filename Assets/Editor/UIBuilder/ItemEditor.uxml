@@ -25,9 +25,7 @@
                             <ui:TextField picking-mode="Ignore" name="ItemName" label="Name" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: middle-left;" />
                             <uie:EnumField label="Type" name="ItemType" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
                             <uie:ObjectField label="Icon" type="UnityEngine.Sprite, UnityEngine.CoreModule" allow-scene-objects="false" name="ItemIcon" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: middle-left;" />
-                            <ui:TextField picking-mode="Ignore" name="ItemIconRef" label="ItemIconRef" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: middle-left;" />
                             <uie:ObjectField label="OnWorldSprite" type="UnityEngine.Sprite, UnityEngine.CoreModule" allow-scene-objects="false" name="ItemSprite" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: middle-left;" />
-                            <ui:TextField picking-mode="Ignore" name="ItemSpriteRef" label="OnWorldSpriteRef" style="padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-text-align: middle-left;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
