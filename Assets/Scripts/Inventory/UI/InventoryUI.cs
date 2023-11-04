@@ -232,8 +232,12 @@ namespace Farm.Inventory
             }
         }
         
-        public void AddHandle(string key, AsyncOperationHandle handle)
+        public IEnumerator AddHandle(string key, AsyncOperationHandle handle)
         {
+            while (AAManager.Instance == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             AAManager.Instance.allResourceNum++;
             _aaHandles.Add(key, handle);
         }

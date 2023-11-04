@@ -17,7 +17,9 @@ namespace Farm.Inventory
         private Dictionary<string, AsyncOperationHandle<ScriptableObject>> _operationDictionary;
 
         [FormerlySerializedAs("itemDataList_SO")] [Header("物品数据")]
-        public ItemDataList_SO itemDataList;
+        [SerializeField]
+        private ItemDataList_SO itemDataList;
+        private List<ItemDetails> _itemDetailsList = new List<ItemDetails>();
         
         [Header("建造蓝图")]
         public BluePrintDataList_SO bluePrintData;
@@ -73,11 +75,37 @@ namespace Farm.Inventory
         }
         
         private void OnAssetsReady() {
+            LoadPercent aa = this;
             foreach (var item in _operationDictionary) {
                 switch (item.Key)
                 {
                     case "ItemDataList_SO":
+                        
                         itemDataList = (ItemDataList_SO)item.Value.Result;
+                        foreach (var itemDetail in itemDataList.ItemDetailsList)
+                        {
+                            ItemDetails tmp = new ItemDetails();
+                            tmp.itemID = itemDetail.itemID;
+                            tmp.itemName = itemDetail.itemName;
+                            tmp.itemType = itemDetail.itemType;
+                            tmp.itemIconRef = itemDetail.itemIconRef;
+                            tmp.itemOnWorldSpriteRef = itemDetail.itemOnWorldSpriteRef;
+                            tmp.itemDescription = itemDetail.itemDescription;
+                            tmp.itemUseRadius = itemDetail.itemUseRadius;
+                            tmp.canPickup = itemDetail.canPickup;
+                            tmp.canDropped = itemDetail.canDropped;
+                            tmp.canCarried = itemDetail.canCarried;
+                            tmp.itemPrice = itemDetail.itemPrice;
+                            tmp.sellPercentage = itemDetail.sellPercentage;
+                            var handle1 = tmp.itemIconRef.LoadAssetAsync<Sprite>();
+                            tmp.itemIcon = handle1.WaitForCompletion();
+                            var handle2 = tmp.itemOnWorldSpriteRef.LoadAssetAsync<Sprite>();
+                            tmp.itemOnWorldSprite = handle2.WaitForCompletion();
+                            
+                            _itemDetailsList.Add(tmp);
+                            Addressables.Release(handle1);
+                            Addressables.Release(handle2);
+                        }
                         break;
                     case "BluePrintDataList_SO":
                         bluePrintData = (BluePrintDataList_SO)item.Value.Result;
@@ -117,7 +145,7 @@ namespace Farm.Inventory
 
         public ItemDetails GetItemDetails(int id)
         {
-            return itemDataList.ItemDetailsList.Find(e => e.itemID == id);
+            return _itemDetailsList.Find(e => e.itemID == id);
         }
         
         private void OnDropItemEvent(int itemID, Vector3 pos, ItemType itemType)
@@ -459,8 +487,12 @@ namespace Farm.Inventory
             EventHandler.CallUpdateInventoryUI(InventoryLocation.Player, playerBag.ItemList);
         }
         
-        public void AddHandle(string key, AsyncOperationHandle handle)
+        public IEnumerator AddHandle(string key, AsyncOperationHandle handle)
         {
+            while (AAManager.Instance == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             AAManager.Instance.allResourceNum++;
             _aaHandles.Add(key, handle);
         }

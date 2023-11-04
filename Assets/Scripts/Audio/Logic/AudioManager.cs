@@ -200,8 +200,12 @@ public class AudioManager : Singleton<AudioManager>, LoadPercent
         audioMixer.SetFloat("MasterVolume", (value * 100 - 80));
     }
     
-    public void AddHandle(string key, AsyncOperationHandle handle)
+    public IEnumerator AddHandle(string key, AsyncOperationHandle handle)
     {
+        while (AAManager.Instance == null)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
         AAManager.Instance.allResourceNum++;
         _aaHandles.Add(key, handle);
     }

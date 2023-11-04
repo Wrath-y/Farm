@@ -8,12 +8,16 @@ namespace LoadAA
 {
     public interface LoadPercent
     {
-        void RegisterLoadPercent()
+        IEnumerator RegisterLoadPercent()
         {
+            while (AAManager.Instance == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
             AAManager.Instance.RegisterLoadPercent(this);
         }
 
-        public void AddHandle(string key, AsyncOperationHandle handle);
+        public IEnumerator AddHandle(string key, AsyncOperationHandle handle);
         public Dictionary<string, AsyncOperationHandle> GetHandles();
         
         public IEnumerator Percent()
@@ -36,6 +40,7 @@ namespace LoadAA
                 Debug.Log($"{AAManager.Instance.doneResourceNum} / {AAManager.Instance.allResourceNum}");
                 // Debug.Log($"Resource {item.Key} downloading progress: {percentage * 100}%");
                 // Debug.Log($"Resource {item.Key} total bytes: {downloadRes.TotalBytes}, downloading bytes: {downloadRes.DownloadedBytes}");
+                Addressables.Release(item.Value);
             }
         }
     }
