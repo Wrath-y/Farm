@@ -157,11 +157,9 @@ public class Player : MonoBehaviour, ISaveable
     {
         // if (_variableJoystick != null)
         // {
-        //     _inputX = _variableJoystick.Horizontal;
-        //     _inputY = _variableJoystick.Vertical;
+            _inputX = _variableJoystick.Horizontal;
+            _inputY = _variableJoystick.Vertical;
         // }
-        // else
-        // {
         //     _inputX = Input.GetAxisRaw("Horizontal");
         //     _inputY = Input.GetAxisRaw("Vertical");
         //     if (Input.GetKey(KeyCode.LeftShift))
@@ -169,14 +167,11 @@ public class Player : MonoBehaviour, ISaveable
         //         _inputX *= 0.5f;
         //         _inputY *= 0.5f;
         //     }
+        // if (Input.GetKey(KeyCode.LeftShift))
+        // {
+        //     _inputX *= 0.5f;
+        //     _inputY *= 0.5f;
         // }
-        _inputX = Input.GetAxisRaw("Horizontal");
-        _inputY = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _inputX *= 0.5f;
-            _inputY *= 0.5f;
-        }
         
         if (_inputX != 0 && _inputY != 0)
         {

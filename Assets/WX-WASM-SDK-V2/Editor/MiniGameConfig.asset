@@ -19,7 +19,7 @@ MonoBehaviour:
     assetLoadType: 0
     compressDataPackage: 0
     VideoUrl: 
-    DST: C:/Users/80565/Desktop/farm
+    DST: /Users/wrath/Desktop/Farm
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;

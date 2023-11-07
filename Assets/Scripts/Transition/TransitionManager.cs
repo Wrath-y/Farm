@@ -34,7 +34,12 @@ namespace Farm.Transition
             aa.RegisterLoadPercent();
             
             AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
-            handle.Completed += obj => hasLoadedUI = true;
+            handle.Completed += obj =>
+            {
+                hasLoadedUI = true;
+                _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
+                Debug.Log("has loaded ui");
+            };
             aa.AddHandle("UIScene", handle);
         }
         
@@ -56,8 +61,6 @@ namespace Farm.Transition
         {
             ISaveable saveable = this;
             saveable.RegisterSaveable();
-
-            _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
         }
 
         private void OnTransitionEvent(string targetSceneName, Vector3 targetPos)
@@ -96,8 +99,16 @@ namespace Farm.Transition
         private IEnumerator LoadSceneSetActive(string sceneName)
         {
             // yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            var opHandle = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            yield return opHandle;
+            var handle = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            handle.Completed += obj =>
+            {
+                Debug.Log($"has loaded {sceneName}");
+            };
+            while (!handle.IsDone)
+            {
+                // 在此可使用handle.PercentComplete进行进度展示
+                yield return null;
+            }
         
             Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
             SceneManager.SetActiveScene(newScene);
@@ -107,6 +118,12 @@ namespace Farm.Transition
         // targetAlpha 1是黑，0是透明
         private IEnumerator Fade(float targetAlpha)
         {
+            while (_fadeCanvasGroup == null)
+            {
+                Debug.Log("_fadeCanvasGroup is nil");
+
+                yield return null;
+            }
             _isFaded = true;
             _fadeCanvasGroup.blocksRaycasts = true;
             float speed = Mathf.Abs(_fadeCanvasGroup.alpha - targetAlpha) / Settings.FadeDuration;

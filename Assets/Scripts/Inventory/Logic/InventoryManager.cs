@@ -80,32 +80,8 @@ namespace Farm.Inventory
                 switch (item.Key)
                 {
                     case "ItemDataList_SO":
-                        
                         itemDataList = (ItemDataList_SO)item.Value.Result;
-                        foreach (var itemDetail in itemDataList.ItemDetailsList)
-                        {
-                            ItemDetails tmp = new ItemDetails();
-                            tmp.itemID = itemDetail.itemID;
-                            tmp.itemName = itemDetail.itemName;
-                            tmp.itemType = itemDetail.itemType;
-                            tmp.itemIconRef = itemDetail.itemIconRef;
-                            tmp.itemOnWorldSpriteRef = itemDetail.itemOnWorldSpriteRef;
-                            tmp.itemDescription = itemDetail.itemDescription;
-                            tmp.itemUseRadius = itemDetail.itemUseRadius;
-                            tmp.canPickup = itemDetail.canPickup;
-                            tmp.canDropped = itemDetail.canDropped;
-                            tmp.canCarried = itemDetail.canCarried;
-                            tmp.itemPrice = itemDetail.itemPrice;
-                            tmp.sellPercentage = itemDetail.sellPercentage;
-                            var handle1 = tmp.itemIconRef.LoadAssetAsync<Sprite>();
-                            tmp.itemIcon = handle1.WaitForCompletion();
-                            var handle2 = tmp.itemOnWorldSpriteRef.LoadAssetAsync<Sprite>();
-                            tmp.itemOnWorldSprite = handle2.WaitForCompletion();
-                            
-                            _itemDetailsList.Add(tmp);
-                            Addressables.Release(handle1);
-                            Addressables.Release(handle2);
-                        }
+                        StartCoroutine(SetItemDetail());
                         break;
                     case "BluePrintDataList_SO":
                         bluePrintData = (BluePrintDataList_SO)item.Value.Result;
@@ -117,6 +93,44 @@ namespace Farm.Inventory
             }
         }
 
+        private IEnumerator SetItemDetail()
+        {
+            foreach (var itemDetail in itemDataList.ItemDetailsList)
+            {
+                ItemDetails tmp = new ItemDetails(); 
+                tmp.itemID = itemDetail.itemID;
+                tmp.itemName = itemDetail.itemName;
+                tmp.itemType = itemDetail.itemType;
+                tmp.itemIconRef = itemDetail.itemIconRef;
+                tmp.itemOnWorldSpriteRef = itemDetail.itemOnWorldSpriteRef;
+                tmp.itemDescription = itemDetail.itemDescription;
+                tmp.itemUseRadius = itemDetail.itemUseRadius;
+                tmp.canPickup = itemDetail.canPickup;
+                tmp.canDropped = itemDetail.canDropped;
+                tmp.canCarried = itemDetail.canCarried;
+                tmp.itemPrice = itemDetail.itemPrice;
+                tmp.sellPercentage = itemDetail.sellPercentage;
+                var handle1 = tmp.itemIconRef.LoadAssetAsync<Sprite>();
+                while (!handle1.IsDone)
+                {
+                    // 在此可使用handle.PercentComplete进行进度展示
+                    yield return null;
+                }
+                tmp.itemIcon = handle1.Result;
+                            
+                var handle2 = tmp.itemOnWorldSpriteRef.LoadAssetAsync<Sprite>();
+                while (!handle2.IsDone)
+                {
+                    // 在此可使用handle.PercentComplete进行进度展示
+                    yield return null;
+                }
+                tmp.itemOnWorldSprite = handle2.Result;
+                            
+                _itemDetailsList.Add(tmp);
+                Addressables.Release(handle1);
+                Addressables.Release(handle2);
+            }
+        }
 
         private void OnEnable()
         {
@@ -177,6 +191,10 @@ namespace Farm.Inventory
         
         private void OnStartNewGameEvent(int obj)
         {
+            while (playerBagTemp == null)
+            {
+                Debug.Log("playerBagTemp is nil");
+            }
             playerBag = Instantiate(playerBagTemp);
             playerMoney = Settings.playerStartMoney;
             _boxDataDict.Clear();
