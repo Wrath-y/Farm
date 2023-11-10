@@ -56,6 +56,8 @@ namespace LoadAA
                     img.fillAmount = fillAmount;
                     img.fillClockwise = fillClockwise;
                 }
+
+                img.color = new Color(1, 1, 1, 1);
             };
         }
         

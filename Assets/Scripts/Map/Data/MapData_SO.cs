@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MapData_SO", menuName = "Map/MapData")]
 public class MapData_SO : ScriptableObject
 {
-    [SceneName] public string sceneName;
+    // [SceneName] public string sceneName;
+    public string sceneName;
     [Header("地图信息")]
     public int gridWidth;
     public int gridHeight;

@@ -155,11 +155,11 @@ public class Player : MonoBehaviour, ISaveable
 
     private void PlayerInput()
     {
-        // if (_variableJoystick != null)
-        // {
+        if (_variableJoystick != null)
+        {
             _inputX = _variableJoystick.Horizontal;
             _inputY = _variableJoystick.Vertical;
-        // }
+        }
         //     _inputX = Input.GetAxisRaw("Horizontal");
         //     _inputY = Input.GetAxisRaw("Vertical");
         //     if (Input.GetKey(KeyCode.LeftShift))

@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: UI
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2cda990e2423bbf4892e6590ba056729
+    m_Address: PersistentScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
   m_SchemaSet:

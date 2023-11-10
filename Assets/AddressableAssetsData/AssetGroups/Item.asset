@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Item
+  m_EditorClassIdentifier: 
+  m_GroupName: Item
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2b04ba03ad0aa4595a1b439b4535abac
+  m_SerializeEntries:
+  - m_GUID: c6e5d4d3bcc844681a7699adca2efb30
+    m_Address: fantasyrpgiconpack/Expansions/02 - Fishing set/Individual icons (16x16)/1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98938b6d7274f45d5ac8a88f4aa58e05
+    m_Address: fantasyrpgiconpack/Expansions/02 - Fishing set/Individual icons (16x16)/14.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2793a0b4c90202a498856eb02b11ba61
+    m_Address: Craftland/CL_Crafting.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5f980859c36b4414da42dedb11a8d1ba, type: 2}
+    - {fileID: 11400000, guid: 02cbae1d726d642d79dbb7ce07dd4301, type: 2}

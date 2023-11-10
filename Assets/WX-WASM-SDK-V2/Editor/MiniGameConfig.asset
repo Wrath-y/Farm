@@ -17,7 +17,7 @@ MonoBehaviour:
     Appid: wxd11c47fa600c13d9
     CDN: https://wrath-game.oss-cn-shanghai.aliyuncs.com/farm
     assetLoadType: 0
-    compressDataPackage: 0
+    compressDataPackage: 1
     VideoUrl: 
     DST: /Users/wrath/Desktop/Farm
     StreamCDN: 
@@ -25,7 +25,7 @@ MonoBehaviour:
     bundlePathIdentifier: StreamingAssets;
     bundleExcludeExtensions: json;
     AssetsUrl: 
-    MemorySize: 512
+    MemorySize: 256
     HideAfterCallMain: 1
     preloadFiles: 
     Orientation: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
     UseFriendRelation: 0
     UseCompressedTexture: 0
     UseMiniGameChat: 0
-    PreloadWXFont: 0
+    PreloadWXFont: 1
   CompileOptions:
     DevelopBuild: 0
     AutoProfile: 0

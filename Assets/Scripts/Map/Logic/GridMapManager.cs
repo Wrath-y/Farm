@@ -211,7 +211,7 @@ namespace Farm.Map
             _digTilemap = GameObject.FindWithTag("Dig").GetComponent<Tilemap>();
             _waterTilemap = GameObject.FindWithTag("Water").GetComponent<Tilemap>();
 
-            if (_firstLoadDict[SceneManager.GetActiveScene().name])
+            if (_firstLoadDict.ContainsKey(SceneManager.GetActiveScene().name))
             {
                 _firstLoadDict[SceneManager.GetActiveScene().name] = false;
                 // 预先生成农作物

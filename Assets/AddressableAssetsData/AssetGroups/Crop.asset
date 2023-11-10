@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: CropDataList_SO
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 600864a2d32066845ad14abd9d19136f
+    m_Address: CL_Crops_Mining.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
   m_SchemaSet:

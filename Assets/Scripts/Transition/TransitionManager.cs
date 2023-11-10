@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 namespace Farm.Transition
 {
-    public class TransitionManager : Singleton<TransitionManager>, ISaveable, LoadPercent
+    public class TransitionManager : Singleton<TransitionManager>, ISaveable
     {
         private Dictionary<string, AsyncOperationHandle> _aaHandles = new Dictionary<string, AsyncOperationHandle>();
         
@@ -21,26 +21,25 @@ namespace Farm.Transition
         private bool _isFaded;
         private CanvasGroup _fadeCanvasGroup;
 
-        public bool hasLoadedUI;
+        public bool hasLoadedUI = false;
         public string GUID => GetComponent<DataGUID>().guid;
 
         protected override void Awake()
         {
             base.Awake();
             // Screen.SetResolution(1920, 1080, FullScreenMode.Windowed, 0);
-            // SceneManager.LoadScene("UI", LoadSceneMode.Additive);
             
-            LoadPercent aa = this;
-            aa.RegisterLoadPercent();
-            
-            AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync("UI", LoadSceneMode.Additive);
-            handle.Completed += obj =>
+            StartCoroutine(SetFadeCanvasGroup());
+        }
+
+        IEnumerator SetFadeCanvasGroup()
+        {
+            while (_fadeCanvasGroup == null)
             {
-                hasLoadedUI = true;
                 _fadeCanvasGroup = FindObjectOfType<CanvasGroup>();
-                Debug.Log("has loaded ui");
-            };
-            aa.AddHandle("UIScene", handle);
+                yield return new WaitForSeconds(0.1f);
+            }
+            Debug.Log("has loaded _fadeCanvasGroup");
         }
         
         private void OnEnable()
@@ -158,7 +157,7 @@ namespace Farm.Transition
         {
             EventHandler.CallBeforeUnloadSceneEvent();
             yield return Fade(1f);
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
             yield return Fade(0);
         }
 
@@ -176,21 +175,6 @@ namespace Farm.Transition
         {
             //加载游戏进度场景
             StartCoroutine(LoadSaveDataScene(saveData.dataSceneName));
-        }
-        
-        public IEnumerator AddHandle(string key, AsyncOperationHandle handle)
-        {
-            while (AAManager.Instance == null)
-            {
-                yield return new WaitForSeconds(0.1f);
-            }
-            AAManager.Instance.allResourceNum++;
-            _aaHandles.Add(key, handle);
-        }
-
-        public Dictionary<string, AsyncOperationHandle> GetHandles()
-        {
-            return _aaHandles;
         }
     }
 }

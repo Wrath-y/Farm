@@ -33,6 +33,10 @@ namespace Cursor
 
         private void OnItemSelectedEvent(ItemDetails itemDetails, bool isSelected)
         {
+            if (actionBtn == null)
+            {
+                return;
+            }
             if (!isSelected)
             {
                 _curItem = null;
@@ -46,12 +50,20 @@ namespace Cursor
 
         private void OnBeforeUnloadSceneEvent()
         {
+            if (actionBtn == null)
+            {
+                return;
+            }
             actionBtn.gameObject.SetActive(false);
         }
         
         private void OnAfterLoadedSceneEvent()
         {
             _curGrid = FindObjectOfType<Grid>();
+            if (actionBtn == null)
+            {
+                return;
+            }
             actionBtn.gameObject.SetActive(false);
         }
 

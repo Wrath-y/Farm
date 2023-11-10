@@ -17,12 +17,32 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: df5e434a6a3544b4487a7639785f12ae
   m_SerializeEntries:
-  - m_GUID: 6cd5b14b78c494bd88af37cb522160a6
-    m_Address: WaterTile
+  - m_GUID: 4aec5a8a6277f4d4b8fb30f397058f44
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/Grassy.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: a73bcc85503ac435aa132ec816f8f77d
     m_Address: DigTile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5cf98d64307a4294a5f9352f61c5729
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/GravelRoad.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e3ded839ecc642dc9020d0926190eb2
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/Ground.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 662e6430f4f3c3d489e8610ae924852a
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/RoomWall.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f02d38a2d83314be38e65694abb9a369
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/WaterFall.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed7be7761c37c4852b43e70047444765
+    m_Address: Assets/TileMaps/Tiles/RuleTiles/WaterPoolTile.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

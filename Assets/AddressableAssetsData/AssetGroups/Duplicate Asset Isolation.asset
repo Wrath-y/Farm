@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d60fc2461a135407ab7ca0a5465b0587
+  m_SerializeEntries:
+  - m_GUID: fa6525fe7507a430580233ebee2d4409
+    m_Address: Assets/StaticResources/Craftland/CL_MainLev.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a97c105638bdf8b4a8650670310a4cd3
+    m_Address: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Lit-Default.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e260cfa7296ee7642b167f1eb5be5023
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/2D/Sprite-Lit-Default.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65cdc2ca6e9fe442c94500b0e83dcb01
+    m_Address: Assets/StaticResources/Default/Sound/Mixer/GameAudioMixer.mixer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5cc120c2aa244c740ab8987825892036
+    m_Address: Assets/StaticResources/Default/Animators/UI/SlotHighlight.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ceab9c694618f4014a3f99ea6edf9d05
+    m_Address: Assets/StaticResources/Default/Animations/UI/slothightlight.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3265ab4bf004d28a9537516768c1c75
+    m_Address: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f1ec8314d44949f29dbb2b0651eccf3
+    m_Address: Assets/StaticResources/Art/Maps/Collisions@20.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a6d1f4a6581ea8749b79abacdab6657b
+    m_Address: Assets/StaticResources/Craftland/CLT_Houses.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d65d171f82f76034eac7950c007ceda2
+    m_Address: Assets/StaticResources/Craftland/CL_Buildings.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46eba2256b98c044596e3e2ab0263051
+    m_Address: Assets/TileMaps/Tiles/Collision/Collisions@20_7.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f941b47285cb3540929f18a86edae29
+    m_Address: Assets/TileMaps/Tiles/Collision/Collisions@20_0.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25c1ffdb8ed0a4140872875535238869
+    m_Address: Assets/TileMaps/Tiles/Collision/Collisions@20_2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c7209626c7be11c4fb1499759bf02d99
+    m_Address: Assets/StaticResources/Default/SpriteAtlas/MapSpriteAtlas.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8d5c31dfbe2c94d959583b9305318a1c, type: 2}
+    - {fileID: 11400000, guid: 8c457b0c1f8704d44b3ce570408f3b16, type: 2}

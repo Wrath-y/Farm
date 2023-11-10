@@ -3,16 +3,16 @@ using Cursor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     private GameObject _menuCanvas;
-    public AssetReference menuPrefabRef;
     private GameObject _menuPrefab;
 
+    public AssetReference menuPrefabRef;
+    public GameObject gameTimeBox;
     public Button acceleratedTimeButton;
-    public Button mobileSettingsBtn;
     public Button settingsBtn;
     public GameObject actionBtn;
     public GameObject pausePanel;
@@ -21,19 +21,21 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameObject.FindWithTag("JoyStick").GetComponent<VariableJoystick>() == null)
-        {
-            settingsBtn.onClick.AddListener(TogglePausePanel);
-        }
-        else
-        {
-            mobileSettingsBtn.onClick.AddListener(TogglePausePanel);
-        }
-
         ActionBtnManager.Instance.actionBtn = actionBtn;
         actionBtn.GetComponent<Button>().onClick.AddListener(ActionBtnManager.Instance.Click);
         acceleratedTimeButton.onClick.AddListener(TimeManager.Instance.AcceleratedTime);
         volumeSlider.onValueChanged.AddListener(AudioManager.Instance.SetMasterVolume);
+        settingsBtn.onClick.AddListener(TogglePausePanel);
+
+        _menuCanvas = GameObject.FindWithTag("MenuCanvas");
+        menuPrefabRef.LoadAssetAsync<GameObject>().Completed += obj =>
+        {
+            _menuPrefab = obj.Result;
+            Instantiate(_menuPrefab, _menuCanvas.transform);
+            SceneManager.UnloadSceneAsync("Boot");
+        };
+        
+        gameTimeBox.SetActive(true);
     }
 
     private void OnEnable()
@@ -45,8 +47,7 @@ public class UIManager : MonoBehaviour
     {
         EventHandler.AfterLoadedSceneEvent -= OnAfterSceneLoadedEvent;
     }
-
-
+    
     private void Start()
     {
         RectTransform joyStickBoxRect = GameObject.FindWithTag("JoyStickBox").GetComponent<RectTransform>();
@@ -66,14 +67,6 @@ public class UIManager : MonoBehaviour
             anPos.y = 60;
             joyStickBoxRect.anchoredPosition = anPos;
         }
-        
-        menuPrefabRef.InstantiateAsync().Completed += (obj) =>
-        {
-            _menuCanvas = GameObject.FindWithTag("MenuCanvas");
-            _menuPrefab = obj.Result;
-            Instantiate(_menuPrefab, _menuCanvas.transform);
-        };
-        
     }
     private void OnAfterSceneLoadedEvent()
     {

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefab UI
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefab UI
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 04bceaebd423a4517a04e73023e27bd2
+  m_SerializeEntries:
+  - m_GUID: 75fe21ed88623d44d8b868d62d8e0c46
+    m_Address: UI/Inventory/SlotBag.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ba267f553f09d4408c9ed3066ed7e5d
+    m_Address: UI/Inventory/SlotBox.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5f901bb4c69f4635ac858cf4023c92e
+    m_Address: UI/Inventory/SlotShop.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1ceb0bdb361a402db524eed26edf2ed
+    m_Address: Assets/Prefabs/UI/Menu/Panel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec536a7718376554185e4a856d5ae230
+    m_Address: Variable Joystick.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0eba10f8e45654838a130e83be4f1905, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 219e358248a304463994c96177d5382b, type: 2}
+    - {fileID: 11400000, guid: 449f0ee628f804986831fe1e53ccae8a, type: 2}
